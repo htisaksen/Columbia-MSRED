@@ -1,0 +1,627 @@
+{% extends "base.html" %}
+{%block header%}  <h6>Analysis Start Date <span style="color:blue">1/1/2017</span></h6> {%endblock%}
+{%block tables%}
+<table id="Property Information" class="center">
+  <tr>
+    <th>PROPERTY INFORMATION</th>
+  </tr>
+  <tr>
+    <td>Property Name</td>
+    <td><span style="color:blue">Columbia Apartments</td>
+  </tr>
+  <tr>
+    <td>Property Location</td>
+    <td><span style="color:blue">116 Broadway</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><span style="color:blue">New York, New York, 10027</td>
+  </tr>
+  <tr>
+    <td>Property Type</td>
+    <td><span style="color:blue">Multi Family</td>
+  </tr>
+  <tr>
+    <td>Number of Units</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>Total Square Feet</td>
+    <td>200,013</td>
+  </tr>
+</table>
+
+
+<table id = "Purchase Information">
+  <tr>
+    <th>PURCHASE INFORMATION</th>
+  </tr>
+  <tr>
+    <td>Purchase Price</td>
+    <td>&nbsp;</td>
+    <!-- <td>$25,000,000</td>  testing an input field for the table-->
+    <td><input type="text" name="purchaseprice" placeholder = "$"></td>
+  </tr>
+  <tr>
+    <td>Closing Costs</td>
+    <td>6%</td>
+    <td>$1,500,000</td>
+  </tr>
+  <tr>
+    <td>Total Costs</td>
+    <td>&nbsp;</td>
+    <td>$26,500,000</td>
+  </tr>
+  <tr>
+    <td>Purchase Cost Per Unit</td>
+    <td>&nbsp;</td>
+    <td>$125,000</td>
+  </tr>
+  <tr>
+    <td>Total Cost Per Unit</td>
+    <td>&nbsp;</td>
+    <td>$132,500 </td>
+  </tr>
+  <tr>
+    <td>Purchase Cost Per SF</td>
+    <td>&nbsp;</td>
+    <td>$124.99 </td>
+  </tr>
+  <tr>
+    <td>Cap Rate on Purchase Price</td>
+    <td>&nbsp;</td>
+    <td>6.96%</td>
+  </tr>
+  <tr>
+    <td>Cap Rate on Total Price</td>
+    <td>&nbsp;</td>
+    <td>6.56%</td>
+  </tr>
+</table>
+
+
+<table id="sale assumption">
+  <tr>
+    <th>SALE ASSUMPTION</th>
+  </tr>
+  <tr>
+    <td>Sale Year</td>
+    <td>Year 10</td>
+  </tr>
+  <tr>
+    <td>Terminal Cap Rate</td>
+    <td>7.00%</td>
+  </tr>
+  <tr>
+    <td>Sales Costs</td>
+    <td>2.00%</td>
+  </tr>
+</table>
+
+
+<table name="sale summary">
+  <tr>
+    <th>SALE SUMMARY</th>
+  </tr>
+  <tr>
+    <td>Sale Price</td>
+    <td>$34,394,257</td>
+  </tr>
+  <tr>
+    <td>Sale Price Per Unit</td>
+    <td>$171,971</td>
+  </tr>
+  <tr>
+    <td>Sale Price Per SF</td>
+    <td>$171.96</td>
+  </tr>
+</table>
+
+
+<table id="final assumptions">
+  <tr>
+    <th>FINAL ASSUMPTIONS</th>
+  </tr>
+  <tr>
+    <td>Leverage</td>
+    <td>65.00%</td>
+  </tr>
+  <tr>
+    <td>Interest Rate on Mortgage</td>
+    <td>5.50%</td>
+  </tr>
+  <tr>
+    <td>Loan Term</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>Loan Amortization</td>
+    <td>25</td>
+  </tr>
+</table>
+
+
+  <table id="Sources and Uses">
+    <tr>
+      <th>SOURCES AND USES</th>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <th>Total</th>
+      <th>$/Unit</th>
+      <th>$/SF</th>
+      <th>% of Total</th>
+    </tr>
+    <tr>
+      <th>Sources</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <td>Equity</td>
+      <td>$9,275,000 </td>
+      <td>$46,375 </td>
+      <td>$46.37 </td>
+      <td>35.0%</td>
+    </tr>
+    <tr>
+      <td>Loan</td>
+      <td>$17,225,000</td>
+      <td>$86,125</td>
+      <td>$86.12</td>
+      <td>65.0%</td>
+    </tr>
+    <tr>
+      <th>Total Sources</th>
+      <th>$26,500,000 </th>
+      <th>$132,500 </th>
+      <th>$132.49 </th>
+      <th>100.0%</th>
+    </tr>
+    <tr>
+      <th>Uses</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <td>Purchasing Price</td>
+      <td>$25,000,000 </td>
+      <td>$125,000 </td>
+      <td>$124.99 </td>
+      <td>94.3%</td>
+    </tr>
+    <tr>
+      <td>Closing Costs</td>
+      <td>$1,500,000</td>
+      <td>$7,500 </td>
+      <td>$7.50 </td>
+      <td>5.7%</td>
+    </tr>
+    <tr>
+      <th>Total Uses</th>
+      <th>$26,500,000 </th>
+      <th>$132,500 </th>
+      <th>$132.49 </th>
+      <th>100.0%</th>
+    </tr>
+  </table>
+
+
+  <table id="rental rate assumptions">
+    <tr>
+      <th>RENTAL RATE ASSUMPTIONS</th>
+    </tr>
+    <tr>
+      <th>Projected Rents</th>
+      <th>Total Units</th>
+      <th>Total SF</th>
+      <th>Avg. SF/Unit</th>
+      <th>Rent/SF</th>
+      <th>Per Unit</th>
+    </tr>
+    <tr>
+      <td>1 Bed/1 Bath</td>
+      <td>50</td>
+      <td>33,100</td>
+      <td>662</td>
+      <td>$1.66</td>
+      <td>$1,100</td>
+    </tr>
+    <tr>
+      <td>2 Bed/1 Bath</td>
+      <td>75</td>
+      <td>78,038</td>
+      <td>1,041</td>
+      <td>$1.35</td>
+      <td>$1,400</td>
+    </tr>
+    <tr>
+      <td>2 Bed/2 Bath</td>
+      <td>75</td>
+      <td>88,875</td>
+      <td>1,185</td>
+      <td>$1.52</td>
+      <td>$1,800</td>
+    </tr>
+    <tr>
+      <th>Totals</th>
+      <th>200</th>
+      <th>200,013</th>
+      <th>1,000</th>
+      <th>$1.47</th>
+      <th>$1,475</th>
+    </tr>
+  </table>
+
+
+  <table id="returns summary">
+    <tr>
+      <th>RETURNS SUMMARY</th>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <th>Unlevered</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>Levered</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <td>Net Profit</td>
+      <td>&nbsp;</td>
+      <td>$26,743,671</td>
+      <td>Net Profit</td>
+      <td>&nbsp;</td>
+      <td>$17,269,921</td>
+    </tr>
+    <tr>
+      <td>Discout Rate</td>
+      <td>&nbsp;</td>
+      <td>8.00%</td>
+      <td>Discount Rate</td>
+      <td>&nbsp;</td>
+      <td>8.00%</td>
+    </tr>
+    <tr>
+      <td>Net Present Value</td>
+      <td>&nbsp;</td>
+      <td>$1,967,470  </td>
+      <td>Net Present Value</td>
+      <td>&nbsp;</td>
+      <td>$4,856,998  </td>
+    </tr>
+    <tr>
+      <td>Equity Multiple</td>
+      <td>&nbsp;</td>
+      <td>2.01</td>
+      <td>Equity Multiple</td>
+      <td>&nbsp;</td>
+      <td>2.86</td>
+    </tr>
+    <tr>
+      <td>IRR</td>
+      <td>&nbsp;</td>
+      <td>46.28%</td>
+      <td>IRR</td>
+      <td>&nbsp;</td>
+      <td>52.69%</td>
+    </tr>
+    <tr>
+      <td>IRR from CF (%)</td>
+      <td>&nbsp;</td>
+      <td>46.28%</td>
+      <td>IRR from CF (%)</td>
+      <td>&nbsp;</td>
+      <td>52.69%</td>
+    </tr>
+    <tr>
+      <td>IRR from Sale (%)</td>
+      <td>&nbsp;</td>
+      <td>53.72%</td>
+      <td>IRR from Sale (%)</td>
+      <td>&nbsp;</td>
+      <td>47.31%</td>
+    </tr>
+    <tr>
+      <td>IRR from CF (%)</td>
+      <td>&nbsp;</td>
+      <td>49.77%</td>
+      <td>IRR from CF (%)</td>
+      <td>&nbsp;</td>
+      <td>34.94%</td>
+    </tr>
+  </table>
+  <table id="current financial performance">
+    <tr>
+      <th>CURRENT FINANCIAL PERFORMANCE</th>
+    </tr>
+    <tr>
+      <th>As of date: 1/1/2016</th>
+      <th>&nbsp;</th>
+      <th>Total</th>
+      <th>$/Unit</th>
+      <th>$/SF</th>
+      <th>% of Total</th>
+    </tr>
+    <tr>
+      <th>Revenue</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <td>Rental Income</td>
+      <td>&nbsp;</td>
+      <td>$3,540,000 </td>
+      <td>$17,700 </td>
+      <td>$17.70 </td>
+      <td>97.3%</td>
+    </tr>
+    <tr>
+      <td>Other Income</td>
+      <td>&nbsp;</td>
+      <td>$100,000 </td>
+      <td>$500 </td>
+      <td>$0.50 </td>
+      <td>2.7%</td>
+    </tr>
+    <tr>
+      <th>Gross Rental Income</th>
+      <th>&nbsp;</th>
+      <th>$3,640,000 </th>
+      <th>$18,200 </th>
+      <th>$18.20 </th>
+      <th>100.0%</th>
+    </tr>
+    <tr>
+      <td>Less: Vacancy</td>
+      <td>10.0%</td>
+      <td>($364,000)</td>
+      <td>($1,820)</td>
+      <td>($1.82)</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Less: Concessions</td>
+      <td>3.0%</td>
+      <td>($109,200)</td>
+      <td>($546)</td>
+      <td>($0.55)</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Less: Credit Loss</td>
+      <td>2.0%</td>
+      <td>($72,800)</td>
+      <td>($364)</td>
+      <td>($0.36)</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <th>Net Rental Income</th>
+      <th>&nbsp;</th>
+      <th>$3,094,000 </th>
+      <th>$15,470 </th>
+      <th>$15.47 </th>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <th>Operating Expenses</th>
+    </tr>
+    <tr>
+      <td>Real Estate Taxes</td>
+      <td>&nbsp;</td>
+      <td>$500,000 </td>
+      <td>$2,500 </td>
+      <td>$2.50 </td>
+      <td>36.9%</td>
+    </tr>
+    <tr>
+      <td>Insurance</td>
+      <td>&nbsp;</td>
+      <td>$75,000 </td>
+      <td>$375 </td>
+      <td>$0.37 </td>
+      <td>5.5%</td>
+    </tr>
+    <tr>
+      <td>Utilities</td>
+      <td>&nbsp;</td>
+      <td>$125,000 </td>
+      <td>$625 </td>
+      <td>$0.62 </td>
+      <td>9.2%</td>
+    </tr>
+    <tr>
+      <td>Payroll</td>
+      <td>&nbsp;</td>
+      <td>$150,000 </td>
+      <td>$750 </td>
+      <td>$0.75 </td>
+      <td>11.1%</td>
+    </tr>
+    <tr>
+      <td>Repairs & Maintenance</td>
+      <td>&nbsp;</td>
+      <td>$75,000 </td>
+      <td>$375 </td>
+      <td>$0.37 </td>
+      <td>5.5%</td>
+    </tr>
+    <tr>
+      <td>Contract Services</td>
+      <td>&nbsp;</td>
+      <td>$100,000 </td>
+      <td>$500 </td>
+      <td>$0.50 </td>
+      <td>7.4%</td>
+    </tr>
+    <tr>
+      <td>Turnover</td>
+      <td>&nbsp;</td>
+      <td>$75,000 </td>
+      <td>$375 </td>
+      <td>$0.37 </td>
+      <td>5.5%</td>
+    </tr>
+    <tr>
+      <td>Sales & Marketing</td>
+      <td>&nbsp;</td>
+      <td>$50,000 </td>
+      <td>$250 </td>
+      <td>$0.25 </td>
+      <td>3.7%</td>
+    </tr>
+    <tr>
+      <td>Administrative</td>
+      <td>&nbsp;</td>
+      <td>$50,000 </td>
+      <td>$250 </td>
+      <td>$0.25 </td>
+      <td>3.7%</td>
+    </tr>
+    <tr>
+      <td>Management</td>
+      <td>3.0%</td>
+      <td>$92,820 </td>
+      <td>$464 </td>
+      <td>$0.46 </td>
+      <td>6.9%</td>
+    </tr>
+    <tr>
+      <td>Replacement Reserves</td>
+      <td>2.0%</td>
+      <td>$61,880 </td>
+      <td>$309 </td>
+      <td>$0.31 </td>
+      <td>4.6%</td>
+    </tr>
+    <tr>
+      <th>Total Operating Expenses</th>
+      <th>&nbsp;</th>
+      <th>$1,354,700 </th>
+      <th>$6,774 </th>
+      <th>$6.77 </th>
+      <th>100.0%</th>
+    </tr>
+    <tr>
+      <th>Total Opeßrating Expenses</th>
+      <th>&nbsp;</th>
+      <th>$1,739,300 </th>
+      <th>$8,697 </th>
+      <th>$8.70 </th>
+      <th>&nbsp;</th>
+    </tr>
+  </table>
+  <table id="Market Rental Assumptions">
+    <tr>
+      <th>MARKET RENTAL ASSUMPTIONS</th>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>Revenue</th>
+      <th>Expenses</th>
+      <th>Vacancy</th>
+      <th>Concessions</th>
+      <th>Credit Loss</th>
+    </tr>
+    <tr>
+      <td>Year 1</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 2</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 3</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 4</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 5</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 6</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 7</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 8</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 9</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+    <tr>
+      <td>Year 10</td>
+      <td>&nbsp;</td>
+      <td>3.0%</td>
+      <td>3.0%</td>
+      <td>10.0%</td>
+      <td>3.0%</td>
+      <td>2.0%</td>
+    </tr>
+  </table>
+
+{%endblock%}
