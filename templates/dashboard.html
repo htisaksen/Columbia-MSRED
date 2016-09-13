@@ -1,5 +1,9 @@
 {% extends "base.html" %}
-{%block header%}  <h6>Analysis Start Date <span style="color:blue">1/1/2017</span></h6> {%endblock%}
+
+{%block header%}  
+  <h6>Analysis Start Date <span style="color:blue">1/1/2017</span></h6> 
+{%endblock header%}
+
 {%block tables%}
 <table id="Property_Information" class="center">
   <tr>
@@ -39,7 +43,7 @@
   </tr>
   <tr>
     <td>Closing Costs</td>
-    <td>6%</td>
+    <td><input type="text" name="Closing_Costs" placeholder = "Closing Costs (%)"></td>
     <td>{{Closing_Costs}}</td>
   </tr>
   <tr>
@@ -277,7 +281,7 @@
       <td>{{L_Net_Profit}}</td>
     </tr>
     <tr>
-      <td>Discout Rate</td>
+      <td>Discount Rate</td>
       <td>&nbsp;</td>
       <td><input type="text" name="UL_Discount_Rate" placeholder = "Unlevered Discount Rate (%)"></td>
       <td>Discount Rate</td>
@@ -379,7 +383,7 @@
     </tr>
     <tr>
       <td>Less: Vacancy</td>
-      <td><input type="text" name="Less_Vacancy" placeholder = "Less Vacancy (%)">%</td>
+      <td><input type="text" name="Less_Vacancy" placeholder = "Less Vacancy (%)"></td>
       <td>{{Vacancy_Total}}</td>
       <td>{{Vacancy_DollarPerUnit}}</td>
       <td>{{Vacancy_DollarPerSF}}</td>
@@ -594,6 +598,7 @@
       <td>Year 7</td>
       <td>&nbsp;</td>
       <td>3.0%</td>
+      <td>3.0%</td>
       <td>10.0%</td>
       <td>3.0%</td>
       <td>2.0%</td>
@@ -635,4 +640,4 @@
   </table>
 <!--==================================================================================-->
 
-{%endblock%}
+{%endblock tables%}
