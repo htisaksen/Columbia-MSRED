@@ -1,73 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>{{title}}</title>
-  <!-- <link href="{{ url_for("static", filename="css/materialize.min.css") }}" rel="stylesheet" type="text">
-  <link href="{{ url_for("static", filename="css/style.css") }}" rel="stylesheet" type="text/css"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" href="static/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<meta charset="utf-8">
+	<title>{{title}}</title>
+	<!-- <link href="{{ url_for("static", filename="css/materialize.min.css") }}" rel="stylesheet" type="text">
+	<link href="{{ url_for("static", filename="css/style.css") }}" rel="stylesheet" type="text/css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script type="text/javascript" src="/static/main.js"></script>
 </head>
 
 
 <body>
-  <!-- Dropdown Structure -->
-  <ul id="dropdown1" class="dropdown-content">
-    <li><a href="/dashboard">Edit Account</a></li>
-    <li><a href="#!">Settings</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">Logout</a></li>
-  </ul>
-  
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <!-- <li><a href="#">List Item</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/performa">Performa</a></li> -->
-        <!-- Dropdown Trigger -->
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">view_headline</i></a></li>
-      </ul>
-    </div>
-  </nav>
+	<!-- Dropdown Structure -->
+	<ul id="dropdown1" class="dropdown-content">
+		<li><a href="/dashboard">Edit Account</a></li>
+		<li><a href="#!">Settings</a></li>
+		<li class="divider"></li>
+		<li><a href="#!">Logout</a></li>
+	</ul>
 
-  <header>
-  {%block header%}{%endblock header%}
-  </header>
-  
-  <article>
-  {% block tables%}{%endblock tables%}
-  </article>
-  
-  <sidebar>
-    {% block sidebar%}{%endblock sidebar%}
-  </sidebar>
+	<nav>
+	<div class="nav-wrapper">
+		<a href="/" class="brand-logo">Logo</a>
+		<ul class="right hide-on-med-and-down">
+			<!-- <li><a href="#">List Item</a></li>
+			<li><a href="/dashboard">Dashboard</a></li>
+			<li><a href="/performa">Performa</a></li> -->
+			<!-- Dropdown Trigger -->
+			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">view_headline</i></a></li>
+		</ul>
+	</div>
+	</nav>
+
+<header>
+{%block header%}{%endblock header%}
+</header>
+
+<article>
+{% block tables%}{%endblock tables%}
+</article>
+
+<sidebar>
+{% block sidebar%}{%endblock sidebar%}
+</sidebar>
 
 
 <footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">href</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    © 2016 Logo
-    <a class="grey-text text-lighten-4 right" href="#!">Extra</a>
-    </div>
-  </div>
+	<div class="container">
+		<div class="row">
+			<div class="col l6 s12">
+				<h5 class="white-text">Footer Content</h5>
+				<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+			</div>
+			<div class="col l4 offset-l2 s12">
+				<h5 class="white-text">Links</h5>
+				<ul>
+					<li><a class="grey-text text-lighten-3" href="#!">href</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<div class="container">
+		© 2016 Logo
+		<a class="grey-text text-lighten-4 right" href="#!">Extra</a>
+		</div>
+	</div>
 </footer>
 
 
