@@ -40,11 +40,11 @@
     <tr>
       <td>Purchase Price</td>
       <td>&nbsp;</td>
-      <td><input type="text" name="Purchase_Price" placeholder = "Purchase Price ($)"></td>
+      <td><input type="text" id="Purchase_Price" name="Purchase_Price" placeholder = "Purchase Price ($)"></td>
     </tr>
     <tr>
       <td>Closing Costs</td>
-      <td><input type="text" name="Closing_Costs_Percentage" placeholder = "Closing Costs (%)"></td>
+      <td><input type="text" id="Closing_Costs_Percentage" name="Closing_Costs_Percentage" placeholder = "Closing Costs (%)"></td>
       <td>{{Closing_Costs}}</td>
     </tr>
     <tr>
@@ -213,6 +213,7 @@
   <!--==================================================================================-->
   <!-- Must have this table be dynamic and allow the user to add an indefinite number of rooms/rents -->
 
+    <form action = 'rental_rate_form' method = 'POST'>
     <table id="Rental_Rate_Assumptions">
       <tr>
         <th>RENTAL RATE ASSUMPTIONS</th>
@@ -233,31 +234,10 @@
         <td>$1.66</td>
         <td>$1,100</td>
       </tr>
-      <tr>
-        <td>2 Bed/1 Bath</td>
-        <td>75</td>
-        <td>78,038</td>
-        <td>1,041</td>
-        <td>$1.35</td>
-        <td>$1,400</td>
-      </tr>
-      <tr>
-        <td>2 Bed/2 Bath</td>
-        <td>75</td>
-        <td>88,875</td>
-        <td>1,185</td>
-        <td>$1.52</td>
-        <td>$1,800</td>
-      </tr>
-      <tr>
-        <th>Totals</th>
-        <th>200</th>
-        <th>200,013</th>
-        <th>1,000</th>
-        <th>$1.47</th>
-        <th>$1,475</th>
-      </tr>
+      <input type = 'submit' name = 'add_rental_rates' id='add_rental_rates' value = "Add"> 
+
     </table>
+    </form>
   <!--==================================================================================-->
 
 
@@ -656,7 +636,7 @@
         </tr>
     </table>
 <!--==================================================================================-->
-<input type="submit" value="calculate">
+  <input type="submit" id='calc_submit' name='calc_submit' value="Calculate">
 </form>
 
 {%endblock tables%}
