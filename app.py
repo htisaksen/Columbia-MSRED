@@ -35,7 +35,7 @@ def dashboard():
     property_type = request.form.get('Property_Type')
     #Purchase Information Table
     purchase_price = request.form.get('Purchase_Price')
-    closing_costs = request.form.get('Closing_Costs')
+    closing_costs_percentage = request.form.get('Closing_Costs_Percentage')
     #Sale Assumption Table
     sale_year = request.form.get('Sale_Year')
     terminal_cap_rate = request.form.get('Terminal_Cap_Rate')
@@ -66,64 +66,75 @@ def dashboard():
     replacement_reserves_percentage = request.form.get('Replacement_Reserves_Percentage')
 
     #CALCULATIONS VARIABLES
+    # ========================================================================================
     #Property Information Table
-    Num_Units =
-    Total_Sq_Ft =
+    Num_Units = 0       # {total Num_Units of Rental Rate Assumptions}
+    Total_Sq_Ft = 0     # {total Sq_Ft of Rental Rate Assumptions}
+
     #Purchase Information Table
-    pit_Closing_Costs =
-    pit_Total_Costs =
-    Purchase_Cost_Per_Unit =
-    Total_Cost_Per_Unit =
-    purchase_cost_per_sf =
-    Purchase_Cost_Per_SF =
-    Cap_Rate_on_Purchase_Price =
-    Cap_Rate_on_Total_Price =
+    Closing_Costs = closing_costs_percentage * purchase_price
+    Total_Costs = Closing_Costs + purchase_price
+    Purchase_Cost_Per_Unit = purchase_price/Num_Units
+    Total_Cost_Per_Unit = Total_Costs/Num_Units
+    Purchase_Cost_Per_SF = purchase_price/Total_Sq_Ft
+    Total_Cost_Per_SF = Total_Costs/Total_Sq_Ft
+    Cap_Rate_on_Purchase_Price = Net_Operating_Income_Total/purchase_price
+    Cap_Rate_on_Total_Price = Net_Operating_Income_Total/Total_Costs
+
     #Sales Assumptions Table
+    # {all input fields}
+
     #Sales Summary Table
-    Sale_Price =
-    Sale_Price_Per_Unit =
-    Sale_Price_Per_SF =
+    Sale_Price = 100       #{=HLOOKUP(Sale_Year+1,Proforma!C4:M30,27)/Terminal_Cap}
+    Sale_Price_Per_Unit = Sale_Price/Num_Units
+    Sale_Price_Per_SF = Sale_Price/Total_Sq_Ft
+
     #Finance Assumptions Table
+    # {all input fields}
+
     #Sources And Uses Table
-    Equity_Total =
-    Equity_DollarPerUnit =
-    Equity_DollarPerSF =
-    Equity_PercentofTotal =
+    Equity_Total = Total_Costs - Loan_Total
+    Equity_DollarPerUnit = Equity_Total/Num_Units
+    Equity_DollarPerSF = Equity_Total/Total_Sq_Ft
+    Equity_PercentofTotal = Equity_Total/Total_Sources_Total
 
-    Loan_Total =
-    Loan_DollarPerUnit =
-    Loan_DollarPerSF =
-    Loan_PercentofTotal =
+    Loan_Total = Total_Costs*leverage
+    Loan_DollarPerUnit = Loan_Total/Num_Units
+    Loan_DollarPerSF = Loan_Total/Total_Sq_Ft
+    Loan_PercentofTotal = Loan_Total/Total_Sources_Total
 
-    Purchasing_Price_Total =
-    Purchasing_Price_DollarPerUnit =
-    Purchasing_Price_DollarPerSF =
-    Total_Sources_PercentofTotal =
+    Total_Sources_Total = Equity_Total + Loan_Total
+    Total_Sources_DollarPerUnit = Equity_DollarPerUnit + Loan_DollarPerUnit
+    Total_Sources_DollarPerSF = Equity_DollarPerSF + Loan_DollarPerSF
+    Total_Sources_PercentofTotal = Equity_PercentofTotal + Loan_PercentofTotal
 
-    Purchasing_Price_Total =
-    Purchasing_Price_DollarPerUnit =
-    Purchasing_Price_DollarPerSF =
-    Purchasing_Price_PercentofTotal =
+    Purchasing_Price_Total = purchase_price
+    Purchasing_Price_DollarPerUnit = Purchasing_Price_Total/Num_Units
+    Purchasing_Price_DollarPerSF = Purchasing_Price_Total/Total_Sq_Ft
+    Purchasing_Price_PercentofTotal = Purchasing_Price_Total/Total_Uses_Total
 
-    Closing_Costs_Total =
-    Closing_Costs_DollarPerUnit =
-    Closing_Costs_DollarPerSF =
-    Closing_Costs_PercentofTotal =
+    Closing_Costs_Total = Closing_Costs
+    Closing_Costs_DollarPerUnit = Closing_Costs/Num_Units
+    Closing_Costs_DollarPerSF = Closing_Costs/Total_Sq_Ft
+    Closing_Costs_PercentofTotal = Closing_Costs/Total_Uses_Total
 
-    Total_Uses_Total =
-    Total_Uses_DollarPerUnit =
-    Total_Uses_DollarPerSF =
-    Total_Uses_PercentofTotal =
+    Total_Uses_Total = Purchasing_Price_Total + Closing_Costs_Total
+    Total_Uses_DollarPerUnit = Purchasing_Price_DollarPerUnit + Closing_Costs_DollarPerUnit
+    Total_Uses_DollarPerSF = Purchasing_Price_DollarPerSF + Closing_Costs_DollarPerSF
+    Total_Uses_PercentofTotal = Purchasing_Price_PercentofTotal + Closing_Costs_PercentofTotal
+ 
     #Rental Rate Assumptions Table ***dynamic***
+    # TBD
+
     #Returns Summary Table
-    UL_Net_Profit =
-    UL_Present_Value =
+    UL_Net_Profit = # {=SUM('Returns Summary'!C24:M24)}
+    UL_Present_Value = 
     UL_Net_Present_Value =
     UL_Equity_Multiple =
     UL_IRR =
     UL_IRR_from_CF =
     UL_IRR_from_Sale =
-    UL_Cash_On_Cash =
+    UL_Cash_On_Cash = 
 
     L_Net_Profit =
     L_Present_Value =
@@ -133,20 +144,21 @@ def dashboard():
     L_IRR_from_CF =
     L_IRR_from_Sale =
     L_Cash_On_Cash =
+ 
     #Current Financial Performance Table
-    Rental_Income_Total =
-    Rental_Income_DollarPerUnit =
-    Rental_Income_DollarPerSF =
-    Rental_Income_PercentofTotal =
+    Rental_Income_Total = # {=((SUMPRODUCT(G18:G20,K18:K20)*12))}
+    Rental_Income_DollarPerUnit = Rental_Income_Total/Num_Units
+    Rental_Income_DollarPerSF = Rental_Income_Total/Total_Sq_Ft
+    Rental_Income_PercentofTotal = Rental_Income_Total/Gross_Rental_Income_Total
 
-    Other_Income_DollarPerUnit =
-    Other_Income_DollarPerSF =
-    Other_Income_PercentofTotal =
+    Other_Income_DollarPerUnit = other_income_total/Num_Units
+    Other_Income_DollarPerSF = other_income_total/Total_Sq_Ft
+    Other_Income_PercentofTotal = other_income_total/Gross_Rental_Income_Total
 
-    Gross_Rental_Income_Total =
-    Gross_Rental_Income_DollarPerUnit =
-    Gross_Rental_Income_DollarPerSF =
-    Gross_Rental_Income_PercentofTotal =
+    Gross_Rental_Income_Total = other_income_total + Rental_Income_Total
+    Gross_Rental_Income_DollarPerUnit = Rental_Income_DollarPerUnit + Other_Income_DollarPerUnit
+    Gross_Rental_Income_DollarPerSF = Rental_Income_DollarPerSF + Other_Income_DollarPerSF
+    Gross_Rental_Income_PercentofTotal = Rental_Income_PercentofTotal + Other_Income_PercentofTotal
 
     Vacancy_Total = #negative nums
     Vacancy_DollarPerUnit = #negative nums
@@ -215,9 +227,9 @@ def dashboard():
     Total_Operating_Expenses_DollarPerSF =
     Total_Operating_Expenses_PercentofTotal =
 
-    Net_Operating_Expenses_Total =
-    Net_Operating_Expenses_DollarPerUnit =
-    Net_Operating_Expenses_DollarPerSF =
+    Net_Operating_Income_Total =
+    Net_Operating_Income_DollarPerUnit =
+    Net_Operating_Income_DollarPerSF =
     #Market Rental Assumptions Table #***dynamic***
 
     return render_template("dashboard.html",
