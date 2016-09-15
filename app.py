@@ -1,6 +1,6 @@
 import os, re
 from flask import *
-#from model import *
+from model import *
 
 app = Flask(__name__)
 
@@ -10,19 +10,46 @@ app = Flask(__name__)
 
 
 
-@app.route("/")
+@app.route("/", methods=['POST','GET'])
 def index():
-	title = "Home"
-	return render_template("base.html",
-		title = title)
-
-@app.route("/login")
+	username = ''
+	if session.get('logged_in'):
+		username = session.get('username')
+		user_text = "Welcome " + username + "!"
+		return render_template('home.html', user_text = user_text)
+	return redirect("/login")
+	
+@app.route("/login", methods=['POST','GET'])
 def login():
+	print("=======You have hit the /login route=========")
+	username = request.form.get('username')
+	print("username:",username)
+	password = request.form.get('password')
+	print("password:",password)
+	user_obj = User.query.filter_by(username=username).first()
+	print("user_obj:", user_obj)
+
+	if user_obj:
+		print("=======User login exists=========")
+		if password == user_obj.password:
+			print("=======User login and password match=========")
+			session['logged_in'] = True
+			session['username'] = user_obj.username
+			return redirect('/')
 	return render_template("login.html")
 
 @app.route("/logout")
 def logout():
+	if session.get('logged_in') == True:
+		session['logged_in'] = False
+		session['username'] = False
+	return redirect('/')
+
+
+@app.route("/register")
+def register():
 	pass
+
 
 @app.route("/dashboard", methods=['GET','POST'])
 def dashboard():
@@ -38,15 +65,15 @@ def dashboard():
 		property_type = request.form.get('Property_Type')
 		#Purchase Information Table
 
-		if request.form.get('Purchase_Price') == "":
-			purchase_price = 0
-		else:
+		if request.form.get('Purchase_Price',"").isnumeric():
 			purchase_price = int(request.form.get('Purchase_Price'))
-		
-		if request.form.get('Closing_Costs_Percentage') == "":
-			closing_costs_percentage = 0
 		else:
+			purchase_price = 0
+		
+		if request.form.get('Closing_Costs_Percentage',"").isnumeric():
 			closing_costs_percentage = int(request.form.get('Closing_Costs_Percentage'))
+		else:
+			closing_costs_percentage = 0
 		
 		print("="*40)
 		print("Purchase Price:",purchase_price)
@@ -315,4 +342,5 @@ def inputForm():
 		title = title)
 
 if __name__ == "__main__":
+	app.secret_key = os.urandom(12)
 	app.run(port=3000,debug=True)

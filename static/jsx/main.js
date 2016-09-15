@@ -11,7 +11,7 @@ $(document).ready(function(){
 	var testprint = "<input type='text' name='proj_rents_"+counter+"' id='proj_rents_"+counter+"'>";
 	console.log(testprint);
 			
-	$("#rental_rate_form").on('submit',(function(event) {
+	$("#rental_rate_form").on('click',(function(event) {
 		console.log('clicked add_rental_rates button');
 		event.preventDefault();
 		$.ajax({
@@ -21,12 +21,13 @@ $(document).ready(function(){
 				$('#Rental_Rate_Assumptions').find('tbody')
 					.append($('<tr>')
 						.append($('<td>')
-							.html("<input type='text' name='proj_rents_"+counter+"' id='proj_rents_"+counter+"'>")
+							.html("<input type='text' name='proj_rents_"+counter+"' id='proj_rents_"+counter+"' placeholder='Project Rents #"+counter+"'>")
 							)
 						.append($('<td>')
 							.text('Test text here we are!')
 							)
 					)
+				counter += 1;
 			} // end success
 		}) //end ajax
 	}));
