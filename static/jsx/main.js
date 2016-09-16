@@ -1,8 +1,14 @@
 $(document).ready(function(){
 
-	$('#Rental_Rate_Assumptions tbody').on('load', function(event){
-
-	})
+	$('#Rental_Rate_Assumptions').find('tbody')
+		.append($("<tr id = 'rent_row_1'>")
+		.append($("<td>").html("<input type='text' name='proj_rents_1' id='proj_rents_1' placeholder='Project Rents'></td>"))
+		.append($("<td>").html("<input type='text' name='total_units_1' id='total_units_1' placeholder='Total Units'></td>"))
+		.append($("<td id = 'total_sf_1'></td>").text("0"))
+		.append($("<td>").html("<input type='text' name='avg_sf_per_unit_1' id='avg_sf_per_unit_1' placeholder='Avg SF/Unit'></td>"))
+		.append($("<td id = 'rent_per_sf_1'></td>").text("$0.00"))
+		.append($("<td>").html("<input type='text' name='rent_per_unit_1' id='rent_per_unit_1' placeholder='Cost Per Unit'></td>"))
+		)
 
 	var rentalRows = []
 	var applyOnInput = function(event){
