@@ -1,39 +1,45 @@
 $(document).ready(function(){
 
+
+//Javascript rental rate first insert row
 	$('#Rental_Rate_Assumptions').find('tbody')
-		.append($("<tr id = 'rent_row_1'>")
-		.append($("<td>").html("<input type='text' name='proj_rents_1' id='proj_rents_1' placeholder='Project Rents'></td>"))
-		.append($("<td>").html("<input type='text' name='total_units_1' id='total_units_1' placeholder='Total Units'></td>"))
-		.append($("<td id = 'total_sf_1'></td>").text("0"))
-		.append($("<td>").html("<input type='text' name='avg_sf_per_unit_1' id='avg_sf_per_unit_1' placeholder='Avg SF/Unit'></td>"))
-		.append($("<td id = 'rent_per_sf_1'></td>").text("$0.00"))
-		.append($("<td>").html("<input type='text' name='rent_per_unit_1' id='rent_per_unit_1' placeholder='Cost Per Unit'></td>"))
+		.append($("<tr class = 'rent_row'>")
+		.append($("<td>").html("<input type='text' name='proj_rents' class='proj_rents' placeholder='Project Rents'></td>"))
+		.append($("<td>").html("<input type='text' name='total_units' class='total_units' placeholder='Total Units'></td>"))
+		.append($("<td class = 'total_sf'></td>").text("0"))
+		.append($("<td>").html("<input type='text' name='avg_sf_per_unit' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
+		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
+		.append($("<td>").html("<input type='text' name='rent_per_unit' class='rent_per_unit' placeholder='Cost Per Unit'></td>"))
 		)
+// Global objects: Inputs (possibly calculated values)
+	var g = {}
+
 
 	var rentalRows = []
 	var applyOnInput = function(event){
 		var rrCounter = $('#Rental_Rate_Assumptions tbody tr').length;
-		for(var i = 0; i <= rrCounter; ++i){
-			// console.log(i);
-			total_units = parseInt($("#total_units_"+i).val());
-			avg_sf_per_unit = parseInt($("#avg_sf_per_unit_"+i).val());
-			cost_per_unit = parseInt($("#cost_per_unit_"+i).val());
-			rentalRows.push({total_units:total_units,avg_sf_per_unit:avg_sf_per_unit,cost_per_unit:cost_per_unit});
-			// console.log(rentalRows)
-		};
-		//
-		total_units_1 = parseInt($("#total_units_1").val());
-		avg_sf_per_unit_1 = parseInt($("#avg_sf_per_unit_1").val());
-		cost_per_unit_1 = parseInt($("#cost_per_unit_1").val());
-		console.log("Total Units: ",total_units_1," Avg SF Unit: ",avg_sf_per_unit_1," cost per unit: ",cost_per_unit_1);
+		console.log("rrcounter: ",rrCounter);
+		console.log($('this'));
+		$('this > tr.rent_row > td').html("I have replaced the entire row of text");
+		console.log("you have already clicked on this");
 
-	}; //end applyOnInput
 
-	// total_sf = avg_sf_per_unit_1 * total_units_1;
-	// rent_sf = cost_per_unit_1/avg_sf_per_unit_1;
-	// $("#rent_per_sf_1").text(rent_sf);
-	// $("#total_sf_1").text(total_sf);
+		// for(var i = 1; i <= rrCounter; ++i){
+		// 	// console.log("i= ",i);
+		// 	total_units = parseInt($("#total_units_"+i).val());
+		// 	avg_sf_per_unit = parseInt($("#avg_sf_per_unit_"+i).val());
+		// 	cost_per_unit = parseInt($("#cost_per_unit_"+i).val());
+		// 	rentalRows.push({total_units:total_units,avg_sf_per_unit:avg_sf_per_unit,cost_per_unit:cost_per_unit});
+		// 	// console.log(rentalRows)
+		// };
 
+//specific example test ===============================================
+		// total_units_1 = parseInt($("#total_units_1").val());
+		// avg_sf_per_unit_1 = parseInt($("#avg_sf_per_unit_1").val());
+		// cost_per_unit_1 = parseInt($("#cost_per_unit_1").val());
+		// console.log("Total Units: ",total_units_1," Avg SF Unit: ",avg_sf_per_unit_1," cost per unit: ",cost_per_unit_1);
+
+	}; //end applyOnInput function
 
 	$('tr').on('input', applyOnInput);
 
