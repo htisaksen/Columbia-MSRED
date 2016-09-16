@@ -214,28 +214,31 @@
   <!-- Must have this table be dynamic and allow the user to add an indefinite number of rooms/rents -->
 
     <table id="Rental_Rate_Assumptions">
-      <tr>
-        <th>RENTAL RATE ASSUMPTIONS</th>
-      </tr>
-      <tr>
-        <th>Projected Rents</th>
-        <th>Total Units</th>
-        <th>Total SF</th>
-        <th>Avg. SF/Unit</th>
-        <th>Rent/SF</th>
-        <th>Per Unit</th>
-        <th>&nbsp;</th>
-
-      </tr>
-      <tr id = 'rent_row_1'>
-        <td><input type='text' name='proj_rents_1' id='proj_rents_1' placeholder='Project Rents'></td>
-        <td><input type='text' name='total_units_1' id='total_units_1' placeholder='Total Units'></td>
-        <td id = 'total_sf_1'> 0 </td>
-        <td><input type='text' name='avg_sf_per_unit_1' id='avg_sf_per_unit_1' placeholder='Avg SF/Unit'></td>
-        <td id = 'rent_per_sf_1'>$0.00</td>
-        <td><input type='text' name='cost_per_unit_' id='cost_per_unit_1' placeholder='Cost Per Unit'></td>
-        <!-- <td><a>[X]</a></td> -->
-      </tr>
+      <thead>
+        <tr>
+          <th>RENTAL RATE ASSUMPTIONS</th>
+        </tr>
+        <tr>
+          <th>Projected Rents</th>
+          <th>Total Units</th>
+          <th>Total SF</th>
+          <th>Avg. SF/Unit</th>
+          <th>Rent/SF</th>
+          <th>Per Unit</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr id = 'rent_row_1'>
+          <td><input type='text' name='proj_rents_1' id='proj_rents_1' placeholder='Project Rents'></td>
+          <td><input type='text' name='total_units_1' id='total_units_1' placeholder='Total Units'></td>
+          <td id = 'total_sf_1'> 0 </td>
+          <td><input type='text' name='avg_sf_per_unit_1' id='avg_sf_per_unit_1' placeholder='Avg SF/Unit'></td>
+          <td id = 'rent_per_sf_1'>$0.00</td>
+          <td><input type='text' name='cost_per_unit_1' id='cost_per_unit_1' placeholder='Cost Per Unit'></td>
+          <td><a>[X]</a></td>
+         </tr> -->
+      </tbody>
 
       <button name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating btn-large waves-effect waves-light red blue"><i class="material-icons">add</i></button>
 
