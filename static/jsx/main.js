@@ -1,5 +1,40 @@
 $(document).ready(function(){
 
+	// Global objects: Inputs (possibly calculated values)
+		// var g = {
+		// 	analysisStartDate:
+		// 	propertyName:
+		// 	propertyLocation:
+		// 	purchasePrice:
+		// 	closingCost:
+		// 	saleYear:
+		// 	terminalCapRate:
+		// 	salesCosts:
+		// 	leverage:
+		// 	interestRateOnMortgage:
+		// 	loanTerm:
+		// 	loanAmortization:
+		// 	unleveredDiscountRate:
+		// 	leveredDiscountRate:
+		// 	otherIncome:
+		// 	lessVacancy:
+		// 	lessConcessions:
+		// 	lessCreditLoss:
+		// 	realEstateTaxes:
+		// 	insurance:
+		// 	utlities:
+		// 	payroll:
+		// 	repairsAndMaintenance:
+		// 	contractServices:
+		// 	turnover:
+		// 	salesAndMarketing:
+		// 	administrative:
+		// 	management:
+		// 	replacementReserves:
+		// 	// rentalRateAssumptions: NEED TO PLACE OBJECT IN HERE
+		// 	// marketRentalAssumptions: NEED TO PLACE OBJECT IN HERE
+		// }
+
 	$('#Rental_Rate_Assumptions').find('tbody')
 		.append($("<tr id = 'rent_row_1'>")
 		.append($("<td>").html("<input type='text' name='proj_rents_1' id='proj_rents_1' placeholder='Project Rents'></td>"))
