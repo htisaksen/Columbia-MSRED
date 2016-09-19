@@ -68,6 +68,10 @@ $(document).ready(function(){
 		// Calculates Rental Rate Assumptions column sum calculations
 		var tu = $('#Rental_Rate_Assumptions tbody .total_units');
 		var tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
+		var trow = $('#Rental_Rate_Assumptions tbody .rent_row');
+		console.log("trow.get(1):",trow.eq().val());
+		console.log("TROW:",trow);
+
 		
 		sum_total_units = 0;
 		sum_total_sf = 0;
@@ -82,22 +86,27 @@ $(document).ready(function(){
 			console.log(this);
 			sum_total_sf = sum_total_sf + parseInt($(this).text());
 		});
-		
-		sum_rent_per_unit = sum_rent_per_unit + (sum_total_units * sum_total_sf);
-		console.log("sum_rent_per_unit:",sum_rent_per_unit);
-
 		sum_avg_sf_per_unit = sum_total_sf/sum_total_units;
-		console.log("sum_avg_sf_per_unit:",sum_avg_sf_per_unit);
-		sum_rent_per_sf = sum_rent_per_unit/sum_avg_sf_per_unit;
-		console.log("sum_rent_per_sf:",sum_rent_per_sf);
+		
+//WIP------------------------------------------------------------------		
+		var sumproduct_rent = function(event){
+
+		}
+
+		sum_rent_per_unit = sum_rent_per_unit + (total_units * rent_per_unit);
 		sum_rent_per_unit = sum_rent_per_unit/sum_total_units;
 		console.log("sum_rent_per_unit:",sum_rent_per_unit);
 		
+		sum_rent_per_sf = sum_rent_per_unit/sum_avg_sf_per_unit;
+		console.log("sum_rent_per_sf:",sum_rent_per_sf);
+//WIP------------------------------------------------------------------		
+
 		$('#Rental_Rate_Assumptions tfoot .total_units').text(sum_total_units);
 		$('#Rental_Rate_Assumptions tfoot .total_sf').text(sum_total_sf);
 		$('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(sum_avg_sf_per_unit);
 		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sum_rent_per_sf);
 		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(sum_rent_per_unit);
+
 
 	}; //end applyOnInput function 
 
