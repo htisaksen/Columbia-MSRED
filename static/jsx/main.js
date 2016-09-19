@@ -49,64 +49,52 @@ $(document).ready(function(){
 
 
 
-
-// Calculates ALL Rental Rate Assumptions calculations -------------------------------------------
-	// Calculates Rental Rate Assumptions row calculations
+// Start of ALL calculations for Rental Rate Assumptions table --------------------------------------------------------------------------------------
 	var applyOnInput = function(event){
-		var rrCounter = $('#Rental_Rate_Assumptions tbody tr').length;
+	// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		total_units = parseInt($('.total_units', this).val());
 		avg_sf_per_unit = parseInt($(".avg_sf_per_unit", this).val());
 		rent_per_unit = parseInt($(".rent_per_unit", this).val());
-		// console.log("Total Units: ",total_units," Avg SF Unit: ",avg_sf_per_unit," Rent per unit: ",cost_per_unit);
-
+		
 		var total_sf = total_units*avg_sf_per_unit;
 		var rent_per_sf = rent_per_unit/avg_sf_per_unit;
 
 		$('.total_sf', this).text(total_sf);
 		$('.rent_per_sf', this).text(rent_per_sf);
 		
-		// Calculates Rental Rate Assumptions column sum calculations
-		var tu = $('#Rental_Rate_Assumptions tbody .total_units');
-		var tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
-		var trow = $('#Rental_Rate_Assumptions tbody .rent_row');
-		console.log("trow.get(1):",trow.eq().val());
-		console.log("TROW:",trow);
-
-		
+	// Calculates column sum data for Rental Rate Assumptions -------------------------------------------
+		var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
+		var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
+		var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
+			
 		sum_total_units = 0;
 		sum_total_sf = 0;
-		sum_rent_per_unit = 0;
+		SP_list_rpu = 0;
 
-		tu.each(function(){
-			console.log(this);
-			sum_total_units = sum_total_units + parseInt($(this).val());
+		$tu.each(function(){
+			sum_total_units += parseInt($(this).val());
 		});
 
-		tsf.each(function(){
-			console.log(this);
-			sum_total_sf = sum_total_sf + parseInt($(this).text());
+		$tsf.each(function(){
+			sum_total_sf += parseInt($(this).text());
 		});
+		
+		$rrow.each(function(){
+			num_units = $(this).find('.total_units').val();
+			rent_units = $(this).find('.rent_per_unit').val();				
+			SP_list_rpu = SP_list_rpu + (num_units * rent_units);
+		})
+
 		sum_avg_sf_per_unit = sum_total_sf/sum_total_units;
-		
-//WIP------------------------------------------------------------------		
-		var sumproduct_rent = function(event){
+		SP_list_rpu = SP_list_rpu/sum_total_units;
+		sum_rent_per_sf = SP_list_rpu/sum_avg_sf_per_unit;
 
-		}
-
-		sum_rent_per_unit = sum_rent_per_unit + (total_units * rent_per_unit);
-		sum_rent_per_unit = sum_rent_per_unit/sum_total_units;
-		console.log("sum_rent_per_unit:",sum_rent_per_unit);
-		
-		sum_rent_per_sf = sum_rent_per_unit/sum_avg_sf_per_unit;
-		console.log("sum_rent_per_sf:",sum_rent_per_sf);
-//WIP------------------------------------------------------------------		
-
+		//appends total values to dashboard
 		$('#Rental_Rate_Assumptions tfoot .total_units').text(sum_total_units);
 		$('#Rental_Rate_Assumptions tfoot .total_sf').text(sum_total_sf);
 		$('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(sum_avg_sf_per_unit);
-		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sum_rent_per_sf);
-		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(sum_rent_per_unit);
-
+		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sum_rent_per_sf);		
+		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(SP_list_rpu);
 
 	}; //end applyOnInput function 
 
