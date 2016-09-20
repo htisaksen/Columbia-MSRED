@@ -1,41 +1,5 @@
 $(document).ready(function(){
 
-// Global objects: Inputs (possibly calculated values)
-		// var g = {
-		// 	analysisStartDate:
-		// 	propertyName:
-		// 	propertyLocation:
-		// 	purchasePrice:
-		// 	closingCost:
-		// 	saleYear:
-		// 	terminalCapRate:
-		// 	salesCosts:
-		// 	leverage:
-		// 	interestRateOnMortgage:
-		// 	loanTerm:
-		// 	loanAmortization:
-		// 	unleveredDiscountRate:
-		// 	leveredDiscountRate:
-		// 	otherIncome:
-		// 	lessVacancy:
-		// 	lessConcessions:
-		// 	lessCreditLoss:
-		// 	realEstateTaxes:
-		// 	insurance:
-		// 	utlities:
-		// 	payroll:
-		// 	repairsAndMaintenance:
-		// 	contractServices:
-		// 	turnover:
-		// 	salesAndMarketing:
-		// 	administrative:
-		// 	management:
-		// 	replacementReserves:
-		// 	// rentalRateAssumptions: NEED TO PLACE OBJECT IN HERE
-		// 	// marketRentalAssumptions: NEED TO PLACE OBJECT IN HERE
-		// }
-
-
 //Javascript Rental Rate Assumptions first insert row -------------------------------------------
 	$('#Rental_Rate_Assumptions').find('tbody')
 		.append($("<tr class = 'rent_row'>")
@@ -64,6 +28,43 @@ $(document).ready(function(){
 // ============================================================================================================
 
 	var applyOnInput = function(event){
+		var test = {propertyName: $('#Property_Name').val()}
+		console.log(test.propertyName)
+		// Global objects: Inputs (possibly calculated values)
+				// var g = {
+				// 	analysisStartDate: $('#analysisStartDate').val();
+				// 	propertyName:	$('#propertyName').val();
+				// 	propertyLocation: $('#propertyLocation').val();
+				// 	purchasePrice: parseInt($('#purchasePrice').val());
+				// 	closingCost: parseInt($('#closingCost').val());
+				// 	saleYear: $('#saleYear').val());
+				// 	terminalCapRate: $('#terminalCapRate').val());
+				// 	salesCosts: $('#salesCosts').val());
+				// 	leverage: $('#leverage').val());
+				// 	interestRateOnMortgage: $('#interestRateOnMortgage').val());
+				// 	loanTerm: $('#loanTerm').val());
+				// 	loanAmortization: $('#loanAmortization').val());
+				// 	unleveredDiscountRate: $('#unleveredDiscountRate').val());
+				// 	leveredDiscountRate: $('#leveredDiscountRate').val());
+				// 	otherIncome: $('#otherIncome').val());
+				// 	lessVacancy: $('#lessVacancy').val());
+				// 	lessConcessions: $('#lessConcessions').val());
+				// 	lessCreditLoss: $('#lessCreditLoss').val());
+				// 	realEstateTaxes: $('#realEstateTaxes').val());
+				// 	insurance: $('#insurance').val());
+				// 	utlities: $('#utlities').val());
+				// 	payroll: $('#payroll').val());
+				// 	repairsAndMaintenance: $('#repairsAndMaintenance').val());
+				// 	contractServices: $('#contractServices').val());
+				// 	turnover: $('#turnover').val());
+				// 	salesAndMarketing: $('#salesAndMarketing').val());
+				// 	administrative: $('#administrative').val());
+				// 	management: $('#management').val());
+				// 	replacementReserves: $('#replacementReserves').val());
+				// 	// rentalRateAssumptions: NEED TO PLACE OBJECT IN HERE
+				// 	// marketRentalAssumptions: NEED TO PLACE OBJECT IN HERE
+				// }
+
 
 	//RENTAL RATE ASSUMPTIONS Table
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
@@ -88,7 +89,7 @@ $(document).ready(function(){
 
 		//calculates total value: Total Units
 		$tu.each(function(){
-			sum_total_units += parseInt($(this).val()); 
+			sum_total_units += parseInt($(this).val());
 		});
 
 		//calculates total value: Total SF
@@ -119,6 +120,7 @@ $(document).ready(function(){
 
 	//Runs input function
 	$('.rent_row').on('input', applyOnInput);
+	$('#Property_Information').on('input', applyOnInput);
 
 
 // ============================================================================================================
@@ -138,7 +140,7 @@ $(document).ready(function(){
 			.append($('<td>').html("<a>[X]</a></td>"))
 			)
 
-		// function to delete all additionally added rows from the Rental Rate Assumptions table 
+		// function to delete all additionally added rows from the Rental Rate Assumptions table
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
 			applyOnInput();
@@ -160,18 +162,6 @@ $(document).ready(function(){
 
 	// CURRENT FINANCIALS
 	// END CURRENT FINANCIALS
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ============================================================================================================
 //MARKET RENTAL ASSUMPTIONS Dynamic Table
