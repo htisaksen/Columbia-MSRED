@@ -51,22 +51,24 @@ $(document).ready(function(){
 
 // Start of ALL calculations for Rental Rate Assumptions table --------------------------------------------------------------------------------------
 	var applyOnInput = function(event){
-	// Calculates row data for Rental Rate Assumptions -------------------------------------------
+
+	//RENTAL RATE ASSUMPTIONS
+		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		total_units = parseInt($('.total_units', this).val());
 		avg_sf_per_unit = parseInt($(".avg_sf_per_unit", this).val());
 		rent_per_unit = parseInt($(".rent_per_unit", this).val());
-		
+
 		var total_sf = total_units*avg_sf_per_unit;
 		var rent_per_sf = rent_per_unit/avg_sf_per_unit;
 
 		$('.total_sf', this).text(total_sf);
 		$('.rent_per_sf', this).text(rent_per_sf);
-		
-	// Calculates column sum data for Rental Rate Assumptions -------------------------------------------
+
+		// Calculates column sum data for Rental Rate Assumptions -------------------------------------------
 		var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
 		var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
 		var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
-			
+
 		sum_total_units = 0;
 		sum_total_sf = 0;
 		SP_list_rpu = 0;
@@ -78,10 +80,10 @@ $(document).ready(function(){
 		$tsf.each(function(){
 			sum_total_sf += parseInt($(this).text());
 		});
-		
+
 		$rrow.each(function(){
 			num_units = $(this).find('.total_units').val();
-			rent_units = $(this).find('.rent_per_unit').val();				
+			rent_units = $(this).find('.rent_per_unit').val();
 			SP_list_rpu = SP_list_rpu + (num_units * rent_units);
 		})
 
@@ -93,13 +95,11 @@ $(document).ready(function(){
 		$('#Rental_Rate_Assumptions tfoot .total_units').text(sum_total_units);
 		$('#Rental_Rate_Assumptions tfoot .total_sf').text(sum_total_sf);
 		$('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(sum_avg_sf_per_unit);
-		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sum_rent_per_sf);		
+		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sum_rent_per_sf);
 		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(SP_list_rpu);
+	//END RENTAL RATE Assumptions
 
-	}; //end applyOnInput function 
-
-
-
+	}; //end applyOnInput function
 
 	//Runs input function
 	$('.rent_row').on('input', applyOnInput);
@@ -111,14 +111,7 @@ $(document).ready(function(){
 
 	//Rental Rate Form Dynamic Table -------------------------------------------
 	$("#rental_rate_form").on('click', function(event) {
-		console.log('clicked add_rental_rates button');
-		var rrCounter = $('#Rental_Rate_Assumptions tbody tr').length+1;
-		console.log("RRcounter: "+rrCounter)
 		event.preventDefault();
-		$.ajax({
-			method: 'POST',
-			url: '/dashboard',
-			success: function(response) {
 				$('#Rental_Rate_Assumptions').find('tbody')
 					.append($("<tr class = 'rent_row'>")
 					.append($("<td>").html("<input type='text' name='proj_rents' class='proj_rents' placeholder='Project Rents'></td>"))
@@ -131,28 +124,12 @@ $(document).ready(function(){
 					)
 
 				// function to delete all additionally added rows from the Rental Rate Assumptions table -------------------------------------------
-				$('tr[id^="rent_row_"] a').on('click', function(event) {
-					console.log("clicked on X to delete row");
+				$('tr[class^="rent_row"] a').on('click', function(event) {
 					$(this).parent().parent().remove();
-					rrCounter = rrCounter - 1;
+					applyOnInput();
 				});
-				// dynamic input calculations -------------------------------------------
+				//Runs input function inside  -------------------------------------------
 				$('.rent_row').on('input', applyOnInput);
 
-
-
-				//TEST FUNCTION =============================================================================================================================================
-				// $('tr[id^="rent_row_"]').on('click', function(event) {
-				// 	console.log("======rrCounter",rrCounter);
-				// 	for (i = 1; i <= rrCounter; i++) {
-				// 		console.log("======i",i);
-				// 	}
-				// })
-				// ==========================================================================================================================================================
-
-			} // end success
-		}) //end ajax
-	});
-
-
-}) //end of doc
+		}) //end addrow
+	}); //end of doc
