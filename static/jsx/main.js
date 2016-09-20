@@ -12,14 +12,14 @@ $(document).ready(function(){
 		)
 //Javascript Market Rental Rate Assumptions first insert row -------------------------------------------
 	$('#Market_Rental_Assumptions').find('tbody')
-		.append($("<tr class = 'year_row'>")
+		.append($("<tr class = 'year_row' id='year_row_1'>")
 		.append($("<td>Year 1</td>"))
 		.append($("<td></td>"))
-		.append($("<td>").html("<input type='number' name='mktRentRevenue' class='mktRentRevenue' placeholder='Revenue (%)'></td>"))
-		.append($("<td>").html("<input type='number' name='mktRentExpenses' class='mktRentExpenses' placeholder='Expenses (%)'></td>"))
-		.append($("<td>").html("<input type='number' name='mktRentVacancy' class='mktRentVacancy' placeholder='Vacancy (%)'></td>"))
-		.append($("<td>").html("<input type='number' name='mktRentConcessions' class='mktRentConcessions' placeholder='Concessions (%)'></td>"))
-		.append($("<td>").html("<input type='number' name='mktRentCreditLoss' class='mktRentCreditLoss' placeholder='Credit Loss (%)'></td>"))
+		.append($("<td>").html("<input type='number' name='mkt_rent_revenue' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
+		.append($("<td>").html("<input type='number' name='mkt_rent_expenses' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
+		.append($("<td>").html("<input type='number' name='mkt_rent_vacancy' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
+		.append($("<td>").html("<input type='number' name='mkt_rent_concessions' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
+		.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 		)
 
 
@@ -143,7 +143,7 @@ $(document).ready(function(){
 
 	//MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
 		//creates an array of arrays for all the Market Rent Assumption rows and stores the array in the global "g" object
-		var $mrarow = $('#Market_Rental_Assumptions tbody .year_row');
+		var $mraRow = $('#Market_Rental_Assumptions tbody .year_row');
 		$rrow.each(function(){
 			T_mktRentRevenue = $(this).find('.mkt_rent_revenue').val();
 			T_mktRentExpenses = $(this).find('.mkt_rent_expenses').val();
@@ -211,12 +211,11 @@ $(document).ready(function(){
 	// adds one row to table when the 'add' button is clicked
 
 	$("#market_rental_form").on('click', function(event) {
-		var mrCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
-		console.log("MRcounter: "+mrCounter)
+		var mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
 		event.preventDefault();
 		$('#Market_Rental_Assumptions').find('tbody')
-			.append($("<tr class = 'year_row'>")
-			.append($("<td class='mkt_rent_year'>Year "+mrCounter+"</td>"))
+			.append($("<tr class = 'year_row' id='year_row_"+mraCounter+"'>")
+			.append($("<td class='mkt_rent_year'>Year "+mraCounter+"</td>"))
 			.append($("<td></td>"))
 			.append($("<td>").html("<input type='number' name='mkt_rent_revenue' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
 			.append($("<td>").html("<input type='number' name='mkt_rent_expenses' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
@@ -229,14 +228,17 @@ $(document).ready(function(){
 		// function to delete all additionally added rows
 		$('tr[class^="year_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
-			applyOnInput();
+			var $mraRow = $('#Market_Rental_Assumptions tbody .year_row');
+			mraCounterTemp = 1;
 
-
-			var $mrarow = $('#Market_Rental_Assumptions tbody .year_row');
-			$mrarow.each(function(){
-				$(this).find('.mkt_rent_year').text(mrCounter);
-				// mrCounter += 1;
+		// reorders year text and year_row_id sequentially on deletion of row
+			$mraRow.each(function(){
+				$(this).find('.mkt_rent_year').text("Year "+mraCounterTemp);
+				$(this).attr('id',"year_row_"+mraCounterTemp);
+				mraCounterTemp += 1;
 			});
+			
+			applyOnInput();
 		});
 	}); //end addrow function
 
