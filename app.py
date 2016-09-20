@@ -18,21 +18,16 @@ def index():
 		user_text = "Welcome " + username + "!"
 		return render_template('home.html', user_text = user_text)
 	return redirect("/login")
-	
+
 @app.route("/login", methods=['POST','GET'])
 def login():
-	print("=======You have hit the /login route=========")
 	username = request.form.get('username')
-	print("username:",username)
 	password = request.form.get('password')
-	print("password:",password)
 	user_obj = User.query.filter_by(username=username).first()
 	print("user_obj:", user_obj)
 
 	if user_obj:
-		print("=======User login exists=========")
 		if password == user_obj.password:
-			print("=======User login and password match=========")
 			session['logged_in'] = True
 			session['username'] = user_obj.username
 			return redirect('/')
@@ -56,7 +51,7 @@ def dashboard():
 	title = "Dashboard"
 	if request.method =='GET':
 		return render_template("dashboard.html")
-	
+
 	if request.method == 'POST':
 		#INPUT VARIABLES
 		#Property Information Table
@@ -69,12 +64,12 @@ def dashboard():
 			purchase_price = int(request.form.get('Purchase_Price'))
 		else:
 			purchase_price = 0
-		
+
 		if request.form.get('Closing_Costs_Percentage',"").isnumeric():
 			closing_costs_percentage = int(request.form.get('Closing_Costs_Percentage'))
 		else:
 			closing_costs_percentage = 0
-		
+
 		print("="*40)
 		print("Purchase Price:",purchase_price)
 		print("closing cost percentage:", closing_costs_percentage)
@@ -108,7 +103,7 @@ def dashboard():
 		# administrative = request.form.get('Administrative_Total')
 		# management_percentage = request.form.get('Management_Percentage')
 		# replacement_reserves_percentage = request.form.get('Replacement_Reserves_Percentage')
-		
+
 
 		Num_Units = 200       # {total Num_Units of Rental Rate Assumptions}
 		Total_Sq_Ft = 200013     # {total Sq_Ft of Rental Rate Assumptions}
@@ -120,7 +115,7 @@ def dashboard():
 		Total_Cost_Per_Unit = Total_Costs/Num_Units
 		Purchase_Cost_Per_SF = purchase_price/Total_Sq_Ft
 		Total_Cost_Per_SF = Total_Costs/Total_Sq_Ft
-		
+
 
 
 
@@ -202,13 +197,13 @@ def calculations():
 
 	# #Returns Summary Table
 	# UL_Net_Profit = 0       # {=SUM('Returns Summary'!C24:M24)}
-	# UL_Present_Value = 0 
+	# UL_Present_Value = 0
 	# UL_Net_Present_Value = 0
 	# UL_Equity_Multiple = 0
 	# UL_IRR = 0
 	# UL_IRR_from_CF = 0
 	# UL_IRR_from_Sale = 0
-	# UL_Cash_On_Cash = 0 
+	# UL_Cash_On_Cash = 0
 
 	# L_Net_Profit = 0
 	# L_Present_Value = 0
@@ -218,7 +213,7 @@ def calculations():
 	# L_IRR_from_CF = 0
 	# L_IRR_from_Sale = 0
 	# L_Cash_On_Cash = 0
- 
+
 	# #Current Financial Performance Table
 	# Rental_Income_Total = 0     # {=((SUMPRODUCT(G18:G20,K18:K20)*12))}
 	# Rental_Income_DollarPerUnit = Rental_Income_Total/Num_Units
@@ -249,7 +244,7 @@ def calculations():
 	# Net_Rental_Income_Total = Gross_Rental_Income_Total + Vacancy_Total + Concessions_Total + Credit_Loss_Total
 	# Net_Rental_Income_DollarPerUnit = Net_Rental_Income_Total/Num_Units
 	# Net_Rental_Income_DollarPerSF = Net_Rental_Income_Total/Total_Sq_Ft
- 
+
 	# Real_Estate_Taxes_DollarPerUnit = real_estate_taxes_total/Num_Units
 	# Real_Estate_Taxes_DollarPerSF = real_estate_taxes_total/Total_Sq_Ft
 	# Real_Estate_Taxes_PercentofTotal = real_estate_taxes_total/Total_Operating_Expenses_Total
@@ -257,11 +252,11 @@ def calculations():
 	# Insurance_DollarPerUnit = insurance_total/Num_Units
 	# Insurance_DollarPerSF = insurance_total/Total_Sq_Ft
 	# Insurance_PercentofTotal = insurance_total/Total_Operating_Expenses_Total
- 
+
 	# Utilities_DollarPerUnit = utilities_total/Num_Units
 	# Utilities_DollarPerSF = utilities_total/Total_Sq_Ft
 	# Utilities_PercentofTotal = utilities_total/Total_Operating_Expenses_Total
- 
+
 	# Payroll_DollarPerUnit = payroll_total/Num_Units
 	# Payroll_DollarPerSF = payroll_total/Total_Sq_Ft
 	# Payroll_PercentofTotal = payroll_total/Total_Operating_Expenses_Total
