@@ -209,12 +209,14 @@ $(document).ready(function(){
 //MARKET RENTAL ASSUMPTIONS Dynamic Table
 // ============================================================================================================
 	// adds one row to table when the 'add' button is clicked
-	var counter = 2;
+
 	$("#market_rental_form").on('click', function(event) {
+		var mrCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
+		console.log("MRcounter: "+mrCounter)
 		event.preventDefault();
 		$('#Market_Rental_Assumptions').find('tbody')
 			.append($("<tr class = 'year_row'>")
-			.append($("<td>Year "+counter+"</td>"))
+			.append($("<td class='mkt_rent_year'>Year "+mrCounter+"</td>"))
 			.append($("<td></td>"))
 			.append($("<td>").html("<input type='number' name='mkt_rent_revenue' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
 			.append($("<td>").html("<input type='number' name='mkt_rent_expenses' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
@@ -223,15 +225,19 @@ $(document).ready(function(){
 			.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 			.append($('<td>').html("<a>[X]</a></td>"))
 			)
-		counter += 1;
 
 		// function to delete all additionally added rows
 		$('tr[class^="year_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
-			counter -= 1;
 			applyOnInput();
-		});
 
+
+			var $mrarow = $('#Market_Rental_Assumptions tbody .year_row');
+			$mrarow.each(function(){
+				$(this).find('.mkt_rent_year').text(mrCounter);
+				// mrCounter += 1;
+			});
+		});
 	}); //end addrow function
 
 
