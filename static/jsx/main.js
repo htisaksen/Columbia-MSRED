@@ -32,35 +32,37 @@ $(document).ready(function(){
 		console.log(test.propertyName)
 		// Global objects: Inputs (possibly calculated values)
 				// var g = {
-				// 	analysisStartDate: $('#analysisStartDate').val();
-				// 	propertyName:	$('#propertyName').val();
-				// 	propertyLocation: $('#propertyLocation').val();
-				// 	purchasePrice: parseInt($('#purchasePrice').val());
-				// 	closingCost: parseInt($('#closingCost').val());
-				// 	saleYear: $('#saleYear').val());
-				// 	terminalCapRate: $('#terminalCapRate').val());
-				// 	salesCosts: $('#salesCosts').val());
-				// 	leverage: $('#leverage').val());
-				// 	interestRateOnMortgage: $('#interestRateOnMortgage').val());
-				// 	loanTerm: $('#loanTerm').val());
-				// 	loanAmortization: $('#loanAmortization').val());
-				// 	unleveredDiscountRate: $('#unleveredDiscountRate').val());
-				// 	leveredDiscountRate: $('#leveredDiscountRate').val());
-				// 	otherIncome: $('#otherIncome').val());
-				// 	lessVacancy: $('#lessVacancy').val());
-				// 	lessConcessions: $('#lessConcessions').val());
-				// 	lessCreditLoss: $('#lessCreditLoss').val());
-				// 	realEstateTaxes: $('#realEstateTaxes').val());
-				// 	insurance: $('#insurance').val());
-				// 	utlities: $('#utlities').val());
-				// 	payroll: $('#payroll').val());
-				// 	repairsAndMaintenance: $('#repairsAndMaintenance').val());
-				// 	contractServices: $('#contractServices').val());
-				// 	turnover: $('#turnover').val());
-				// 	salesAndMarketing: $('#salesAndMarketing').val());
-				// 	administrative: $('#administrative').val());
-				// 	management: $('#management').val());
-				// 	replacementReserves: $('#replacementReserves').val());
+				// 	analysisStartDate: $('#Analysis_Start_Date').val();
+				// 	propertyName:	$('#Property_Name').val();
+				// 	propertyLocation: $('#Property_Location').val();
+				// 	propertyType: $('#Property_Type').val();
+				// 	purchasePrice: parseInt($('#Purchase_Price').val());
+				// 	closingCostPercentage: parseInt($('#Closing_Costs_Percentage').val());
+				// 	saleYear: $('#Sale_Year').val());
+				// 	terminalCapRate: $('#Terminal_Cap_Rate').val());
+				// 	salesCosts: $('#Sales_Costs').val());
+				// 	leverage: $('#Leverage').val());
+				// 	interestRateOnMortgage: $('#Interest_Rate_on_Mortgage').val());
+				// 	loanTerm: $('#Loan_Term').val());
+				// 	loanAmortization: $('#Loan_Amortization').val());
+				// 	unleveredDiscountRate: $('#UL_Discount_Rate').val());
+				// 	leveredDiscountRate: $('#L_Discount_Rate').val());
+				// 	otherIncomeTotal: $('#Other_Income_Total').val());
+				// 	lessVacancy: $('#Less_Vacancy').val());
+				// 	lessConcessions: $('#Less_Concessions').val());
+				// 	lessCreditLoss: $('#Less_Credit_Loss').val());
+				// 	realEstateTaxesTotal: $('#Real_Estate_Taxes_Total').val());
+
+				// 	insuranceTotal: $('#Insurance_Total').val());
+				// 	utlitiesTotal: $('#Utilities_Total').val());
+				// 	payrollTotal: $('#Payroll_Total').val());
+				// 	repairsAndMaintenanceTotal: $('#Repairs_and_Maintenance_Total').val());
+				// 	contractServicesTotal: $('#Contract_Services_Total').val());
+				// 	turnoverTotal: $('#Turnover_Total').val());
+				// 	salesAndMarketingTotal: $('#Sales_and_Marketing_Total').val());
+				// 	administrativeTotal: $('#Administrative_Total').val());
+				// 	managementPercentage: $('#Management_Percentage').val());
+				// 	replacementReservesPercentage: $('#Replacement_Reserves_Percentage').val());
 				// 	// rentalRateAssumptions: NEED TO PLACE OBJECT IN HERE
 				// 	// marketRentalAssumptions: NEED TO PLACE OBJECT IN HERE
 				// }
