@@ -29,6 +29,8 @@ $(document).ready(function(){
 
 	var applyOnInput = function(event){
 	// Global objects: Inputs (possibly calculated values)
+		var RRAlist = []; //Rental Rate Assumptions list
+		var MRAlist = []; //Market Rental Assumptions list
 		var g = {
 			analysisStartDate: $('#Analysis_Start_Date').val(),
 			propertyName:	$('#Property_Name').val(),
@@ -60,18 +62,21 @@ $(document).ready(function(){
 			administrativeTotal: parseInt($('#Administrative_Total').val()),
 			managementPercentage: parseInt($('#Management_Percentage').val()),
 			replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val()),
-			// rentalRateAssumptions: NEED TO PLACE OBJECT IN HERE
-			// marketRentalAssumptions: NEED TO PLACE OBJECT IN HERE
+			rentalRateAssumptions: RRAlist,
+			marketRentalAssumptions: MRAlist,
 		};
+		
 		console.log(
 		"analysisstartdate: ", g.analysisStartDate,
 		"g.propertyName: ", g.propertyName,
 		"propertyLocation: ", g.propertyLocation,
-		"propertyType: ", g.propertyType,
-		"purchasePrice: ", g.purchasePrice
+		// "propertyType: ", g.propertyType,
+		// "purchasePrice: ", g.purchasePrice,
+		"rentalRateAssumptions: ", g.rentalRateAssumptions
+		// "marketRentalAssumptions", g.marketRentalAssumptions
 		);
 
-	//RENTAL RATE ASSUMPTIONS Table
+	//RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		totalUnits = parseInt($('.total_units', this).val());
 		avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
@@ -109,7 +114,18 @@ $(document).ready(function(){
 			numUnits = $(this).find('.total_units').val();
 			rentUnits = $(this).find('.rent_per_unit').val();
 			spListRPU = spListRPU + (numUnits * rentUnits);
-		})
+		});
+
+		//creates an array of arrays for all the Projected Rent rows and stores the array in the global "g" object
+		$rrow.each(function(){
+			tempProjectRents = $(this).find('.proj_rents').val();
+			tempNumUnits = $(this).find('.total_units').val();
+			tempAvgSFPerUnit = $(this).find('.avg_sf_per_unit').val();
+			tempRentUnits = $(this).find('.rent_per_unit').val();
+			var RRAlistTemp = new Array(tempProjectRents, tempNumUnits, tempAvgSFPerUnit, tempRentUnits);
+			RRAlist.push(RRAlistTemp);
+			console.log(RRAlist);
+		});
 
 		sumAvgSFPerUnit = sumTotalSF/sumTotalUnits; //calculates total value: Avg SF Per Unit
 		spListRPU = spListRPU/sumTotalUnits; 		//calculates total value: Rent Per Unit
@@ -121,7 +137,26 @@ $(document).ready(function(){
 		$('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(sumAvgSFPerUnit);
 		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sumRentPerSF);
 		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(spListRPU);
-	//END RENTAL RATE ASSUMPTIONS Table
+	//END RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
+
+
+
+	//MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
+		//creates an array of arrays for all the Market Rent Assumption rows and stores the array in the global "g" object
+		var $mrarow = $('#Market_Rental_Assumptions tbody .year_row');
+		$rrow.each(function(){
+			T_mktRentRevenue = $(this).find('.mkt_rent_revenue').val();
+			T_mktRentExpenses = $(this).find('.mkt_rent_expenses').val();
+			T_mktRentVacancy = $(this).find('.mkt_rent_vacancy').val();
+			T_mktRentConcessions = $(this).find('.mkt_rent_concessions').val();
+			T_mktRentCreditLoss = $(this).find('.mkt_rent_credit_loss').val();
+			var MRAlistTemp = new Array(T_mktRentRevenue, T_mktRentExpenses, T_mktRentVacancy, T_mktRentConcessions, T_mktRentCreditLoss);
+			MRAlist.push(MRAlistTemp);
+			console.log(MRAlist);
+		});
+	//END OF MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
+			
+
 
 	}; //end applyOnInput function
 
@@ -174,23 +209,26 @@ $(document).ready(function(){
 //MARKET RENTAL ASSUMPTIONS Dynamic Table
 // ============================================================================================================
 	// adds one row to table when the 'add' button is clicked
+	var counter = 2;
 	$("#market_rental_form").on('click', function(event) {
 		event.preventDefault();
 		$('#Market_Rental_Assumptions').find('tbody')
 			.append($("<tr class = 'year_row'>")
+			.append($("<td>Year "+counter+"</td>"))
 			.append($("<td></td>"))
-			.append($("<td></td>"))
-			.append($("<td>").html("<input type='number' name='mktRentRevenue' class='mktRentRevenue' placeholder='Revenue (%)'></td>"))
-			.append($("<td>").html("<input type='number' name='mktRentExpenses' class='mktRentExpenses' placeholder='Expenses (%)'></td>"))
-			.append($("<td>").html("<input type='number' name='mktRentVacancy' class='mktRentVacancy' placeholder='Vacancy (%)'></td>"))
-			.append($("<td>").html("<input type='number' name='mktRentConcessions' class='mktRentConcessions' placeholder='Concessions (%)'></td>"))
-			.append($("<td>").html("<input type='number' name='mktRentCreditLoss' class='mktRentCreditLoss' placeholder='Credit Loss (%)'></td>"))
+			.append($("<td>").html("<input type='number' name='mkt_rent_revenue' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
+			.append($("<td>").html("<input type='number' name='mkt_rent_expenses' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
+			.append($("<td>").html("<input type='number' name='mkt_rent_vacancy' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
+			.append($("<td>").html("<input type='number' name='mkt_rent_concessions' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
+			.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 			.append($('<td>').html("<a>[X]</a></td>"))
 			)
+		counter += 1;
 
 		// function to delete all additionally added rows
 		$('tr[class^="year_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
+			counter -= 1;
 			applyOnInput();
 		});
 
