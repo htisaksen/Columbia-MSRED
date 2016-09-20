@@ -7,7 +7,7 @@
 <form name = "dashboard" id = "dashboard" action="/dashboard" method="POST">
   <h6>Analysis Start Date
     <span style="color:blue">
-      <input type="text" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = "Analysis Start Date">
+      <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = "Analysis Start Date">
     </span>
   </h6>
   <table id="Property_Information" class="center">
@@ -45,11 +45,11 @@
     <tr>
       <td>Purchase Price</td>
       <td>&nbsp;</td>
-      <td><input type="text" name="Purchase_Price" id="Purchase_Price" placeholder = "Purchase Price ($)"></td>
+      <td><input type="number" name="Purchase_Price" id="Purchase_Price" placeholder = "Purchase Price ($)"></td>
     </tr>
     <tr>
       <td>Closing Costs</td>
-      <td><input type="text" name="Closing_Costs_Percentage" id="Closing_Costs_Percentage" placeholder = "Closing Costs (%)"></td>
+      <td><input type="number" name="Closing_Costs_Percentage" id="Closing_Costs_Percentage" placeholder = "Closing Costs (%)"></td>
       <td>{{Closing_Costs}}</td>
     </tr>
     <tr>
@@ -92,15 +92,15 @@
     </tr>
     <tr>
       <td>Sale Year</td>
-      <td><input type="text" name="Sale_Year" id="Sale_Year" placeholder = "Sale Year (#)"></td>
+      <td><input type="number" name="Sale_Year" id="Sale_Year" placeholder = "Sale Year (#)"></td>
     </tr>
     <tr>
       <td>Terminal Cap Rate</td>
-      <td><input type="text" name="Terminal_Cap_Rate" id="Terminal_Cap_Rate" placeholder = "Terminal Cap Rate (%)"></td>
+      <td><input type="number" name="Terminal_Cap_Rate" id="Terminal_Cap_Rate" placeholder = "Terminal Cap Rate (%)"></td>
     </tr>
     <tr>
       <td>Sales Costs</td>
-      <td><input type="text" name="Sales_Costs" id="Sales_Costs" placeholder = "Sale Costs (%)"></td>
+      <td><input type="number" name="Sales_Costs" id="Sales_Costs" placeholder = "Sale Costs (%)"></td>
     </tr>
   </table>
   <hr>
@@ -132,19 +132,19 @@
     </tr>
     <tr>
       <td>Leverage</td>
-      <td><input type="text" name="Leverage" id="Leverage" placeholder = "Leverage (%)"></td>
+      <td><input type="number" name="Leverage" id="Leverage" placeholder = "Leverage (%)"></td>
     </tr>
     <tr>
       <td>Interest Rate on Mortgage</td>
-      <td><input type="text" name="Interest_Rate_on_Mortgage" id="Interest_Rate_on_Mortgage" placeholder = "Interest Rate on Mortgage (%)"></td>
+      <td><input type="number" name="Interest_Rate_on_Mortgage" id="Interest_Rate_on_Mortgage" placeholder = "Interest Rate on Mortgage (%)"></td>
     </tr>
     <tr>
       <td>Loan Term</td>
-      <td><input type="text" name="Loan_Term" id="Loan_Term" placeholder = "Loan Term (#)"></td>
+      <td><input type="number" name="Loan_Term" id="Loan_Term" placeholder = "Loan Term (#)"></td>
     </tr>
     <tr>
       <td>Loan Amortization</td>
-      <td><input type="text" name="Loan_Amortization" id="Loan_Amortization" placeholder = "Loan Amortization (#)"></td>
+      <td><input type="number" name="Loan_Amortization" id="Loan_Amortization" placeholder = "Loan Amortization (#)"></td>
     </tr>
   </table>
   <hr>
@@ -278,10 +278,10 @@
       <tr>
         <td>Discount Rate</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="UL_Discount_Rate" id="UL_Discount_Rate" placeholder = "Unlevered Discount Rate (%)"></td>
+        <td><input type="number" name="UL_Discount_Rate" id="UL_Discount_Rate" placeholder = "Unlevered Discount Rate (%)"></td>
         <td>Discount Rate</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="L_Discount_Rate" id="L_Discount_Rate" placeholder = "Levered Discount Rate (%)"></td>
+        <td><input type="number" name="L_Discount_Rate" id="L_Discount_Rate" placeholder = "Levered Discount Rate (%)"></td>
       </tr>
       <tr>
         <td>IRR from CF (%)</td>
@@ -382,7 +382,7 @@
       <tr>
         <td>Other Income</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Other_Income_Total" id="Other_Income_Total" placeholder = "Total Other Income ($)"></td>
+        <td><input type="number" name="Other_Income_Total" id="Other_Income_Total" placeholder = "Total Other Income ($)"></td>
         <td>{{Other_Income_DollarPerUnit}}</td>
         <td>{{Other_Income_DollarPerSF}}</td>
         <td>{{Other_Income_PercentofTotal}}</td>
@@ -397,7 +397,7 @@
       </tr>
       <tr>
         <td>Less: Vacancy</td>
-        <td><input type="text" name="Less_Vacancy" id="Less_Vacancy" placeholder = "Less Vacancy (%)"></td>
+        <td><input type="number" name="Less_Vacancy" id="Less_Vacancy" placeholder = "Less Vacancy (%)"></td>
         <td>{{Vacancy_Total}}</td>
         <td>{{Vacancy_DollarPerUnit}}</td>
         <td>{{Vacancy_DollarPerSF}}</td>
@@ -405,7 +405,7 @@
       </tr>
       <tr>
         <td>Less: Concessions</td>
-        <td><input type="text" name="Less_Concessions" id="Less_Concessions" placeholder = "Less Concessions (%)"></td>
+        <td><input type="number" name="Less_Concessions" id="Less_Concessions" placeholder = "Less Concessions (%)"></td>
         <td>{{Concessions_Total}}</td>
         <td>{{Concessions_DollarPerUnit}}</td>
         <td>{{Concessions_DollarPerSF}}</td>
@@ -413,7 +413,7 @@
       </tr>
       <tr>
         <td>Less: Credit Loss</td>
-        <td><input type="text" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "Less Credit Loss (%)"></td>
+        <td><input type="number" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "Less Credit Loss (%)"></td>
         <td>{{Credit_Loss_Total}}</td>
         <td>{{Credit_Loss_DollarPerUnit}}</td>
         <td>{{Credit_Loss_DollarPerSF}}</td>
@@ -433,7 +433,7 @@
       <tr>
         <td>Real Estate Taxes</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "Real Estate Taxes Total ($)"></td>
+        <td><input type="number" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "Real Estate Taxes Total ($)"></td>
         <td>{{Real_Estate_Taxes_DollarPerUnit}}</td>
         <td>{{Real_Estate_Taxes_DollarPerSF}}</td>
         <td>{{Real_Estate_Taxes_PercentofTotal}}</td>
@@ -441,7 +441,7 @@
       <tr>
         <td>Insurance</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Insurance_Total" id="Insurance_Total" placeholder = "Insurance Total ($)"></td>
+        <td><input type="number" name="Insurance_Total" id="Insurance_Total" placeholder = "Insurance Total ($)"></td>
         <td>{{Insurance_DollarPerUnit}}</td>
         <td>{{Insurance_DollarPerSF}}</td>
         <td>{{Insurance_PercentofTotal}}</td>
@@ -449,7 +449,7 @@
       <tr>
         <td>Utilities</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Utilities_Total" id="Utilities_Total" placeholder = "Utilities Total ($)"></td>
+        <td><input type="number" name="Utilities_Total" id="Utilities_Total" placeholder = "Utilities Total ($)"></td>
         <td>{{Utilities_DollarPerUnit}}</td>
         <td>{{Utilities_DollarPerSF}}</td>
         <td>{{Utilities_PercentofTotal}}</td>
@@ -457,7 +457,7 @@
       <tr>
         <td>Payroll</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Payroll_Total" id="Payroll_Total" placeholder = "Payroll Total ($)"></td>
+        <td><input type="number" name="Payroll_Total" id="Payroll_Total" placeholder = "Payroll Total ($)"></td>
         <td>{{Payroll_DollarPerUnit}}</td>
         <td>{{Payroll_DollarPerSF}}</td>
         <td>{{Payroll_PercentofTotal}}</td>
@@ -465,7 +465,7 @@
       <tr>
         <td>Repairs & Maintenance</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "Repairs & Maintenance Total ($)"></td>
+        <td><input type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "Repairs & Maintenance Total ($)"></td>
         <td>{{Repairs_and_Maintenance_DollarPerUnit}}</td>
         <td>{{Repairs_and_Maintenance_DollarPerSF}}</td>
         <td>{{Repairs_and_Maintenance_PercentofTotal}}</td>
@@ -473,7 +473,7 @@
       <tr>
         <td>Contract Services</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "Contract Services Total ($)"></td>
+        <td><input type="number" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "Contract Services Total ($)"></td>
         <td>{{Contract_Services_DollarPerUnit}}</td>
         <td>{{Contract_Services_DollarPerSF}}</td>
         <td>{{Contract_Services_PercentofTotal}}</td>
@@ -481,7 +481,7 @@
       <tr>
         <td>Turnover</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Turnover_Total" id="Turnover_Total" placeholder = "Turnover Total ($)"></td>
+        <td><input type="number" name="Turnover_Total" id="Turnover_Total" placeholder = "Turnover Total ($)"></td>
         <td>{{Turnover_DollarPerUnit}}</td>
         <td>{{Turnover_DollarPerSF}}</td>
         <td>{{Turnover_PercentofTotal}}</td>
@@ -489,7 +489,7 @@
       <tr>
         <td>Sales & Marketing</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "Sales & Marketing Total ($)"></td>
+        <td><input type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "Sales & Marketing Total ($)"></td>
         <td>{{Sales_and_Marketing_DollarPerUnit}}</td>
         <td>{{Sales_and_Marketing_DollarPerSF}}</td>
         <td>{{Sales_and_Marketing_PercentofTotal}}</td>
@@ -497,14 +497,14 @@
       <tr>
         <td>Administrative</td>
         <td>&nbsp;</td>
-        <td><input type="text" name="Administrative_Total" id="Administrative_Total" placeholder = "Administrative Total ($)"></td>
+        <td><input type="number" name="Administrative_Total" id="Administrative_Total" placeholder = "Administrative Total ($)"></td>
         <td>{{Administrative_DollarPerUnit}}</td>
         <td>{{Administrative_DollarPerSF}}</td>
         <td>{{Administrative_PercentofTotal}}</td>
       </tr>
       <tr>
         <td>Management</td>
-        <td><input type="text" name="Management_Percentage" id="Management_Percentage" placeholder = "Management Total (%)"></td>
+        <td><input type="number" name="Management_Percentage" id="Management_Percentage" placeholder = "Management Total (%)"></td>
         <td>{{Management_Total}}</td>
         <td>{{Management_DollarPerUnit}}</td>
         <td>{{Management_DollarPerSF}}</td>
@@ -512,7 +512,7 @@
       </tr>
       <tr>
         <td>Replacement Reserves</td>
-        <td><input type="text" name="Replacement_Reserves_Percentage" id="Replacement_Reserves_Percentage" placeholder = "Replacement Reserves Total (%)"></td>
+        <td><input type="number" name="Replacement_Reserves_Percentage" id="Replacement_Reserves_Percentage" placeholder = "Replacement Reserves Total (%)"></td>
         <td>{{Replacement_Reserves_Total}}</td>
         <td>{{Replacement_Reserves_DollarPerUnit}}</td>
         <td>{{Replacement_Reserves_DollarPerSF}}</td>
