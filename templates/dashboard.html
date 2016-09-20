@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 
 {%block header%}
-  
-  <h6>Analysis Start Date 
+{%endblock header%}
+
+{%block tables%}
+<form name = "dashboard" id = "dashboard" action="/dashboard" method="POST">
+  <h6>Analysis Start Date
     <span style="color:blue">
       <input type="text" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = "Analysis Start Date">
     </span>
   </h6>
-{%endblock header%}
-
-{%block tables%}
-<form name = "dashboard" action="/dashboard" method="POST">
   <table id="Property_Information" class="center">
     <tr>
       <th>PROPERTY INFORMATION</th>
@@ -561,5 +560,4 @@
     </table>
 
 </form>
-
 {%endblock tables%}

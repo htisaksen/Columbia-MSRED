@@ -28,46 +28,54 @@ $(document).ready(function(){
 // ============================================================================================================
 
 	var applyOnInput = function(event){
-		var test = {propertyName: $('#Property_Name').val()}
-		console.log(test.propertyName)
 		// Global objects: Inputs (possibly calculated values)
-				// var g = {
-				// 	analysisStartDate: $('#Analysis_Start_Date').val();
-				// 	propertyName:	$('#Property_Name').val();
-				// 	propertyLocation: $('#Property_Location').val();
-				// 	propertyType: $('#Property_Type').val();
-				// 	purchasePrice: parseInt($('#Purchase_Price').val());
-				// 	closingCostPercentage: parseInt($('#Closing_Costs_Percentage').val());
-				// 	saleYear: $('#Sale_Year').val());
-				// 	terminalCapRate: $('#Terminal_Cap_Rate').val());
-				// 	salesCosts: $('#Sales_Costs').val());
-				// 	leverage: $('#Leverage').val());
-				// 	interestRateOnMortgage: $('#Interest_Rate_on_Mortgage').val());
-				// 	loanTerm: $('#Loan_Term').val());
-				// 	loanAmortization: $('#Loan_Amortization').val());
-				// 	unleveredDiscountRate: $('#UL_Discount_Rate').val());
-				// 	leveredDiscountRate: $('#L_Discount_Rate').val());
-				// 	otherIncomeTotal: $('#Other_Income_Total').val());
-				// 	lessVacancy: $('#Less_Vacancy').val());
-				// 	lessConcessions: $('#Less_Concessions').val());
-				// 	lessCreditLoss: $('#Less_Credit_Loss').val());
-				// 	realEstateTaxesTotal: $('#Real_Estate_Taxes_Total').val());
+				var g = {
+					analysisStartDate: $('#Analysis_Start_Date').val(),
+					propertyName:	$('#Property_Name').val(),
+					propertyLocation: $('#Property_Address').val(),
+					propertyType: $('#Property_Type').val(),
+					purchasePrice: parseInt($('#Purchase_Price').val()),
+					closingCostPercentage: parseInt($('#Closing_Costs_Percentage').val()),
+					saleYear: parseInt($('#Sale_Year').val()),
+					terminalCapRate: parseInt($('#Terminal_Cap_Rate').val()),
+					salesCosts: parseInt($('#Sales_Costs').val()),
+					leverage: parseInt($('#Leverage').val()),
+					interestRateOnMortgage: parseInt($('#Interest_Rate_on_Mortgage').val()),
+					loanTerm: parseInt($('#Loan_Term').val()),
+					loanAmortization: parseInt($('#Loan_Amortization').val()),
+					unleveredDiscountRate: parseInt($('#UL_Discount_Rate').val()),
+					leveredDiscountRate: parseInt($('#L_Discount_Rate').val()),
+					otherIncomeTotal: parseInt($('#Other_Income_Total').val()),
+					lessVacancy: parseInt($('#Less_Vacancy').val()),
+					lessConcessions: parseInt($('#Less_Concessions').val()),
+					lessCreditLoss: parseInt($('#Less_Credit_Loss').val()),
+					realEstateTaxesTotal: parseInt($('#Real_Estate_Taxes_Total').val()),
 
-				// 	insuranceTotal: $('#Insurance_Total').val());
-				// 	utlitiesTotal: $('#Utilities_Total').val());
-				// 	payrollTotal: $('#Payroll_Total').val());
-				// 	repairsAndMaintenanceTotal: $('#Repairs_and_Maintenance_Total').val());
-				// 	contractServicesTotal: $('#Contract_Services_Total').val());
-				// 	turnoverTotal: $('#Turnover_Total').val());
-				// 	salesAndMarketingTotal: $('#Sales_and_Marketing_Total').val());
-				// 	administrativeTotal: $('#Administrative_Total').val());
-				// 	managementPercentage: $('#Management_Percentage').val());
-				// 	replacementReservesPercentage: $('#Replacement_Reserves_Percentage').val());
-				// 	// rentalRateAssumptions: NEED TO PLACE OBJECT IN HERE
-				// 	// marketRentalAssumptions: NEED TO PLACE OBJECT IN HERE
-				// }
-
-
+					insuranceTotal: parseInt($('#Insurance_Total').val()),
+					utlitiesTotal: parseInt($('#Utilities_Total').val()),
+					payrollTotal: parseInt($('#Payroll_Total').val()),
+					repairsAndMaintenanceTotal: parseInt($('#Repairs_and_Maintenance_Total').val()),
+					contractServicesTotal: parseInt($('#Contract_Services_Total').val()),
+					turnoverTotal: parseInt($('#Turnover_Total').val()),
+					salesAndMarketingTotal: parseInt($('#Sales_and_Marketing_Total').val()),
+					administrativeTotal: parseInt($('#Administrative_Total').val()),
+					managementPercentage: parseInt($('#Management_Percentage').val()),
+					replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val()),
+					// rentalRateAssumptions: NEED TO PLACE OBJECT IN HERE
+					// marketRentalAssumptions: NEED TO PLACE OBJECT IN HERE
+				};
+				console.log(
+				"analysisstartdate: ",
+				g.analysisStartDate,
+				"g.propertyName: ",
+				g.propertyName,
+				"propertyLocation: ",
+				g.propertyLocation,
+				"propertyType: ",
+				g.propertyType,
+				"purchasePrice: ",
+				g.purchasePrice
+				);
 	//RENTAL RATE ASSUMPTIONS Table
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		totalUnits = parseInt($('.total_units', this).val());
@@ -121,8 +129,8 @@ $(document).ready(function(){
 	}; //end applyOnInput function
 
 	//Runs input function
-	$('.rent_row').on('input', applyOnInput);
-	$('#Property_Information').on('input', applyOnInput);
+	// $('#dashboard').on('input', applyOnInput);
+	$('#dashboard').on('keyup', applyOnInput);
 
 
 // ============================================================================================================
@@ -148,7 +156,7 @@ $(document).ready(function(){
 			applyOnInput();
 		});
 		//Runs input function inside
-		$('.rent_row').on('input', applyOnInput);
+		$('#dashboard').on('input', applyOnInput);
 
 	}) //end addrow function
 
