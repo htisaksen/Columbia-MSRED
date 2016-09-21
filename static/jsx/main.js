@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	var RRAlist = []; //Rental Rate Assumptions list
 	var MRAlist = []; //Market Rental Assumptions list
 
@@ -70,9 +70,11 @@ $(document).ready(function(){
 			replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val()),
 		};
 
+		var RrTotalUnits = $('#Rental_Rate_Assumptions tfoot .total_units').text()
+		console.log("sup: ",RrTotalUnits)
+		$('#prop_info_total_num_units').text(RrTotalUnits);
+		$('#prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf').text());
 
-		$('.prop_info_total_num_units').text($('#Rental_Rate_Assumptions tfoot .total_units'));
-		$('.prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf'));
 
 	}; //end DashboardInput
 
@@ -88,7 +90,6 @@ $(document).ready(function(){
 //RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 	var RRAInput = function(event){
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
-		console.log(this)
 		totalUnits = parseInt($('.total_units', this).val());
 		avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
 		rentPerUnit = parseInt($(".rent_per_unit", this).val());
@@ -96,8 +97,6 @@ $(document).ready(function(){
 
 		var totalSF = totalUnits*avgSFPerUnit;
 		var rentPerSF = rentPerUnit/avgSFPerUnit;
-		console.log("Total Roll: ",totalSF)
-		console.log("RentperSF: ",rentPerSF)
 		$('.total_sf', this).text(totalSF);
 		$('.rent_per_sf', this).text(rentPerSF);
 
@@ -179,7 +178,7 @@ $(document).ready(function(){
 			console.log("MRALIST: ",MRAlist);
 		});
 
-	}; 
+	};
 //END OF MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
 
 
