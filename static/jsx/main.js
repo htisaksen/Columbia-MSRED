@@ -108,8 +108,8 @@ $(document).ready(function(){
 		};
 
 		//VARIABLES FOR CALCULATIONS-------------------------------------------------------
-		var tu = $('#Rental_Rate_Assumptions tfoot .total_units').text();
-		var tsf = $('#Rental_Rate_Assumptions tfoot .total_sf').text();
+		var tu = pInt('#Rental_Rate_Assumptions tfoot .total_units');
+		var tsf = pInt('#Rental_Rate_Assumptions tfoot .total_sf');
 		//--------------------------------------------------------------------------------
 
 		//Property Info Calculations
@@ -194,93 +194,91 @@ $(document).ready(function(){
 		// L_IRR_from_Sale = 0
 		// L_Cash_On_Cash = 0
 		
-		// #Current Financial Performance Table
-		$('.Rental_Income_Total').text(SUMPRODUCT OF STUFF); //WIP
-		$('.Rental_Income_DollarPerUnit').text(pInt('.Rental_Income_Total')/tu);
-		$('.Rental_Income_DollarPerSF').text(pInt('.Rental_Income_Total')/tsf);
-		$('.Rental_Income_PercentofTotal').text(pInt('.Rental_Income_Total')/pInt('.Gross_Rental_Income_Total'));
+	// #Current Financial Performance Table
+		$('#Rental_Income_Total').text('5000000');
+		$('#Rental_Income_DollarPerUnit').text(pInt('#Rental_Income_Total')/tu);
+		$('#Rental_Income_DollarPerSF').text(pInt('#Rental_Income_Total')/tsf);
+		$('#Rental_Income_PercentofTotal').text((pInt('#Rental_Income_Total'))/(pInt('#Gross_Rental_Income_Total')));
 
-		$(.'Other_Income_DollarPerUnit').text(pInt(g.otherIncomeTotal)/tu);
-		$(.'Other_Income_DollarPerSF').text(pInt(g.otherIncomeTotal)/tsf);
-		$(.'Other_Income_PercentofTotal').text(pInt(g.otherIncomeTotal)/pInt('.Gross_Rental_Income_Total');
+		$('#Other_Income_DollarPerUnit').text(g.otherIncomeTotal/tu);
+		$('#Other_Income_DollarPerSF').text(g.otherIncomeTotal/tsf);
+		$('#Other_Income_PercentofTotal').text(g.otherIncomeTotal/pInt('#Gross_Rental_Income_Total'));
 		
-		$(.'Gross_Rental_Income_Total').text(g.otherIncomeTotal + Rental_Income_Total)
-		$(.'Gross_Rental_Income_DollarPerUnit').text(pInt('.Rental_Income_DollarPerUnit') + pInt('.Other_Income_DollarPerUnit'))
-		$(.'Gross_Rental_Income_DollarPerSF').text(pInt('.Rental_Income_DollarPerSF') + pInt('.Other_Income_DollarPerSF'))
-		$(.'Gross_Rental_Income_PercentofTotal').text(pInt('.Rental_Income_PercentofTotal') + pInt('.Other_Income_PercentofTotal'))
+		$('#Gross_Rental_Income_Total').text(g.otherIncomeTotal + pInt('#Rental_Income_Total'));
+		$('#Gross_Rental_Income_DollarPerUnit').text(pInt('#Rental_Income_DollarPerUnit') + pInt('#Other_Income_DollarPerUnit'))
+		$('#Gross_Rental_Income_DollarPerSF').text(pInt('#Rental_Income_DollarPerSF') + pInt('#Other_Income_DollarPerSF'))
+		$('#Gross_Rental_Income_PercentofTotal').text(pInt('#Rental_Income_PercentofTotal') + pInt('#Other_Income_PercentofTotal'))
 		
-		// Vacancy_Total = -1 * less_vacancy * Gross_Rental_Income_Total         #negative nums
-		// Vacancy_DollarPerUnit = Vacancy_Total/Num_Units        #negative nums
-		// Vacancy_DollarPerSF = Vacancy_Total/Total_Sq_Ft      #negative nums
-		//
-		// Concessions_Total = -1 * less_concessions * Gross_Rental_Income_Total        #negative nums
-		// Concessions_DollarPerUnit = Concessions_Total/Num_Units        #negative nums
-		// Concessions_DollarPerSF = Concessions_Total/Total_Sq_Ft      #negative nums
-		//
-		// Credit_Loss_Total = -1 * less_credit_loss * Gross_Rental_Income_Total        #negative nums
-		// Credit_Loss_DollarPerUnit = Credit_Loss_Total/Num_Units        #negative nums
-		// Credit_Loss_DollarPerSF = Credit_Loss_Total/Total_Sq_Ft      #negative nums
-		//
-		// Net_Rental_Income_Total = Gross_Rental_Income_Total + Vacancy_Total + Concessions_Total + Credit_Loss_Total
-		// Net_Rental_Income_DollarPerUnit = Net_Rental_Income_Total/Num_Units
-		// Net_Rental_Income_DollarPerSF = Net_Rental_Income_Total/Total_Sq_Ft
-		//
-		// Real_Estate_Taxes_DollarPerUnit = real_estate_taxes_total/Num_Units
-		// Real_Estate_Taxes_DollarPerSF = real_estate_taxes_total/Total_Sq_Ft
-		// Real_Estate_Taxes_PercentofTotal = real_estate_taxes_total/Total_Operating_Expenses_Total
-		//
-		// Insurance_DollarPerUnit = insurance_total/Num_Units
-		// Insurance_DollarPerSF = insurance_total/Total_Sq_Ft
-		// Insurance_PercentofTotal = insurance_total/Total_Operating_Expenses_Total
-		//
-		// Utilities_DollarPerUnit = utilities_total/Num_Units
-		// Utilities_DollarPerSF = utilities_total/Total_Sq_Ft
-		// Utilities_PercentofTotal = utilities_total/Total_Operating_Expenses_Total
-		//
-		// Payroll_DollarPerUnit = payroll_total/Num_Units
-		// Payroll_DollarPerSF = payroll_total/Total_Sq_Ft
-		// Payroll_PercentofTotal = payroll_total/Total_Operating_Expenses_Total
-		//
-		// Repairs_and_Maintenance_DollarPerUnit = repairs_and_maintenance_total/Num_Units
-		// Repairs_and_Maintenance_DollarPerSF = repairs_and_maintenance_total/Total_Sq_Ft
-		// Repairs_and_Maintenance_PercentofTotal = repairs_and_maintenance_total/Total_Operating_Expenses_Total
-		//
-		// Contract_Services_DollarPerUnit = contract_services_total/Num_Units
-		// Contract_Services_DollarPerSF = contract_services_total/Total_Sq_Ft
-		// Contract_Services_PercentofTotal = contract_services_total/Total_Operating_Expenses_Total
-		//
-		// Turnover_DollarPerUnit = turnover_total/Num_Units
-		// Turnover_DollarPerSF = turnover_total/Total_Sq_Ft
-		// Turnover_PercentofTotal = turnover_total/Total_Operating_Expenses_Total
-		//
-		// Sales_and_Marketing_DollarPerUnit = sales_and_marketing_total/Num_Units
-		// Sales_and_Marketing_DollarPerSF = sales_and_marketing_total/Total_Sq_Ft
-		// Sales_and_Marketing_PercentofTotal = sales_and_marketing_total/Total_Operating_Expenses_Total
-		//
-		// Administrative_DollarPerUnit = administrative/Num_Units
-		// Administrative_DollarPerSF = administrative/Total_Sq_Ft
-		// Administrative_PercentofTotal = administrative/Total_Operating_Expenses_Total
-		//
-		// Management_Total = management_percentage * Net_Rental_Income_Total
-		// Management_DollarPerUnit = Management_Total/Num_Units
-		// Management_DollarPerSF = Management_Total/Total_Sq_Ft
-		// Management_PercentofTotal = Management_Total/Total_Operating_Expenses_Total
-		//
-		// Replacement_Reserves_Total = replacement_reserves_percentage * Net_Rental_Income_Total
-		// Replacement_Reserves_DollarPerUnit = Replacement_Reserves_Total/Num_Units
-		// Replacement_Reserves_DollarPerSF = Replacement_Reserves_Total/Total_Sq_Ft
-		// Replacement_Reserves_PercentofTotal = Replacement_Reserves_Total/Total_Operating_Expenses_Total
-		//
-		// Total_Operating_Expenses_Total = real_estate_taxes_total + insurance_total + utilities_total + payroll_total + repairs_and_maintenance_total + contract_services_total + turnover_total + sales_and_marketing_total + administrative + Management_Total + Replacement_Reserves_Total
-		// Total_Operating_Expenses_DollarPerUnit = Total_Operating_Expenses_Total/Num_Units
-		// Total_Operating_Expenses_DollarPerSF = Total_Operating_Expenses_Total/Total_Sq_Ft
-		// Total_Operating_Expenses_PercentofTotal = Real_Estate_Taxes_PercentofTotal + Insurance_PercentofTotal + Utilities_PercentofTotal + Payroll_PercentofTotal + Repairs_and_Maintenance_PercentofTotal + Contract_Services_PercentofTotal + Turnover_PercentofTotal + Sales_and_Marketing_PercentofTotal + Administrative_PercentofTotal + Management_PercentofTotal + Replacement_Reserves_PercentofTotal
-		//
-		// Net_Operating_Income_Total = Net_Rental_Income_Total - Total_Operating_Expenses_Total
-		// Net_Operating_Income_DollarPerUnit = Net_Operating_Income_Total/Num_Units
-		// Net_Operating_Income_DollarPerSF = Net_Operating_Income_Total/Total_Sq_Ft
-		//
-		// #Market Rental Assumptions Table #***dynamic***
+		$('#Vacancy_Total').text(-1 * g.lessVacancy * pInt('#Gross_Rental_Income_Total'));
+		$('#Vacancy_DollarPerUnit').text(pInt('#Vacancy_Total')/tu);
+		$('#Vacancy_DollarPerSF').text(pInt('#Vacancy_Total')/tsf);
+		
+		$('#Concessions_Total').text(-1 * g.lessConcessions * pInt('#Gross_Rental_Income_Total'));
+		$('#Concessions_DollarPerUnit').text(pInt('#Concessions_Total')/tu);
+		$('#Concessions_DollarPerSF').text(pInt('#Concessions_Total')/tsf);
+		
+		$('#Credit_Loss_Total').text(-1 * g.lessCreditLoss * pInt('#Gross_Rental_Income_Total'));
+		$('#Credit_Loss_DollarPerUnit').text(pInt('#Credit_Loss_Total')/tu);
+		$('#Credit_Loss_DollarPerSF').text(pInt('#Credit_Loss_Total')/tsf);
+		
+		$('#Net_Rental_Income_Total').text(pInt('#Gross_Rental_Income_Total') + pInt('#Vacancy_Total') + pInt('#Concessions_Total') + pInt('#Credit_Loss_Total'));
+		$('#Net_Rental_Income_DollarPerUnit').text(pInt('#Net_Rental_Income_Total')/tu);
+		$('#Net_Rental_Income_DollarPerSF').text(pInt('#Net_Rental_Income_Total')/tsf);
+		
+		$('#Real_Estate_Taxes_DollarPerUnit').text(g.realEstateTaxesTotal/tu);
+		$('#Real_Estate_Taxes_DollarPerSF').text(g.realEstateTaxesTotal/tsf);
+		$('#Real_Estate_Taxes_PercentofTotal').text(g.realEstateTaxesTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Insurance_DollarPerUnit').text(g.insuranceTotal/tu);
+		$('#Insurance_DollarPerSF').text(g.insuranceTotal/tsf);
+		$('#Insurance_PercentofTotal').text(g.insuranceTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Utilities_DollarPerUnit').text(g.utilitiesTotal/tu);
+		$('#Utilities_DollarPerSF').text(g.utilitiesTotal/tsf);
+		$('#Utilities_PercentofTotal').text(g.utilitiesTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Payroll_DollarPerUnit').text(g.payrollTotal/tu);
+		$('#Payroll_DollarPerSF').text(g.payrollTotal/tsf);
+		$('#Payroll_PercentofTotal').text(g.payrollTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Repairs_and_Maintenance_DollarPerUnit').text(g.repairsAndMaintenanceTotal/tu);
+		$('#Repairs_and_Maintenance_DollarPerSF').text(g.repairsAndMaintenanceTotal/tsf);
+		$('#Repairs_and_Maintenance_PercentofTotal').text(g.repairsAndMaintenanceTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Contract_Services_DollarPerUnit').text(g.contractServicesTotal/tu);
+		$('#Contract_Services_DollarPerSF').text(g.contractServicesTotal/tsf);
+		$('#Contract_Services_PercentofTotal').text(g.contractServicesTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Turnover_DollarPerUnit').text(g.turnoverTotal/tu);
+		$('#Turnover_DollarPerSF').text(g.turnoverTotal/tsf);
+		$('#Turnover_PercentofTotal').text(g.turnoverTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Sales_and_Marketing_DollarPerUnit').text(g.salesAndMarketingTotal/tu);
+		$('#Sales_and_Marketing_DollarPerSF').text(g.salesAndMarketingTotal/tsf);
+		$('#Sales_and_Marketing_PercentofTotal').text(g.salesAndMarketingTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Administrative_DollarPerUnit').text(g.administrativeTotal/tu);
+		$('#Administrative_DollarPerSF').text(g.administrativeTotal/tsf);
+		$('#Administrative_PercentofTotal').text(g.administrativeTotal/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Management_Total').text(g.managementPercentage * pInt('#Net_Rental_Income_Total'));
+		$('#Management_DollarPerUnit').text(pInt('#Management_Total')/tu);
+		$('#Management_DollarPerSF').text(pInt('#Management_Total')/tsf);
+		$('#Management_PercentofTotal').text(pInt('#Management_Total')/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Replacement_Reserves_Total').text(g.replacementReservesPercentage * pInt('#Net_Rental_Income_Total'));
+		$('#Replacement_Reserves_DollarPerUnit').text(pInt('#Replacement_Reserves_Total')/tu);
+		$('#Replacement_Reserves_DollarPerSF').text(pInt('#Replacement_Reserves_Total')/tsf);
+		$('#Replacement_Reserves_PercentofTotal').text(pInt('#Replacement_Reserves_Total')/pInt('#Total_Operating_Expenses_Total'));
+		
+		$('#Total_Operating_Expenses_Total').text(g.realEstateTaxesTotal + g.insuranceTotal + g.utilitiesTotal + g.payrollTotal + g.repairsAndMaintenanceTotal + g.contractServicesTotal + g.turnoverTotal + g.salesAndMarketingTotal + g.administrativeTotal + pInt('#Management_Total') + pInt('#Replacement_Reserves_Total'));
+		$('#Total_Operating_Expenses_DollarPerUnit').text(pInt('#Total_Operating_Expenses_Total')/tu);
+		$('#Total_Operating_Expenses_DollarPerSF').text(pInt('#Total_Operating_Expenses_Total')/tsf);
+		$('#Total_Operating_Expenses_PercentofTotal').text(pInt('#Real_Estate_Taxes_PercentofTotal') + pInt('#Insurance_PercentofTotal') + pInt('#Utilities_PercentofTotal') + pInt('#Payroll_PercentofTotal') + pInt('#Repairs_and_Maintenance_PercentofTotal') + pInt('#Contract_Services_PercentofTotal') + pInt('#Turnover_PercentofTotal') + pInt('#Sales_and_Marketing_PercentofTotal') + pInt('#Administrative_PercentofTotal') + pInt('#Management_PercentofTotal') + pInt('#Replacement_Reserves_PercentofTotal'));
+		
+		$('#Net_Operating_Income_Total').text(pInt('#Net_Rental_Income_Total') - pInt('#Total_Operating_Expenses_Total'));
+		$('#Net_Operating_Income_DollarPerUnit').text(pInt('#Net_Operating_Income_Total')/tu);
+		$('#Net_Operating_Income_DollarPerSF').text(pInt('#Net_Operating_Income_Total')/tsf);
 
 
 	}; //end DashboardInput
