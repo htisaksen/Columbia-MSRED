@@ -50,37 +50,37 @@
     <tr>
       <td>Closing Costs</td>
       <td><input type="number" name="Closing_Costs_Percentage" id="Closing_Costs_Percentage" placeholder = "Closing Costs (%)"></td>
-      <td>{{Closing_Costs}}</td>
+      <td id ='Closing_Costs'></td>
     </tr>
     <tr>
       <td>Total Costs</td>
       <td>&nbsp;</td>
-      <td>{{pit_Total_Costs}}</td>
+      <td id ='Total_Costs'></td>
     </tr>
     <tr>
       <td>Purchase Cost Per Unit</td>
       <td>&nbsp;</td>
-      <td>{{Purchase_Cost_Per_Unit}}</td>
+      <td id ='Purchase_Cost_Per_Unit'></td>
     </tr>
     <tr>
       <td>Total Cost Per Unit</td>
       <td>&nbsp;</td>
-      <td>{{Total_Cost_Per_Unit}}</td>
+      <td id ='Total_Cost_Per_Unit'></td>
     </tr>
     <tr>
       <td>Purchase Cost Per SF</td>
       <td>&nbsp;</td>
-      <td>{{Purchase_Cost_Per_SF}}</td>
+      <td id ='Purchase_Cost_Per_SF'></td>
     </tr>
     <tr>
       <td>Cap Rate on Purchase Price</td>
       <td>&nbsp;</td>
-      <td>{{Cap_Rate_on_Purchase_Price}}</td>
+      <td id ='Cap_Rate_on_Purchase_Price'></td>
     </tr>
     <tr>
       <td>Cap Rate on Total Price</td>
       <td>&nbsp;</td>
-      <td>{{Cap_Rate_on_Total_Price}}</td>
+      <td id ='Cap_Rate_on_Total_Price'></td>
     </tr>
   </table>
   <hr>
@@ -112,15 +112,15 @@
     </tr>
     <tr>
       <td>Sale Price</td>
-      <td>{{Sale_Price}}</td>
+      <td id ='Sale_Price'></td>
     </tr>
     <tr>
       <td>Sale Price Per Unit</td>
-      <td>{{Sale_Price_Per_Unit}}</td>
+      <td id ='Sale_Price_Per_Unit'></td>
     </tr>
     <tr>
       <td>Sale Price Per SF</td>
-      <td>{{Sale_Price_Per_SF}}</td>
+      <td id ='Sale_Price_Per_SF'></td>
     </tr>
   </table>
   <hr>
@@ -169,24 +169,24 @@
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>{{Equity_Total}}</td>
-        <td>{{Equity_DollarPerUnit}}</td>
-        <td>{{Equity_DollarPerSF}}</td>
-        <td>{{Equity_PercentofTotal}}</td>
+        <td id ='Equity_Total'></td>
+        <td id ='Equity_DollarPerUnit'></td>
+        <td id ='Equity_DollarPerSF'></td>
+        <td id ='Equity_PercentofTotal'></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>{{Loan_Total}}</td>
-        <td>{{Loan_DollarPerUnit}}</td>
-        <td>{{Loan_DollarPerSF}}</td>
-        <td>{{Loan_PercentofTotal}}</td>
+        <td id ='Loan_Total'></td>
+        <td id ='Loan_DollarPerUnit'></td>
+        <td id ='Loan_DollarPerSF'></td>
+        <td id ='Loan_PercentofTotal'></td>
       </tr>
       <tr>
         <th>&nbsp;</th>
-        <th>{{Total_Sources_Total}}</th>
-        <th>{{Total_Sources_DollarPerUnit}}</th>
-        <th>{{Total_Sources_DollarPerSF}}</th>
-        <th>{{Total_Sources_PercentofTotal}}</th>
+        <th id ='Total_Sources_Total'></th>
+        <th id ='Total_Sources_DollarPerUnit'></th>
+        <th id ='Total_Sources_DollarPerSF'></th>
+        <th id ='Total_Sources_PercentofTotal'></th>
       </tr>
       <tr>
         <th>Uses</th>
@@ -197,24 +197,24 @@
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>{{Purchasing_Price_Total}}</td>
-        <td>{{Purchasing_Price_DollarPerUnit}}</td>
-        <td>{{Purchasing_Price_DollarPerSF}}</td>
-        <td>{{Purchasing_Price_PercentofTotal}}</td>
+        <td id ='Purchasing_Price_Total'></td>
+        <td id ='Purchasing_Price_DollarPerUnit'></td>
+        <td id ='Purchasing_Price_DollarPerSF'></td>
+        <td id ='Purchasing_Price_PercentofTotal'></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td>{{Closing_Costs_Total}}</td>
-        <td>{{Closing_Costs_DollarPerUnit}}</td>
-        <td>{{Closing_Costs_DollarPerSF}}</td>
-        <td>{{Closing_Costs_PercentofTotal}}</td>
+        <td id ='Closing_Costs_Total'></td>
+        <td id ='Closing_Costs_DollarPerUnit'></td>
+        <td id ='Closing_Costs_DollarPerSF'></td>
+        <td id ='Closing_Costs_PercentofTotal'></td>
       </tr>
       <tr>
         <th>&nbsp;</th>
-        <th>{{Total_Uses_Total}}</th>
-        <th>{{Total_Uses_DollarPerUnit}}</th>
-        <th>{{Total_Uses_DollarPerSF}}</th>
-        <th>{{Total_Uses_PercentofTotal}}</th>
+        <th id ='Total_Uses_Total'></th>
+        <th id ='Total_Uses_DollarPerUnit'></th>
+        <th id ='Total_Uses_DollarPerSF'></th>
+        <th id ='Total_Uses_PercentofTotal'></th>
       </tr>
     </table>
     <hr>
@@ -270,10 +270,10 @@
       <tr>
         <td>Net Profit</td>
         <td>&nbsp;</td>
-        <td>{{UL_Net_Profit}}</td>
+        <td id='UL_Net_Profit'></td>
         <td>Net Profit</td>
         <td>&nbsp;</td>
-        <td>{{L_Net_Profit}}</td>
+        <td id='L_Net_Profit'></td>
       </tr>
       <tr>
         <td>Discount Rate</td>
@@ -286,66 +286,66 @@
       <tr>
         <td>IRR from CF (%)</td>
         <td>&nbsp;</td>
-        <td>{{UL_IRR_from_CF}}</td>
+        <td id='UL_IRR_from_CF'></td>
         <td>IRR from CF (%)</td>
         <td>&nbsp;</td>
-        <td>{{L_IRR_from_CF}}</td>
+        <td id='L_IRR_from_CF'></td>
       </tr>
       <tr>
         <td>Present Value</td>
         <td>&nbsp;</td>
-        <td>{{UL_Present_Value}}</td>
+        <td id='UL_Present_Value'></td>
         <td>Present Value</td>
         <td>&nbsp;</td>
-        <td>{{L_Present_Value}}</td>
+        <td id='L_Present_Value'></td>
       </tr>
       <tr>
         <td>Net Present Value</td>
         <td>&nbsp;</td>
-        <td>{{UL_Net_Present_Value}}</td>
+        <td id='UL_Net_Present_Value'></td>
         <td>Net Present Value</td>
         <td>&nbsp;</td>
-        <td>{{L_Net_Present_Value}}</td>
+        <td id='L_Net_Present_Value'></td>
       </tr>
       <tr>
         <td>Equity Multiple</td>
         <td>&nbsp;</td>
-        <td>{{UL_Equity_Multiple}}</td>
+        <td id='UL_Equity_Multiple'></td>
         <td>Equity Multiple</td>
         <td>&nbsp;</td>
-        <td>{{L_Equity_Multiple}}</td>
+        <td id='L_Equity_Multiple'></td>
       </tr>
       <tr>
         <td>IRR</td>
         <td>&nbsp;</td>
-        <td>{{UL_IRR}}</td>
+        <td id='UL_IRR'></td>
         <td>IRR</td>
         <td>&nbsp;</td>
-        <td>{{L_IRR}}</td>
+        <td id='L_IRR'></td>
       </tr>
       <tr>
         <td>IRR from CF (%)</td>
         <td>&nbsp;</td>
-        <td>{{UL_IRR_from_CF}}</td>
+        <td id='UL_IRR_from_CF'></td>
         <td>IRR from CF (%)</td>
         <td>&nbsp;</td>
-        <td>{{L_IRR_from_CF}}</td>
+        <td id='L_IRR_from_CF'></td>
       </tr>
       <tr>
         <td>IRR from Sale (%)</td>
         <td>&nbsp;</td>
-        <td>{{UL_IRR_from_Sale}}</td>
+        <td id='UL_IRR_from_Sale'></td>
         <td>IRR from Sale (%)</td>
         <td>&nbsp;</td>
-        <td>{{L_IRR_from_Sale}}</td>
+        <td id='L_IRR_from_Sale'></td>
       </tr>
       <tr>
         <td>Cash-On-Cash</td>
         <td>&nbsp;</td>
-        <td>{{UL_Cash_On_Cash}}</td>
+        <td id='UL_Cash_On_Cash'></td>
         <td>Cash-On-Cash</td>
         <td>&nbsp;</td>
-        <td>{{L_Cash_On_Cash}}</td>
+        <td id='L_Cash_On_Cash'></td>
       </tr>
     </table>
     <hr>
@@ -374,57 +374,57 @@
       <tr>
         <td>Rental Income</td>
         <td>&nbsp;</td>
-        <td>{{Rental_Income_Total}}</td>
-        <td>{{Rental_Income_DollarPerUnit}}</td>
-        <td>{{Rental_Income_DollarPerSF}}</td>
-        <td>{{Rental_Income_PercentofTotal}}</td>
+        <td id='Rental_Income_Total'></td>
+        <td id='Rental_Income_DollarPerUnit'></td>
+        <td id='Rental_Income_DollarPerSF'></td>
+        <td id='Rental_Income_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Other Income</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Other_Income_Total" id="Other_Income_Total" placeholder = "Total Other Income ($)"></td>
-        <td>{{Other_Income_DollarPerUnit}}</td>
-        <td>{{Other_Income_DollarPerSF}}</td>
-        <td>{{Other_Income_PercentofTotal}}</td>
+        <td id='Other_Income_DollarPerUnit'></td>
+        <td id='Other_Income_DollarPerSF'></td>
+        <td id='Other_Income_PercentofTotal'></td>
       </tr>
       <tr>
         <th>Gross Rental Income</th>
         <th>&nbsp;</th>
-        <th>{{Gross_Rental_Income_Total}}</th>
-        <th>{{Gross_Rental_Income_DollarPerUnit}}</th>
-        <th>{{Gross_Rental_Income_DollarPerSF}}</th>
-        <th>{{Gross_Rental_Income_PercentofTotal}}</th>
+        <th id='Gross_Rental_Income_Total'></th>
+        <th id='Gross_Rental_Income_DollarPerUnit'></th>
+        <th id='Gross_Rental_Income_DollarPerSF'></th>
+        <th id='Gross_Rental_Income_PercentofTotal'></th>
       </tr>
       <tr>
         <td>Less: Vacancy</td>
         <td><input type="number" name="Less_Vacancy" id="Less_Vacancy" placeholder = "Less Vacancy (%)"></td>
-        <td>{{Vacancy_Total}}</td>
-        <td>{{Vacancy_DollarPerUnit}}</td>
-        <td>{{Vacancy_DollarPerSF}}</td>
+        <td id='Vacancy_Total'></td>
+        <td id='Vacancy_DollarPerUnit'></td>
+        <td id='Vacancy_DollarPerSF'></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
         <td>Less: Concessions</td>
         <td><input type="number" name="Less_Concessions" id="Less_Concessions" placeholder = "Less Concessions (%)"></td>
-        <td>{{Concessions_Total}}</td>
-        <td>{{Concessions_DollarPerUnit}}</td>
-        <td>{{Concessions_DollarPerSF}}</td>
+        <td id='Concessions_Total'></td>
+        <td id='Concessions_DollarPerUnit'></td>
+        <td id='Concessions_DollarPerSF'></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
         <td>Less: Credit Loss</td>
         <td><input type="number" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "Less Credit Loss (%)"></td>
-        <td>{{Credit_Loss_Total}}</td>
-        <td>{{Credit_Loss_DollarPerUnit}}</td>
-        <td>{{Credit_Loss_DollarPerSF}}</td>
+        <td id='Credit_Loss_Total'></td>
+        <td id='Credit_Loss_DollarPerUnit'></td>
+        <td id='Credit_Loss_DollarPerSF'></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
         <th>Net Rental Income</th>
         <th>&nbsp;</th>
-        <th>{{Net_Rental_Income_Total}}</th>
-        <th>{{Net_Rental_Income_DollarPerUnit}}</th>
-        <th>{{Net_Rental_Income_DollarPerSF}}</th>
+        <th id='Net_Rental_Income_Total'></th>
+        <th id='Net_Rental_Income_DollarPerUnit'></th>
+        <th id='Net_Rental_Income_DollarPerSF'></th>
         <th>&nbsp;</th>
       </tr>
       <tr>
@@ -434,104 +434,104 @@
         <td>Real Estate Taxes</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "Real Estate Taxes Total ($)"></td>
-        <td>{{Real_Estate_Taxes_DollarPerUnit}}</td>
-        <td>{{Real_Estate_Taxes_DollarPerSF}}</td>
-        <td>{{Real_Estate_Taxes_PercentofTotal}}</td>
+        <td id='Real_Estate_Taxes_DollarPerUnit'></td>
+        <td id='Real_Estate_Taxes_DollarPerSF'></td>
+        <td id='Real_Estate_Taxes_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Insurance</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Insurance_Total" id="Insurance_Total" placeholder = "Insurance Total ($)"></td>
-        <td>{{Insurance_DollarPerUnit}}</td>
-        <td>{{Insurance_DollarPerSF}}</td>
-        <td>{{Insurance_PercentofTotal}}</td>
+        <td id='Insurance_DollarPerUnit'></td>
+        <td id='Insurance_DollarPerSF'></td>
+        <td id='Insurance_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Utilities</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Utilities_Total" id="Utilities_Total" placeholder = "Utilities Total ($)"></td>
-        <td>{{Utilities_DollarPerUnit}}</td>
-        <td>{{Utilities_DollarPerSF}}</td>
-        <td>{{Utilities_PercentofTotal}}</td>
+        <td id='Utilities_DollarPerUnit'></td>
+        <td id='Utilities_DollarPerSF'></td>
+        <td id='Utilities_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Payroll</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Payroll_Total" id="Payroll_Total" placeholder = "Payroll Total ($)"></td>
-        <td>{{Payroll_DollarPerUnit}}</td>
-        <td>{{Payroll_DollarPerSF}}</td>
-        <td>{{Payroll_PercentofTotal}}</td>
+        <td id='Payroll_DollarPerUnit'></td>
+        <td id='Payroll_DollarPerSF'></td>
+        <td id='Payroll_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Repairs & Maintenance</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "Repairs & Maintenance Total ($)"></td>
-        <td>{{Repairs_and_Maintenance_DollarPerUnit}}</td>
-        <td>{{Repairs_and_Maintenance_DollarPerSF}}</td>
-        <td>{{Repairs_and_Maintenance_PercentofTotal}}</td>
+        <td id='Repairs_and_Maintenance_DollarPerUnit'></td>
+        <td id='Repairs_and_Maintenance_DollarPerSF'></td>
+        <td id='Repairs_and_Maintenance_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Contract Services</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "Contract Services Total ($)"></td>
-        <td>{{Contract_Services_DollarPerUnit}}</td>
-        <td>{{Contract_Services_DollarPerSF}}</td>
-        <td>{{Contract_Services_PercentofTotal}}</td>
+        <td id='Contract_Services_DollarPerUnit'></td>
+        <td id='Contract_Services_DollarPerSF'></td>
+        <td id='Contract_Services_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Turnover</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Turnover_Total" id="Turnover_Total" placeholder = "Turnover Total ($)"></td>
-        <td>{{Turnover_DollarPerUnit}}</td>
-        <td>{{Turnover_DollarPerSF}}</td>
-        <td>{{Turnover_PercentofTotal}}</td>
+        <td id='Turnover_DollarPerUnit'></td>
+        <td id='Turnover_DollarPerSF'></td>
+        <td id='Turnover_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Sales & Marketing</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "Sales & Marketing Total ($)"></td>
-        <td>{{Sales_and_Marketing_DollarPerUnit}}</td>
-        <td>{{Sales_and_Marketing_DollarPerSF}}</td>
-        <td>{{Sales_and_Marketing_PercentofTotal}}</td>
+        <td id='Sales_and_Marketing_DollarPerUnit'></td>
+        <td id='Sales_and_Marketing_DollarPerSF'></td>
+        <td id='Sales_and_Marketing_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Administrative</td>
         <td>&nbsp;</td>
         <td><input type="number" name="Administrative_Total" id="Administrative_Total" placeholder = "Administrative Total ($)"></td>
-        <td>{{Administrative_DollarPerUnit}}</td>
-        <td>{{Administrative_DollarPerSF}}</td>
-        <td>{{Administrative_PercentofTotal}}</td>
+        <td id='Administrative_DollarPerUnit'></td>
+        <td id='Administrative_DollarPerSF'></td>
+        <td id='Administrative_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Management</td>
         <td><input type="number" name="Management_Percentage" id="Management_Percentage" placeholder = "Management Total (%)"></td>
-        <td>{{Management_Total}}</td>
-        <td>{{Management_DollarPerUnit}}</td>
-        <td>{{Management_DollarPerSF}}</td>
-        <td>{{Management_PercentofTotal}}</td>
+        <td id='Management_Total'></td>
+        <td id='Management_DollarPerUnit'></td>
+        <td id='Management_DollarPerSF'></td>
+        <td id='Management_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Replacement Reserves</td>
         <td><input type="number" name="Replacement_Reserves_Percentage" id="Replacement_Reserves_Percentage" placeholder = "Replacement Reserves Total (%)"></td>
-        <td>{{Replacement_Reserves_Total}}</td>
-        <td>{{Replacement_Reserves_DollarPerUnit}}</td>
-        <td>{{Replacement_Reserves_DollarPerSF}}</td>
-        <td>{{Replacement_Reserves_PercentofTotal}}</td>
+        <td id='Replacement_Reserves_Total'></td>
+        <td id='Replacement_Reserves_DollarPerUnit'></td>
+        <td id='Replacement_Reserves_DollarPerSF'></td>
+        <td id='Replacement_Reserves_PercentofTotal'></td>
       </tr>
       <tr>
         <td>Total Operating Expenses</td>
         <td>&nbsp;</td>
-        <td>{{Total_Operating_Expenses_Total}}</td>
-        <td>{{Total_Operating_Expenses_DollarPerUnit}}</td>
-        <td>{{Total_Operating_Expenses_DollarPerSF}}</td>
-        <td>{{Total_Operating_Expenses_PercentofTotal}}</td>
+        <td id='Total_Operating_Expenses_Total'></td>
+        <td id='Total_Operating_Expenses_DollarPerUnit'></td>
+        <td id='Total_Operating_Expenses_DollarPerSF'></td>
+        <td id='Total_Operating_Expenses_PercentofTotal'></td>
       </tr>
       <tr>
         <th>Net Operating Expenses</th>
         <th>&nbsp;</th>
-        <th>{{Net_Operating_Expenses_Total}}</th>
-        <th>{{Net_Operating_Expenses_DollarPerUnit}}</th>
-        <th>{{Net_Operating_Expenses_DollarPerSF}}</th>
+        <th id='Net_Operating_Expenses_Total'></th>
+        <th id='Net_Operating_Expenses_DollarPerUnit'></th>
+        <th id='Net_Operating_Expenses_DollarPerSF'></th>
         <th>&nbsp;</th>
       </tr>
     </table>
