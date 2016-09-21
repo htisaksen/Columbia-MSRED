@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	
+	var RRAlist = []; //Rental Rate Assumptions list
+	var MRAlist = []; //Market Rental Assumptions list
+
 
 //Javascript Rental Rate Assumptions first insert row -------------------------------------------
 	$('#Rental_Rate_Assumptions').find('tbody')
@@ -23,14 +27,16 @@ $(document).ready(function(){
 		)
 
 
+
+
+
+
 // ============================================================================================================
 // Start of ALL calculations for dashboard
 // ============================================================================================================
 
-	var applyOnInput = function(event){
+	var DashboardInput = function(event){
 	// Global objects: Inputs (possibly calculated values)
-		var RRAlist = []; //Rental Rate Assumptions list
-		var MRAlist = []; //Market Rental Assumptions list
 		var g = {
 			analysisStartDate: $('#Analysis_Start_Date').val(),
 			propertyName:	$('#Property_Name').val(),
@@ -62,21 +68,25 @@ $(document).ready(function(){
 			administrativeTotal: parseInt($('#Administrative_Total').val()),
 			managementPercentage: parseInt($('#Management_Percentage').val()),
 			replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val()),
-			rentalRateAssumptions: RRAlist,
-			marketRentalAssumptions: MRAlist,
 		};
 
-		// console.log(
-		// "analysisstartdate: ", g.analysisStartDate,
-		// "g.propertyName: ", g.propertyName,
-		// "propertyLocation: ", g.propertyLocation,
-		// // "propertyType: ", g.propertyType,
-		// // "purchasePrice: ", g.purchasePrice,
-		// "rentalRateAssumptions: ", g.rentalRateAssumptions
-		// // "marketRentalAssumptions", g.marketRentalAssumptions
-		// );
 
-	//RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
+		$('.prop_info_total_num_units').text($('#Rental_Rate_Assumptions tfoot .total_units'));
+		$('.prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf'));
+
+	}; //end DashboardInput
+
+
+
+
+
+
+
+
+
+
+//RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
+	var RRAInput = function(event){
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		console.log(this)
 		totalUnits = parseInt($('.total_units', this).val());
@@ -126,10 +136,10 @@ $(document).ready(function(){
 			tempAvgSFPerUnit = $(this).find('.avg_sf_per_unit').val();
 			tempRentUnits = $(this).find('.rent_per_unit').val();
 			var rraObjTemp = {tempProjectRents: tempProjectRents,
-											 tempNumUnits: tempNumUnits,
-											 tempAvgSFPerUnit: tempAvgSFPerUnit,
-											 tempRentUnits: tempRentUnits
-										 };
+							 tempNumUnits: tempNumUnits,
+							 tempAvgSFPerUnit: tempAvgSFPerUnit,
+							 tempRentUnits: tempRentUnits
+						 	};
 			// var RRAlistTemp = new Array(tempProjectRents, tempNumUnits, tempAvgSFPerUnit, tempRentUnits);
 			RRAlist.push(rraObjTemp);
 			console.log("RRA LIST: ",RRAlist);
@@ -145,11 +155,13 @@ $(document).ready(function(){
 		$('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(sumAvgSFPerUnit);
 		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sumRentPerSF);
 		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(spListRPU);
-	//END RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
+	};
+//END RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 
 
 
-	//MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
+//MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
+	var MRAInput = function(event){
 		//creates an array of arrays for all the Market Rent Assumption rows and stores the array in the global "g" object
 		var $mraRow = $('#Market_Rental_Assumptions tbody .year_row');
 		$rrow.each(function(){
@@ -158,31 +170,38 @@ $(document).ready(function(){
 			tempMktRentVacancy = $(this).find('.mkt_rent_vacancy').val();
 			tempMktRentConcessions = $(this).find('.mkt_rent_concessions').val();
 			tempMktRentCreditLoss = $(this).find('.mkt_rent_credit_loss').val();
-			// var MRAlistTemp = new Array(T_mktRentRevenue, T_mktRentExpenses, T_mktRentVacancy, T_mktRentConcessions, T_mktRentCreditLoss);
 			var mraObjTemp = {tempMktRentRevenue,
-											 tempMktRentExpenses,
-											 tempMktRentVacancy,
-											 tempMktRentConcessions,
-											 tempMktRentCreditLoss};
+							 tempMktRentExpenses,
+							 tempMktRentVacancy,
+							 tempMktRentConcessions,
+							 tempMktRentCreditLoss};
 			MRAlist.push(mraObjTemp);
 			console.log("MRALIST: ",MRAlist);
 		});
-	//END OF MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
+
+	}; 
+//END OF MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
 
 
 
-	}; //end applyOnInput function
-
-	// var rrApplyOnInput = function(event){ //calculations need to be seperate for RR assumptions
 
 
-	//Runs input function
-	$('#dashboard').on('input', applyOnInput);
+
+
+
+
+
+
+
 
 
 // ============================================================================================================
 //Rental Rate Form Dynamic Table
 // ============================================================================================================
+	$('.rent_row').on('input', RRAInput);
+	$('#dashboard').on('input', DashboardInput);
+
+
 	// adds one row to table when the 'add' button is clicked
 	$("#rental_rate_form").on('click', function(event) {
 		event.preventDefault();
@@ -200,19 +219,15 @@ $(document).ready(function(){
 		// function to delete all additionally added rows from the Rental Rate Assumptions table
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
-			applyOnInput();
+			RRAInput();
+			DashboardInput();
 		});
 		//Runs input function inside
-		// $('.rent_row').on('input', applyOnInput);
-		$('#dashboard').on('input', applyOnInput);
+		$('.rent_row').on('input', RRAInput);
+		$('#dashboard').on('input', DashboardInput);
+
 
 	}) //end addrow function
-
-	// RETURNS SUMMARY
-	// END RETURN SUMMARY
-
-	// CURRENT FINANCIALS
-	// END CURRENT FINANCIALS
 
 
 
@@ -236,6 +251,7 @@ $(document).ready(function(){
 			.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 			.append($('<td>').html("<a>[X]</a></td>"))
 			)
+		MRAInput();
 
 		// function to delete all additionally added rows
 		$('tr[class^="year_row"] a').on('click', function(event) {
@@ -251,8 +267,27 @@ $(document).ready(function(){
 			});
 
 		});
-		$('#dashboard').on('input', applyOnInput);
+		//Runs input function inside
+		$('#dashboard').on('input', DashboardInput);
+		$('.rent_row').on('input', DashboardInput);
+		// $('.year_row').on('input', DashboardInput);
+
 	}); //end addrow function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ============================================================================================================
