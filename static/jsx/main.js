@@ -65,26 +65,29 @@ $(document).ready(function(){
 			rentalRateAssumptions: RRAlist,
 			marketRentalAssumptions: MRAlist,
 		};
-		
-		console.log(
-		"analysisstartdate: ", g.analysisStartDate,
-		"g.propertyName: ", g.propertyName,
-		"propertyLocation: ", g.propertyLocation,
-		// "propertyType: ", g.propertyType,
-		// "purchasePrice: ", g.purchasePrice,
-		"rentalRateAssumptions: ", g.rentalRateAssumptions
-		// "marketRentalAssumptions", g.marketRentalAssumptions
-		);
+
+		// console.log(
+		// "analysisstartdate: ", g.analysisStartDate,
+		// "g.propertyName: ", g.propertyName,
+		// "propertyLocation: ", g.propertyLocation,
+		// // "propertyType: ", g.propertyType,
+		// // "purchasePrice: ", g.purchasePrice,
+		// "rentalRateAssumptions: ", g.rentalRateAssumptions
+		// // "marketRentalAssumptions", g.marketRentalAssumptions
+		// );
 
 	//RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
+		console.log(this)
 		totalUnits = parseInt($('.total_units', this).val());
 		avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
 		rentPerUnit = parseInt($(".rent_per_unit", this).val());
+		console.log(totalUnits,avgSFPerUnit,rentPerUnit)
 
 		var totalSF = totalUnits*avgSFPerUnit;
 		var rentPerSF = rentPerUnit/avgSFPerUnit;
-
+		console.log("Total Roll: ",totalSF)
+		console.log("RentperSF: ",rentPerSF)
 		$('.total_sf', this).text(totalSF);
 		$('.rent_per_sf', this).text(rentPerSF);
 
@@ -122,9 +125,14 @@ $(document).ready(function(){
 			tempNumUnits = $(this).find('.total_units').val();
 			tempAvgSFPerUnit = $(this).find('.avg_sf_per_unit').val();
 			tempRentUnits = $(this).find('.rent_per_unit').val();
-			var RRAlistTemp = new Array(tempProjectRents, tempNumUnits, tempAvgSFPerUnit, tempRentUnits);
-			RRAlist.push(RRAlistTemp);
-			console.log(RRAlist);
+			var rraObjTemp = {tempProjectRents: tempProjectRents,
+											 tempNumUnits: tempNumUnits,
+											 tempAvgSFPerUnit: tempAvgSFPerUnit,
+											 tempRentUnits: tempRentUnits
+										 };
+			// var RRAlistTemp = new Array(tempProjectRents, tempNumUnits, tempAvgSFPerUnit, tempRentUnits);
+			RRAlist.push(rraObjTemp);
+			console.log("RRA LIST: ",RRAlist);
 		});
 
 		sumAvgSFPerUnit = sumTotalSF/sumTotalUnits; //calculates total value: Avg SF Per Unit
@@ -145,24 +153,31 @@ $(document).ready(function(){
 		//creates an array of arrays for all the Market Rent Assumption rows and stores the array in the global "g" object
 		var $mraRow = $('#Market_Rental_Assumptions tbody .year_row');
 		$rrow.each(function(){
-			T_mktRentRevenue = $(this).find('.mkt_rent_revenue').val();
-			T_mktRentExpenses = $(this).find('.mkt_rent_expenses').val();
-			T_mktRentVacancy = $(this).find('.mkt_rent_vacancy').val();
-			T_mktRentConcessions = $(this).find('.mkt_rent_concessions').val();
-			T_mktRentCreditLoss = $(this).find('.mkt_rent_credit_loss').val();
-			var MRAlistTemp = new Array(T_mktRentRevenue, T_mktRentExpenses, T_mktRentVacancy, T_mktRentConcessions, T_mktRentCreditLoss);
-			MRAlist.push(MRAlistTemp);
-			console.log(MRAlist);
+			tempMktRentRevenue = $(this).find('.mkt_rent_revenue').val();
+			tempMktRentExpenses = $(this).find('.mkt_rent_expenses').val();
+			tempMktRentVacancy = $(this).find('.mkt_rent_vacancy').val();
+			tempMktRentConcessions = $(this).find('.mkt_rent_concessions').val();
+			tempMktRentCreditLoss = $(this).find('.mkt_rent_credit_loss').val();
+			// var MRAlistTemp = new Array(T_mktRentRevenue, T_mktRentExpenses, T_mktRentVacancy, T_mktRentConcessions, T_mktRentCreditLoss);
+			var mraObjTemp = {tempMktRentRevenue,
+											 tempMktRentExpenses,
+											 tempMktRentVacancy,
+											 tempMktRentConcessions,
+											 tempMktRentCreditLoss};
+			MRAlist.push(mraObjTemp);
+			console.log("MRALIST: ",MRAlist);
 		});
 	//END OF MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
-			
+
 
 
 	}; //end applyOnInput function
 
+	// var rrApplyOnInput = function(event){ //calculations need to be seperate for RR assumptions
+
+
 	//Runs input function
-	// $('#dashboard').on('input', applyOnInput);
-	$('#dashboard').on('keyup', applyOnInput);
+	$('#dashboard').on('input', applyOnInput);
 
 
 // ============================================================================================================
@@ -188,22 +203,19 @@ $(document).ready(function(){
 			applyOnInput();
 		});
 		//Runs input function inside
+		// $('.rent_row').on('input', applyOnInput);
 		$('#dashboard').on('input', applyOnInput);
 
 	}) //end addrow function
-
-
-
-
-
-
-
 
 	// RETURNS SUMMARY
 	// END RETURN SUMMARY
 
 	// CURRENT FINANCIALS
 	// END CURRENT FINANCIALS
+
+
+
 
 // ============================================================================================================
 //MARKET RENTAL ASSUMPTIONS Dynamic Table
@@ -237,9 +249,9 @@ $(document).ready(function(){
 				$(this).attr('id',"year_row_"+mraCounterTemp);
 				mraCounterTemp += 1;
 			});
-			
-			applyOnInput();
+
 		});
+		$('#dashboard').on('input', applyOnInput);
 	}); //end addrow function
 
 
