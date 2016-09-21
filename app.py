@@ -105,29 +105,9 @@ def dashboard():
 		# replacement_reserves_percentage = request.form.get('Replacement_Reserves_Percentage')
 
 
-		Num_Units = 200       # {total Num_Units of Rental Rate Assumptions}
-		Total_Sq_Ft = 200013     # {total Sq_Ft of Rental Rate Assumptions}
-
-		#Purchase Information Table
-		Closing_Costs = closing_costs_percentage * purchase_price
-		Total_Costs = Closing_Costs + purchase_price
-		Purchase_Cost_Per_Unit = purchase_price/Num_Units
-		Total_Cost_Per_Unit = Total_Costs/Num_Units
-		Purchase_Cost_Per_SF = purchase_price/Total_Sq_Ft
-		Total_Cost_Per_SF = Total_Costs/Total_Sq_Ft
-
-
-
-
 
 		return render_template("dashboard.html",
 			title = title,
-			Closing_Costs = Closing_Costs,
-			Total_Costs = Total_Costs,
-			Purchase_Cost_Per_Unit = Purchase_Cost_Per_Unit,
-			Total_Cost_Per_Unit = Total_Cost_Per_Unit,
-			Purchase_Cost_Per_SF = Purchase_Cost_Per_SF,
-			Total_Cost_Per_SF = Total_Cost_Per_SF,
 			)
 
 

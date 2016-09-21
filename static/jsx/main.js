@@ -35,6 +35,10 @@ $(document).ready(function(){
 // Start of ALL calculations for dashboard
 // ============================================================================================================
 
+	var pInt = function(value){
+		return parseInt($(value).text())
+	};
+
 	var DashboardInput = function(event){
 	// Global objects: Inputs (possibly calculated values)
 		var g = {
@@ -43,7 +47,7 @@ $(document).ready(function(){
 			propertyLocation: $('#Property_Address').val(),
 			propertyType: $('#Property_Type').val(),
 			purchasePrice: parseInt($('#Purchase_Price').val()),
-			closingCostPercentage: parseInt($('#Closing_Costs_Percentage').val()),
+			closingCostPercentage: parseInt($('#Closing_Costs_Percentage').val())/100,
 			saleYear: parseInt($('#Sale_Year').val()),
 			terminalCapRate: parseInt($('#Terminal_Cap_Rate').val()),
 			salesCosts: parseInt($('#Sales_Costs').val()),
@@ -70,14 +74,177 @@ $(document).ready(function(){
 			replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val()),
 		};
 
-		var RrTotalUnits = $('#Rental_Rate_Assumptions tfoot .total_units').text()
-		console.log("sup: ",RrTotalUnits)
-		$('#prop_info_total_num_units').text(RrTotalUnits);
+		//Property Info Calculations
+		$('#prop_info_total_num_units').text($('#Rental_Rate_Assumptions tfoot .total_units').text());
 		$('#prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf').text());
+
+		//Purchase Info Calculations
+		$('#PI_Closing_Costs').text(g.purchasePrice*g.closingCostPercentage);
+		// $('#PI_Total_Costs').text(g.purchasePrice+parseInt($('#PI_Closing_Costs').text()));
+		$('#PI_Total_Costs').text(g.purchasePrice+pInt('#PI_Closing_Costs'));
+		$('#PI_Purchase_Cost_Per_Unit').text(g.purchasePrice/pInt('#prop_info_total_num_units'));
+		$('#PI_Total_Cost_Per_Unit').text(parseInt($('#PI_Total_Costs').text())/parseInt($('#prop_info_total_num_units').text()));
+		$('#PI_Purchase_Cost_Per_SF').text(g.purchasePrice/parseInt($('#prop_info_total_sq_ft').text()));
+		// $('#PI_Cap_Rate_on_Purchase_Price').text(parseInt($('#PI_Total_Costs').text());/parseInt($('#Net_Operating_Income_Total').text()));
+		// $('#PI_Cap_Rate_on_Total_Price').text(parseInt($('#PI_Total_Costs').text());/parseInt($('#Net_Operating_Income_Total').text()));
+
+		//tests
+		console.log($('#prop_info_total_sq_ft').text());
+
+		// // #Sales Assumptions Table
+		// // # {all input fields}
+		//
+		// // #Sales Summary Table
+		// // Sale_Price = 100       #{=HLOOKUP(Sale_Year+1,Proforma!C4:M30,27)/Terminal_Cap}
+		// Sale_Price_Per_Unit = Sale_Price/Num_Units
+		// Sale_Price_Per_SF = Sale_Price/Total_Sq_Ft
+		//
+		// // #Finance Assumptions Table
+		// // # {all input fields}
+		//
+		// // #Sources And Uses Table
+		// Equity_Total = Total_Costs - Loan_Total
+		// Equity_DollarPerUnit = Equity_Total/Num_Units
+		// Equity_DollarPerSF = Equity_Total/Total_Sq_Ft
+		// Equity_PercentofTotal = Equity_Total/Total_Sources_Total
+		//
+		// Loan_Total = Total_Costs*leverage
+		// Loan_DollarPerUnit = Loan_Total/Num_Units
+		// Loan_DollarPerSF = Loan_Total/Total_Sq_Ft
+		// Loan_PercentofTotal = Loan_Total/Total_Sources_Total
+		//
+		// Total_Sources_Total = Equity_Total + Loan_Total
+		// Total_Sources_DollarPerUnit = Equity_DollarPerUnit + Loan_DollarPerUnit
+		// Total_Sources_DollarPerSF = Equity_DollarPerSF + Loan_DollarPerSF
+		// Total_Sources_PercentofTotal = Equity_PercentofTotal + Loan_PercentofTotal
+		//
+		// Purchasing_Price_Total = purchase_price
+		// Purchasing_Price_DollarPerUnit = Purchasing_Price_Total/Num_Units
+		// Purchasing_Price_DollarPerSF = Purchasing_Price_Total/Total_Sq_Ft
+		// Purchasing_Price_PercentofTotal = Purchasing_Price_Total/Total_Uses_Total
+		//
+		// Closing_Costs_Total = Closing_Costs
+		// Closing_Costs_DollarPerUnit = Closing_Costs/Num_Units
+		// Closing_Costs_DollarPerSF = Closing_Costs/Total_Sq_Ft
+		// Closing_Costs_PercentofTotal = Closing_Costs/Total_Uses_Total
+		//
+		// Total_Uses_Total = Purchasing_Price_Total + Closing_Costs_Total
+		// Total_Uses_DollarPerUnit = Purchasing_Price_DollarPerUnit + Closing_Costs_DollarPerUnit
+		// Total_Uses_DollarPerSF = Purchasing_Price_DollarPerSF + Closing_Costs_DollarPerSF
+		// Total_Uses_PercentofTotal = Purchasing_Price_PercentofTotal + Closing_Costs_PercentofTotal
+		//
+		// // #Rental Rate Assumptions Table ***dynamic***
+		// // # TBD
+		//
+		// #Returns Summary Table
+		// UL_Net_Profit = 0       # {=SUM('Returns Summary'!C24:M24)}
+		// UL_Present_Value = 0
+		// UL_Net_Present_Value = 0
+		// UL_Equity_Multiple = 0
+		// UL_IRR = 0
+		// UL_IRR_from_CF = 0
+		// UL_IRR_from_Sale = 0
+		// UL_Cash_On_Cash = 0
+		//
+		// L_Net_Profit = 0
+		// L_Present_Value = 0
+		// L_Net_Present_Value = 0
+		// L_Equity_Multiple = 0
+		// L_IRR = 0
+		// L_IRR_from_CF = 0
+		// L_IRR_from_Sale = 0
+		// L_Cash_On_Cash = 0
+		//
+		// #Current Financial Performance Table
+		// Rental_Income_Total = 0     # {=((SUMPRODUCT(G18:G20,K18:K20)*12))}
+		// Rental_Income_DollarPerUnit = Rental_Income_Total/Num_Units
+		// Rental_Income_DollarPerSF = Rental_Income_Total/Total_Sq_Ft
+		// Rental_Income_PercentofTotal = Rental_Income_Total/Gross_Rental_Income_Total
+		//
+		// Other_Income_DollarPerUnit = other_income_total/Num_Units
+		// Other_Income_DollarPerSF = other_income_total/Total_Sq_Ft
+		// Other_Income_PercentofTotal = other_income_total/Gross_Rental_Income_Total
+		//
+		// Gross_Rental_Income_Total = other_income_total + Rental_Income_Total
+		// Gross_Rental_Income_DollarPerUnit = Rental_Income_DollarPerUnit + Other_Income_DollarPerUnit
+		// Gross_Rental_Income_DollarPerSF = Rental_Income_DollarPerSF + Other_Income_DollarPerSF
+		// Gross_Rental_Income_PercentofTotal = Rental_Income_PercentofTotal + Other_Income_PercentofTotal
+		//
+		// Vacancy_Total = -1 * less_vacancy * Gross_Rental_Income_Total         #negative nums
+		// Vacancy_DollarPerUnit = Vacancy_Total/Num_Units        #negative nums
+		// Vacancy_DollarPerSF = Vacancy_Total/Total_Sq_Ft      #negative nums
+		//
+		// Concessions_Total = -1 * less_concessions * Gross_Rental_Income_Total        #negative nums
+		// Concessions_DollarPerUnit = Concessions_Total/Num_Units        #negative nums
+		// Concessions_DollarPerSF = Concessions_Total/Total_Sq_Ft      #negative nums
+		//
+		// Credit_Loss_Total = -1 * less_credit_loss * Gross_Rental_Income_Total        #negative nums
+		// Credit_Loss_DollarPerUnit = Credit_Loss_Total/Num_Units        #negative nums
+		// Credit_Loss_DollarPerSF = Credit_Loss_Total/Total_Sq_Ft      #negative nums
+		//
+		// Net_Rental_Income_Total = Gross_Rental_Income_Total + Vacancy_Total + Concessions_Total + Credit_Loss_Total
+		// Net_Rental_Income_DollarPerUnit = Net_Rental_Income_Total/Num_Units
+		// Net_Rental_Income_DollarPerSF = Net_Rental_Income_Total/Total_Sq_Ft
+		//
+		// Real_Estate_Taxes_DollarPerUnit = real_estate_taxes_total/Num_Units
+		// Real_Estate_Taxes_DollarPerSF = real_estate_taxes_total/Total_Sq_Ft
+		// Real_Estate_Taxes_PercentofTotal = real_estate_taxes_total/Total_Operating_Expenses_Total
+		//
+		// Insurance_DollarPerUnit = insurance_total/Num_Units
+		// Insurance_DollarPerSF = insurance_total/Total_Sq_Ft
+		// Insurance_PercentofTotal = insurance_total/Total_Operating_Expenses_Total
+		//
+		// Utilities_DollarPerUnit = utilities_total/Num_Units
+		// Utilities_DollarPerSF = utilities_total/Total_Sq_Ft
+		// Utilities_PercentofTotal = utilities_total/Total_Operating_Expenses_Total
+		//
+		// Payroll_DollarPerUnit = payroll_total/Num_Units
+		// Payroll_DollarPerSF = payroll_total/Total_Sq_Ft
+		// Payroll_PercentofTotal = payroll_total/Total_Operating_Expenses_Total
+		//
+		// Repairs_and_Maintenance_DollarPerUnit = repairs_and_maintenance_total/Num_Units
+		// Repairs_and_Maintenance_DollarPerSF = repairs_and_maintenance_total/Total_Sq_Ft
+		// Repairs_and_Maintenance_PercentofTotal = repairs_and_maintenance_total/Total_Operating_Expenses_Total
+		//
+		// Contract_Services_DollarPerUnit = contract_services_total/Num_Units
+		// Contract_Services_DollarPerSF = contract_services_total/Total_Sq_Ft
+		// Contract_Services_PercentofTotal = contract_services_total/Total_Operating_Expenses_Total
+		//
+		// Turnover_DollarPerUnit = turnover_total/Num_Units
+		// Turnover_DollarPerSF = turnover_total/Total_Sq_Ft
+		// Turnover_PercentofTotal = turnover_total/Total_Operating_Expenses_Total
+		//
+		// Sales_and_Marketing_DollarPerUnit = sales_and_marketing_total/Num_Units
+		// Sales_and_Marketing_DollarPerSF = sales_and_marketing_total/Total_Sq_Ft
+		// Sales_and_Marketing_PercentofTotal = sales_and_marketing_total/Total_Operating_Expenses_Total
+		//
+		// Administrative_DollarPerUnit = administrative/Num_Units
+		// Administrative_DollarPerSF = administrative/Total_Sq_Ft
+		// Administrative_PercentofTotal = administrative/Total_Operating_Expenses_Total
+		//
+		// Management_Total = management_percentage * Net_Rental_Income_Total
+		// Management_DollarPerUnit = Management_Total/Num_Units
+		// Management_DollarPerSF = Management_Total/Total_Sq_Ft
+		// Management_PercentofTotal = Management_Total/Total_Operating_Expenses_Total
+		//
+		// Replacement_Reserves_Total = replacement_reserves_percentage * Net_Rental_Income_Total
+		// Replacement_Reserves_DollarPerUnit = Replacement_Reserves_Total/Num_Units
+		// Replacement_Reserves_DollarPerSF = Replacement_Reserves_Total/Total_Sq_Ft
+		// Replacement_Reserves_PercentofTotal = Replacement_Reserves_Total/Total_Operating_Expenses_Total
+		//
+		// Total_Operating_Expenses_Total = real_estate_taxes_total + insurance_total + utilities_total + payroll_total + repairs_and_maintenance_total + contract_services_total + turnover_total + sales_and_marketing_total + administrative + Management_Total + Replacement_Reserves_Total
+		// Total_Operating_Expenses_DollarPerUnit = Total_Operating_Expenses_Total/Num_Units
+		// Total_Operating_Expenses_DollarPerSF = Total_Operating_Expenses_Total/Total_Sq_Ft
+		// Total_Operating_Expenses_PercentofTotal = Real_Estate_Taxes_PercentofTotal + Insurance_PercentofTotal + Utilities_PercentofTotal + Payroll_PercentofTotal + Repairs_and_Maintenance_PercentofTotal + Contract_Services_PercentofTotal + Turnover_PercentofTotal + Sales_and_Marketing_PercentofTotal + Administrative_PercentofTotal + Management_PercentofTotal + Replacement_Reserves_PercentofTotal
+		//
+		// Net_Operating_Income_Total = Net_Rental_Income_Total - Total_Operating_Expenses_Total
+		// Net_Operating_Income_DollarPerUnit = Net_Operating_Income_Total/Num_Units
+		// Net_Operating_Income_DollarPerSF = Net_Operating_Income_Total/Total_Sq_Ft
+		//
+		// #Market Rental Assumptions Table #***dynamic***
 
 
 	}; //end DashboardInput
-
 
 
 
