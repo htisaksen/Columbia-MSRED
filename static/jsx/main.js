@@ -113,13 +113,12 @@ $(document).ready(function(){
 		//--------------------------------------------------------------------------------
 
 		//Property Info Calculations
-		$('#prop_info_total_num_units').text(tu);
-		$('#prop_info_total_sq_ft').text(tsf);
+		$('#prop_info_total_num_units').text($('#Rental_Rate_Assumptions tfoot .total_units').text());
+		$('#prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf').text());
 
 		//Purchase Info Calculations
 		$('#PI_Closing_Costs').text(g.purchasePrice*g.closingCostPercentage);
 		$('#PI_Total_Costs').text(g.purchasePrice+pInt('#PI_Closing_Costs'));
-
 		$('#PI_Purchase_Cost_Per_Unit').text(g.purchasePrice/pInt('#prop_info_total_num_units'));
 		$('#PI_Total_Cost_Per_Unit').text(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'));
 		$('#PI_Purchase_Cost_Per_SF').text(g.purchasePrice/pInt('#prop_info_total_sq_ft'));
@@ -127,17 +126,21 @@ $(document).ready(function(){
 		$('#PI_Cap_Rate_on_Purchase_Price').text(pInt('#Net_Operating_Income_Total')/g.purchasePrice);
 		$('#PI_Cap_Rate_on_Total_Price').text(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'));
 
-		//tests
-		console.log($('#prop_info_total_sq_ft').text());
-
-		// // #Sales Assumptions Table
-		// // # {all input fields}
-		//
-		// // #Sales Summary Table
+		//Sale Summary Calculations
 		// // Sale_Price = 100       #{=HLOOKUP(Sale_Year+1,Proforma!C4:M30,27)/Terminal_Cap}
 		// Sale_Price_Per_Unit = Sale_Price/Num_Units
 		// Sale_Price_Per_SF = Sale_Price/Total_Sq_Ft
-		//
+
+
+		//Sources and Uses Calculations
+			//Equity
+		$('#PI_Total_Cost_Per_Unit').text(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'));
+			//Loans
+		$('#Loan_Total').text(pInt('#PI_Total_Costs')*g.leverage);
+
+		//tests
+		console.log($('#prop_info_total_sq_ft').text());
+
 		// // #Finance Assumptions Table
 		// // # {all input fields}
 		//
