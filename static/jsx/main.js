@@ -107,19 +107,13 @@ $(document).ready(function(){
 			replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val()),
 		};
 
-		//VARIABLES FOR CALCULATIONS-------------------------------------------------------
-		var tu = $('#Rental_Rate_Assumptions tfoot .total_units').text();
-		var tsf = $('#Rental_Rate_Assumptions tfoot .total_sf').text();
-		//--------------------------------------------------------------------------------
-
 		//Property Info Calculations
-		$('#prop_info_total_num_units').text(tu);
-		$('#prop_info_total_sq_ft').text(tsf);
+		$('#prop_info_total_num_units').text($('#Rental_Rate_Assumptions tfoot .total_units').text());
+		$('#prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf').text());
 
 		//Purchase Info Calculations
 		$('#PI_Closing_Costs').text(g.purchasePrice*g.closingCostPercentage);
 		$('#PI_Total_Costs').text(g.purchasePrice+pInt('#PI_Closing_Costs'));
-
 		$('#PI_Purchase_Cost_Per_Unit').text(g.purchasePrice/pInt('#prop_info_total_num_units'));
 		$('#PI_Total_Cost_Per_Unit').text(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'));
 		$('#PI_Purchase_Cost_Per_SF').text(g.purchasePrice/pInt('#prop_info_total_sq_ft'));
@@ -127,17 +121,21 @@ $(document).ready(function(){
 		$('#PI_Cap_Rate_on_Purchase_Price').text(pInt('#Net_Operating_Income_Total')/g.purchasePrice);
 		$('#PI_Cap_Rate_on_Total_Price').text(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'));
 
-		//tests
-		console.log($('#prop_info_total_sq_ft').text());
-
-		// // #Sales Assumptions Table
-		// // # {all input fields}
-		//
-		// // #Sales Summary Table
+		//Sale Summary Calculations
 		// // Sale_Price = 100       #{=HLOOKUP(Sale_Year+1,Proforma!C4:M30,27)/Terminal_Cap}
 		// Sale_Price_Per_Unit = Sale_Price/Num_Units
 		// Sale_Price_Per_SF = Sale_Price/Total_Sq_Ft
-		//
+
+
+		//Sources and Uses Calculations
+			//Equity
+		$('#PI_Total_Cost_Per_Unit').text(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'));
+			//Loans
+		$('#Loan_Total').text(pInt('#PI_Total_Costs')*g.leverage);
+
+		//tests
+		console.log($('#prop_info_total_sq_ft').text());
+
 		// // #Finance Assumptions Table
 		// // # {all input fields}
 		//
@@ -193,22 +191,22 @@ $(document).ready(function(){
 		// L_IRR_from_CF = 0
 		// L_IRR_from_Sale = 0
 		// L_Cash_On_Cash = 0
-		
+		//
 		// #Current Financial Performance Table
-		$('.Rental_Income_Total').text(SUMPRODUCT OF STUFF); //WIP
-		$('.Rental_Income_DollarPerUnit').text(pInt('.Rental_Income_Total')/tu);
-		$('.Rental_Income_DollarPerSF').text(pInt('.Rental_Income_Total')/tsf);
-		$('.Rental_Income_PercentofTotal').text(pInt('.Rental_Income_Total')/pInt('.Gross_Rental_Income_Total'));
-
-		$(.'Other_Income_DollarPerUnit').text(pInt(g.otherIncomeTotal)/tu);
-		$(.'Other_Income_DollarPerSF').text(pInt(g.otherIncomeTotal)/tsf);
-		$(.'Other_Income_PercentofTotal').text(pInt(g.otherIncomeTotal)/pInt('.Gross_Rental_Income_Total');
-		
-		$(.'Gross_Rental_Income_Total').text(g.otherIncomeTotal + Rental_Income_Total)
-		$(.'Gross_Rental_Income_DollarPerUnit').text(pInt('.Rental_Income_DollarPerUnit') + pInt('.Other_Income_DollarPerUnit'))
-		$(.'Gross_Rental_Income_DollarPerSF').text(pInt('.Rental_Income_DollarPerSF') + pInt('.Other_Income_DollarPerSF'))
-		$(.'Gross_Rental_Income_PercentofTotal').text(pInt('.Rental_Income_PercentofTotal') + pInt('.Other_Income_PercentofTotal'))
-		
+		// Rental_Income_Total = 0     # {=((SUMPRODUCT(G18:G20,K18:K20)*12))}
+		// Rental_Income_DollarPerUnit = Rental_Income_Total/Num_Units
+		// Rental_Income_DollarPerSF = Rental_Income_Total/Total_Sq_Ft
+		// Rental_Income_PercentofTotal = Rental_Income_Total/Gross_Rental_Income_Total
+		//
+		// Other_Income_DollarPerUnit = other_income_total/Num_Units
+		// Other_Income_DollarPerSF = other_income_total/Total_Sq_Ft
+		// Other_Income_PercentofTotal = other_income_total/Gross_Rental_Income_Total
+		//
+		// Gross_Rental_Income_Total = other_income_total + Rental_Income_Total
+		// Gross_Rental_Income_DollarPerUnit = Rental_Income_DollarPerUnit + Other_Income_DollarPerUnit
+		// Gross_Rental_Income_DollarPerSF = Rental_Income_DollarPerSF + Other_Income_DollarPerSF
+		// Gross_Rental_Income_PercentofTotal = Rental_Income_PercentofTotal + Other_Income_PercentofTotal
+		//
 		// Vacancy_Total = -1 * less_vacancy * Gross_Rental_Income_Total         #negative nums
 		// Vacancy_DollarPerUnit = Vacancy_Total/Num_Units        #negative nums
 		// Vacancy_DollarPerSF = Vacancy_Total/Total_Sq_Ft      #negative nums
