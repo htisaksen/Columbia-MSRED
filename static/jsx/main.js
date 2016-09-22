@@ -69,12 +69,12 @@ $(document).ready(function(){
 	var RRAlist = []; //Rental Rate Assumptions list
 	var MRAlist = []; //Market Rental Assumptions list
 
-	//Returns int val of element
+//Returns int val of element
 	var pInt = function(value){
 		return parseInt($(value).text()|| 0)
 	};
 
-	//runs function on a set time delay
+//runs function on a set time delay
 	var debouncer = function(func, time) {
 		var timeWindow = 500; //time in ms. waits this amount of time after the final click before running function
 		var timeout;
@@ -95,7 +95,6 @@ $(document).ready(function(){
 			return value
 		}
 	};
-
 
 	var numForCurrency = function(number) {
 		return (new Intl.NumberFormat('en-EN', {style: 'currency', currency: 'USD' }).format(number))
@@ -257,9 +256,10 @@ $(document).ready(function(){
 		// L_Cash_On_Cash = 0
 
 	// #Current Financial Performance Table
+		//moved formulas to top to prevent 'infinity' error
 		$('#Gross_Rental_Income_Total').text(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total'))); 
+		$('#Rental_Income_Total').text(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*tu*12));
 
-		$('#Rental_Income_Total').text('3540000'); //Sumproduct- needs to have calculations implemented
 		$('#Rental_Income_DollarPerUnit').text(nanCheck(pInt('#Rental_Income_Total')/tu));
 		$('#Rental_Income_DollarPerSF').text(nanCheck(pInt('#Rental_Income_Total')/tsf));
 		$('#Rental_Income_PercentofTotal').text((nanCheck(pInt('#Rental_Income_Total'))/(pInt('#Gross_Rental_Income_Total'))*100));
@@ -268,7 +268,6 @@ $(document).ready(function(){
 		$('#Other_Income_DollarPerSF').text(nanCheck(g.otherIncomeTotal/tsf));
 		$('#Other_Income_PercentofTotal').text(nanCheck(g.otherIncomeTotal/pInt('#Gross_Rental_Income_Total')*100));
 
-		// $('#Gross_Rental_Income_Total').text(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total'))); redundancy
 		$('#Gross_Rental_Income_DollarPerUnit').text(nanCheck(pInt('#Rental_Income_DollarPerUnit') + pInt('#Other_Income_DollarPerUnit')))
 		$('#Gross_Rental_Income_DollarPerSF').text(nanCheck(pInt('#Rental_Income_DollarPerSF') + pInt('#Other_Income_DollarPerSF')))
 		$('#Gross_Rental_Income_PercentofTotal').text(nanCheck(pInt('#Rental_Income_PercentofTotal') + pInt('#Other_Income_PercentofTotal')))
@@ -418,11 +417,11 @@ $(document).ready(function(){
 		var sumRentPerSF = spListRPU/sumAvgSFPerUnit;		//calculates total value: Rent Per SF
 
 		//appends total values to dashboard
-		$('#Rental_Rate_Assumptions tfoot .total_units').text(sumTotalUnits);
-		$('#Rental_Rate_Assumptions tfoot .total_sf').text(sumTotalSF);
-		$('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(sumAvgSFPerUnit);
-		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(sumRentPerSF);
-		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(spListRPU);
+		$('#Rental_Rate_Assumptions tfoot .total_units').text(nanCheck(sumTotalUnits));
+		$('#Rental_Rate_Assumptions tfoot .total_sf').text(nanCheck(sumTotalSF));
+		$('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(nanCheck(sumAvgSFPerUnit));
+		$('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(nanCheck(sumRentPerSF));
+		$('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(nanCheck(spListRPU));
 	};
 //END RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 
