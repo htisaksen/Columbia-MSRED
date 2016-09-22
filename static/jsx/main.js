@@ -74,6 +74,23 @@ $(document).ready(function(){
 		return parseInt($(value).text())
 	};
 
+	//runs function on a set time delay
+	var debouncer = function(func, time) {
+		'use strict';
+		var timeWindow = 500; //time in ms. waits this amount of time after the final click before running function
+		var timeout;
+		return function() {
+			// var context = this;
+			clearTimeout(timeout);
+			timeout = setTimeout(function() {
+				func();
+			}, timeWindow)
+		} //end function
+	}; //end debouncer
+
+
+
+
 	var DashboardInput = function(event){
 	// Global objects: Inputs (possibly calculated values)
 		var g = {
@@ -275,7 +292,6 @@ $(document).ready(function(){
 		$('#Net_Operating_Income_Total').text(pInt('#Net_Rental_Income_Total') - pInt('#Total_Operating_Expenses_Total'));
 		$('#Net_Operating_Income_DollarPerUnit').text(pInt('#Net_Operating_Income_Total')/tu);
 		$('#Net_Operating_Income_DollarPerSF').text(pInt('#Net_Operating_Income_Total')/tsf);
-		console.log(g.utilitiesTotal)
 	}; //end DashboardInput
 
 
@@ -382,23 +398,11 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // ============================================================================================================
 //Rental Rate Form Dynamic Table
 // ============================================================================================================
-	$('.rent_row').on('input', RRAInput);
-	$('#dashboard').on('input', DashboardInput);
-
+	$('.rent_row').on('input', debouncer(RRAInput,500));
+	$('#dashboard').on('input', debouncer(DashboardInput,500));
 
 	// adds one row to table when the 'add' button is clicked
 	$("#rental_rate_form").on('click', function(event) {
@@ -421,8 +425,8 @@ $(document).ready(function(){
 			DashboardInput();
 		});
 		//Runs input function inside
-		$('.rent_row').on('input', RRAInput);
-		$('#dashboard').on('input', DashboardInput);
+	$('.rent_row').on('input', debouncer(RRAInput,500));
+	$('#dashboard').on('input', debouncer(DashboardInput,500));
 
 
 	}) //end addrow function
@@ -466,9 +470,9 @@ $(document).ready(function(){
 
 		});
 		//Runs input function inside
-		$('#dashboard').on('input', DashboardInput);
-		$('.rent_row').on('input', DashboardInput);
-		// $('.year_row').on('input', DashboardInput);
+		$('#dashboard').on('input', debouncer(DashboardInput,500));
+		$('.rent_row').on('input', debouncer(DashboardInput,500));
+		// $('.year_row').on('input', debouncer(DashboardInput,500));
 
 	}); //end addrow function
 
