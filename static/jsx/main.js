@@ -223,49 +223,49 @@ $(document).ready(function(){
 
 		$('#Real_Estate_Taxes_DollarPerUnit').text(g.realEstateTaxesTotal/tu);
 		$('#Real_Estate_Taxes_DollarPerSF').text(g.realEstateTaxesTotal/tsf);
-		$('#Real_Estate_Taxes_PercentofTotal').text(g.realEstateTaxesTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Real_Estate_Taxes_PercentofTotal').text(g.realEstateTaxesTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Insurance_DollarPerUnit').text(g.insuranceTotal/tu);
 		$('#Insurance_DollarPerSF').text(g.insuranceTotal/tsf);
-		$('#Insurance_PercentofTotal').text(g.insuranceTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Insurance_PercentofTotal').text(g.insuranceTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Utilities_DollarPerUnit').text(g.utilitiesTotal/tu);
 		$('#Utilities_DollarPerSF').text(g.utilitiesTotal/tsf);
-		$('#Utilities_PercentofTotal').text(g.utilitiesTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Utilities_PercentofTotal').text(g.utilitiesTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Payroll_DollarPerUnit').text(g.payrollTotal/tu);
 		$('#Payroll_DollarPerSF').text(g.payrollTotal/tsf);
-		$('#Payroll_PercentofTotal').text(g.payrollTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Payroll_PercentofTotal').text(g.payrollTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Repairs_and_Maintenance_DollarPerUnit').text(g.repairsAndMaintenanceTotal/tu);
 		$('#Repairs_and_Maintenance_DollarPerSF').text(g.repairsAndMaintenanceTotal/tsf);
-		$('#Repairs_and_Maintenance_PercentofTotal').text(g.repairsAndMaintenanceTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Repairs_and_Maintenance_PercentofTotal').text(g.repairsAndMaintenanceTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Contract_Services_DollarPerUnit').text(g.contractServicesTotal/tu);
 		$('#Contract_Services_DollarPerSF').text(g.contractServicesTotal/tsf);
-		$('#Contract_Services_PercentofTotal').text(g.contractServicesTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Contract_Services_PercentofTotal').text(g.contractServicesTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Turnover_DollarPerUnit').text(g.turnoverTotal/tu);
 		$('#Turnover_DollarPerSF').text(g.turnoverTotal/tsf);
-		$('#Turnover_PercentofTotal').text(g.turnoverTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Turnover_PercentofTotal').text(g.turnoverTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Sales_and_Marketing_DollarPerUnit').text(g.salesAndMarketingTotal/tu);
 		$('#Sales_and_Marketing_DollarPerSF').text(g.salesAndMarketingTotal/tsf);
-		$('#Sales_and_Marketing_PercentofTotal').text(g.salesAndMarketingTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Sales_and_Marketing_PercentofTotal').text(g.salesAndMarketingTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Administrative_DollarPerUnit').text(g.administrativeTotal/tu);
 		$('#Administrative_DollarPerSF').text(g.administrativeTotal/tsf);
-		$('#Administrative_PercentofTotal').text(g.administrativeTotal/pInt('#Total_Operating_Expenses_Total'));
+		$('#Administrative_PercentofTotal').text(g.administrativeTotal/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Management_Total').text(g.managementPercentage * pInt('#Net_Rental_Income_Total'));
 		$('#Management_DollarPerUnit').text(pInt('#Management_Total')/tu);
 		$('#Management_DollarPerSF').text(pInt('#Management_Total')/tsf);
-		$('#Management_PercentofTotal').text(pInt('#Management_Total')/pInt('#Total_Operating_Expenses_Total'));
+		$('#Management_PercentofTotal').text(pInt('#Management_Total')/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Replacement_Reserves_Total').text(g.replacementReservesPercentage * pInt('#Net_Rental_Income_Total'));
 		$('#Replacement_Reserves_DollarPerUnit').text(pInt('#Replacement_Reserves_Total')/tu);
 		$('#Replacement_Reserves_DollarPerSF').text(pInt('#Replacement_Reserves_Total')/tsf);
-		$('#Replacement_Reserves_PercentofTotal').text(pInt('#Replacement_Reserves_Total')/pInt('#Total_Operating_Expenses_Total'));
+		$('#Replacement_Reserves_PercentofTotal').text(pInt('#Replacement_Reserves_Total')/pInt('#Total_Operating_Expenses_Total')*100);
 
 		$('#Total_Operating_Expenses_Total').text(g.realEstateTaxesTotal + g.insuranceTotal + g.utilitiesTotal + g.payrollTotal + g.repairsAndMaintenanceTotal + g.contractServicesTotal + g.turnoverTotal + g.salesAndMarketingTotal + g.administrativeTotal + pInt('#Management_Total') + pInt('#Replacement_Reserves_Total'));
 		$('#Total_Operating_Expenses_DollarPerUnit').text(pInt('#Total_Operating_Expenses_Total')/tu);
