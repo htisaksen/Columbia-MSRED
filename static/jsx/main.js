@@ -96,6 +96,12 @@ $(document).ready(function(){
 		}
 	};
 
+
+	var numForCurrency = function(number) {
+		return (new Intl.NumberFormat('en-EN', {style: 'currency', currency: 'USD' }).format(number))
+	}
+
+
 	var DashboardInput = function(event){
 	// Global objects: Inputs (possibly calculated values)
 		var g = {
@@ -143,15 +149,50 @@ $(document).ready(function(){
 		$('#prop_info_total_num_units').text($('#Rental_Rate_Assumptions tfoot .total_units').text());
 		$('#prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf').text());
 
+		// //Purchase Info Calculations
+		// $('#PI_Closing_Costs').text(nanCheck(g.purchasePrice*g.closingCostPercentage));
+		// $('#PI_Total_Costs').text(nanCheck(g.purchasePrice+pInt('#PI_Closing_Costs')));
+		// $('#PI_Purchase_Cost_Per_Unit').text(nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units')));
+		// $('#PI_Total_Cost_Per_Unit').text(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units')));
+		// $('#PI_Purchase_Cost_Per_SF').text(nanCheck(g.purchasePrice/pInt('#prop_info_total_sq_ft')));
+		// $('#PI_Total_Cost_Per_SF').text(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft')));
+		// $('#PI_Cap_Rate_on_Purchase_Price').text(nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice));
+		// $('#PI_Cap_Rate_on_Total_Price').text(nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs')));
+
 		//Purchase Info Calculations
-		$('#PI_Closing_Costs').text(nanCheck(g.purchasePrice*g.closingCostPercentage));
-		$('#PI_Total_Costs').text(nanCheck(g.purchasePrice+pInt('#PI_Closing_Costs')));
-		$('#PI_Purchase_Cost_Per_Unit').text(nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units')));
-		$('#PI_Total_Cost_Per_Unit').text(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units')));
-		$('#PI_Purchase_Cost_Per_SF').text(nanCheck(g.purchasePrice/pInt('#prop_info_total_sq_ft')));
-		$('#PI_Total_Cost_Per_SF').text(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft')));
-		$('#PI_Cap_Rate_on_Purchase_Price').text(nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice));
-		$('#PI_Cap_Rate_on_Total_Price').text(nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs')));
+		$('#Purchase_Price').text(
+			numForCurrency(nanCheck($('#Purchase_Price').val()))
+		);
+		$('#PI_Closing_Costs').text(
+			numForCurrency(nanCheck(g.purchasePrice*g.closingCostPercentage))
+		);
+		$('#PI_Total_Costs').text(
+			numForCurrency(nanCheck(g.purchasePrice+pInt('#PI_Closing_Costs')))
+		);
+		$('#PI_Purchase_Cost_Per_Unit').text(
+			numForCurrency(nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units')))
+		);
+		$('#PI_Total_Cost_Per_Unit').text(
+			numForCurrency(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units')))
+		);
+		$('#PI_Purchase_Cost_Per_SF').text(
+			numForCurrency(nanCheck(g.purchasePrice/pInt('#prop_info_total_sq_ft')))
+		);
+		$('#PI_Total_Cost_Per_SF').text(
+			numForCurrency(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft')))
+		);
+		$('#PI_Cap_Rate_on_Purchase_Price').text(
+			numForCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice))
+		);
+		$('#PI_Cap_Rate_on_Total_Price').text(
+			numForCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs')))
+		);
+
+
+
+
+
+
 
 		//Sale Summary Calculations
 		// // Sale_Price = 100       #{=HLOOKUP(Sale_Year+1,Proforma!C4:M30,27)/Terminal_Cap}
@@ -314,7 +355,6 @@ $(document).ready(function(){
 
 //RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 	var RRAInput = function(event){
-		console.log(this)
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		var totalUnits = parseInt($('.total_units', this).val());
 		var avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
@@ -339,19 +379,23 @@ $(document).ready(function(){
 
 		//calculates total value: Total Units
 		$tu.each(function(){
-			sumTotalUnits += parseInt($(this).val());
+			sumTotalUnits = sumTotalUnits + parseInt($(this).val());
 		});
 
 		//calculates total value: Total SF
 		$tsf.each(function(){
-			sumTotalSF += parseInt($(this).text());
+			sumTotalSF = sumTotalSF + parseInt($(this).text());
 		});
 
 		//calculates total value: Rent Per Unit
 		$rrow.each(function(){
+			console.log("this:",this);
 			var numUnits = $(this).find('.total_units').val();
 			var rentUnits = $(this).find('.rent_per_unit').val();
-			var spListRPU = spListRPU + (numUnits * rentUnits);
+			spListRPU = spListRPU + (numUnits * rentUnits);
+			console.log('numUnits:',spListRPU);
+			console.log('rentUnits:',rentUnits);
+			console.log('spListRPU:',spListRPU);
 		});
 
 		//creates an array of arrays for all the Projected Rent rows and stores the array in the global "g" object
@@ -367,11 +411,10 @@ $(document).ready(function(){
 						 	};
 			// var RRAlistTemp = new Array(tempProjectRents, tempNumUnits, tempAvgSFPerUnit, tempRentUnits);
 			RRAlist.push(rraObjTemp);
-			console.log("RRA LIST: ",RRAlist);
 		});
 
 		var sumAvgSFPerUnit = sumTotalSF/sumTotalUnits; //calculates total value: Avg SF Per Unit
-		var spListRPU = spListRPU/sumTotalUnits; 		//calculates total value: Rent Per Unit
+		spListRPU = spListRPU/sumTotalUnits; 		//calculates total value: Rent Per Unit
 		var sumRentPerSF = spListRPU/sumAvgSFPerUnit;		//calculates total value: Rent Per SF
 
 		//appends total values to dashboard
@@ -430,15 +473,15 @@ $(document).ready(function(){
 			.append($('<td>').html("<a>[X]</a></td>"))
 			)
 
-		// function to delete all additionally added rows from the Rental Rate Assumptions table
+	// function to delete all additionally added rows from the Rental Rate Assumptions table
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
 			RRAInput();
 			DashboardInput();
 		});
-		//Runs input function inside
-	$('.rent_row').on('input', RRAInput);
-	$('#dashboard').on('input', DashboardInput);
+	//Runs input function inside
+		$('.rent_row').on('input', RRAInput);
+		$('#dashboard').on('input', DashboardInput);
 
 
 	}) //end addrow function
@@ -467,21 +510,21 @@ $(document).ready(function(){
 			)
 		MRAInput();
 
-		// function to delete all additionally added rows
+	// function to delete all additionally added rows
 		$('tr[class^="year_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
 			var $mraRow = $('#Market_Rental_Assumptions tbody .year_row');
 			mraCounterTemp = 1;
 
-		// reorders year text and year_row_id sequentially on deletion of row
+	// reorders year text and year_row_id sequentially on deletion of row
 			$mraRow.each(function(){
 				$(this).find('.mkt_rent_year').text("Year "+mraCounterTemp);
 				$(this).attr('id',"year_row_"+mraCounterTemp);
 				mraCounterTemp += 1;
 			});
-
 		});
-		//Runs input function inside
+	
+	//Runs input function inside
 		$('#dashboard').on('input', DashboardInput);
 		$('.rent_row').on('input', RRAInput);
 		// $('.year_row').on('input', debouncer(DashboardInput,500));
