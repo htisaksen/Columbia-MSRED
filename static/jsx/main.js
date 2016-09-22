@@ -61,14 +61,9 @@ $(document).ready(function(){
 
 
 
-
 // ============================================================================================================
-// Start of ALL calculations for dashboard
+// Functions created for dashboard
 // ============================================================================================================
-
-	var RRAlist = []; //Rental Rate Assumptions list
-	var MRAlist = []; //Market Rental Assumptions list
-
 //Returns int val of element
 	var pInt = function(value){
 		return parseInt($(value).text()|| 0)
@@ -99,7 +94,16 @@ $(document).ready(function(){
 	var numForCurrency = function(number) {
 		return (new Intl.NumberFormat('en-EN', {style: 'currency', currency: 'USD' }).format(number))
 	}
+// ============================================================================================================
 
+
+
+// ============================================================================================================
+// Start of ALL calculations for dashboard
+// ============================================================================================================
+
+	var RRAlist = []; //Rental Rate Assumptions list
+	var MRAlist = []; //Market Rental Assumptions list
 
 	var DashboardInput = function(event){
 	// Global objects: Inputs (possibly calculated values)
@@ -159,38 +163,30 @@ $(document).ready(function(){
 		// $('#PI_Cap_Rate_on_Total_Price').text(nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs')));
 
 		//Purchase Info Calculations
-		$('#Purchase_Price').text(
-			numForCurrency(nanCheck($('#Purchase_Price').val()))
-		);
 		$('#PI_Closing_Costs').text(
-			numForCurrency(nanCheck(g.purchasePrice*g.closingCostPercentage))
+			nanCheck(g.purchasePrice*g.closingCostPercentage)
 		);
 		$('#PI_Total_Costs').text(
-			numForCurrency(nanCheck(g.purchasePrice+pInt('#PI_Closing_Costs')))
+			nanCheck(g.purchasePrice+pInt('#PI_Closing_Costs'))
 		);
 		$('#PI_Purchase_Cost_Per_Unit').text(
-			numForCurrency(nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units')))
+			nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units'))
 		);
 		$('#PI_Total_Cost_Per_Unit').text(
-			numForCurrency(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units')))
+			nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'))
 		);
 		$('#PI_Purchase_Cost_Per_SF').text(
-			numForCurrency(nanCheck(g.purchasePrice/pInt('#prop_info_total_sq_ft')))
+			nanCheck(g.purchasePrice/pInt('#prop_info_total_sq_ft'))
 		);
 		$('#PI_Total_Cost_Per_SF').text(
-			numForCurrency(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft')))
+			nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft'))
 		);
 		$('#PI_Cap_Rate_on_Purchase_Price').text(
-			numForCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice))
+			nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice)
 		);
 		$('#PI_Cap_Rate_on_Total_Price').text(
-			numForCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs')))
+			nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'))
 		);
-
-
-
-
-
 
 
 		//Sale Summary Calculations
@@ -388,13 +384,9 @@ $(document).ready(function(){
 
 		//calculates total value: Rent Per Unit
 		$rrow.each(function(){
-			console.log("this:",this);
 			var numUnits = $(this).find('.total_units').val();
 			var rentUnits = $(this).find('.rent_per_unit').val();
 			spListRPU = spListRPU + (numUnits * rentUnits);
-			console.log('numUnits:',spListRPU);
-			console.log('rentUnits:',rentUnits);
-			console.log('spListRPU:',spListRPU);
 		});
 
 		//creates an array of arrays for all the Projected Rent rows and stores the array in the global "g" object
@@ -454,10 +446,6 @@ $(document).ready(function(){
 // ============================================================================================================
 //Rental Rate Form Dynamic Table
 // ============================================================================================================
-	// $('.rent_row').on('input', debouncer(RRAInput,500));
-	$('.rent_row').on('input', RRAInput);
-	$('#dashboard').on('input', DashboardInput);
-
 	// adds one row to table when the 'add' button is clicked
 	$("#rental_rate_form").on('click', function(event) {
 		event.preventDefault();
@@ -547,4 +535,12 @@ $(document).ready(function(){
 
 
 // ============================================================================================================
+// $('.rent_row').on('input', debouncer(RRAInput,500));
+$('.rent_row').on('input', RRAInput);
+$('#dashboard').on('input', DashboardInput);
+
+
+
+
+
 }); //end of doc
