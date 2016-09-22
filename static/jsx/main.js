@@ -68,6 +68,8 @@ $(document).ready(function(){
 // Start of ALL calculations for dashboard
 // ============================================================================================================
 
+
+	//Returns int val of element
 	var pInt = function(value){
 		return parseInt($(value).text())
 	};
@@ -84,27 +86,27 @@ $(document).ready(function(){
 			saleYear: parseInt($('#Sale_Year').val()),
 			terminalCapRate: parseInt($('#Terminal_Cap_Rate').val()),
 			salesCosts: parseInt($('#Sales_Costs').val()),
-			leverage: parseInt($('#Leverage').val()),
+			leverage: parseInt($('#Leverage').val())/100,
 			interestRateOnMortgage: parseInt($('#Interest_Rate_on_Mortgage').val()),
 			loanTerm: parseInt($('#Loan_Term').val()),
 			loanAmortization: parseInt($('#Loan_Amortization').val()),
 			unleveredDiscountRate: parseInt($('#UL_Discount_Rate').val()),
 			leveredDiscountRate: parseInt($('#L_Discount_Rate').val()),
 			otherIncomeTotal: parseInt($('#Other_Income_Total').val()),
-			lessVacancy: parseInt($('#Less_Vacancy').val()),
-			lessConcessions: parseInt($('#Less_Concessions').val()),
-			lessCreditLoss: parseInt($('#Less_Credit_Loss').val()),
+			lessVacancy: parseInt($('#Less_Vacancy').val())/100,
+			lessConcessions: parseInt($('#Less_Concessions').val())/100,
+			lessCreditLoss: parseInt($('#Less_Credit_Loss').val())/100,
 			realEstateTaxesTotal: parseInt($('#Real_Estate_Taxes_Total').val()),
 			insuranceTotal: parseInt($('#Insurance_Total').val()),
-			utlitiesTotal: parseInt($('#Utilities_Total').val()),
+			utilitiesTotal: parseInt($('#Utilities_Total').val()),
 			payrollTotal: parseInt($('#Payroll_Total').val()),
 			repairsAndMaintenanceTotal: parseInt($('#Repairs_and_Maintenance_Total').val()),
 			contractServicesTotal: parseInt($('#Contract_Services_Total').val()),
 			turnoverTotal: parseInt($('#Turnover_Total').val()),
 			salesAndMarketingTotal: parseInt($('#Sales_and_Marketing_Total').val()),
 			administrativeTotal: parseInt($('#Administrative_Total').val()),
-			managementPercentage: parseInt($('#Management_Percentage').val()),
-			replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val()),
+			managementPercentage: parseInt($('#Management_Percentage').val())/100,
+			replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val())/100,
 		};
 
 		//VARIABLES FOR CALCULATIONS-------------------------------------------------------
@@ -138,45 +140,36 @@ $(document).ready(function(){
 			//Loans
 		$('#Loan_Total').text(pInt('#PI_Total_Costs')*g.leverage);
 
-		//tests
-		console.log($('#prop_info_total_sq_ft').text());
+			// #Sources And Uses Table
+		$('#Equity_Total').text(pInt('#PI_Total_Costs') - pInt('#Loan_Total'));
+		$('#Equity_DollarPerUnit').text(pInt('#Equity_Total')/tu);
+		$('#Equity_DollarPerSF').text(pInt('#Equity_Total')/tsf);
+		$('#Equity_PercentofTotal').text(pInt('#Equity_Total')/pInt('#Total_Sources_Total')*100);
 
-		// // #Finance Assumptions Table
-		// // # {all input fields}
-		//
-		// // #Sources And Uses Table
-		// Equity_Total = Total_Costs - Loan_Total
-		// Equity_DollarPerUnit = Equity_Total/Num_Units
-		// Equity_DollarPerSF = Equity_Total/Total_Sq_Ft
-		// Equity_PercentofTotal = Equity_Total/Total_Sources_Total
-		//
-		// Loan_Total = Total_Costs*leverage
-		// Loan_DollarPerUnit = Loan_Total/Num_Units
-		// Loan_DollarPerSF = Loan_Total/Total_Sq_Ft
-		// Loan_PercentofTotal = Loan_Total/Total_Sources_Total
-		//
-		// Total_Sources_Total = Equity_Total + Loan_Total
-		// Total_Sources_DollarPerUnit = Equity_DollarPerUnit + Loan_DollarPerUnit
-		// Total_Sources_DollarPerSF = Equity_DollarPerSF + Loan_DollarPerSF
-		// Total_Sources_PercentofTotal = Equity_PercentofTotal + Loan_PercentofTotal
-		//
-		// Purchasing_Price_Total = purchase_price
-		// Purchasing_Price_DollarPerUnit = Purchasing_Price_Total/Num_Units
-		// Purchasing_Price_DollarPerSF = Purchasing_Price_Total/Total_Sq_Ft
-		// Purchasing_Price_PercentofTotal = Purchasing_Price_Total/Total_Uses_Total
-		//
-		// Closing_Costs_Total = Closing_Costs
-		// Closing_Costs_DollarPerUnit = Closing_Costs/Num_Units
-		// Closing_Costs_DollarPerSF = Closing_Costs/Total_Sq_Ft
-		// Closing_Costs_PercentofTotal = Closing_Costs/Total_Uses_Total
-		//
-		// Total_Uses_Total = Purchasing_Price_Total + Closing_Costs_Total
-		// Total_Uses_DollarPerUnit = Purchasing_Price_DollarPerUnit + Closing_Costs_DollarPerUnit
-		// Total_Uses_DollarPerSF = Purchasing_Price_DollarPerSF + Closing_Costs_DollarPerSF
-		// Total_Uses_PercentofTotal = Purchasing_Price_PercentofTotal + Closing_Costs_PercentofTotal
-		//
-		// // #Rental Rate Assumptions Table ***dynamic***
-		// // # TBD
+		$('#Loan_Total').text(pInt('#PI_Total_Costs')*g.leverage);
+		$('#Loan_DollarPerUnit').text(pInt('#Loan_Total')/tu);
+		$('#Loan_DollarPerSF').text(pInt('#Loan_Total')/tsf);
+		$('#Loan_PercentofTotal').text(pInt('#Loan_Total')/pInt('#Total_Sources_Total')*100);
+
+		$('#Total_Sources_Total').text(pInt('#Equity_Total') + pInt('#Loan_Total'));
+		$('#Total_Sources_DollarPerUnit').text(pInt('#Equity_DollarPerUnit') + pInt('#Loan_DollarPerUnit'));
+		$('#Total_Sources_DollarPerSF').text(pInt('#Equity_DollarPerSF') + pInt('#Loan_DollarPerSF'));
+		$('#Total_Sources_PercentofTotal').text(pInt('#Equity_PercentofTotal') + pInt('#Loan_PercentofTotal'));
+
+		$('#Purchasing_Price_Total').text(g.purchasePrice)
+		$('#Purchasing_Price_DollarPerUnit').text(pInt('#Purchasing_Price_Total')/tu);
+		$('#Purchasing_Price_DollarPerSF').text(pInt('#Purchasing_Price_Total')/tsf);
+		$('#Purchasing_Price_PercentofTotal').text(pInt('#Purchasing_Price_Total')/pInt('#Total_Uses_Total')*100);
+
+		$('#Closing_Costs_Total').text(pInt('#PI_Closing_Costs'));
+		$('#Closing_Costs_DollarPerUnit').text(pInt('#PI_Closing_Costs')/tu);
+		$('#Closing_Costs_DollarPerSF').text(pInt('#PI_Closing_Costs')/tsf);
+		$('#Closing_Costs_PercentofTotal').text(pInt('#PI_Closing_Costs')/pInt('#Total_Uses_Total')*100);
+
+		$('#Total_Uses_Total').text(pInt('#Purchasing_Price_Total') + pInt('#Closing_Costs_Total'));
+		$('#Total_Uses_DollarPerUnit').text(pInt('#Purchasing_Price_DollarPerUnit') + pInt('#Closing_Costs_DollarPerUnit'));
+		$('#Total_Uses_DollarPerSF').text(pInt('#Purchasing_Price_DollarPerSF') + pInt('#Closing_Costs_DollarPerSF'));
+		$('#Total_Uses_PercentofTotal').text(pInt('#Purchasing_Price_PercentofTotal') + pInt('#Closing_Costs_PercentofTotal'));
 		//
 		// #Returns Summary Table
 		// UL_Net_Profit = 0       # {=SUM('Returns Summary'!C24:M24)}
@@ -196,94 +189,93 @@ $(document).ready(function(){
 		// L_IRR_from_CF = 0
 		// L_IRR_from_Sale = 0
 		// L_Cash_On_Cash = 0
-		
+
 	// #Current Financial Performance Table
-		$('#Rental_Income_Total').text('5000000');
+		$('#Rental_Income_Total').text('3540000'); //Sumproduct- needs to have calculations implemented
 		$('#Rental_Income_DollarPerUnit').text(pInt('#Rental_Income_Total')/tu);
 		$('#Rental_Income_DollarPerSF').text(pInt('#Rental_Income_Total')/tsf);
-		$('#Rental_Income_PercentofTotal').text((pInt('#Rental_Income_Total'))/(pInt('#Gross_Rental_Income_Total')));
+		$('#Rental_Income_PercentofTotal').text((pInt('#Rental_Income_Total'))/(pInt('#Gross_Rental_Income_Total'))*100);
 
 		$('#Other_Income_DollarPerUnit').text(g.otherIncomeTotal/tu);
 		$('#Other_Income_DollarPerSF').text(g.otherIncomeTotal/tsf);
-		$('#Other_Income_PercentofTotal').text(g.otherIncomeTotal/pInt('#Gross_Rental_Income_Total'));
-		
+		$('#Other_Income_PercentofTotal').text(g.otherIncomeTotal/pInt('#Gross_Rental_Income_Total')*100);
+
 		$('#Gross_Rental_Income_Total').text(g.otherIncomeTotal + pInt('#Rental_Income_Total'));
 		$('#Gross_Rental_Income_DollarPerUnit').text(pInt('#Rental_Income_DollarPerUnit') + pInt('#Other_Income_DollarPerUnit'))
 		$('#Gross_Rental_Income_DollarPerSF').text(pInt('#Rental_Income_DollarPerSF') + pInt('#Other_Income_DollarPerSF'))
 		$('#Gross_Rental_Income_PercentofTotal').text(pInt('#Rental_Income_PercentofTotal') + pInt('#Other_Income_PercentofTotal'))
-		
+
 		$('#Vacancy_Total').text(-1 * g.lessVacancy * pInt('#Gross_Rental_Income_Total'));
 		$('#Vacancy_DollarPerUnit').text(pInt('#Vacancy_Total')/tu);
 		$('#Vacancy_DollarPerSF').text(pInt('#Vacancy_Total')/tsf);
-		
+
 		$('#Concessions_Total').text(-1 * g.lessConcessions * pInt('#Gross_Rental_Income_Total'));
 		$('#Concessions_DollarPerUnit').text(pInt('#Concessions_Total')/tu);
 		$('#Concessions_DollarPerSF').text(pInt('#Concessions_Total')/tsf);
-		
+
 		$('#Credit_Loss_Total').text(-1 * g.lessCreditLoss * pInt('#Gross_Rental_Income_Total'));
 		$('#Credit_Loss_DollarPerUnit').text(pInt('#Credit_Loss_Total')/tu);
 		$('#Credit_Loss_DollarPerSF').text(pInt('#Credit_Loss_Total')/tsf);
-		
+
 		$('#Net_Rental_Income_Total').text(pInt('#Gross_Rental_Income_Total') + pInt('#Vacancy_Total') + pInt('#Concessions_Total') + pInt('#Credit_Loss_Total'));
 		$('#Net_Rental_Income_DollarPerUnit').text(pInt('#Net_Rental_Income_Total')/tu);
 		$('#Net_Rental_Income_DollarPerSF').text(pInt('#Net_Rental_Income_Total')/tsf);
-		
+
 		$('#Real_Estate_Taxes_DollarPerUnit').text(g.realEstateTaxesTotal/tu);
 		$('#Real_Estate_Taxes_DollarPerSF').text(g.realEstateTaxesTotal/tsf);
 		$('#Real_Estate_Taxes_PercentofTotal').text(g.realEstateTaxesTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Insurance_DollarPerUnit').text(g.insuranceTotal/tu);
 		$('#Insurance_DollarPerSF').text(g.insuranceTotal/tsf);
 		$('#Insurance_PercentofTotal').text(g.insuranceTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Utilities_DollarPerUnit').text(g.utilitiesTotal/tu);
 		$('#Utilities_DollarPerSF').text(g.utilitiesTotal/tsf);
 		$('#Utilities_PercentofTotal').text(g.utilitiesTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Payroll_DollarPerUnit').text(g.payrollTotal/tu);
 		$('#Payroll_DollarPerSF').text(g.payrollTotal/tsf);
 		$('#Payroll_PercentofTotal').text(g.payrollTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Repairs_and_Maintenance_DollarPerUnit').text(g.repairsAndMaintenanceTotal/tu);
 		$('#Repairs_and_Maintenance_DollarPerSF').text(g.repairsAndMaintenanceTotal/tsf);
 		$('#Repairs_and_Maintenance_PercentofTotal').text(g.repairsAndMaintenanceTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Contract_Services_DollarPerUnit').text(g.contractServicesTotal/tu);
 		$('#Contract_Services_DollarPerSF').text(g.contractServicesTotal/tsf);
 		$('#Contract_Services_PercentofTotal').text(g.contractServicesTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Turnover_DollarPerUnit').text(g.turnoverTotal/tu);
 		$('#Turnover_DollarPerSF').text(g.turnoverTotal/tsf);
 		$('#Turnover_PercentofTotal').text(g.turnoverTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Sales_and_Marketing_DollarPerUnit').text(g.salesAndMarketingTotal/tu);
 		$('#Sales_and_Marketing_DollarPerSF').text(g.salesAndMarketingTotal/tsf);
 		$('#Sales_and_Marketing_PercentofTotal').text(g.salesAndMarketingTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Administrative_DollarPerUnit').text(g.administrativeTotal/tu);
 		$('#Administrative_DollarPerSF').text(g.administrativeTotal/tsf);
 		$('#Administrative_PercentofTotal').text(g.administrativeTotal/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Management_Total').text(g.managementPercentage * pInt('#Net_Rental_Income_Total'));
 		$('#Management_DollarPerUnit').text(pInt('#Management_Total')/tu);
 		$('#Management_DollarPerSF').text(pInt('#Management_Total')/tsf);
 		$('#Management_PercentofTotal').text(pInt('#Management_Total')/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Replacement_Reserves_Total').text(g.replacementReservesPercentage * pInt('#Net_Rental_Income_Total'));
 		$('#Replacement_Reserves_DollarPerUnit').text(pInt('#Replacement_Reserves_Total')/tu);
 		$('#Replacement_Reserves_DollarPerSF').text(pInt('#Replacement_Reserves_Total')/tsf);
 		$('#Replacement_Reserves_PercentofTotal').text(pInt('#Replacement_Reserves_Total')/pInt('#Total_Operating_Expenses_Total'));
-		
+
 		$('#Total_Operating_Expenses_Total').text(g.realEstateTaxesTotal + g.insuranceTotal + g.utilitiesTotal + g.payrollTotal + g.repairsAndMaintenanceTotal + g.contractServicesTotal + g.turnoverTotal + g.salesAndMarketingTotal + g.administrativeTotal + pInt('#Management_Total') + pInt('#Replacement_Reserves_Total'));
 		$('#Total_Operating_Expenses_DollarPerUnit').text(pInt('#Total_Operating_Expenses_Total')/tu);
 		$('#Total_Operating_Expenses_DollarPerSF').text(pInt('#Total_Operating_Expenses_Total')/tsf);
 		$('#Total_Operating_Expenses_PercentofTotal').text(pInt('#Real_Estate_Taxes_PercentofTotal') + pInt('#Insurance_PercentofTotal') + pInt('#Utilities_PercentofTotal') + pInt('#Payroll_PercentofTotal') + pInt('#Repairs_and_Maintenance_PercentofTotal') + pInt('#Contract_Services_PercentofTotal') + pInt('#Turnover_PercentofTotal') + pInt('#Sales_and_Marketing_PercentofTotal') + pInt('#Administrative_PercentofTotal') + pInt('#Management_PercentofTotal') + pInt('#Replacement_Reserves_PercentofTotal'));
-		
+
 		$('#Net_Operating_Income_Total').text(pInt('#Net_Rental_Income_Total') - pInt('#Total_Operating_Expenses_Total'));
 		$('#Net_Operating_Income_DollarPerUnit').text(pInt('#Net_Operating_Income_Total')/tu);
 		$('#Net_Operating_Income_DollarPerSF').text(pInt('#Net_Operating_Income_Total')/tsf);
-
-
+		console.log(g.utilitiesTotal)
 	}; //end DashboardInput
 
 
