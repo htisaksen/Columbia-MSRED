@@ -66,6 +66,7 @@ $(document).ready(function(){
 // ============================================================================================================
 //Returns int val of element
 
+
 	var remSpcChr = function(value){
 		return value.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
 	}
@@ -100,10 +101,12 @@ $(document).ready(function(){
 	}; //end debouncer
 
 	var nanCheck = function(value) {
-		if(jQuery.isNumeric(value) === false){
+		if($.isNumeric(value) === false){
+			console.log('return 0: ',value);
 			return 0
 		}
 		else{
+			console.log('return value: ', value);
 			return value
 		}
 	};
@@ -123,6 +126,8 @@ $(document).ready(function(){
 	var MRAlist = []; //Market Rental Assumptions list
 
 	var DashboardInput = function(event){
+
+
 	// Global objects: Inputs (possibly calculated values)
 		var g = {
 			analysisStartDate: $('#Analysis_Start_Date').val(),
@@ -250,9 +255,6 @@ $(document).ready(function(){
 		$('#Total_Uses_DollarPerSF').text(roundTwoDec(nanCheck(pFloat('#Purchasing_Price_DollarPerSF') + pFloat('#Closing_Costs_DollarPerSF'))));
 		var x = (roundTwoDec(nanCheck(pFloat('#Purchasing_Price_PercentofTotal'))));
 		var y = (roundTwoDec(nanCheck(pFloat('#Closing_Costs_PercentofTotal'))));
-		console.log("x: ",x)
-		console.log("y: ",y)
-		console.log(x+y);
 		$('#Total_Uses_PercentofTotal').text(roundTwoDec(nanCheck(pFloat('#Purchasing_Price_PercentofTotal') + pFloat('#Closing_Costs_PercentofTotal'))));
 		//
 		// #Returns Summary Table
@@ -278,10 +280,11 @@ $(document).ready(function(){
 		//moved formulas to top to prevent 'infinity' error
 		$('#Gross_Rental_Income_Total').text(roundTwoDec(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total'))));
 		$('#Rental_Income_Total').text(roundTwoDec(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*tu*12)));
-
+		// console.log('otherincometotal: ',g.otherIncomeTotal)
+		// console.log($('#Rental_Income_Total').text(roundTwoDec(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*tu*12))))
 		$('#Rental_Income_DollarPerUnit').text(roundTwoDec(nanCheck(pInt('#Rental_Income_Total')/tu)));
 		$('#Rental_Income_DollarPerSF').text(roundTwoDec(nanCheck(pInt('#Rental_Income_Total')/tsf)));
-		$('#Rental_Income_PercentofTotal').text((roundOneDec(nanCheck(pFloat('#Rental_Income_Total'))/(pFloat('#Gross_Rental_Income_Total'))*100)));
+		$('#Rental_Income_PercentofTotal').text(roundOneDec(nanCheck(pFloat('#Rental_Income_Total'))/(pFloat('#Gross_Rental_Income_Total'))*100));
 
 		$('#Other_Income_DollarPerUnit').text(roundTwoDec(nanCheck(g.otherIncomeTotal/tu)));
 		$('#Other_Income_DollarPerSF').text(roundTwoDec(nanCheck(g.otherIncomeTotal/tsf)));
@@ -361,6 +364,11 @@ $(document).ready(function(){
 		$('#Net_Operating_Income_Total').text(roundTwoDec(nanCheck(pInt('#Net_Rental_Income_Total') - pInt('#Total_Operating_Expenses_Total'))));
 		$('#Net_Operating_Income_DollarPerUnit').text(roundTwoDec(nanCheck(pInt('#Net_Operating_Income_Total')/tu)));
 		$('#Net_Operating_Income_DollarPerSF').text(roundTwoDec(nanCheck(pInt('#Net_Operating_Income_Total')/tsf)));
+
+		$("td:contains('NaN')").each(function() {
+			$(this).text('0');
+		});
+
 	}; //end DashboardInput
 
 
