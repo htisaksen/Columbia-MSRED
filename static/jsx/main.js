@@ -80,11 +80,11 @@ $(document).ready(function(){
 	};
 
 	var pFloat = function(value){
-		return parseFloat($(value).text()|| 0)
+		return parseFloat(remSpcChr($(value).text()) || 0)
 	}
 
 	var pInt = function(value){
-		return parseInt($(value).text()|| 0)
+		return parseInt(remSpcChr($(value).text()) || 0)
 	};
 
 //runs function on a set time delay
@@ -175,29 +175,22 @@ $(document).ready(function(){
 
 		//Purchase Info Calculations
 		$('#PI_Closing_Costs').text(
-			nanCheck(g.purchasePrice*g.closingCostPercentage)
-		); 		//$
+			FormatCurrency(nanCheck(g.purchasePrice*g.closingCostPercentage))); 		//$		
 		$('#PI_Total_Costs').text(
-			nanCheck(g.purchasePrice+pInt('#PI_Closing_Costs'))
-		);		//$
+			FormatCurrency(nanCheck(g.purchasePrice+pFloat('#PI_Closing_Costs'))));		//$
+
 		$('#PI_Purchase_Cost_Per_Unit').text(
-			nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units'))
-		);		//$
+			FormatCurrency(nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units'))));		//$
 		$('#PI_Total_Cost_Per_Unit').text(
-			nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'))
-		);		//$
-		$('#PI_Purchase_Cost_Per_SF').text(roundTwoDec(
-			nanCheck(g.purchasePrice/pInt('#prop_info_total_sq_ft'))
-		));		//$
-		$('#PI_Total_Cost_Per_SF').text(roundTwoDec(
-			nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft'))
-		));		//$
-		$('#PI_Cap_Rate_on_Purchase_Price').text(roundTwoDec(
-			nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice)*100
-		));		//%
-		$('#PI_Cap_Rate_on_Total_Price').text(roundTwoDec(
-			nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'))*100
-		));		//%
+			FormatCurrency(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'))));		//$
+		$('#PI_Purchase_Cost_Per_SF').text(
+			FormatCurrency(nanCheck(g.purchasePrice/pInt('#prop_info_total_sq_ft'))));		//$
+		$('#PI_Total_Cost_Per_SF').text(
+			FormatCurrency(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft'))));		//$
+		$('#PI_Cap_Rate_on_Purchase_Price').text(
+			FormatPercent(nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice)*100));		//%
+		$('#PI_Cap_Rate_on_Total_Price').text(
+			FormatPercent(nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'))*100));		//%
 
 
 		//Sale Summary Calculations
@@ -208,7 +201,7 @@ $(document).ready(function(){
 
 		//Sources and Uses Calculations
 			//Equity
-		$('#PI_Total_Cost_Per_Unit').text(roundTwoDec(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'))));		//$
+		$('#PI_Total_Cost_Per_Unit').text(FormatCurrency(nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_num_units'))));		//$
 			//Loans
 		$('#Loan_Total').text(roundTwoDec(nanCheck(pInt('#PI_Total_Costs')*g.leverage)));											//$
 
