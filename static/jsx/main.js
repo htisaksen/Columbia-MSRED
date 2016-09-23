@@ -182,10 +182,10 @@ $(document).ready(function(){
 			nanCheck(pInt('#PI_Total_Costs')/pInt('#prop_info_total_sq_ft'))
 		);
 		$('#PI_Cap_Rate_on_Purchase_Price').text(
-			nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice)
+			nanCheck(pInt('#Net_Operating_Income_Total')/g.purchasePrice)*100
 		);
 		$('#PI_Cap_Rate_on_Total_Price').text(
-			nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'))
+			nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'))*100
 		);
 
 
@@ -253,8 +253,10 @@ $(document).ready(function(){
 
 	// #Current Financial Performance Table
 		//moved formulas to top to prevent 'infinity' error
-		$('#Gross_Rental_Income_Total').text(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total'))); 
+		$('#Gross_Rental_Income_Total').text(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total')));
 		$('#Rental_Income_Total').text(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*tu*12));
+		console.log('IncomeTotal: ',g.otherIncomeTotal)
+		console.log('rentalincometotal: ',$('#Rental_Income_Total').text)
 
 		$('#Rental_Income_DollarPerUnit').text(nanCheck(pInt('#Rental_Income_Total')/tu));
 		$('#Rental_Income_DollarPerSF').text(nanCheck(pInt('#Rental_Income_Total')/tsf));
@@ -468,7 +470,10 @@ $(document).ready(function(){
 		});
 	//Runs input function inside
 		$('.rent_row').on('input', RRAInput);
-		$('#dashboard').on('input', DashboardInput);
+		$('#dashboard').on('input', function(){
+			DashboardInput();
+			DashboardInput();
+		});
 
 
 	}) //end addrow function
@@ -510,10 +515,13 @@ $(document).ready(function(){
 				mraCounterTemp += 1;
 			});
 		});
-	
+
 	//Runs input function inside
-		$('#dashboard').on('input', DashboardInput);
-		$('.rent_row').on('input', RRAInput);
+	$('#dashboard').on('input', function(){
+		DashboardInput();
+		DashboardInput();
+	});
+	$('.rent_row').on('input', RRAInput);
 		// $('.year_row').on('input', debouncer(DashboardInput,500));
 
 	}); //end addrow function
@@ -536,8 +544,11 @@ $(document).ready(function(){
 
 // ============================================================================================================
 // $('.rent_row').on('input', debouncer(RRAInput,500));
-$('.rent_row').on('input', RRAInput);
-$('#dashboard').on('input', DashboardInput);
+	$('.rent_row').on('input', RRAInput);
+	$('#dashboard').on('input', function(){
+	DashboardInput();
+	DashboardInput();
+	});
 
 
 
