@@ -10,8 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-
-
 <body>
 	<!-- Dropdown Structure -->
 	<ul id="dropdown1" class="dropdown-content">
@@ -35,12 +33,12 @@
 	</nav>
 
 <header>{% block header %}{% endblock header %}</header>
+<main>
 	<article>{% block dashboard %}{% endblock dashboard %}</article>
 	<article>{% block performa %}{% endblock performa %}</article>
 	<article>{% block returns_summary %}{% endblock returns_summary %}</article>
 <sidebar>{% block sidebar %}{% endblock sidebar %}</sidebar>
-
-
+</main>
 <footer class="page-footer blue accent-3">
 	<div class="container">
 		<div class="row">
@@ -67,11 +65,12 @@
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
-<script src="{{ url_for('static', filename='jsx/jquery-3.1.0.min.js') }}"></script>
-<script src="{{ url_for('static', filename='jsx/materialize.min.js') }}"></script>
-<!-- <script src="{{ url_for('static', filename='jsx/behavior.js') }}"></script> -->
-<script type="text/javascript" src='static/jsx/behavior.js'></script>
-<script type="text/javascript" src='static/jsx/main.js'></script>
+<script src="{{ url_for('static', filename='js/libraries/jquery-3.1.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/libraries/materialize.min.js') }}"></script>
+<script type="text/javascript" src='static/js/utilities.js'></script>
+<script type="text/javascript" src='static/js/behavior.js'></script>
+<script type="text/javascript" src='static/js/main.js'></script>
+
 
 </body>
 </html>

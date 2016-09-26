@@ -1,20 +1,13 @@
-html, body {
-  margin = 0,
-  width = 100vw,
-  height = 100vh
+html{
+
 }
-/*footer.page-footer{
-  background-color: #1e88e5;
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
-.nav-wrapper{
-  background-color: #1e88e5;
+
+main {
+  flex: 1 0 auto;
 }
-.tabs .indicator {
-  background-color: #1e88e5;
-}
-.row .col{
-  padding:0;
-}
-.tabs .tab a{
-  color:#1e88e5;
-}*/
