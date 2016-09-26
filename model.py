@@ -1,4 +1,5 @@
 from flask import Flask
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import(
                         generate_password_hash,
@@ -6,40 +7,40 @@ from werkzeug.security import(
                         )
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_save.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_REmodels.db'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-class Saves(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    datetime = db.Column(db.String(64))
-    savename = db.Column(db.String(64))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+class RealEstateModel(db.Model):
+    __tablename__ = "realestatemodels"
+    id = db.Column('model_id', db.Integer, primary_key=True)
+    created_on = db.Column('created_on', db.DateTime)
+    model_name = db.Column('model_name', db.String(64))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
-
-
-    def __init__(self,datetime,savename,user_id):
-        self.datetime = datetime
-        self.savename = savename
+    def __init__(self, model_name, user_id):
+        self.model_name = model_name
         self.user_id = user_id
 
-    # def serialize(self):
-    #     return {
-    #         'id': self.id,
-    #         'user_id': self.user_id,
-    #     }
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, index=True)
-    password = db.Column(db.String(64))
-    save = db.relationship('Saves',backref='User',lazy='dynamic')
+    __tablename__ = "users"
+    id = db.Column('user_id', db.Integer, primary_key=True)
+    email = db.Column('email', db.String(60), unique = True, index=True)
+    password = db.Column('password', db.String(30))
+    firstname = db.Column('firstname', db.String(30))
+    lastname = db.Column('lastname', db.String(30))
+    registered_on = db.Column('registered_on', db.DateTime)
+    real_estate_model = db.relationship('RealEstateModel',backref='users',lazy='dynamic')
 
-    def __init__(self,username,password):
-        self.username = username
+    def __init__(self, email, password, firstname, lastname):
+        self.email = email
         self.password = password
+        self.firstname = firstname
+        self.lastname = lastname
+        self.registered_on = datetime.utcnow()
 
     def set_password(self,password):
         self.pw_hash = generate_password_hash(p)
@@ -47,31 +48,22 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.pw_hash, password)
 
-    # def serialize(self):
-    #     return {
-    #         'id': self.id,
-    #         'username': self.username,
-    #         'password': self.password,
-    #     }
-
-if __name__=="__main__":
+if __name__== "__main__":
     db.drop_all()
     db.create_all()
-    tak = User('Tak',"Tak")
-    Pres = User('Pres Comancho','america')
-    test = User('test','test')
+    tak = User('tak@i.com','tak', 'Tak','I.')
+    fred = User('fred@vs.com','fred', 'Fred','VS.')
 
     db.session.add(tak)
-    db.session.add(Pres)
-    db.session.add(test)
+    db.session.add(fred)
     db.session.commit()
 
-    # print(User.query.all())
-    # print(User.query.filter_by(username='Tak').first())
+    print("User.query.all():=============",User.query.all())
+    print("User.query.filter_by(email='tak@i.com)':=======",User.query.filter_by(email='tak@i.com').first())
 
-    save1 = Saves('1/1/15 5:30pm','test','1')
-    save2 = Saves('2/1/16 3:30pm','savename2','2')
-    save3 = Saves('5/2.16 8:30pm','assumption1','2')
+    save1 = RealEstateModel('TAKAMON Round1','1')
+    save2 = RealEstateModel('Fredsters first model','2')
+    save3 = RealEstateModel('Fredsters second model','2')
     db.session.add(save1)
     db.session.add(save2)
     db.session.add(save3)

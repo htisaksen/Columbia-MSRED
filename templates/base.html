@@ -14,7 +14,7 @@
 
 <body>
 	<!-- Dropdown Structure -->
-	<ul id="dropdown1" class="dropdown-content">
+	<ul id="dropdown1" class="dropdown-content">	
 		<li><a href="/dashboard">Edit Account</a></li>
 		<li><a href="#!">Settings</a></li>
 		<li class="divider"></li>
@@ -25,19 +25,20 @@
 	<div class="nav-wrapper">
 		<a href="/" class="brand-logo">Logo</a>
 		<ul class="right hide-on-med-and-down">
-			<!-- <li><a href="#">List Item</a></li>
-			<li><a href="/dashboard">Dashboard</a></li>
-			<li><a href="/performa">Performa</a></li> -->
-			<!-- Dropdown Trigger -->
+			<li>Welcome !</li>
 			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">view_headline</i></a></li>
 		</ul>
 	</div>
 	</nav>
 
 <header>{% block header %}{% endblock header %}</header>
+	
+	{% block content %}
 	<article>{% block dashboard %}{% endblock dashboard %}</article>
 	<article>{% block performa %}{% endblock performa %}</article>
 	<article>{% block returns_summary %}{% endblock returns_summary %}</article>
+	{% endblock content %}
+	
 <sidebar>{% block sidebar %}{% endblock sidebar %}</sidebar>
 
 
