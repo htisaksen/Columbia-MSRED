@@ -34,17 +34,11 @@
 	</div>
 	</nav>
 
-<header>
-{%block header%}{%endblock header%}
-</header>
-
-<article>
-{% block dashboard%}{%endblock dashboard%}
-</article>
-
-<sidebar>
-{% block sidebar%}{%endblock sidebar%}
-</sidebar>
+<header>{% block header %}{% endblock header %}</header>
+	<article>{% block dashboard %}{% endblock dashboard %}</article>
+	<article>{% block performa %}{% endblock performa %}</article>
+	<article>{% block returns_summary %}{% endblock returns_summary %}</article>
+<sidebar>{% block sidebar %}{% endblock sidebar %}</sidebar>
 
 
 <footer class="page-footer blue accent-3">

@@ -1,9 +1,4 @@
-{% extends "base.html" %}
-
-{%block header%}
-{%endblock header%}
-
-{%block dashboard%}
+{% block dashboard %}
 <ul class="collapsible" data-collapsible="expandable">
   <li>
   <div class="collapsible-header"><i class="material-icons">filter_drama</i>Dashboard</div>
@@ -554,8 +549,8 @@
         <hr>
       </table>
 
-  </form>
+  </form> <!-- end dashboard form -->
   </div>
 </li>
 </ul>
-{%endblock dashboard%}
+{% endblock dashboard %}

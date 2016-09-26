@@ -304,9 +304,9 @@ def performa():
 	return render_template("performa.html",
 		title=title )
 
-@app.route('/returnsummary')
+@app.route('/returns_summary')
 def returnSum():
-	title = "Return Summary"
+	title = "Returns Summary"
 	return render_template('returns_summary.html',
 		title=title)
 
@@ -315,6 +315,13 @@ def inputForm():
 	title="Input Form"
 	return render_template('input_form.html',
 		title = title)
+
+@app.route("/main")
+def main():
+	title = "Main Dashboard"
+	return render_template("main.html",
+		title=title )
+
 
 if __name__ == "__main__":
 	app.secret_key = os.urandom(12)
