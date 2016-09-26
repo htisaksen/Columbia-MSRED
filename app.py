@@ -1,6 +1,6 @@
 import os, re
 from model import *
-from flask import Flask,session, request, flash, url_for, redirect, render_template, abort, g
+from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g
 # import flask_login
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 
@@ -32,8 +32,10 @@ def index():
 	email = ''
 	if session.get('logged_in'):
 		email = session.get('email')
-		return render_template('home.html')
-	return redirect("/main")
+		print("session logged in = true")	
+		return redirect("/main")
+	print("session logged in = false")
+	return redirect("/login")
 
 @app.route("/main")
 @login_required
@@ -55,7 +57,7 @@ def login():
 			if password == user_obj.password:
 				session['logged_in'] = True
 				session['email'] = user_obj.email
-				print("successfully logged in")
+				print("/Login: successfully logged in")
 				return redirect('/main')
 		error_msg = "Incorrect email/password. Please try again."
 	return render_template("login.html")
@@ -72,8 +74,10 @@ def register():
 	return redirect('/login')
 
 @app.route("/logout")
+@login_required
 def logout():
 	logout_user()
+	print("session['logged_in']:", session['logged_in'])
 	return redirect('/login')
 
 
