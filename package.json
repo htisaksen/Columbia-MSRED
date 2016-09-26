@@ -1,0 +1,26 @@
+{
+  "name": "real_estate_finance_tool",
+  "version": "1.0.0",
+  "description": "Real Estate Model calculator for Columbia University",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freddie71010/Real_Estate_Finance_Tool.git"
+  },
+  "author": "Hyosun Takaaki Isaksen, Freddie Von Stange",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/freddie71010/Real_Estate_Finance_Tool/issues"
+  },
+  "homepage": "https://github.com/freddie71010/Real_Estate_Finance_Tool#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}
