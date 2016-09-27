@@ -1,8 +1,8 @@
-var DashboardInput = function(event){
 
-
-// Global objects: Inputs (possibly calculated values)
-  var g = {
+//grabs the inputs as an object
+myApp.dashboard = {}
+myApp.dashboard.getInputs = function(){
+  return {
     analysisStartDate: $('#Analysis_Start_Date').val(),
     propertyName:	$('#Property_Name').val(),
     propertyLocation: $('#Property_Address').val(),
@@ -34,7 +34,24 @@ var DashboardInput = function(event){
     managementPercentage: parseInt($('#Management_Percentage').val())/100 || 0,
     replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val())/100 || 0,
   };
+}
 
+  // ============================================================================================================
+  // Start of ALL calculations for dashboard
+  // ============================================================================================================
+
+
+
+  myApp.dashboard.DashboardInput = function(){
+  var g = myApp.dashboard.getInputs();
+  var remSpcChr = myApp.utils.remSpcChr;
+  var pInt = myApp.utils.pInt;
+  var pFloat = myApp.utils.pFloat;
+  var nanCheck = myApp.utils.nanCheck
+  var roundOneDec = myApp.utils.roundOneDec
+  var roundTwoDec = myApp.utils.roundTwoDec
+  var FormatCurrency = myApp.utils.FormatCurrency
+  var FormatPercent = myApp.utils.FormatPercent
   //VARIABLES FOR CALCULATIONS-------------------------------------------------------
   var tu = pInt('#Rental_Rate_Assumptions tfoot .total_units');
   var tsf = pInt('#Rental_Rate_Assumptions tfoot .total_sf');
