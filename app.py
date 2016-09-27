@@ -27,14 +27,14 @@ def index():
 	if session.get('logged_in'):
 		email = session.get('email')
 		print("session logged in = true")	
-		return redirect("/main")
+		return redirect("/home")
 	else:
 		print("session logged in = false")
 		return redirect("/login")
 
-@app.route("/main", methods=['POST','GET'])
+@app.route("/dashboard", methods=['POST','GET'])
 @login_required
-def main():
+def dashboard():
 	title = "Main Dashboard"
 	return render_template("main.html",
 		title = title)
@@ -48,13 +48,13 @@ def login():
 		user = User.query.filter_by(email=email).first()
 		print("email:", email)
 		print("user:", user)
-		print("user.check_password(password):", user.check_password(password))
 		if user:
+			print("user.check_password(password):", user.check_password(password))
 			if user.check_password(password):
 				session['logged_in'] = True
 				session['firstname'] = user.firstname
 				print("/Login: successfully logged in")
-				return redirect('/main')
+				return redirect('/home')
 		error_msg = "Incorrect email/password. Please try again."
 	return render_template("login.html", error_msg = error_msg)
 
@@ -82,18 +82,18 @@ def home():
 	return render_template('home.html')
 
 
-@app.route("/dashboard", methods=['GET','POST'])
+@app.route("/org_dashboard", methods=['GET','POST'])
 @login_required
-def dashboard():
-	title = "Dashboard"
-	return render_template("dashboard.html",
+def org_dashboard():
+	title = "Original Dashboard"
+	return render_template("org_dashboard.html",
 		title = title)
 
-@app.route("/performa", methods=['GET','POST'])
+@app.route("/proforma", methods=['GET','POST'])
 @login_required
-def performa():
-	title = "Performa"
-	return render_template("performa.html",
+def proforma():
+	title = "Pro Forma"
+	return render_template("proforma.html",
 		title=title)
 
 @app.route('/returns_summary', methods=['GET','POST'])
