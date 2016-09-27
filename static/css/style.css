@@ -11,3 +11,20 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+
+.btn {
+	background-color: #287bb7;
+}
+
+.btn:hover {
+	background-color: #73b9ec;
+}
+
+.waves-effect waves-light btn-large {
+	background-color: #287bb7;
+}
+
+.waves-effect waves-light btn-large:hover {
+	background-color: #73b9ec;
+}
