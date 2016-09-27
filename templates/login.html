@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 
-	{% block content %}
-
+{% block content %}
 		<div class = "container">
-		<br>
-		<h2 style="text-align:center">Login</h2>
-		<form id= 'login_form' name = 'login_form' action = '/login' method = 'POST'>
-			<input type = 'text' name = 'email' placeholder = 'Enter Email'>
-			<input type = 'password' name = 'password' placeholder = 'Enter Password'>
-			<input type = 'submit' name = 'login_form_submit' value = 'Login'>
-			<!-- <button class="btn waves-effect waves-light" type="submit" name="action">Login</button> -->
-		</form>
-		<br>
-		<a href = '/register'>Register</a>
+			<br>
+			<h2 style="text-align:center">Login</h2>
+			<form id= 'login_form' name = 'login_form' action = '/login' method = 'POST'>
+				{{error_msg}}
+				<input type = 'text' name = 'email' placeholder = 'Enter Email'>
+				<input type = 'password' name = 'password' placeholder = 'Enter Password'>
+				<input type = 'submit' name = 'login_form_submit' value = 'Login'>
+				<!-- <button class="btn waves-effect waves-light" type="submit" name="action">Login</button> -->
+			</form>
+			<br>
+			<a href = '/register'>Register</a>
 		</div>
 		<br><br>
-		
-	{% endblock content %}
+
+
+{% endblock content %}

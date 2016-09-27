@@ -12,19 +12,22 @@
 </head>
 <body>
 	<!-- Dropdown Structure -->
+{% if session['logged_in'] == True %}
 	<ul id="dropdown1" class="dropdown-content">	
 		<li><a href="/dashboard">Edit Account</a></li>
-		<li><a href="#!">Settings</a></li>
+		<li><a href="/home">Home</a></li>
 		<li class="divider"></li>
 		<li><a href="/logout">Logout</a></li>
 	</ul>
-
+{% endif %}
 	<nav class = 'blue accent-3'>
 	<div class="nav-wrapper">
 		<a href="/" class="brand-logo">Logo</a>
 		<ul class="right hide-on-med-and-down">
-			<li>Welcome !</li>
+{% if session['logged_in'] == True %}
+			<li>{{session.firstname}}</li>
 			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">view_headline</i></a></li>
+{% endif %}
 		</ul>
 	</div>
 	</nav>

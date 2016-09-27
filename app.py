@@ -3,25 +3,19 @@ from model import *
 from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g
 # import flask_login
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
-
+from functools import wraps
  
 app = Flask(__name__)
 
-
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-login_manager.login_view = 'login'
-
-@login_manager.user_loader
-def load_user(id):
-	return User.query.get(int(id))
-
-
-@app.before_request
-def before_request():
-    g.user = current_user
-
+def login_required(f):
+	@wraps(f)
+	def wrap(*args, **kwargs):
+		if 'logged_in' in session:
+			return f(*args, **kwargs)
+		else:
+			flash("You need to login first.")
+			return redirect('/login')
+	return wrap
 
 # =====================================================================================================
 # Routes ==============================================================================================
@@ -34,10 +28,11 @@ def index():
 		email = session.get('email')
 		print("session logged in = true")	
 		return redirect("/main")
-	print("session logged in = false")
-	return redirect("/login")
+	else:
+		print("session logged in = false")
+		return redirect("/login")
 
-@app.route("/main")
+@app.route("/main", methods=['POST','GET'])
 @login_required
 def main():
 	title = "Main Dashboard"
@@ -46,21 +41,21 @@ def main():
 
 @app.route("/login", methods=['POST','GET'])
 def login():
+	error_msg = ""
 	if request.method == 'POST':
 		email = request.form.get('email')
 		password = request.form.get('password')
-		user_obj = User.query.filter_by(email=email).first()
+		user = User.query.filter_by(email=email).first()
 		print("email:", email)
-		print("user_obj:", user_obj)
-
-		if user_obj:
-			if password == user_obj.password:
+		print("user:", user)
+		if user:
+			if password == user.password:
 				session['logged_in'] = True
-				session['email'] = user_obj.email
+				session['firstname'] = user.firstname
 				print("/Login: successfully logged in")
 				return redirect('/main')
 		error_msg = "Incorrect email/password. Please try again."
-	return render_template("login.html")
+	return render_template("login.html", error_msg = error_msg)
 
 
 @app.route("/register", methods = ['GET', 'POST'])
@@ -76,8 +71,8 @@ def register():
 @app.route("/logout")
 @login_required
 def logout():
-	logout_user()
-	print("session['logged_in']:", session['logged_in'])
+	session.clear()
+	print("User logged out.")
 	return redirect('/login')
 
 
