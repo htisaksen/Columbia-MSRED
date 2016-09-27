@@ -29,8 +29,14 @@ main {
 	background-color: #73b9ec;
 }
 
-#button_alignment {
+#register_button_alignment {
 	float: right;
 	bottom: 57px;
 	position: relative;
+}
+
+#home_buttons {
+	height: 44px;
+	width: 300px;
+	line-height: 44px;
 }

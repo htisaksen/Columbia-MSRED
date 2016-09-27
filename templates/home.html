@@ -1,8 +1,28 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock title %}
 
-{% block tables %}
+{% block content %}
 
-<p>{{user_text}}</p>
+    <body>
+      <div class="container">
+        <h2 style="text-align:center">Create Real Estate Model:</h2>
+        <a href = '/main' class="waves-effect waves-light btn" id='home_buttons'>Apartment</a>
+        <br><br>
+        <h3>Load Models</h3>
+		
+		<div class ='collection waves-color-demo'>
+			<div class = 'collection-item'>
+				<div>Model Name</div>
+				<div>Last Edited</div>
+			</div>
+			<div class = 'collection-item'>
+				<code class=" language-markup">Model Number One</code>
+				<a href="#!" class="waves-effect waves-light btn secondary-content">Load</a>
+			</div>
+		</div>
 
-{% endblock tables %}
+
+      </div>
+    </body>
+          
+{% endblock content %}
