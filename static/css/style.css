@@ -28,3 +28,9 @@ main {
 .waves-effect waves-light btn-large:hover {
 	background-color: #73b9ec;
 }
+
+#button_alignment {
+	float: right;
+	bottom: 57px;
+	position: relative;
+}
