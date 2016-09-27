@@ -12,11 +12,12 @@ main {
   flex: 1 0 auto;
 }
 
-
+/*Blue color*/
 .btn {
 	background-color: #287bb7;
 }
 
+/*Lighter blue color*/
 .btn:hover {
 	background-color: #73b9ec;
 }
@@ -39,4 +40,5 @@ main {
 	height: 44px;
 	width: 300px;
 	line-height: 44px;
+	
 }
