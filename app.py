@@ -48,8 +48,9 @@ def login():
 		user = User.query.filter_by(email=email).first()
 		print("email:", email)
 		print("user:", user)
+		print("user.check_password(password):", user.check_password(password))
 		if user:
-			if password == user.password:
+			if user.check_password(password):
 				session['logged_in'] = True
 				session['firstname'] = user.firstname
 				print("/Login: successfully logged in")

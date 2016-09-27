@@ -18,6 +18,7 @@ class RealEstateModel(db.Model):
     id = db.Column('model_id', db.Integer, primary_key=True)
     created_on = db.Column('created_on', db.DateTime)
     model_name = db.Column('model_name', db.String(64))
+    last_modified = db.Column('last_modified', db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
 
     def __init__(self, model_name, user_id):
@@ -29,7 +30,7 @@ class User(db.Model):
     __tablename__ = "users"
     id = db.Column('user_id', db.Integer, primary_key=True)
     email = db.Column('email', db.String(60), unique = True, index=True)
-    password = db.Column('password', db.String(30))
+    pw_hash = db.Column('pw_hash', db.String(100))
     firstname = db.Column('firstname', db.String(30))
     lastname = db.Column('lastname', db.String(30))
     registered_on = db.Column('registered_on', db.DateTime)
@@ -37,29 +38,17 @@ class User(db.Model):
 
     def __init__(self, email, password, firstname, lastname):
         self.email = email
-        self.password = password
+        self.set_password(password)
         self.firstname = firstname
         self.lastname = lastname
         self.registered_on = datetime.utcnow()
 
     def set_password(self,password):
-        self.pw_hash = generate_password_hash(p)
+        self.pw_hash = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.pw_hash, password)
 
-
-    def is_authenticated(self):
-        return True
- 
-    def is_active(self):
-        return True
- 
-    def is_anonymous(self):
-        return False
- 
-    # def get_id(self):
-    #     return unicode(self.id)
  
     def __repr__(self):
         return '<User %r>' % (self.email)
