@@ -2,7 +2,12 @@
 // Math.round(num * 100) / 100
 $(document).ready(function(){
 
+	var onInput = function(){
+			myApp.dashboard.DashboardInput();
+			myApp.dashboard.DashboardInput();
+	};
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 	$('#Rental_Rate_Assumptions').find('tbody')
 		.append($("<tr class = 'rent_row'>")
 		.append($("<td>").html("<input type='text' name='proj_rents' class='proj_rents' placeholder='Project Rents' value='1 Bed/1 Bath'></td>"))
@@ -70,6 +75,14 @@ $(document).ready(function(){
 
 //RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 	var RRAInput = function(event){
+		var remSpcChr = myApp.utils.remSpcChr;
+		var pInt = myApp.utils.pInt;
+		var pFloat = myApp.utils.pFloat;
+		var nanCheck = myApp.utils.nanCheck
+		var roundOneDec = myApp.utils.roundOneDec
+		var roundTwoDec = myApp.utils.roundTwoDec
+		var FormatCurrency = myApp.utils.FormatCurrency
+		var FormatPercent = myApp.utils.FormatPercent
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		var totalUnits = parseInt($('.total_units', this).val());
 		var avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
@@ -190,14 +203,12 @@ $(document).ready(function(){
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
 			RRAInput();
-			DashboardInput();
+				myApp.dashboard.DashboardInput();
 		});
 	//Runs input function inside
+
 		$('.rent_row').on('input', RRAInput);
-		$('#dashboard').on('input', function(){
-			DashboardInput();
-			DashboardInput();
-		});
+		$('#dashboard').on('input', onInput);
 
 
 	}) //end addrow function
@@ -235,9 +246,10 @@ $(document).ready(function(){
 // ============================================================================================================
 // $('.rent_row').on('input', debouncer(RRAInput,500));
 	$('.rent_row').on('input', RRAInput);
-	$('#dashboard').on('input', function(){
-	DashboardInput();
-	DashboardInput();
+
+	$('#dashboard td').on('input', function(){
+		myApp.dashboard.DashboardInput();
+		myApp.dashboard.DashboardInput();
 	});
 
 

@@ -1,56 +1,62 @@
+
 // ============================================================================================================
 // Functions created for dashboard
 // ============================================================================================================
 //Returns int val of element
+myApp.utils = {};
 
 
-	var remSpcChr = function(value){
-		return value.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
-	}
+(function(){
+      myApp.utils.remSpcChr = function(value){
+		    return value.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '')
+      };
+      myApp.utils.pFloat = function(value){
+    		return parseFloat(myApp.utils.remSpcChr($(value).text()) || 0)
+    	};
 
-	var roundOneDec = function(value){
-		return Math.round(value * 10) / 10;
-	};
+      myApp.utils.pInt = function(value){
+    		return parseInt(myApp.utils.remSpcChr($(value).text()) || 0)
+    	};
 
-	var roundTwoDec = function(value){
-		return Math.round(value * 100) / 100;
-	};
+      myApp.utils.nanCheck = function(value) {
+    		if($.isNumeric(value) === false){
+    			return 0
+    		}
+    		else{
+    			return value
+    		}
+    	};
 
-	var pFloat = function(value){
-		return parseFloat(remSpcChr($(value).text()) || 0)
-	}
+      myApp.utils.roundOneDec = function(value){
+        return Math.round(value * 10) / 10;
+      };
 
-	var pInt = function(value){
-		return parseInt(remSpcChr($(value).text()) || 0)
-	};
+      myApp.utils.roundTwoDec = function(value){
+        return Math.round(value * 100) / 100;
+      };
 
-//runs function on a set time delay
-	var debouncer = function(func, time) {
-		var timeWindow = 500; //time in ms. waits this amount of time after the final click before running function
-		var timeout;
-		return function() {
-			// var context = this;
-			clearTimeout(timeout);
-			timeout = setTimeout(function() {
-				func();
-			}, timeWindow)
-		} //end function
-	}; //end debouncer
+      myApp.utils.FormatCurrency = function(number) {
+        return (new Intl.NumberFormat('en-EN', {style: 'currency', currency: 'USD' }).format(number))
+      }
 
-	var nanCheck = function(value) {
-		if($.isNumeric(value) === false){
-			return 0
-		}
-		else{
-			return value
-		}
-	};
+      myApp.utils.FormatPercent = function(number) {
+    		return (number.toFixed(2) + " %")
+    	}
+})();
 
-	var FormatCurrency = function(number) {
-		return (new Intl.NumberFormat('en-EN', {style: 'currency', currency: 'USD' }).format(number))
-	}
 
-	var FormatPercent = function(number) {
-		return (number.toFixed(2) + " %")
-	}
+// //runs function on a set time delay
+// 	var debouncer = function(func, time) {
+// 		var timeWindow = 500; //time in ms. waits this amount of time after the final click before running function
+// 		var timeout;
+// 		return function() {
+// 			// var context = this;
+// 			clearTimeout(timeout);
+// 			timeout = setTimeout(function() {
+// 				func();
+// 			}, timeWindow)
+// 		} //end function
+// 	}; //end debouncer
+
+
 // ============================================================================================================
