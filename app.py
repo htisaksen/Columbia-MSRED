@@ -75,6 +75,11 @@ def logout():
 	print("User logged out.")
 	return redirect('/login')
 
+@app.route("/home", methods=['GET','POST'])
+@login_required
+def home():
+	return render_template('home.html')
+
 
 @app.route("/dashboard", methods=['GET','POST'])
 @login_required
