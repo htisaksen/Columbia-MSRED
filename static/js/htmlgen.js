@@ -1,4 +1,3 @@
-myApp = {};
 myApp.htmlGen = {};
 
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -37,16 +36,18 @@ myApp.htmlGen = {};
 
 
 
-// //Javascript Rental Rate Assumptions first insert row -------------------------------------------
-// 	$('#Rental_Rate_Assumptions').find('tbody')
-// 		.append($("<tr class = 'rent_row'>")
-// 		.append($("<td>").html("<input type='text' name='proj_rents' class='proj_rents' placeholder='Project Rents'></td>"))
-// 		.append($("<td>").html("<input type='number' name='total_units' class='total_units' placeholder='Total Units'></td>"))
-// 		.append($("<td class = 'total_sf'></td>").text("0"))
-// 		.append($("<td>").html("<input type='number' name='avg_sf_per_unit' class='avg_sf_per_unit' placeholder='Avg SF Per Unit'></td>"))
-// 		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-// 		.append($("<td>").html("<input type='number' name='rent_per_unit' class='rent_per_unit' placeholder='Rent Per Unit'></td>"))
-// 		)
+//Javascript Rental Rate Assumptions first insert row -------------------------------------------
+  myApp.htmlGen.rentalRateAssumptions = function(){
+	$('#Rental_Rate_Assumptions').find('tbody')
+		.append($("<tr class = 'rent_row'>")
+		.append($("<td>").html("<input type='text' name='proj_rents' class='proj_rents' placeholder='Project Rents'></td>"))
+		.append($("<td>").html("<input type='number' name='total_units' class='total_units' placeholder='Total Units'></td>"))
+		.append($("<td class = 'total_sf'></td>").text("0"))
+		.append($("<td>").html("<input type='number' name='avg_sf_per_unit' class='avg_sf_per_unit' placeholder='Avg SF Per Unit'></td>"))
+		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
+		.append($("<td>").html("<input type='number' name='rent_per_unit' class='rent_per_unit' placeholder='Rent Per Unit'></td>"))
+		)
+  };
 //Javascript Market Rental Rate Assumptions first insert row -------------------------------------------
   myApp.htmlGen.marketRentalAssumptions = function(){
   	$('#Market_Rental_Assumptions').find('tbody')
