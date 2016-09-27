@@ -1,8 +1,48 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock title %}
 
-{% block tables %}
+{% block content %}
 
-<p>{{user_text}}</p>
+    <body>
+      <div class="container">
+        <h2 style="text-align:center">Create Real Estate Model</h2><br>
+        <div class ="row">
+            <div class = 'col s6'>
+                <a href = '/dashboard' class="waves-effect waves-light btn" id='home_buttons'>Apartment</a>
+            </div>
+            <div class = 'col s6'>
+                <a href = '' class="waves-effect waves-light btn" id='home_buttons'>Commercial</a>
+            </div>
+        </div>
+        <br><br>
+        <h3>Load Models</h3>
+        <table class = 'highlight' id = 'Load_History'>
+            <thead>
+              <tr>
+                  <th data-field="col_model_name">Model</th>
+                  <th data-field="col_date_modified">Date Last Modified</th>
+                  <th data-field="col_button"></th>
+              </tr>
+            </thead>
 
-{% endblock tables %}
+            <tbody>
+              <tr>
+                <td class = 'model_name'>Model Number One</td>
+                <td class = 'date_modified'>9/27/2016 5:45PM</td>
+                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
+              </tr>
+              <tr>
+                <td>#2</td>
+                <td>9/27/2016 5:49PM</td>
+                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
+              </tr>
+            </tbody>
+            <tfoot>
+                <tr></tr>
+            </tfoot>
+        </table>
+
+      </div>
+    </body>
+          
+{% endblock content %}

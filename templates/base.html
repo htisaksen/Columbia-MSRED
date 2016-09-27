@@ -3,28 +3,30 @@
 <head>
 	<meta charset="utf-8">
 	<title>{{title}}</title>
-	<!-- <link href="{{ url_for("static", filename="css/materialize.min.css") }}" rel="stylesheet" type="text">
-	<link href="{{ url_for("static", filename="css/style.css") }}" rel="stylesheet" type="text/css"> -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="static/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<!-- Dropdown Structure -->
+{% if session['logged_in'] == True %}
 	<ul id="dropdown1" class="dropdown-content">	
 		<li><a href="/dashboard">Edit Account</a></li>
-		<li><a href="#!">Settings</a></li>
+		<li class="divider"></li>
+		<li><a href="/home">Home</a></li>
 		<li class="divider"></li>
 		<li><a href="/logout">Logout</a></li>
 	</ul>
-
+{% endif %}
 	<nav class = 'blue accent-3'>
 	<div class="nav-wrapper">
 		<a href="/" class="brand-logo">Logo</a>
 		<ul class="right hide-on-med-and-down">
-			<li>Welcome !</li>
+{% if session['logged_in'] == True %}
+			<li>{{session.firstname}}</li>
 			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">view_headline</i></a></li>
+{% endif %}
 		</ul>
 	</div>
 	</nav>
@@ -33,7 +35,7 @@
 <main>
 	{% block content %}
 	<article>{% block dashboard %}{% endblock dashboard %}</article>
-	<article>{% block performa %}{% endblock performa %}</article>
+	<article>{% block proforma %}{% endblock proforma %}</article>
 	<article>{% block returns_summary %}{% endblock returns_summary %}</article>
 	{% endblock content %}
 <sidebar>{% block sidebar %}{% endblock sidebar %}</sidebar>
@@ -73,7 +75,7 @@
 <script type="text/javascript" src='static/js/dashboard_calculations.js'></script>
 <script type="text/javascript" src='static/js/RRAinput.js'></script>
 <script type="text/javascript" src='static/js/MRAinput.js'></script>
-<script type="text/javascript" src='static/js/performa.js'></script>
+<script type="text/javascript" src='static/js/proforma.js'></script>
 <script type="text/javascript" src='static/js/returns_summary.js'></script>
 <!-- <script type="text/javascript" src='static/js/events.js'></script> -->
 <script type="text/javascript" src='static/js/main.js'></script>

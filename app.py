@@ -1,85 +1,115 @@
 import os, re
-from flask import *
 from model import *
-
-
-from flask.ext.login import LoginManager
+from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g
+# import flask_login
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+from functools import wraps
  
 app = Flask(__name__)
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-
+def login_required(f):
+	@wraps(f)
+	def wrap(*args, **kwargs):
+		if 'logged_in' in session:
+			return f(*args, **kwargs)
+		else:
+			flash("You need to login first.")
+			return redirect('/login')
+	return wrap
 
 # =====================================================================================================
 # Routes ==============================================================================================
 # =====================================================================================================
+
 @app.route("/", methods=['POST','GET'])
 def index():
-	username = ''
+	email = ''
 	if session.get('logged_in'):
-		username = session.get('username')
-		return render_template('home.html')
-	return redirect("/main")
+		email = session.get('email')
+		print("session logged in = true")	
+		return redirect("/home")
+	else:
+		print("session logged in = false")
+		return redirect("/login")
+
+@app.route("/dashboard", methods=['POST','GET'])
+@login_required
+def dashboard():
+	title = "Main Dashboard"
+	return render_template("main.html",
+		title = title)
 
 @app.route("/login", methods=['POST','GET'])
 def login():
-	username = request.form.get('username')
-	password = request.form.get('password')
-	user_obj = User.query.filter_by(username=username).first()
-	print("user_obj:", user_obj)
+	error_msg = ""
+	if request.method == 'POST':
+		email = request.form.get('email')
+		password = request.form.get('password')
+		user = User.query.filter_by(email=email).first()
+		print("email:", email)
+		print("user:", user)
+		if user:
+			print("user.check_password(password):", user.check_password(password))
+			if user.check_password(password):
+				session['logged_in'] = True
+				session['firstname'] = user.firstname
+				print("/Login: successfully logged in")
+				return redirect('/home')
+		error_msg = "Incorrect email/password. Please try again."
+	return render_template("login.html", error_msg = error_msg)
 
-	if user_obj:
-		if password == user_obj.password:
-			session['logged_in'] = True
-			session['username'] = user_obj.username
-			return redirect('/main')
-	return render_template("login.html")
 
-@app.route("/logout")
-def logout():
-	if session.get('logged_in') == True:
-		session['logged_in'] = False
-		session['username'] = False
+@app.route("/register", methods = ['GET', 'POST'])
+def register():
+	if request.method == 'GET':
+		return render_template('register.html')
+	user = User(request.form['email'], request.form['password'], request.form['firstname'], request.form['lastname'])
+	db.session.add(user)
+	db.session.commit()
+	print("User successfully added.")
 	return redirect('/login')
 
+@app.route("/logout")
+@login_required
+def logout():
+	session.clear()
+	print("User logged out.")
+	return redirect('/login')
 
-@app.route("/register")
-def register():
-	pass
+@app.route("/home", methods=['GET','POST'])
+@login_required
+def home():
+	return render_template('home.html')
 
-@app.route("/dashboard", methods=['GET','POST'])
-def dashboard():
-	title = "Dashboard"
-	return render_template("dashboard.html",
+
+@app.route("/org_dashboard", methods=['GET','POST'])
+@login_required
+def org_dashboard():
+	title = "Original Dashboard"
+	return render_template("org_dashboard.html",
 		title = title)
 
-@app.route("/performa")
-def performa():
-	title = "Performa"
-	return render_template("performa.html",
+@app.route("/proforma", methods=['GET','POST'])
+@login_required
+def proforma():
+	title = "Pro Forma"
+	return render_template("proforma.html",
 		title=title)
 
-@app.route('/returns_summary')
+@app.route('/returns_summary', methods=['GET','POST'])
+@login_required
 def returnSum():
 	title = "Returns Summary"
 	return render_template('returns_summary.html',
 		title=title)
 
 @app.route('/inputform')
+@login_required
 def inputForm():
 	title="Input Form"
 	return render_template('input_form.html',
 		title = title)
 
-@app.route("/main")
-def main():
-	login_redirect()
-	print("===We are here")
-	title = "Main Dashboard"
-	return render_template("main.html",
-		title = title)
 
 
 

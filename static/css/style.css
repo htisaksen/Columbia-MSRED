@@ -11,3 +11,34 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+/*Blue color*/
+.btn {
+	background-color: #287bb7;
+}
+
+/*Lighter blue color*/
+.btn:hover {
+	background-color: #73b9ec;
+}
+
+.waves-effect waves-light btn-large {
+	background-color: #287bb7;
+}
+
+.waves-effect waves-light btn-large:hover {
+	background-color: #73b9ec;
+}
+
+#register_button_alignment {
+	float: right;
+	bottom: 57px;
+	position: relative;
+}
+
+#home_buttons {
+	height: 44px;
+	width: 300px;
+	line-height: 44px;
+	
+}

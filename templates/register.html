@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
-	{% block tables %}
+	{% block content %}
 
 		<div class = "container">
 		<br>
-		<h2 style="text-align:center">Login</h2>
+		<h2 style="text-align:center">Register</h2>
 		<form id= 'register_form' name = 'register_form' action = '/register' method = 'POST'>
-			<input type = 'text' name = 'username' placeholder = 'Enter Username'>
+			<input type = 'text' name = 'email' placeholder = 'Enter Email'>
 			<input type = 'password' name = 'password' placeholder = 'Enter Password'>
-			<input type = 'submit' name = 'register_form_submit' value = 'Register'>
-			<!-- <button class="btn waves-effect waves-light" type="submit" name="action">Login</button> -->
+			<input type = 'text' name = 'firstname' placeholder = 'Enter First Name'>
+			<input type = 'text' name = 'lastname' placeholder = 'Enter Last Name'>
+			<button class="btn waves-effect waves-light" type="submit" name="action">Register</button>
 		</form>
 		</div>
 		<br><br>
 
-	{% endblock tables %}
+	{% endblock content %}
