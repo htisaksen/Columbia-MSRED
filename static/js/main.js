@@ -8,18 +8,18 @@ $(document).ready(function(){
 			myApp.dashboard.DashboardInput();
 	};
 
-//TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	myApp.htmlGen.test();
 
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-// //Javascript Rental Rate Assumptions first insert row -------------------------------------------
 
+
+// //Javascript Rental Rate Assumptions first insert row -----------------------
 		// myApp.htmlGen.rentalRateAssumptions();
 
-//Javascript Market Rental Rate Assumptions first insert row -------------------------------------------
-
+//Javascript Market Rental Rate Assumptions first insert row -------------------
 		myApp.htmlGen.marketRentalAssumptions();
 
 // ============================================================================================================
@@ -30,15 +30,11 @@ $(document).ready(function(){
 	// var MRAlist = []; //Market Rental Assumptions list
 
 
-//RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
-
+//RENTAL RATE ASSUMPTIONS Table calculations=====================
 	myApp.rra.RRAInput();
 
-//MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
-
+//MARKET RENTAL ASSUMPTIONS Table calculations===================
 	myApp.mra.MRAInput();
-
-//END OF MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
 
 
 
@@ -70,7 +66,6 @@ $(document).ready(function(){
 		$('.rent_row').on('input', myApp.rra.RRAInput);
 		$('#dashboard').on('input', dashboardInput);
 
-
 	}) //end addrow function
 
 
@@ -80,11 +75,11 @@ $(document).ready(function(){
 //MARKET RENTAL ASSUMPTIONS Dynamic Table
 // ============================================================================================================
 	// adds one row to table when the 'add' button is clicked
-	$('#Loan_Term').on('keyup', function(event){
-		var loanTerm = parseInt($('#Loan_Term').val());
-		for(var i=0;i<loanTerm;++i){
+	$('#Sale_Year').on('focusout', function(event){
+		var saleYear = parseInt($('#Sale_Year').val());
+		for(var i=0;i<saleYear;++i){
 			var mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
-			while(loanTerm+1 < mraCounter){
+			while(saleYear+1 < mraCounter){
 				$('#Market_Rental_Assumptions tbody tr').last().remove();
 				mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
 			};

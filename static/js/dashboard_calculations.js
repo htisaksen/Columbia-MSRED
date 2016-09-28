@@ -57,20 +57,18 @@ myApp.dashboard.getInputs = function(){
   var tsf = pInt('#Rental_Rate_Assumptions tfoot .total_sf');
   //--------------------------------------------------------------------------------
 
-  //moved because infinity
-
 
   //Property Info Calculations
+  $('#prop_info_total_num_units').text(pInt('#Rental_Rate_Assumptions tfoot .total_units'));  //num
+  $('#prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf').text());   //num
 
-  $('#prop_info_total_num_units').text(pInt('#Rental_Rate_Assumptions tfoot .total_units'));	//num
-  $('#prop_info_total_sq_ft').text($('#Rental_Rate_Assumptions tfoot .total_sf').text());		//num
+  //moved to top of formula list to fix infinity issue
+  $('#PI_Closing_Costs').text(
+    FormatCurrency(nanCheck(g.purchasePrice*g.closingCostPercentage)));     //$
+  $('#PI_Total_Costs').text(
+    FormatCurrency(nanCheck(g.purchasePrice+pFloat('#PI_Closing_Costs'))));   //$
 
   //Purchase Info Calculations
-  $('#PI_Closing_Costs').text(
-    FormatCurrency(nanCheck(g.purchasePrice*g.closingCostPercentage))); 		//$
-  $('#PI_Total_Costs').text(
-    FormatCurrency(nanCheck(g.purchasePrice+pFloat('#PI_Closing_Costs'))));		//$
-
   $('#PI_Purchase_Cost_Per_Unit').text(
     FormatCurrency(nanCheck(g.purchasePrice/pInt('#prop_info_total_num_units'))));		//$
   $('#PI_Total_Cost_Per_Unit').text(
