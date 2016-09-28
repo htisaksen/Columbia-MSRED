@@ -38,9 +38,13 @@ myApp.utils = {};
         return (new Intl.NumberFormat('en-EN', {style: 'currency', currency: 'USD' }).format(number))
       }
 
-      myApp.utils.FormatPercent = function(number) {
+      myApp.utils.FormatPercent2 = function(number) {
     		return (number.toFixed(2) + " %")
     	}
+      
+      myApp.utils.FormatPercent1 = function(number) {
+        return (number.toFixed(1) + " %")
+      }
 })();
 
 

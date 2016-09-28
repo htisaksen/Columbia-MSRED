@@ -66,7 +66,7 @@ $(document).ready(function(){
 		$('.rent_row').on('input', myApp.rra.RRAInput);
 		$('#dashboard').on('input', dashboardInput);
 
-	}) //end addrow function
+	}); //end addrow function
 
 
 
@@ -94,7 +94,7 @@ $(document).ready(function(){
 				.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 				)
 		};
-	});
+	}); //end addrow function
 
 // ============================================================================================================
 	$('.rent_row').on('input', myApp.rra.RRAInput);

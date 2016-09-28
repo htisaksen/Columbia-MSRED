@@ -9,11 +9,11 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 		var remSpcChr = myApp.utils.remSpcChr;
 		var pInt = myApp.utils.pInt;
 		var pFloat = myApp.utils.pFloat;
-		var nanCheck = myApp.utils.nanCheck
-		var roundOneDec = myApp.utils.roundOneDec
-		var roundTwoDec = myApp.utils.roundTwoDec
-		var FormatCurrency = myApp.utils.FormatCurrency
-		var FormatPercent = myApp.utils.FormatPercent
+		var nanCheck = myApp.utils.nanCheck;
+		var roundOneDec = myApp.utils.roundOneDec;
+		var roundTwoDec = myApp.utils.roundTwoDec;
+		var FormatCurrency = myApp.utils.FormatCurrency;
+		var FormatPercent = myApp.utils.FormatPercent;
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		var totalUnits = parseInt($('.total_units', this).val());
 		var avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
