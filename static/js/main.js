@@ -78,6 +78,7 @@ $(document).ready(function(){
 	$('#Sale_Year').on('focusout', function(event){
 		var saleYear = parseInt($('#Sale_Year').val());
 		for(var i=0;i<saleYear;++i){
+		//Inserts number of rows based on Sale Year in Dashboard
 			var mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
 			while(saleYear+1 < mraCounter){
 				$('#Market_Rental_Assumptions tbody tr').last().remove();
@@ -93,8 +94,54 @@ $(document).ready(function(){
 				.append($("<td>").html("<input type='number' name='mkt_rent_concessions' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
 				.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 				)
+		//Inserts number of columns based on Sale Year in Pro Forma
+		// 	console.log("Add Proforma rows==============")
+		// 	$('#Proforma').find('#PF_Year_End')
+		// 		.append($("<th>").text("Test"));
+		// 	$('#Proforma').find('#PR_Rental_Income')
+		// 		.append($("<td>").text("Test"));
+
 		};
 	}); //end addrow function
+
+
+	$('#Sale_Year_T').on('input', function(event){
+		console.log("Input entered...")
+		var saleYear_T = parseInt($('#Sale_Year_T').val());
+		for(var i = 0; i < saleYear_T; ++i) {
+			console.log("i:",i)
+		//Inserts number of columns based on Sale Year in Dashboard
+			var pfCounter = $('#Proforma .PF_Year_End td').length+1;
+			console.log("pfCounter:",pfCounter)
+		//Deletes extra columns
+			if (saleYear_T < pfCounter) {
+				$('#Proforma tr:not(:first)').each(function(){
+					$(this).remove();
+				})
+			}
+			
+		//Inserts number of columns based on Sale Year in Pro Forma
+			console.log("====Insert new data======")
+			$('#Proforma tr:first ').append("<td class= 'PF_" + "year_" + pfCounter + "'>"+'Year '+ pfCounter +"</td>");
+			$('#Proforma tr:not(:first)').each(function(){
+				console.log("this:",this);
+				$(this).append("<td>second</td>");
+			});
+
+		};
+	}); //end addrow function
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ============================================================================================================
 	$('.rent_row').on('input', myApp.rra.RRAInput);
