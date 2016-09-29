@@ -108,38 +108,25 @@ $(document).ready(function(){
 	$('#Sale_Year_T').on('input', function(event){
 		var saleYear_T = parseInt($('#Sale_Year_T').val())+1;
 		var pfCounter = saleYear_T
-		console.log("PF COUNTER ON INPUT: ",pfCounter)
-	//Deletes extra columns
+	//Deletes all columns
 		if (saleYear_T < pfCounter+1) {
-			// console.log("$('#Proforma tr td:not(:first)'):",$('#Proforma tr td:not(:first)'))
 			$('#Proforma tr td:not(:first)').each(function(){
 				$(this).remove();
-
-				// console.log('DELETE TRUE');
-				pfCounter = $('#Proforma .PF_Year_End td').length+1;
+				// pfCounter = $('#Proforma .PF_Year_End td').length+1;
 			});
 			$('#Proforma tr td:first').each(function(){
 				$(this).remove();
-				pfCounter = $('#Proforma .PF_Year_End td').length+1;
-
+				// pfCounter = $('#Proforma .PF_Year_End td').length+1;
 			})
-			// console.log("End of IF============")
 		};
-
-
-
+	//Inserts number of columns based on Sale Year in Dashboard
 		for(var i = 0; i < saleYear_T; ++i) {
 			pfCounter = $('#Proforma .PF_Year_End td').length+1;
-
-			// console.log("i:",i)
-		//Inserts number of columns based on Sale Year in Dashboard
-			// console.log("pfCounter:",pfCounter)
-
-		//Inserts number of columns based on Sale Year in Pro Forma
-			// console.log("====Insert new data======")
 			$('#Proforma tr:first').append("<td class= 'PF_" + "year_" + pfCounter + "'>"+'Year '+ pfCounter +"</td>");
-			$('#Proforma tr:not(:first)').each(function(){
-				// console.log("this:",this);
+			$('#Proforma tr:nth-child(3)').append("<td class= 'PF_Rev'>" + pfCounter*5+4 + "</td>");
+			
+			// $('#Proforma tr:not(:first)').each(function(){
+			$('#Proforma tr:nth-child(4)').each(function(){
 				$(this).append("<td>Cell</td>");
 				pfCounter = $('#Proforma .PF_Year_End td').length+1;
 			});
