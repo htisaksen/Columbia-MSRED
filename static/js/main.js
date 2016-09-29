@@ -77,7 +77,7 @@ $(document).ready(function(){
 	// adds one row to table when the 'add' button is clicked
 	$('#Sale_Year_T').on('focusout', function(event){
 		var saleYear = parseInt($('#Sale_Year_T').val());
-		for(var i=0;i<saleYear;++i){
+		for(var i=0;i<saleYear-1;++i){
 		//Inserts number of rows based on Sale Year in Dashboard
 			var mraCounter = $('#Market_Rental_Assumptions_T tbody tr').length+1;
 			while(saleYear+1 < mraCounter){
@@ -105,7 +105,7 @@ $(document).ready(function(){
 	}); //end addrow function
 
 	var pInt = myApp.utils.pInt;
-	$('#Sale_Year_T, #year_row_1').on('input', function(event){
+	$('#Sale_Year_T, #Market_Rental_Assumptions_T').on('input', function(event){
 		var saleYear_T = parseInt($('#Sale_Year_T').val())+1;
 		var pfCounter = saleYear_T;
 	//Deletes all columns
@@ -125,15 +125,21 @@ $(document).ready(function(){
 			var Rental_Rate_Income_Total_T = parseInt($('#Rental_Income_Total_T').text());		
 			$('#Proforma tr:first').append("<td class= 'PF_" + "year_" + pfCounter + "'>"+'Year '+ pfCounter +"</td>");
 			if (i == 0){
-				$('#Proforma tr:nth-child(3)').append("<td class= 'PF_Rental_Income'>" + Rental_Rate_Income_Total_T + "</td>");
-				$('#Proforma tr:nth-child(4)').append("<td class= 'PF_Other_Income'>" + 100000 + "</td>");
+				$('#Proforma tr:nth-child(3)').append(
+					"<td class= 'PF_Rental_Income'>" + Rental_Rate_Income_Total_T + "</td>");
+				$('#Proforma tr:nth-child(4)').append(
+					"<td class= 'PF_Other_Income'>" + 100000 + "</td>");
 				
 			} else {
 				console.log("weird row:", $('#year_row_' + i + ' .mkt_rent_revenue').val());
-				console.log("pint weird row:", pInt($('#year_row_' + i + ' .mkt_rent_revenue').val()));
-
-				console.log("year row 1:", $('#year_row_1'));
-				$('#Proforma tr:nth-child(3)').append("<td class= 'PF_Rental_Income'>" + Rental_Rate_Income_Total_T*(1+(pInt($('#year_row_' + i + ' .mkt_rent_revenue').val())/100) ) + "</td>");
+				console.log("pint weird row:", Rental_Rate_Income_Total_T*(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100)	);
+				console.log("prev selector for RI:", $('tr #PF_Rental_Income td:nth-child('+i+')').text()	);
+				// console.log("year row 1:", $('#year_row_1'));
+				$('#Proforma tr:nth-child(3)').append(
+					"<td class= 'PF_Rental_Income'>" + 
+					$('#Proforma .PF_Rental_Income td:nth-child('+ i +')').text()  *
+					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100) +
+					"</td>");
 			// $('#Proforma tr:not(:first)').each(function(){
 				$('#Proforma tr:nth-child(4)').each(function(){
 					$(this).append("<td>Cell</td>");
