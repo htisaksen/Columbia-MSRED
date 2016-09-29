@@ -123,28 +123,57 @@ $(document).ready(function(){
 		for(var i = 0; i < saleYear_T; ++i) {
 			pfCounter = $('#Proforma .PF_Year_End td').length+1;
 			var Rental_Rate_Income_Total_T = parseInt($('#Rental_Income_Total_T').text());		
+			var Other_Rate_Income_Total_T = parseInt($('#Other_Income_Total_T').text());
 			$('#Proforma tr:first').append("<td class= 'PF_" + "year_" + pfCounter + "'>"+'Year '+ pfCounter +"</td>");
 			if (i == 0){
-				$('#Proforma tr:nth-child(3)').append(
-					"<td class= 'PF_Rental_Income'>" + Rental_Rate_Income_Total_T + "</td>");
-				$('#Proforma tr:nth-child(4)').append(
-					"<td class= 'PF_Other_Income'>" + 100000 + "</td>");
-				
-			} else {
-				console.log("weird row:", $('#year_row_' + i + ' .mkt_rent_revenue').val());
-				console.log("pint weird row:", Rental_Rate_Income_Total_T*(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100)	);
-				console.log("prev selector for RI:", $('tr #PF_Rental_Income td:nth-child('+i+')').text()	);
-				// console.log("year row 1:", $('#year_row_1'));
+			//Year 1 data grabbed from org_dashboard calculations
 				$('#Proforma tr:nth-child(3)').append(
 					"<td class= 'PF_Rental_Income'>" + 
-					$('#Proforma .PF_Rental_Income td:nth-child('+ i +')').text()  *
+					Rental_Rate_Income_Total_T * (1+($('#year_row_1 .mkt_rent_revenue').val())/100) + "</td>");
+				$('#Proforma tr:nth-child(4)').append(
+					"<td class= 'PF_Other_Income'>" + 
+					Other_Rate_Income_Total_T * (1+($('#year_row_1 .mkt_rent_revenue').val())/100) + "</td>");
+				$('#Proforma tr:nth-child(5)').append(
+					"<td class= 'PF_Gross_Rental_Income'>" + 
+					($('.PF_Rental_Income td:first-child').text()+$('.PF_Other_Income td:first-child').text()) + "</td>");
+				
+				// $('#Proforma tr:nth-child(6)').append(
+				// 	"<td class= 'PF_Less_Vacancy'>" + 106 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				// $('#Proforma tr:nth-child(7)').append(
+				// 	"<td class= 'PF_Less_Concessions'>" + 107 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				// $('#Proforma tr:nth-child(8)').append(
+				// 	"<td class= 'PF_Less_Credit_Loss'>" + 108 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				// $('#Proforma tr:nth-child(9)').append(
+				// 	"<td class= 'PF_Net_Rental_Income'>" + 109 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				
+				// $('#Proforma tr:nth-child(10)').append(
+				// 	"<td class= 'XXX'>" + 100 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				// $('#Proforma tr:nth-child(11)').append(
+				// 	"<td class= 'XXX'>" + 100 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				// $('#Proforma tr:nth-child(12)').append(
+				// 	"<td class= 'XXX'>" + 100 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				// $('#Proforma tr:nth-child(13)').append(
+				// 	"<td class= 'XXX'>" + 100 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				// $('#Proforma tr:nth-child(14)').append(
+				// 	"<td class= 'XXX'>" + 100 * (1+($('#year_row_1 .XXX').val())/100) + "</td>");
+				
+			} else {
+			//All other year data calculated based on MRA table inputs
+				console.log("pint weird row:", Rental_Rate_Income_Total_T*(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100)	);
+				console.log("prev selector for RI:", $('#Proforma .PF_Rental_Income td:nth-child('+ (i+1) +')').text() );
+				console.log("=====END======")
+				//Rental Incom
+				$('#Proforma tr:nth-child(3)').append(
+					"<td class= 'PF_Rental_Income'>" + 
+					$('#Proforma .PF_Rental_Income td:nth-child('+ (i+1) +')').text()  *
 					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100) +
 					"</td>");
-			// $('#Proforma tr:not(:first)').each(function(){
-				$('#Proforma tr:nth-child(4)').each(function(){
-					$(this).append("<td>Cell</td>");
-					// pfCounter = $('#Proforma .PF_Year_End td').length+1;
-				});
+				//Other Income
+				$('#Proforma tr:nth-child(4)').append(
+					"<td class= 'PF_Other_Income'>" + 
+					$('#Proforma .PF_Other_Income td:nth-child('+ (i+1) +')').text()  *
+					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100) +
+					"</td>");
 			}
 		}; //end for loop
 			
