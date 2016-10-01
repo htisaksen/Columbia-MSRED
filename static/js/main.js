@@ -3,15 +3,16 @@
 $(document).ready(function(){
 
 //created function to run dashboard input twice
-	var dashboardInput = function(){
-			myApp.dashboard.DashboardInput();
-			myApp.dashboard.DashboardInput();
+	var calculations = function(){
+			myApp.dashboard.dashboardInput();
+			myApp.dashboard.dashboardInput();
+			myApp.proForma();
+			myApp.utils.nanReplace();
+
 	};
 
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 	myApp.htmlGen.test();
-
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
@@ -25,10 +26,6 @@ $(document).ready(function(){
 // ============================================================================================================
 // Start of ALL calculations for dashboard
 // ============================================================================================================
-
-	// var RRAlist = []; //Rental Rate Assumptions list
-	// var MRAlist = []; //Market Rental Assumptions list
-
 
 //RENTAL RATE ASSUMPTIONS Table calculations=====================
 	myApp.rra.RRAInput();
@@ -59,12 +56,11 @@ $(document).ready(function(){
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
 			RRAInput();
-				myApp.dashboard.DashboardInput();
+			myApp.dashboard.dashboardInput();
 		});
 	//Runs input function inside
-
 		$('.rent_row').on('input', myApp.rra.RRAInput);
-		$('#dashboard').on('input', dashboardInput);
+		$('#dashboard').on('input', calculations);
 
 	}); //end addrow function
 
@@ -75,7 +71,7 @@ $(document).ready(function(){
 //MARKET RENTAL ASSUMPTIONS Dynamic Table
 // ============================================================================================================
 	// adds one row to table when the 'add' button is clicked
-	$('#Sale_Year').on('focusout', function(event){
+	$('#Sale_Year').on('input', function(event){
 		var saleYear = parseInt($('#Sale_Year').val());
 		for(var i=0;i<saleYear;++i){
 		//Inserts number of rows based on Sale Year in Dashboard
@@ -94,47 +90,13 @@ $(document).ready(function(){
 				.append($("<td>").html("<input type='number' name='mkt_rent_concessions' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
 				.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 				)
-		//Inserts number of columns based on Sale Year in Pro Forma
-		// 	console.log("Add Proforma rows==============")
-		// 	$('#Proforma').find('#PF_Year_End')
-		// 		.append($("<th>").text("Test"));
-		// 	$('#Proforma').find('#PR_Rental_Income')
-		// 		.append($("<td>").text("Test"));
-
 		};
 	}); //end addrow function
 
 
-	$('#Sale_Year_T').on('input', function(event){
-		var saleYear_T = parseInt($('#Sale_Year_T').val())+1;
-		var pfCounter = saleYear_T
-	//Deletes all columns
-		if (saleYear_T < pfCounter+1) {
-			$('#Proforma tr td:not(:first)').each(function(){
-				$(this).remove();
-				// pfCounter = $('#Proforma .PF_Year_End td').length+1;
-			});
-			$('#Proforma tr td:first').each(function(){
-				$(this).remove();
-				// pfCounter = $('#Proforma .PF_Year_End td').length+1;
-			})
-		};
-	//Inserts number of columns based on Sale Year in Dashboard
-		for(var i = 0; i < saleYear_T; ++i) {
-			pfCounter = $('#Proforma .PF_Year_End td').length+1;
-			$('#Proforma tr:first').append("<td class= 'PF_" + "year_" + pfCounter + "'>"+'Year '+ pfCounter +"</td>");
-			$('#Proforma tr:nth-child(3)').append("<td class= 'PF_Rev'>" + pfCounter*5+4 + "</td>");
-
-			// $('#Proforma tr:not(:first)').each(function(){
-			$('#Proforma tr:nth-child(4)').each(function(){
-				$(this).append("<td>Cell</td>");
-				pfCounter = $('#Proforma .PF_Year_End td').length+1;
-			});
-		}; //end for loop
-
-	}); //end addrow function
-
-
+// ============================================================================================================
+//SAVE to DB
+// ============================================================================================================
 	$('#save_input').on('click',function(event) {
     event.preventDefault();
     var data = $('#dashboard').serialize();
@@ -143,7 +105,7 @@ $(document).ready(function(){
 
 // ============================================================================================================
 	$('.rent_row').on('input', myApp.rra.RRAInput);
-	$('#dashboard').on('input', dashboardInput);
+	$('#dashboard').on('input', calculations);
 
 
 

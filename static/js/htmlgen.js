@@ -50,7 +50,7 @@ myApp.htmlGen = {};
   };
 //Javascript Market Rental Rate Assumptions first insert row -------------------------------------------
   myApp.htmlGen.marketRentalAssumptions = function(){
-  	$('#Market_Rental_Assumptions').find('tbody')
+  	$('#Market_Rental_Assumptions_T').find('tbody')  //updated _T for Proforma testing
   		.append($("<tr class = 'year_row' id='year_row_1'>")
   		.append($("<td>Year 1</td>"))
   		.append($("<td></td>"))
