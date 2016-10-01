@@ -124,7 +124,7 @@ $(document).ready(function(){
 			pfCounter = $('#Proforma .PF_Year_End td').length+1;
 			$('#Proforma tr:first').append("<td class= 'PF_" + "year_" + pfCounter + "'>"+'Year '+ pfCounter +"</td>");
 			$('#Proforma tr:nth-child(3)').append("<td class= 'PF_Rev'>" + pfCounter*5+4 + "</td>");
-			
+
 			// $('#Proforma tr:not(:first)').each(function(){
 			$('#Proforma tr:nth-child(4)').each(function(){
 				$(this).append("<td>Cell</td>");
@@ -135,16 +135,11 @@ $(document).ready(function(){
 	}); //end addrow function
 
 
-
-
-
-
-
-
-
-
-
-
+	$('#save_input').on('click',function(event) {
+    event.preventDefault();
+    var data = $('#dashboard').serialize();
+		services.saveDashboard(data);
+ 	});
 
 // ============================================================================================================
 	$('.rent_row').on('input', myApp.rra.RRAInput);

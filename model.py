@@ -19,7 +19,38 @@ class RealEstateModel(db.Model):
     created_on = db.Column('created_on', db.DateTime)
     model_name = db.Column('model_name', db.String(64))
     last_modified = db.Column('last_modified', db.DateTime)
+    analysis_start_date = db.Column('analysis_start_date', db.String(12))
+    property_name = db.Column('property_name', db.String(32))
+    property_location = db.Column('property_location', db.String(32))
+    property_type = db.Column('property_type', db.String(32))
+    purchase_price = db.Column('purchase_price', db.Integer)
+    closing_cost_percentage = db.Column('closing_cost_percentage', db.Integer)
+    sale_year = db.Column('sale_year', db.Integer)
+    terminal_cap_rate = db.Column('terminal_cap_rate', db.Integer)
+    sales_costs = db.Column('sales_costs', db.Integer)
+    leverage = db.Column('leverage', db.Integer)
+    interest_rate_on_mortgage = db.Column('interest_rate_on_mortgage', db.Integer)
+    loan_term = db.Column('loan_term', db.Integer)
+    loan_amortization = db.Column('loan_amortization', db.Integer)
+    unlevered_discountRate = db.Column('unlevered_discountRate', db.Integer)
+    levered_discount_rate = db.Column('levered_discount_rate', db.Integer)
+    other_income_total = db.Column('other_income_total', db.Integer)
+    less_vacancy = db.Column('less_vacancy', db.Integer)
+    less_concessions = db.Column('less_concessions', db.Integer)
+    less_credit_loss = db.Column('less_credit_loss', db.Integer)
+    real_estate_taxes_total = db.Column('real_estate_taxes_total', db.Integer)
+    insurance_total = db.Column('insurance_total', db.Integer)
+    utilities_total = db.Column('utilities_total', db.Integer)
+    payroll_total = db.Column('payroll_total', db.Integer)
+    repairs_and_maintenance_total = db.Column('repairs_and_maintenance_total', db.Integer)
+    contract_services_total = db.Column('contract_services_total', db.Integer)
+    turnover_total = db.Column('turnover_total', db.Integer)
+    sales_and_marketing_total = db.Column('sales_and_marketing_total', db.Integer)
+    administrative_total = db.Column('administrative_total', db.Integer)
+    management_percentage = db.Column('management_percentage', db.Integer)
+    replacement_reserves_percentage = db.Column('replacement_reserves_percentage', db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+
 
     def __init__(self, model_name, user_id):
         self.model_name = model_name
@@ -49,7 +80,7 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.pw_hash, password)
 
- 
+
     def __repr__(self):
         return '<User %r>' % (self.email)
 
