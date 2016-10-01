@@ -3,15 +3,16 @@
 $(document).ready(function(){
 
 //created function to run dashboard input twice
-	var dashboardInput = function(){
+	var calculations = function(){
 			myApp.dashboard.dashboardInput();
 			myApp.dashboard.dashboardInput();
+			myApp.proForma();
+			myApp.utils.nanReplace();
+
 	};
 
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 	myApp.htmlGen.test();
-
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
@@ -25,10 +26,6 @@ $(document).ready(function(){
 // ============================================================================================================
 // Start of ALL calculations for dashboard
 // ============================================================================================================
-
-	// var RRAlist = []; //Rental Rate Assumptions list
-	// var MRAlist = []; //Market Rental Assumptions list
-
 
 //RENTAL RATE ASSUMPTIONS Table calculations=====================
 	myApp.rra.RRAInput();
@@ -59,11 +56,11 @@ $(document).ready(function(){
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
 			RRAInput();
-			myApp.dashboard.DashboardInput();
+			myApp.dashboard.dashboardInput();
 		});
 	//Runs input function inside
 		$('.rent_row').on('input', myApp.rra.RRAInput);
-		$('#dashboard').on('input', dashboardInput);
+		$('#dashboard').on('input', calculations);
 
 	}); //end addrow function
 
@@ -74,7 +71,7 @@ $(document).ready(function(){
 //MARKET RENTAL ASSUMPTIONS Dynamic Table
 // ============================================================================================================
 	// adds one row to table when the 'add' button is clicked
-	$('#Sale_Year').on('focusout', function(event){
+	$('#Sale_Year').on('input', function(event){
 		var saleYear = parseInt($('#Sale_Year').val());
 		for(var i=0;i<saleYear;++i){
 		//Inserts number of rows based on Sale Year in Dashboard
@@ -96,16 +93,10 @@ $(document).ready(function(){
 		};
 	}); //end addrow function
 
+
 // ============================================================================================================
-//PRO FORMA
+//SAVE to DB
 // ============================================================================================================
-	$('#Sale_Year, #Market_Rental_Assumptions').on('focusout', myApp.proForma);
-
-
-
-
-
-
 	$('#save_input').on('click',function(event) {
     event.preventDefault();
     var data = $('#dashboard').serialize();
@@ -114,8 +105,7 @@ $(document).ready(function(){
 
 // ============================================================================================================
 	$('.rent_row').on('input', myApp.rra.RRAInput);
-	$('#dashboard').on('input', dashboardInput);
-	myApp.utils.nanReplace();
+	$('#dashboard').on('input', calculations);
 
 
 
