@@ -94,17 +94,16 @@ $(document).ready(function(){
 				.append($("<td>").html("<input type='number' name='mkt_rent_concessions' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
 				.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 				)
-		//Inserts number of columns based on Sale Year in Pro Forma
-		// 	console.log("Add Proforma rows==============")
-		// 	$('#Proforma').find('#PF_Year_End')
-		// 		.append($("<th>").text("Test"));
-		// 	$('#Proforma').find('#PR_Rental_Income')
-		// 		.append($("<td>").text("Test"));
-
 		};
 	}); //end addrow function
 
+// ============================================================================================================
+//PRO FORMA Dynamic Table
+// ============================================================================================================
+	var FormatCurrency = myApp.utils.FormatCurrency;
 	var pInt = myApp.utils.pInt;
+	var pFloat = myApp.utils.pFloat;
+	
 	$('#Sale_Year_T, #Market_Rental_Assumptions_T').on('input', function(event){
 		var saleYear_T = parseInt($('#Sale_Year_T').val())+1;
 		var pfCounter = saleYear_T;
@@ -112,254 +111,262 @@ $(document).ready(function(){
 		if (saleYear_T < pfCounter+1) {
 			$('#Proforma tr td:not(:first)').each(function(){
 				$(this).remove();
-				// pfCounter = $('#Proforma .PF_Year_End td').length+1;
 			});
 			$('#Proforma tr td:first').each(function(){
 				$(this).remove();
-				// pfCounter = $('#Proforma .PF_Year_End td').length+1;
 			})
 		};
 	//Inserts number of columns based on Sale Year in Dashboard
 		for(var i = 0; i < saleYear_T; ++i) {
 			pfCounter = $('#Proforma .PF_Year_End td').length+1;
-			var Rental_Rate_Income_Total_T = parseInt($('#Rental_Income_Total_T').text());		
-			var Other_Rate_Income_Total_T = parseInt($('#Other_Income_Total_T').text());
+			var Rental_Rate_Income_Total_T = pFloat('#Rental_Income_Total_T');
+			var Other_Rate_Income_Total_T = pFloat('#Other_Income_Total_T');
 			$('#Proforma tr:first').append("<td class= 'PF_" + "year_" + pfCounter + "'>"+'Year '+ pfCounter +"</td>");
 			if (i == 0){
 			//Year 1 data grabbed from org_dashboard calculations
 				$('#Proforma tr:nth-child(3)').append(
 					"<td class= 'PF_Rental_Income'>" + 
-					Rental_Rate_Income_Total_T * (1+($('#year_row_1 .mkt_rent_revenue').val())/100) + "</td>");
+					FormatCurrency(Rental_Rate_Income_Total_T * (1+($('#year_row_1 .mkt_rent_revenue').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(4)').append(
 					"<td class= 'PF_Other_Income'>" + 
-					Other_Rate_Income_Total_T * (1+($('#year_row_1 .mkt_rent_revenue').val())/100) + "</td>");
+					FormatCurrency(Other_Rate_Income_Total_T * (1+($('#year_row_1 .mkt_rent_revenue').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(5)').append(
 					"<td class= 'PF_Gross_Rental_Income'>" + 
-					(parseInt($('.PF_Rental_Income td:first').text()) + 
-					 parseInt($('.PF_Other_Income td:first').text())
+					FormatCurrency(
+					 pFloat('.PF_Rental_Income td:first') + 
+					 pFloat('.PF_Other_Income td:first')
 					) + "</td>");
 
 				$('#Proforma tr:nth-child(6)').append(
-					"<td class= 'PF_Less_Vacancy'>" + 106 * (1+($('#year_row_1 .mkt_rent_vacancy').val())/100) + "</td>");
+					"<td class= 'PF_Less_Vacancy'>(" + FormatCurrency(106 * (1+($('#year_row_1 .mkt_rent_vacancy').val())/100)) + ")</td>");
 				$('#Proforma tr:nth-child(7)').append(
-					"<td class= 'PF_Less_Concessions'>" + 107 * (1+($('#year_row_1 .mkt_rent_concessions').val())/100) + "</td>");
+					"<td class= 'PF_Less_Concessions'>(" + FormatCurrency(107 * (1+($('#year_row_1 .mkt_rent_concessions').val())/100)) + ")</td>");
 				$('#Proforma tr:nth-child(8)').append(
-					"<td class= 'PF_Less_Credit_Loss'>" + 108 * (1+($('#year_row_1 .mkt_rent_credit_loss').val())/100) + "</td>");
+					"<td class= 'PF_Less_Credit_Loss'>(" + FormatCurrency(108 * (1+($('#year_row_1 .mkt_rent_credit_loss').val())/100)) + ")</td>");
 				$('#Proforma tr:nth-child(9)').append(
 					"<td class= 'PF_Net_Rental_Income'>" + 
-					(parseInt($('.PF_Less_Vacancy td:first').text()) + 
-					 parseInt($('.PF_Less_Concessions td:first').text()) +
-					 parseInt($('.PF_Less_Credit_Loss td:first').text())
+					FormatCurrency(
+					 pFloat('.PF_Gross_Rental_Income td:first') - 
+					 pFloat('.PF_Less_Vacancy td:first') -
+					 pFloat('.PF_Less_Concessions td:first') -
+					 pFloat('.PF_Less_Credit_Loss td:first')
 					) + "</td>");
 
 
 				$('#Proforma tr:nth-child(11)').append(
-					"<td class= 'PF_Real_Estate_Taxes'>" + 111 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Real_Estate_Taxes'>" + FormatCurrency(111 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(12)').append(
-					"<td class= 'PF_Insurance'>" + 112 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Insurance'>" + FormatCurrency(112 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(13)').append(
-					"<td class= 'PF_Utilities'>" + 113 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Utilities'>" + FormatCurrency(113 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(14)').append(
-					"<td class= 'PF_Payroll'>" + 114 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Payroll'>" + FormatCurrency(114 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(15)').append(
-					"<td class= 'PF_Repairs_And_Maintenance'>" + 115 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Repairs_And_Maintenance'>" + FormatCurrency(115 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(16)').append(
-					"<td class= 'PF_Contract_Services'>" + 116 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Contract_Services'>" + FormatCurrency(116 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(17)').append(
-					"<td class= 'PF_Turnover'>" + 117 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Turnover'>" + FormatCurrency(117 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(18)').append(
-					"<td class= 'PF_Sales_And_Marketing'>" + 118 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Sales_And_Marketing'>" + FormatCurrency(118 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(19)').append(
-					"<td class= 'PF_Administrative'>" + 119 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Administrative'>" + FormatCurrency(119 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(20)').append(
-					"<td class= 'PF_Management'>" + 120 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Management'>" + FormatCurrency(120 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(21)').append(
-					"<td class= 'PF_Replacement_Reserves'>" + 121 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Replacement_Reserves'>" + FormatCurrency(121 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100)) + "</td>");
 				$('#Proforma tr:nth-child(22)').append(
 					"<td class= 'PF_Total_Operating_Expenses'>" + 
-					(parseInt($('.PF_Real_Estate_Taxes td:first').text()) +
-					 parseInt($('.PF_Insurance td:first').text()) +
-					 parseInt($('.PF_Utilities td:first').text()) +
-					 parseInt($('.PF_Payroll td:first').text()) +
-					 parseInt($('.PF_Repairs_And_Maintenance td:first').text()) +
-					 parseInt($('.PF_Contract_Services td:first').text()) +
-					 parseInt($('.PF_Turnover td:first').text()) +
-					 parseInt($('.PF_Sales_And_Marketing td:first').text()) +
-					 parseInt($('.PF_Administrative td:first').text()) +
-					 parseInt($('.PF_Management td:first').text()) +
-					 parseInt($('.PF_Replacement_Reserves td:first').text())
+					FormatCurrency(
+					 pFloat('.PF_Real_Estate_Taxes td:first') +
+					 pFloat('.PF_Insurance td:first') +
+					 pFloat('.PF_Utilities td:first') +
+					 pFloat('.PF_Payroll td:first') +
+					 pFloat('.PF_Repairs_And_Maintenance td:first') +
+					 pFloat('.PF_Contract_Services td:first') +
+					 pFloat('.PF_Turnover td:first') +
+					 pFloat('.PF_Sales_And_Marketing td:first') +
+					 pFloat('.PF_Administrative td:first') +
+					 pFloat('.PF_Management td:first') +
+					 pFloat('.PF_Replacement_Reserves td:first')
 					) + "</td>");
 
 				$('#Proforma tr:nth-child(23)').append(
 					"<td class= 'PF_Net_Operating_Income'>" +
-					(parseInt($('.PF_Net_Rental_Income td:first').text()) -
-					 parseInt($('.PF_Total_Operating_Expenses td:first').text())
+					FormatCurrency(
+					 pFloat('.PF_Net_Rental_Income td:first') -
+					 pFloat('.PF_Total_Operating_Expenses td:first')
 					) + "</td>");
 				
-				// INPUT BOX NEEDED FOR CAPITAL EXPENDITURES==============================
+				//PF_Capital_Expenditures ------------------------WIP
 				$('#Proforma tr:nth-child(25)').append(
-					"<td class= 'PF_Capital_Expenditures'>" + 125 * (1+($('#year_row_1 .mkt_rent_expenses').val())/100) + "</td>");
+					"<td class= 'PF_Capital_Expenditures'>" + FormatCurrency(100000) + "</td>");
 				
 				$('#Proforma tr:nth-child(26)').append(
 					"<td class= 'PF_Net_Cash_Flow'>" +
-					(parseInt($('.PF_Net_Operating_Income td:first').text()) -
-					 parseInt($('.PF_Capital_Expenditures td:first').text())
+					FormatCurrency(
+					 pFloat('.PF_Net_Operating_Income td:first') -
+					 pFloat('.PF_Capital_Expenditures td:first')
 					) + "</td>");
 				
 			} else {
-			//All other year data calculated based on MRA table inputs
+			//All additional year data calculated based on MRA table inputs ===================
 				//Rental Income
 				$('#Proforma tr:nth-child(3)').append(
 					"<td class= 'PF_Rental_Income'>" + 
-					$('#Proforma .PF_Rental_Income td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Rental_Income td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100)) +
 					"</td>");
 				//Other Income
 				$('#Proforma tr:nth-child(4)').append(
 					"<td class= 'PF_Other_Income'>" + 
-					$('#Proforma .PF_Other_Income td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Other_Income td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100)) +
 					"</td>");
 				//Gross Rental Income
 				$('#Proforma tr:nth-child(5)').append(
 					"<td class= 'PF_Gross_Rental_Income'>" + 
-					(parseInt($('.PF_Rental_Income td:nth-child('+ (i+1) +')').text()) + 
-					 parseInt($('.PF_Other_Income td:nth-child('+ (i+1) +')').text())
-					)) + "</td>";
+					FormatCurrency(
+					 pFloat('.PF_Rental_Income td:nth-child('+ (i+1) +')') + 
+					 pFloat('.PF_Other_Income td:nth-child('+ (i+1) +')')
+					) + "</td>");
 					
 
 				//Less Vacancy
 				$('#Proforma tr:nth-child(6)').append(
-					"<td class= 'PF_Less_Vacancy'>" + 
-					$('#Proforma .PF_Less_Vacancy td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_vacancy').val())/100) +
-					"</td>");
+					"<td class= 'PF_Less_Vacancy'>(" + 
+					FormatCurrency(pFloat('#Proforma .PF_Less_Vacancy td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_vacancy').val())/100)) +
+					")</td>");
 				//Less Concessions
 				$('#Proforma tr:nth-child(7)').append(
-					"<td class= 'PF_Less_Concessions'>" + 
-					$('#Proforma .PF_Less_Concessions td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_concessions').val())/100) +
-					"</td>");
+					"<td class= 'PF_Less_Concessions'>(" + 
+					FormatCurrency(pFloat('#Proforma .PF_Less_Concessions td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_concessions').val())/100)) +
+					")</td>");
 				//Less Credit Loss
 				$('#Proforma tr:nth-child(8)').append(
-					"<td class= 'PF_Less_Credit_Loss'>" + 
-					$('#Proforma .PF_Less_Credit_Loss td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_credit_loss').val())/100) +
-					"</td>");
+					"<td class= 'PF_Less_Credit_Loss'>(" + 
+					FormatCurrency(pFloat('#Proforma .PF_Less_Credit_Loss td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_credit_loss').val())/100)) +
+					")</td>");
 				//Net Rental Income
 				$('#Proforma tr:nth-child(9)').append(
 					"<td class= 'PF_Net_Rental_Income'>" + 
-					(parseInt($('#Proforma .PF_Less_Vacancy td:nth-child('+ (i+1) +')').text()) +
-					 parseInt($('#Proforma .PF_Less_Concessions td:nth-child('+ (i+1) +')').text()) +
-					 parseInt($('#Proforma .PF_Less_Credit_Loss td:nth-child('+ (i+1) +')').text())
+					FormatCurrency(
+					 pFloat('#Proforma .PF_Gross_Rental_Income td:nth-child('+ (i+1) +')') -
+					 pFloat('#Proforma .PF_Less_Vacancy td:nth-child('+ (i+1) +')') -
+					 pFloat('#Proforma .PF_Less_Concessions td:nth-child('+ (i+1) +')') -
+					 pFloat('#Proforma .PF_Less_Credit_Loss td:nth-child('+ (i+1) +')')
 					) + "</td>");
 				
 
 				//Real Estate Taxes
 				$('#Proforma tr:nth-child(11)').append(
 					"<td class= 'PF_Real_Estate_Taxes'>" + 
-					$('#Proforma .PF_Real_Estate_Taxes td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Real_Estate_Taxes td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//Insurance
 				$('#Proforma tr:nth-child(12)').append(
 					"<td class= 'PF_Insurance'>" + 
-					$('#Proforma .PF_Insurance td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Insurance td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Utilities
 				$('#Proforma tr:nth-child(13)').append(
 					"<td class= 'PF_Utilities'>" + 
-					$('#Proforma .PF_Utilities td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Utilities td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Payroll
 				$('#Proforma tr:nth-child(14)').append(
 					"<td class= 'PF_Payroll'>" + 
-					$('#Proforma .PF_Payroll td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Payroll td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Repairs_And_Maintenance
 				$('#Proforma tr:nth-child(15)').append(
 					"<td class= 'PF_Repairs_And_Maintenance'>" + 
-					$('#Proforma .PF_Repairs_And_Maintenance td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Repairs_And_Maintenance td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Contract_Services
 				$('#Proforma tr:nth-child(16)').append(
 					"<td class= 'PF_Contract_Services'>" + 
-					$('#Proforma .PF_Contract_Services td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Contract_Services td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Turnover
 				$('#Proforma tr:nth-child(17)').append(
 					"<td class= 'PF_Turnover'>" + 
-					$('#Proforma .PF_Turnover td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Turnover td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Sales_And_Marketing
 				$('#Proforma tr:nth-child(18)').append(
 					"<td class= 'PF_Sales_And_Marketing'>" + 
-					$('#Proforma .PF_Sales_And_Marketing td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Sales_And_Marketing td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Administrative
 				$('#Proforma tr:nth-child(19)').append(
 					"<td class= 'PF_Administrative'>" + 
-					$('#Proforma .PF_Administrative td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Administrative td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Management
 				$('#Proforma tr:nth-child(20)').append(
 					"<td class= 'PF_Management'>" + 
-					$('#Proforma .PF_Management td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Management td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 				//PF_Replacement_Reserves
 				$('#Proforma tr:nth-child(21)').append(
 					"<td class= 'PF_Replacement_Reserves'>" + 
-					$('#Proforma .PF_Replacement_Reserves td:nth-child('+ (i+1) +')').text()  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(pFloat('#Proforma .PF_Replacement_Reserves td:nth-child('+ (i+1) +')')  *
+					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
 					"</td>");
 
 
 				//PF_Total_Operating_Expenses
 				$('#Proforma tr:nth-child(22)').append(
 					"<td class= 'PF_Total_Operating_Expenses'>" + 
-					(parseInt($('#Proforma .PF_Real_Estate_Taxes td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Insurance td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Utilities td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Payroll td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Repairs_And_Maintenance td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Contract_Services td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Turnover td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Sales_And_Marketing td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Administrative td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Management td:nth-child('+ (i+1) + ')').text()) +
-					 parseInt($('#Proforma .PF_Replacement_Reserves td:nth-child('+ (i+1) + ')').text()
-					) + "</td>"));
+					FormatCurrency(
+					 pFloat('#Proforma .PF_Real_Estate_Taxes td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Insurance td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Utilities td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Payroll td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Repairs_And_Maintenance td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Contract_Services td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Turnover td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Sales_And_Marketing td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Administrative td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Management td:nth-child('+ (i+1) + ')') +
+					 pFloat('#Proforma .PF_Replacement_Reserves td:nth-child('+ (i+1) + ')')
+					) + "</td>");
 
 				//PF_Net_Operating_Income
 				$('#Proforma tr:nth-child(23)').append(
 					"<td class= 'PF_Net_Operating_Income'>" +
-					(parseInt($('.PF_Net_Rental_Income td:nth-child('+ (i+1) + ')').text()) -
-					 parseInt($('.PF_Total_Operating_Expenses td:nth-child('+ (i+1) + ')').text())
+					FormatCurrency(
+					 pFloat('.PF_Net_Rental_Income td:nth-child('+ (i+1) + ')') -
+					 pFloat('.PF_Total_Operating_Expenses td:nth-child('+ (i+1) + ')')
 					) + "</td>");
 
 
-				//PF_Capital_Expenditures
+				//PF_Capital_Expenditures ------------------------WIP
 				$('#Proforma tr:nth-child(25)').append(
 					"<td class= 'PF_Capital_Expenditures'>" + 
-					// $('#Proforma .PF_Capital_Expenditures td:nth-child('+ (i+1) +')').text()  *
-					100 *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100) +
+					FormatCurrency(100000) +
 					"</td>");
 
 				//PF_Net_Cash_Flow
 				$('#Proforma tr:nth-child(26)').append(
 					"<td class= 'PF_Net_Cash_Flow'>" + 
-					(parseInt($('.PF_Net_Operating_Income td:nth-child('+ (i+1) + ')').text()) -
-					 parseInt($('.PF_Capital_Expenditures td:nth-child('+ (i+1) + ')').text())
+					FormatCurrency(
+					 pFloat('.PF_Net_Operating_Income td:nth-child('+ (i+1) + ')') -
+					 pFloat('.PF_Capital_Expenditures td:nth-child('+ (i+1) + ')')
 					) + "</td>");
 
 
@@ -367,7 +374,9 @@ $(document).ready(function(){
 
 			} //end else
 		}; //end for loop
-			
+		  $("td:contains('NaN')").each(function() {
+    			$(this).text('$0.00');
+			});
 
 	}); //end addrow function
 
