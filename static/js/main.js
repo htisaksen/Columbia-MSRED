@@ -381,16 +381,11 @@ $(document).ready(function(){
 	}); //end addrow function
 
 
-
-
-
-
-
-
-
-
-
-
+	$('#save_input').on('click',function(event) {
+    event.preventDefault();
+    var data = $('#dashboard').serialize();
+		services.saveDashboard(data);
+ 	});
 
 // ============================================================================================================
 	$('.rent_row').on('input', myApp.rra.RRAInput);

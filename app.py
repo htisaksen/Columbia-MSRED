@@ -1,10 +1,11 @@
 import os, re
 from model import *
-from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g
+from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g, jsonify
 # import flask_login
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from functools import wraps
- 
+
+
 app = Flask(__name__)
 
 def login_required(f):
@@ -26,7 +27,7 @@ def index():
 	email = ''
 	if session.get('logged_in'):
 		email = session.get('email')
-		print("session logged in = true")	
+		print("session logged in = true")
 		return redirect("/home")
 	else:
 		print("session logged in = false")
@@ -98,7 +99,7 @@ def proforma():
 
 @app.route('/returns_summary', methods=['GET','POST'])
 @login_required
-def returnSum():
+def return_sum():
 	title = "Returns Summary"
 	return render_template('returns_summary.html',
 		title=title)
@@ -110,7 +111,69 @@ def inputForm():
 	return render_template('input_form.html',
 		title = title)
 
-
+@app.route('/savedata',methods = ["POST"])
+@login_required
+def save_data():
+    analysis_start_date = request.form['Analysis_Start_Date']
+    property_name = request.form['Property_Name']
+    property_location = request.form['Property_Address']
+    property_type = request.form['Property_Type']
+    purchase_price = request.form['Purchase_Price']
+    closing_cost_percentage = request.form['Closing_Costs_Percentage']
+    sale_year = request.form['Sale_Year']
+    terminal_cap_rate = request.form['Terminal_Cap_Rate']
+    sales_costs = request.form['Sales_Costs']
+    leverage = request.form['Leverage']
+    interest_rate_on_mortgage = request.form['Interest_Rate_on_Mortgage']
+    loan_term = request.form['Loan_Term']
+    loan_amortization = request.form['Loan_Amortization']
+    unlevered_discountRate = request.form['UL_Discount_Rate']
+    levered_discount_rate = request.form['L_Discount_Rate']
+    other_income_total = request.form['Other_Income_Total']
+    less_vacancy = request.form['Less_Vacancy']
+    less_concessions = request.form['Less_Concessions']
+    less_credit_loss = request.form['Less_Credit_Loss']
+    real_estate_taxes_total = request.form['Real_Estate_Taxes_Total']
+    insurance_total = request.form['Insurance_Total']
+    utilities_total = request.form['Utilities_Total']
+    payroll_total = request.form['Payroll_Total']
+    repairs_and_maintenance_total = request.form['Repairs_and_Maintenance_Total']
+    contract_services_total = request.form['Contract_Services_Total']
+    turnover_total = request.form['Turnover_Total']
+    sales_and_marketing_total = request.form['Sales_and_Marketing_Total']
+    administrative_total = request.form['Administrative_Total']
+    management_percentage = request.form['Management_Percentage']
+    replacement_reserves_percentage = request.form['Replacement_Reserves_Percentage']
+    return jsonify(analysis_start_date = analysis_start_date,
+    property_name = property_name,
+    property_location = property_location,
+    property_type = property_type,
+    purchase_price = purchase_price,
+    closing_cost_percentage = closing_cost_percentage,
+    sale_year = sale_year,
+    terminal_cap_rate = terminal_cap_rate,
+    sales_costs = sales_costs,
+    leverage = leverage,
+    interest_rate_on_mortgage = interest_rate_on_mortgage,
+    loan_term = loan_term,
+    loan_amortization = loan_amortization,
+    unlevered_discountRate = unlevered_discountRate,
+    levered_discount_rate = levered_discount_rate,
+    other_income_total = other_income_total,
+    less_vacancy = less_vacancy,
+    less_concessions = less_concessions,
+    less_credit_loss = less_credit_loss,
+    real_estate_taxes_total = real_estate_taxes_total,
+    insurance_total = insurance_total,
+    utilities_total = utilities_total,
+    payroll_total = payroll_total,
+    repairs_and_maintenance_total = repairs_and_maintenance_total,
+    contract_services_total = contract_services_total,
+    turnover_total = turnover_total,
+    sales_and_marketing_total = sales_and_marketing_total,
+    administrative_total = administrative_total,
+    management_percentage = management_percentage,
+    replacement_reserves_percentage = replacement_reserves_percentage,)
 
 
 

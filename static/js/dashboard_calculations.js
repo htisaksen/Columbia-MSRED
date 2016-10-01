@@ -258,8 +258,9 @@ myApp.dashboard.getInputs = function(){
   $('#Net_Operating_Income_DollarPerSF').text(
     FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/tsf)));									//$
 
-  $("td:contains('NaN')").each(function() {
-    $(this).text('0');
-  });
+
+  myApp.utils.nanReplace();
+
+
 
 }; //end DashboardInput

@@ -9,6 +9,7 @@ myApp.utils = {};
       myApp.utils.remSpcChr = function(value){
 		    return value.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '')
       };
+
       myApp.utils.pFloat = function(value){
     		return parseFloat(myApp.utils.remSpcChr($(value).text()) || 0)
     	};
@@ -26,6 +27,12 @@ myApp.utils = {};
     		}
     	};
 
+      myApp.utils.nanReplace = function(event){
+      $("td:contains('NaN')").each(function() {
+        $(this).text('0');
+      })
+    };
+
       myApp.utils.roundOneDec = function(value){
         return Math.round(value * 10) / 10;
       };
@@ -41,7 +48,7 @@ myApp.utils = {};
       myApp.utils.FormatPercent2 = function(number) {
     		return (number.toFixed(2) + " %")
     	}
-      
+
       myApp.utils.FormatPercent1 = function(number) {
         return (number.toFixed(1) + " %")
       }

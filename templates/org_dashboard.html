@@ -1,12 +1,15 @@
 {% block dashboard %}
+<button id = "save_input" class="btn waves-effect waves-light" type="submit">Save Data
+  <i class="material-icons right">system_update_alt</i>
+</button>
 <ul class="collapsible" data-collapsible="expandable">
   <li>
-<!--   Removed 'active' while testing Pro Forma 
+<!--   Removed 'active' while testing Pro Forma
 <div class="collapsible-header active"><i class="material-icons">pageview</i>Dashboard</div>
  -->
   <div class="collapsible-header"><i class="material-icons">pageview</i>Dashboard</div>
   <div class="collapsible-body">
-  <form name = "dashboard" id = "dashboard" action="/dashboard" method="POST">
+  <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
     <h6>Analysis Start Date
       <span style="color:blue">
         <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = "Analysis Start Date">
