@@ -1,7 +1,19 @@
 {% block dashboard %}
-<button id = "save_input" class="btn waves-effect waves-light" type="submit">Save Data
-  <i class="material-icons right">system_update_alt</i>
-</button>
+<!-- Modal Trigger -->
+<a class="btn modal-trigger" href="#modal1">Save Data</a>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <form>
+    <input type ="text" name="save_name" id = "save_name" placeholder = "Name of save">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button href="/savedata" class=" modal-action modal-close waves-effect waves-green btn-flat" type='submit'>Save</button>
+  </div>
+</div>
+
 <ul class="collapsible" data-collapsible="expandable">
   <li>
 <!--   Removed 'active' while testing Pro Forma

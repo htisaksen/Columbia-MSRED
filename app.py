@@ -111,9 +111,10 @@ def inputForm():
 	return render_template('input_form.html',
 		title = title)
 
-@app.route('/savedata',methods = ["POST"])
+@app.route('/savedata',methods = ["POST","GET"])
 @login_required
 def save_data():
+
     analysis_start_date = request.form['Analysis_Start_Date']
     property_name = request.form['Property_Name']
     property_location = request.form['Property_Address']
