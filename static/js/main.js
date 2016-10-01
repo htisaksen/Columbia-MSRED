@@ -84,11 +84,11 @@ $(document).ready(function(){
 				.append($("<tr class = 'year_row' id='year_row_"+mraCounter+"'>")
 				.append($("<td class='mkt_rent_year'>Year "+mraCounter+"</td>"))
 				.append($("<td></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_revenue' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_expenses' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_vacancy' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_concessions' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
+				.append($("<td>").html("<input type='number' name='mkt_rent_revenue"+mraCounter+"' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
+				.append($("<td>").html("<input type='number' name='mkt_rent_expenses"+mraCounter+"' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
+				.append($("<td>").html("<input type='number' name='mkt_rent_vacancy"+mraCounter+"' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
+				.append($("<td>").html("<input type='number' name='mkt_rent_concessions"+mraCounter+"' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
+				.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss"+mraCounter+"' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 				)
 		};
 	}); //end addrow function
