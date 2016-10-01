@@ -4,21 +4,16 @@ myApp.mra.MRAlist = [];
 
 (function(){
 
-  //updated all #Rental_Rate_Assumptions_T for Proforma testing
-  //updated all #Rental_Rate_Assumptions_T for Proforma testing
-  //updated all #Rental_Rate_Assumptions_T for Proforma testing
-  //updated all #Rental_Rate_Assumptions_T for Proforma testing
-  //updated all #Rental_Rate_Assumptions_T for Proforma testing
-
-
   MRAlist = myApp.mra.MRAlist;
-  var $tu = $('#Rental_Rate_Assumptions_T tbody .total_units');
-  var $tsf = $('#Rental_Rate_Assumptions_T tbody .total_sf');
-  var $rrow = $('#Rental_Rate_Assumptions_T tbody .rent_row');
+  var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
+  var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
+  var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
+  
   //MARKET RENTAL ASSUMPTIONS Table calculations=======================================================================
-  	myApp.mra.MRAInput = function(){
+      myApp.mra.MRAInput = function(){
+  
   		//creates an array of arrays for all the Market Rent Assumption rows and stores the array in the global "g" object
-  		var $mraRow = $('#Market_Rental_Assumptions_T tbody .year_row');
+  		var $mraRow = $('#Market_Rental_Assumptions tbody .year_row');
   		$rrow.each(function(){
   			tempMktRentRevenue = $(this).find('.mkt_rent_revenue').val();
   			tempMktRentExpenses = $(this).find('.mkt_rent_expenses').val();

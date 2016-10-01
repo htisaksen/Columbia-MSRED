@@ -42,7 +42,7 @@ myApp.dashboard.getInputs = function(){
 
 
 
-  myApp.dashboard.DashboardInput = function(){
+  myApp.dashboard.dashboardInput = function(){
   var g = myApp.dashboard.getInputs();
   var remSpcChr = myApp.utils.remSpcChr;
   var pInt = myApp.utils.pInt;
@@ -259,8 +259,7 @@ myApp.dashboard.getInputs = function(){
     FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/tsf)));									//$
 
 
-  myApp.utils.nanReplace();
 
 
 
-}; //end DashboardInput
+}; //end dashboardInput
