@@ -84,11 +84,13 @@ myApp.dashboard.getInputs = function(){
     FormatPercent2(nanCheck(pInt('#Net_Operating_Income_Total')/pInt('#PI_Total_Costs'))*100));		//%
 
 
-
   //Sale Summary Calculations
-  // // Sale_Price = 100       #{=HLOOKUP(Sale_Year+1,Proforma!C4:M30,27)/Terminal_Cap}
-  // Sale_Price_Per_Unit = Sale_Price/Num_Units
-  // Sale_Price_Per_SF = Sale_Price/Total_Sq_Ft
+  $('#Sale_Price').text(
+    FormatCurrency(nanCheck(pFloat('.PF_Net_Operating_Income:last')/g.terminalCapRate)))
+  $('#Sale_Price_Per_Unit').text(
+    FormatCurrency(nanCheck(pFloat('#Sale_Price')/totalUnits)))
+  $('#Sale_Price_Per_SF').text(
+    FormatCurrency(nanCheck(pFloat('#Sale_Price')/totalSquareFoot)))
 
 
   //Sources and Uses Calculations
