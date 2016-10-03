@@ -54,8 +54,8 @@ myApp.dashboard.getInputs = function(){
   var FormatPercent1 = myApp.utils.FormatPercent1
   var FormatPercent2 = myApp.utils.FormatPercent2
   //VARIABLES FOR CALCULATIONS-------------------------------------------------------
-  var tu = pInt('#Rental_Rate_Assumptions tfoot .total_units');
-  var tsf = pInt('#Rental_Rate_Assumptions tfoot .total_sf');
+  var totalUnits = pInt('#Rental_Rate_Assumptions tfoot .total_units');
+  var totalSquareFoot = pInt('#Rental_Rate_Assumptions tfoot .total_sf');
   //--------------------------------------------------------------------------------
 
 
@@ -100,13 +100,13 @@ myApp.dashboard.getInputs = function(){
 
     // #Sources And Uses Table
   $('#Equity_Total').text(FormatCurrency(nanCheck(pInt('#PI_Total_Costs') - pInt('#Loan_Total'))));
-  $('#Equity_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Equity_Total')/tu)));
-  $('#Equity_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Equity_Total')/tsf)));
+  $('#Equity_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Equity_Total')/totalUnits)));
+  $('#Equity_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Equity_Total')/totalSquareFoot)));
   $('#Equity_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Equity_Total')/pFloat('#Total_Sources_Total')*100)));
 
   $('#Loan_Total').text(FormatCurrency(nanCheck(pInt('#PI_Total_Costs')*g.leverage)));
-  $('#Loan_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Loan_Total')/tu)));
-  $('#Loan_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Loan_Total')/tsf)));
+  $('#Loan_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Loan_Total')/totalUnits)));
+  $('#Loan_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Loan_Total')/totalSquareFoot)));
   $('#Loan_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Loan_Total')/pFloat('#Total_Sources_Total')*100)));
 
   $('#Total_Sources_Total').text(FormatCurrency(nanCheck(pInt('#Equity_Total') + pInt('#Loan_Total'))));
@@ -115,13 +115,13 @@ myApp.dashboard.getInputs = function(){
   $('#Total_Sources_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Equity_PercentofTotal') + pFloat('#Loan_PercentofTotal'))));
 
   $('#Purchasing_Price_Total').text(FormatCurrency(nanCheck(g.purchasePrice)))
-  $('#Purchasing_Price_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Purchasing_Price_Total')/tu)));
-  $('#Purchasing_Price_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Purchasing_Price_Total')/tsf)));
+  $('#Purchasing_Price_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Purchasing_Price_Total')/totalUnits)));
+  $('#Purchasing_Price_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Purchasing_Price_Total')/totalSquareFoot)));
   $('#Purchasing_Price_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Purchasing_Price_Total')/pFloat('#Total_Uses_Total')*100)));
 
   $('#Closing_Costs_Total').text(FormatCurrency(nanCheck(pInt('#PI_Closing_Costs'))));
-  $('#Closing_Costs_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#PI_Closing_Costs')/tu)));
-  $('#Closing_Costs_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#PI_Closing_Costs')/tsf)));
+  $('#Closing_Costs_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#PI_Closing_Costs')/totalUnits)));
+  $('#Closing_Costs_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#PI_Closing_Costs')/totalSquareFoot)));
   $('#Closing_Costs_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#PI_Closing_Costs')/pFloat('#Total_Uses_Total')*100)));
 
   $('#Total_Uses_Total').text(FormatCurrency(nanCheck(pInt('#Purchasing_Price_Total') + pInt('#Closing_Costs_Total'))));
@@ -152,111 +152,111 @@ myApp.dashboard.getInputs = function(){
 // Current Financial Performance Table
   //moved formulas to top to prevent 'infinity' error
   $('#Gross_Rental_Income_Total').text(FormatCurrency(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total'))));				//$
-  $('#Rental_Income_Total').text(FormatCurrency(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*tu*12)));		//$
+  $('#Rental_Income_Total').text(FormatCurrency(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*totalUnits*12)));		//$
 
-  $('#Rental_Income_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/tu)));			//$
-  $('#Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/tsf)));			//$
+  $('#Rental_Income_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/totalUnits)));			//$
+  $('#Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/totalSquareFoot)));			//$
   $('#Rental_Income_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Rental_Income_Total'))/(pFloat('#Gross_Rental_Income_Total'))*100));		//%
 
-  $('#Other_Income_DollarPerUnit').text(FormatCurrency(nanCheck(g.otherIncomeTotal/tu)));		//$
-  $('#Other_Income_DollarPerSF').text(FormatCurrency(nanCheck(g.otherIncomeTotal/tsf)));		//$
+  $('#Other_Income_DollarPerUnit').text(FormatCurrency(nanCheck(g.otherIncomeTotal/totalUnits)));		//$
+  $('#Other_Income_DollarPerSF').text(FormatCurrency(nanCheck(g.otherIncomeTotal/totalSquareFoot)));		//$
   $('#Other_Income_PercentofTotal').text(FormatPercent1(nanCheck(g.otherIncomeTotal/pFloat('#Gross_Rental_Income_Total')*100)));		//%
 
   $('#Gross_Rental_Income_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Rental_Income_DollarPerUnit') + pInt('#Other_Income_DollarPerUnit'))));		//$
-  $('#Gross_Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Gross_Rental_Income_Total')/tsf)));		//$
+  $('#Gross_Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Gross_Rental_Income_Total')/totalSquareFoot)));		//$
   $('#Gross_Rental_Income_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Rental_Income_PercentofTotal') + pFloat('#Other_Income_PercentofTotal'))));		//%
 
   $('#Vacancy_Total').text(FormatCurrency(nanCheck(-1 * g.lessVacancy * pInt('#Gross_Rental_Income_Total'))));		//$
-  $('#Vacancy_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Vacancy_Total')/tu)));		//$
-  $('#Vacancy_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Vacancy_Total')/tsf)));		//$
+  $('#Vacancy_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Vacancy_Total')/totalUnits)));		//$
+  $('#Vacancy_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Vacancy_Total')/totalSquareFoot)));		//$
 
   $('#Concessions_Total').text(FormatCurrency(nanCheck(-1 * g.lessConcessions * pInt('#Gross_Rental_Income_Total'))));		//$
-  $('#Concessions_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Concessions_Total')/tu)));		//$
-  $('#Concessions_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Concessions_Total')/tsf)));		//$
+  $('#Concessions_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Concessions_Total')/totalUnits)));		//$
+  $('#Concessions_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Concessions_Total')/totalSquareFoot)));		//$
 
   $('#Credit_Loss_Total').text(FormatCurrency(nanCheck(-1 * g.lessCreditLoss * pInt('#Gross_Rental_Income_Total'))));		//$
-  $('#Credit_Loss_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Credit_Loss_Total')/tu)));		//$
-  $('#Credit_Loss_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Credit_Loss_Total')/tsf)));		//$
+  $('#Credit_Loss_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Credit_Loss_Total')/totalUnits)));		//$
+  $('#Credit_Loss_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Credit_Loss_Total')/totalSquareFoot)));		//$
 
   $('#Net_Rental_Income_Total').text(FormatCurrency(nanCheck(pInt('#Gross_Rental_Income_Total') + pInt('#Vacancy_Total') + pInt('#Concessions_Total') + pInt('#Credit_Loss_Total'))));		//$
-  $('#Net_Rental_Income_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Net_Rental_Income_Total')/tu)));		//$
-  $('#Net_Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Net_Rental_Income_Total')/tsf)));		//$
+  $('#Net_Rental_Income_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Net_Rental_Income_Total')/totalUnits)));		//$
+  $('#Net_Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Net_Rental_Income_Total')/totalSquareFoot)));		//$
 
-  $('#Real_Estate_Taxes_DollarPerUnit').text(FormatCurrency(nanCheck(g.realEstateTaxesTotal/tu)));		//$
-  $('#Real_Estate_Taxes_DollarPerSF').text(FormatCurrency(nanCheck(g.realEstateTaxesTotal/tsf)));		//$
+  $('#Real_Estate_Taxes_DollarPerUnit').text(FormatCurrency(nanCheck(g.realEstateTaxesTotal/totalUnits)));		//$
+  $('#Real_Estate_Taxes_DollarPerSF').text(FormatCurrency(nanCheck(g.realEstateTaxesTotal/totalSquareFoot)));		//$
   $('#Real_Estate_Taxes_PercentofTotal').text(FormatPercent1(nanCheck(g.realEstateTaxesTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
-  $('#Insurance_DollarPerUnit').text(FormatCurrency(nanCheck(g.insuranceTotal/tu)));		//$
-  $('#Insurance_DollarPerSF').text(FormatCurrency(nanCheck(g.insuranceTotal/tsf)));		//$
+  $('#Insurance_DollarPerUnit').text(FormatCurrency(nanCheck(g.insuranceTotal/totalUnits)));		//$
+  $('#Insurance_DollarPerSF').text(FormatCurrency(nanCheck(g.insuranceTotal/totalSquareFoot)));		//$
   $('#Insurance_PercentofTotal').text(FormatPercent1(nanCheck(g.insuranceTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
-  $('#Utilities_DollarPerUnit').text(FormatCurrency(nanCheck(g.utilitiesTotal/tu)));		//$
-  $('#Utilities_DollarPerSF').text(FormatCurrency(nanCheck(g.utilitiesTotal/tsf)));		//$
+  $('#Utilities_DollarPerUnit').text(FormatCurrency(nanCheck(g.utilitiesTotal/totalUnits)));		//$
+  $('#Utilities_DollarPerSF').text(FormatCurrency(nanCheck(g.utilitiesTotal/totalSquareFoot)));		//$
   $('#Utilities_PercentofTotal').text(FormatPercent1(nanCheck(g.utilitiesTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
-  $('#Payroll_DollarPerUnit').text(FormatCurrency(nanCheck(g.payrollTotal/tu)));		//$
-  $('#Payroll_DollarPerSF').text(FormatCurrency(nanCheck(g.payrollTotal/tsf)));		//$
+  $('#Payroll_DollarPerUnit').text(FormatCurrency(nanCheck(g.payrollTotal/totalUnits)));		//$
+  $('#Payroll_DollarPerSF').text(FormatCurrency(nanCheck(g.payrollTotal/totalSquareFoot)));		//$
   $('#Payroll_PercentofTotal').text(FormatPercent1(nanCheck(g.payrollTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
-  $('#Repairs_and_Maintenance_DollarPerUnit').text(FormatCurrency(nanCheck(g.repairsAndMaintenanceTotal/tu)));		//$
-  $('#Repairs_and_Maintenance_DollarPerSF').text(FormatCurrency(nanCheck(g.repairsAndMaintenanceTotal/tsf)));		//$
+  $('#Repairs_and_Maintenance_DollarPerUnit').text(FormatCurrency(nanCheck(g.repairsAndMaintenanceTotal/totalUnits)));		//$
+  $('#Repairs_and_Maintenance_DollarPerSF').text(FormatCurrency(nanCheck(g.repairsAndMaintenanceTotal/totalSquareFoot)));		//$
   $('#Repairs_and_Maintenance_PercentofTotal').text(FormatPercent1(nanCheck(g.repairsAndMaintenanceTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
-  $('#Contract_Services_DollarPerUnit').text(FormatCurrency(nanCheck(g.contractServicesTotal/tu)));		//$
-  $('#Contract_Services_DollarPerSF').text(FormatCurrency(nanCheck(g.contractServicesTotal/tsf)));		//$
+  $('#Contract_Services_DollarPerUnit').text(FormatCurrency(nanCheck(g.contractServicesTotal/totalUnits)));		//$
+  $('#Contract_Services_DollarPerSF').text(FormatCurrency(nanCheck(g.contractServicesTotal/totalSquareFoot)));		//$
   $('#Contract_Services_PercentofTotal').text(FormatPercent1(nanCheck(g.contractServicesTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
-  $('#Turnover_DollarPerUnit').text(FormatCurrency(nanCheck(g.turnoverTotal/tu)));		//$
-  $('#Turnover_DollarPerSF').text(FormatCurrency(nanCheck(g.turnoverTotal/tsf)));		//$
+  $('#Turnover_DollarPerUnit').text(FormatCurrency(nanCheck(g.turnoverTotal/totalUnits)));		//$
+  $('#Turnover_DollarPerSF').text(FormatCurrency(nanCheck(g.turnoverTotal/totalSquareFoot)));		//$
   $('#Turnover_PercentofTotal').text(FormatPercent1(nanCheck(g.turnoverTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
   $('#Sales_and_Marketing_DollarPerUnit').text(
-    FormatCurrency(nanCheck(g.salesAndMarketingTotal/tu)));		//$
+    FormatCurrency(nanCheck(g.salesAndMarketingTotal/totalUnits)));		//$
   $('#Sales_and_Marketing_DollarPerSF').text(
-    FormatCurrency(nanCheck(g.salesAndMarketingTotal/tsf)));		//$
+    FormatCurrency(nanCheck(g.salesAndMarketingTotal/totalSquareFoot)));		//$
   $('#Sales_and_Marketing_PercentofTotal').text(
     FormatPercent1(nanCheck(g.salesAndMarketingTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
   $('#Administrative_DollarPerUnit').text(
-    FormatCurrency(nanCheck(g.administrativeTotal/tu)));		//$
+    FormatCurrency(nanCheck(g.administrativeTotal/totalUnits)));		//$
   $('#Administrative_DollarPerSF').text(
-    FormatCurrency(nanCheck(g.administrativeTotal/tsf)));		//$
+    FormatCurrency(nanCheck(g.administrativeTotal/totalSquareFoot)));		//$
   $('#Administrative_PercentofTotal').text(
     FormatPercent1(nanCheck(g.administrativeTotal/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
   $('#Management_Total').text(
     FormatCurrency(nanCheck(g.managementPercentage * pInt('#Net_Rental_Income_Total'))));		//$
   $('#Management_DollarPerUnit').text(
-    FormatCurrency(nanCheck(pInt('#Management_Total')/tu)));								//$
+    FormatCurrency(nanCheck(pInt('#Management_Total')/totalUnits)));								//$
   $('#Management_DollarPerSF').text(
-    FormatCurrency(nanCheck(pInt('#Management_Total')/tsf)));					//$
+    FormatCurrency(nanCheck(pInt('#Management_Total')/totalSquareFoot)));					//$
   $('#Management_PercentofTotal').text(
     FormatPercent1(nanCheck(pInt('#Management_Total')/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
   $('#Replacement_Reserves_Total').text(
     FormatCurrency(nanCheck(g.replacementReservesPercentage * pInt('#Net_Rental_Income_Total'))));		//$
   $('#Replacement_Reserves_DollarPerUnit').text(
-    FormatCurrency(nanCheck(pInt('#Replacement_Reserves_Total')/tu)));					//$
+    FormatCurrency(nanCheck(pInt('#Replacement_Reserves_Total')/totalUnits)));					//$
   $('#Replacement_Reserves_DollarPerSF').text(
-    FormatCurrency(nanCheck(pInt('#Replacement_Reserves_Total')/tsf)));		//$
+    FormatCurrency(nanCheck(pInt('#Replacement_Reserves_Total')/totalSquareFoot)));		//$
   $('#Replacement_Reserves_PercentofTotal').text(
     FormatPercent1(nanCheck(pInt('#Replacement_Reserves_Total')/pInt('#Total_Operating_Expenses_Total')*100)));		//%
 
   $('#Total_Operating_Expenses_Total').text(
     FormatCurrency(nanCheck(g.realEstateTaxesTotal + g.insuranceTotal + g.utilitiesTotal + g.payrollTotal + g.repairsAndMaintenanceTotal + g.contractServicesTotal + g.turnoverTotal + g.salesAndMarketingTotal + g.administrativeTotal + pInt('#Management_Total') + pInt('#Replacement_Reserves_Total')))); 		//$
   $('#Total_Operating_Expenses_DollarPerUnit').text(
-    FormatCurrency(nanCheck(pInt('#Total_Operating_Expenses_Total')/tu)));					//$
+    FormatCurrency(nanCheck(pInt('#Total_Operating_Expenses_Total')/totalUnits)));					//$
   $('#Total_Operating_Expenses_DollarPerSF').text(
-    FormatCurrency(nanCheck(pInt('#Total_Operating_Expenses_Total')/tsf)));		//$
+    FormatCurrency(nanCheck(pInt('#Total_Operating_Expenses_Total')/totalSquareFoot)));		//$
   $('#Total_Operating_Expenses_PercentofTotal').text(
     FormatPercent1(nanCheck(pFloat('#Real_Estate_Taxes_PercentofTotal') + pFloat('#Insurance_PercentofTotal') + pFloat('#Utilities_PercentofTotal') + pFloat('#Payroll_PercentofTotal') + pFloat('#Repairs_and_Maintenance_PercentofTotal') + pFloat('#Contract_Services_PercentofTotal') + pFloat('#Turnover_PercentofTotal') + pFloat('#Sales_and_Marketing_PercentofTotal') + pFloat('#Administrative_PercentofTotal') + pFloat('#Management_PercentofTotal') + pFloat('#Replacement_Reserves_PercentofTotal'))));		//%
 
   $('#Net_Operating_Income_Total').text(
     FormatCurrency(nanCheck(pInt('#Net_Rental_Income_Total') - pInt('#Total_Operating_Expenses_Total'))));		//$
   $('#Net_Operating_Income_DollarPerUnit').text(
-    FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/tu)));											//$
+    FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/totalUnits)));											//$
   $('#Net_Operating_Income_DollarPerSF').text(
-    FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/tsf)));									//$
+    FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/totalSquareFoot)));									//$
 
 
 
