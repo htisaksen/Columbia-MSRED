@@ -8,14 +8,15 @@
 	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
-	<!-- Dropdown Structure -->
+
+<!-- ================ Top Header bar ================ -->
 {% if session['logged_in'] == True %}
 	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="/dashboard">Edit Account</a></li>
-		<li class="divider"></li>
-		<li><a href="/home">Home</a></li>
-		<li class="divider"></li>
+		<li><a href="/dashboard">Dashboard</a></li><li class="divider"></li>
+		<li><a href="/dashboard">Edit Account</a></li><li class="divider"></li>
+		<li><a href="/home">Home</a></li><li class="divider"></li>
 		<li><a href="/logout">Logout</a></li>
 	</ul>
 {% endif %}
@@ -31,6 +32,8 @@
 	</div>
 	</nav>
 
+
+<!-- ================ Main body content ================ -->
 <header>{% block header %}{% endblock header %}</header>
 <main>
 	{% block content %}
@@ -40,8 +43,12 @@
 	{% endblock content %}
 <sidebar>{% block sidebar %}{% endblock sidebar %}</sidebar>
 </main>
+
+
+
+<!-- ==================== Footer ==================== -->
 <footer class="page-footer blue accent-3">
-	<div class="container">
+<!-- 	<div class="container">
 		<div class="row">
 			<div class="col l6 s12">
 				<h5 class="white-text">Footer Content</h5>
@@ -54,15 +61,16 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="footer-copyright">
 		<div class="container">
-		© 2016 Logo
-		<a class="grey-text text-lighten-4 right" href="#!">Extra</a>
+		© 2016 Columbia University
 		</div>
 	</div>
 </footer>
 
+
+<!-- ==================== Scripts ==================== -->
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
