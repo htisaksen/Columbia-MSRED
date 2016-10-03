@@ -1,6 +1,6 @@
 import os, re
 from model import *
-from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g, jsonify
+from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, jsonify
 # import flask_login
 from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from functools import wraps
@@ -114,10 +114,10 @@ def inputForm():
 @app.route('/savedata',methods = ["POST"])
 @login_required
 def save_data():
-	# market_counter = 1
-	# rental_rate_counter = 1
-	# market_rental_assumption_list = []
-	# rental_rate_assumption_list = []
+	market_counter = 1
+	rental_rate_counter = 1
+	market_rental_assumption_list = []
+	rental_rate_assumption_list = []
 	analysis_start_date = request.form['Analysis_Start_Date']
 	property_name = request.form['Property_Name']
 	property_location = request.form['Property_Address']
@@ -148,13 +148,47 @@ def save_data():
 	administrative_total = request.form['Administrative_Total']
 	management_percentage = request.form['Management_Percentage']
 	replacement_reserves_percentage = request.form['Replacement_Reserves_Percentage']
-	# while request.form["'total_units"+str(rental_rate_counter)+"'"]:
-	# 	rental_rate_assumption_list.append(request.form["'total_units"+str(rental_rate_counter)+"'"])
-	# 	print(rental_rate_assumption_list)
-	# 	rental_rate_counter +=1
-	# market_rental_assumption_list =market_rental_assumption_list,
-	# rental_rate_assumption_list = rental_rate_assumption_list,
-	return jsonify(hello = 'hello')
+
+	while True:
+		if not request.form.get('total_units'+str(rental_rate_counter)):
+			break
+		rental_rate_assumption_list.append(request.form['total_units'+str(rental_rate_counter)])
+
+		rental_rate_counter +=1
+
+
+	return jsonify(market_rental_assumption_list = market_rental_assumption_list,
+	rental_rate_assumption_list = rental_rate_assumption_list,
+	analysis_start_date = analysis_start_date,
+    property_name = property_name,
+    property_location = property_location,
+    property_type = property_type,
+    purchase_price = purchase_price,
+    closing_cost_percentage = closing_cost_percentage,
+    sale_year = sale_year,
+    terminal_cap_rate = terminal_cap_rate,
+    sales_costs = sales_costs,
+    leverage = leverage,
+    interest_rate_on_mortgage = interest_rate_on_mortgage,
+    loan_term = loan_term,
+    loan_amortization = loan_amortization,
+    unlevered_discountRate = unlevered_discountRate,
+    levered_discount_rate = levered_discount_rate,
+    other_income_total = other_income_total,
+    less_vacancy = less_vacancy,
+    less_concessions = less_concessions,
+    less_credit_loss = less_credit_loss,
+    real_estate_taxes_total = real_estate_taxes_total,
+    insurance_total = insurance_total,
+    utilities_total = utilities_total,
+    payroll_total = payroll_total,
+    repairs_and_maintenance_total = repairs_and_maintenance_total,
+    contract_services_total = contract_services_total,
+    turnover_total = turnover_total,
+    sales_and_marketing_total = sales_and_marketing_total,
+    administrative_total = administrative_total,
+    management_percentage = management_percentage,
+    replacement_reserves_percentage = replacement_reserves_percentage,)
 
 
 
