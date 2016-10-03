@@ -50,11 +50,32 @@ class RealEstateModel(db.Model):
     management_percentage = db.Column('management_percentage', db.Integer)
     replacement_reserves_percentage = db.Column('replacement_reserves_percentage', db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-
-
+    rental_rate_assumption = db.relationship('RentalRateAssumption',backref='realestatemodels',lazy='dynamic')
+    market_rental_assumptions = db.relationship('MarketRentalAssumptions',backref='realestatemodels',lazy='dynamic')
     def __init__(self, model_name, user_id):
         self.model_name = model_name
         self.user_id = user_id
+
+#FK extended Real Estate Model table. Extension on userinputs
+class RentalRateAssumption(db.Model):
+    __tablename__ = "rentalrateassumptions"
+    id = db.Column('rental_rate_assumptions_id', db.Integer, primary_key=True)
+    proj_rent = db.Column('proj_rent', db.String(32))
+    total_units = db.Column('total_units', db.Integer)
+    avg_sf_per_unit = db.Column('avg_sf_per_unit', db.Integer)
+    rent_per_unit = db.Column('rent_per_unit', db.Integer)
+    real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
+
+#FK extended Real Estate Model table. Extension on userinputs
+class MarketRentalAssumptions(db.Model):
+    __tablename__ = "marketrentalassumptions"
+    id = db.Column('market_rental_assumptions_id', db.Integer, primary_key=True)
+    revenue = db.Column('revenue', db.Integer)
+    expenses = db.Column('expenses', db.Integer)
+    vacancy = db.Column('vacancy', db.Integer)
+    concessions = db.Column('concessions', db.Integer)
+    credit_loss = db.Column('credit_loss', db.Integer)
+    real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
 
 
 class User(db.Model):
