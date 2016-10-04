@@ -108,8 +108,9 @@ input[type=datetime],
 input[type=datetime-local], 
 input[type=number], 
 textarea.materialize-textarea {
-	width: 50%;
-	height: initial;
+	width: 90%;
+	margin: 0;
+	height: 2rem;
 }
 
 .dropdown-content li>a, 
@@ -126,11 +127,42 @@ textarea.materialize-textarea {
 	margin: 10px 25px 20px 20px;	
 }
 
-#Purchase_Information td, 
-#Purchase_Information th, 
-#Purchase_Information input[type=text], 
-#Purchase_Information input[type=number] {
-	width: 50px;
+/*input box*/
+#Analysis_Start_Date {
+	width:10%;
+	position: relative;
+	left: 20px;
+	color: blue;
 }
 
-/*#263238 blue-grey darken-4*/
+/*h6 header text*/
+#Analysis_Start_Date_text {
+	position: relative;
+	left: 20px;
+}
+
+
+
+table {
+  border-collapse: separate;
+  background:#fff;
+  /*@include border-radius(5px);*/
+  margin:25px auto;
+  
+}
+
+.collapsible-header,
+thead th {
+  font-size:16px;
+  font-weight:400;
+  color:#fff;
+  @include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
+  text-align:left;
+  padding:20px;
+  background: linear-gradient(#646f7f, #4a5564);
+  border-top:1px solid #858d99;
+  }
+
+ body {
+  background:lightgrey;
+}

@@ -5,17 +5,16 @@
 <div class="collapsible-header active"><i class="material-icons">pageview</i>Dashboard</div>
   <div class="collapsible-body">
   <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
-    <h6>Analysis Start Date
-      <span style="color:blue">
-        <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = "Analysis Start Date">
-      </span>
+    <h6 id='Analysis_Start_Date_text'>Analysis Start Date
+      <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date">
     </h6>
+    <hr>
     <div class='row'>
-      <div class="col s4">
+      <div class="col s3">
       <table id="Property_Information" class="center">
-        <tr>
-          <th>PROPERTY INFORMATION</th>
-        </tr>
+        <thead>
+          <th colspan='2'>PROPERTY INFORMATION</th>
+        </thead>
         <tr>
           <td>Property Name</td>
           <td><input type="text" name="Property_Name" id="Property_Name" placeholder = "Property Name"></td>
@@ -30,20 +29,19 @@
         </tr>
         <tr>
           <td>Number of Units</td>
-          <td id = "prop_info_total_num_units"></td>
+          <td id = "prop_info_total_num_units">0</td>
         </tr>
         <tr>
           <td>Total Square Feet</td>
-          <td id = "prop_info_total_sq_ft"></td>
+          <td id = "prop_info_total_sq_ft">0</td>
         </tr>
       </table>
-      <hr>
 
 
       <table id = "Purchase_Information">
-        <tr>
-          <th>PURCHASE INFORMATION</th>
-        </tr>
+        <thead>
+          <th colspan='3'>PURCHASE INFORMATION</th>
+        </thead>
         <tr>
           <td>Purchase Price</td>
           <td>&nbsp;</td>
@@ -52,7 +50,7 @@
         <tr>
           <td>Closing Costs</td>
           <td><input type="number" name="Closing_Costs_Percentage" id="Closing_Costs_Percentage" placeholder = "Closing Costs (%)"></td>
-          <td id ='PI_Closing_Costs'></td>
+          <td id ='PI_Closing_Costs'>$0.00</td>
         </tr>
         <tr>
           <td>Total Costs</td>
@@ -90,13 +88,11 @@
           <td id ='PI_Cap_Rate_on_Total_Price'>0.00%</td>
         </tr>
       </table>
-      <hr>
-
 
       <table id="Sale_Assumptions">
-        <tr>
-          <th>SALE ASSUMPTION</th>
-        </tr>
+        <thead>
+          <th colspan='2'>SALE ASSUMPTION</th>
+        </thead>
         <tr>
           <td>Sale Year</td>
           <td><input type="number" name="Sale_Year" id="Sale_Year" placeholder = "Sale Year (#)"></td>
@@ -110,13 +106,11 @@
           <td><input type="number" name="Sales_Costs" id="Sales_Costs" placeholder = "Sale Costs (%)"></td>
         </tr>
       </table>
-      <hr>
-
 
       <table name="Sale_Summary">
-        <tr>
-          <th>SALE SUMMARY</th>
-        </tr>
+        <thead>
+          <th colspan='2'>SALE SUMMARY</th>
+        </thead>
         <tr>
           <td>Sale Price</td>
           <td id ='Sale_Price'>$0.00</td>
@@ -130,13 +124,11 @@
           <td id ='Sale_Price_Per_SF'>$0.00</td>
         </tr>
       </table>
-      <hr>
-
 
       <table id="Financing_Assumptions">
-        <tr>
-          <th>FINANCING ASSUMPTIONS</th>
-        </tr>
+        <thead>
+          <th colspan='2'>FINANCING ASSUMPTIONS</th>
+        </thead>
         <tr>
           <td>Leverage</td>
           <td><input type="number" name="Leverage" id="Leverage" placeholder = "Leverage (%)"></td>
@@ -154,23 +146,21 @@
           <td><input type="number" name="Loan_Amortization" id="Loan_Amortization" placeholder = "Loan Amortization (#)"></td>
         </tr>
       </table>
-      <hr>
-      </div> <!-- End col s4 -->
+      </div> <!-- End col s3 -->
 
 
-      <div class="col s4">
-
+      <div class="col s5">
         <table id="Sources_and_Uses">
-          <tr>
-            <th>SOURCES AND USES</th>
-          </tr>
-          <tr>
-            <th>&nbsp;</th>
-            <th>Total</th>
-            <th>$/Unit</th>
-            <th>$/SF</th>
-            <th>% of Total</th>
-          </tr>
+          <thead>
+            <th colspan='5'>SOURCES AND USES</th>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Total</th>
+              <th>$/Unit</th>
+              <th>$/SF</th>
+              <th>% of Total</th>
+            </tr>
+          </thead>
           <tr>
             <th>Sources</th>
             <th>&nbsp;</th>
@@ -228,12 +218,12 @@
             <th id ='Total_Uses_PercentofTotal'>0.0%</th>
           </tr>
         </table>
-        <hr>
 
         <table id="Rental_Rate_Assumptions">
           <thead>
             <tr>
-              <th>RENTAL RATE ASSUMPTIONS</th>
+              <th colspan='6'>RENTAL RATE ASSUMPTIONS</th>
+              <th><button name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating waves-effect waves-light blue"><i class="material-icons">add</i></button></th>
             </tr>
             <tr>
               <th>Projected Rents</th>
@@ -255,13 +245,9 @@
               <th class = "rent_per_unit">$0.00</th>
           </tfoot>
 
-          <button name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating btn-large waves-effect waves-light red blue"><i class="material-icons">add</i></button>
-
+          
         </table>
 
-      </div> <!-- End col s4 -->
-
-      <hr>
       
       <!--   <table id="Returns_Summary">
           <tr>
@@ -348,28 +334,40 @@
             <td id='L_Cash_On_Cash'>0.00%</td>
           </tr>
         </table>
-        <hr>
    -->
+        <table id="Market_Rental_Assumptions">
+        <thead>
+          <tr>
+            <th colspan="7">MARKET RENTAL ASSUMPTIONS</th>
+          </tr>
+          <tr>
+            <th>Year</th>
+            <th>&nbsp;</th>
+            <th>Revenue</th>
+            <th>Expenses</th>
+            <th>Vacancy</th>
+            <th>Concessions</th>
+            <th>Credit Loss</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        </table>
+      </div> <!-- End col s5 -->
+
       <div class="col s4">
         <table id="Current_Financial_Performance">
+          <thead>
+            <th colspan="6">CURRENT FINANCIAL PERFORMANCE</th>
+            <tr>
+              <th colspan ="2" id='CFP_date'>As of date: </th>
+              <th>Total</th>
+              <th>$/Unit</th>
+              <th>$/SF</th>
+              <th>% of Total</th>
+            </tr>
+          </thead>
           <tr>
-            <th>CURRENT FINANCIAL PERFORMANCE</th>
-          </tr>
-          <tr>
-            <th>As of date: 1/1/2016</th>
-            <th>&nbsp;</th>
-            <th>Total</th>
-            <th>$/Unit</th>
-            <th>$/SF</th>
-            <th>% of Total</th>
-          </tr>
-          <tr>
-            <th>Revenue</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
+            <th colspan="2">Revenue</th>
           </tr>
           <tr>
             <td>Rental Income</td>
@@ -388,8 +386,7 @@
             <td id='Other_Income_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
-            <th>Gross Rental Income</th>
-            <th>&nbsp;</th>
+            <th colspan ="2">Gross Rental Income</th>
             <th id='Gross_Rental_Income_Total'>$0.00</th>
             <th id='Gross_Rental_Income_DollarPerUnit'>$0.00</th>
             <th id='Gross_Rental_Income_DollarPerSF'>$0.00</th>
@@ -428,7 +425,7 @@
             <th>&nbsp;</th>
           </tr>
           <tr>
-            <th>Operating Expenses</th>
+            <th colspan="2">Operating Expenses</th>
           </tr>
           <tr>
             <td>Real Estate Taxes</td>
@@ -463,8 +460,7 @@
             <td id='Payroll_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
-            <td>Repairs & Maintenance</td>
-            <td>&nbsp;</td>
+            <td colspan="2">Repairs & Maintenance</td>
             <td><input type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "Repairs & Maintenance Total ($)"></td>
             <td id='Repairs_and_Maintenance_DollarPerUnit'>$0.00</td>
             <td id='Repairs_and_Maintenance_DollarPerSF'>$0.00</td>
@@ -487,8 +483,7 @@
             <td id='Turnover_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
-            <td>Sales & Marketing</td>
-            <td>&nbsp;</td>
+            <td colspan="2">Sales & Marketing</td>
             <td><input type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "Sales & Marketing Total ($)"></td>
             <td id='Sales_and_Marketing_DollarPerUnit'>$0.00</td>
             <td id='Sales_and_Marketing_DollarPerSF'>$0.00</td>
@@ -519,17 +514,14 @@
             <td id='Replacement_Reserves_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
-            <td>Total Operating Expenses</td>
-            <td>&nbsp;</td>
+            <td colspan="2">Total Operating Expenses</td>
             <td id='Total_Operating_Expenses_Total'>$0.00</td>
             <td id='Total_Operating_Expenses_DollarPerUnit'>$0.00</td>
             <td id='Total_Operating_Expenses_DollarPerSF'>$0.00</td>
             <td id='Total_Operating_Expenses_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
-            <th>Net Operating Income</th>
-            <th>&nbsp;</th>
-
+            <th colspan ="2">Net Operating Income</th>
             <th id='Net_Operating_Income_Total'>$0.00</th>
             <th id='Net_Operating_Income_DollarPerUnit'>$0.00</th>
             <th id='Net_Operating_Income_DollarPerSF'>$0.00</th>
@@ -537,27 +529,7 @@
             <th>&nbsp;</th>
           </tr>
         </table>
-        <hr>
-
-
-        <table id="Market_Rental_Assumptions">
-        <thead>
-          <tr>
-            <th>MARKET RENTAL ASSUMPTIONS</th>
-          </tr>
-          <tr>
-            <th>Year</th>
-            <th>&nbsp;</th>
-            <th>Revenue</th>
-            <th>Expenses</th>
-            <th>Vacancy</th>
-            <th>Concessions</th>
-            <th>Credit Loss</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-          <hr>
-        </table>
+        
 
       </div> <!-- End col s4 -->
     </div> <!-- End row -->

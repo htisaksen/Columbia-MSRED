@@ -132,7 +132,7 @@ myApp.dashboard.getInputs = function(){
   $('#Total_Uses_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Purchasing_Price_PercentofTotal') + pFloat('#Closing_Costs_PercentofTotal'))));
   //
   // #Returns Summary Table
-  // UL_Net_Profit = 0       # {=SUM('Returns Summary'!C24:M24)}
+  // UL_Net_Profit = 0
   // UL_Present_Value = 0
   // UL_Net_Present_Value = 0
   // UL_Equity_Multiple = 0
@@ -155,6 +155,9 @@ myApp.dashboard.getInputs = function(){
   //moved formulas to top to prevent 'infinity' error
   $('#Gross_Rental_Income_Total').text(FormatCurrency(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total'))));				//$
   $('#Rental_Income_Total').text(FormatCurrency(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*totalUnits*12)));		//$
+
+  console.log("g.analysisStartDate:",g.analysisStartDate);
+  $('th #CFP_date').text("As of date: ",g.analysisStartDate);
 
   $('#Rental_Income_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/totalUnits)));			//$
   $('#Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/totalSquareFoot)));			//$

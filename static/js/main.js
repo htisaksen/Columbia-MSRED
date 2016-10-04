@@ -12,13 +12,13 @@ $(document).ready(function(){
 	};
 
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	myApp.htmlGen.test();
+	// myApp.htmlGen.test();
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 
 // //Javascript Rental Rate Assumptions first insert row -----------------------
-		// myApp.htmlGen.rentalRateAssumptions();
+		myApp.htmlGen.rentalRateAssumptions();
 
 //Javascript Market Rental Rate Assumptions first insert row -------------------
 		myApp.htmlGen.marketRentalAssumptions();
