@@ -37,9 +37,11 @@
 <header>{% block header %}{% endblock header %}</header>
 <main>
 	{% block content %}
-	<article>{% block dashboard %}{% endblock dashboard %}</article>
-	<article>{% block proforma %}{% endblock proforma %}</article>
-	<article>{% block returns_summary %}{% endblock returns_summary %}</article>
+	<div id = 'combined_dashboard'>
+		<article>{% block dashboard %}{% endblock dashboard %}</article>
+		<article>{% block proforma %}{% endblock proforma %}</article>
+		<article>{% block returns_summary %}{% endblock returns_summary %}</article>
+	</div>
 	{% endblock content %}
 <sidebar>{% block sidebar %}{% endblock sidebar %}</sidebar>
 </main>

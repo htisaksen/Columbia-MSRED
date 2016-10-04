@@ -3,16 +3,17 @@
 {% block content %}
 		<div class = "container">
 			<br>
-			<div id ='login_border_bg'>
-				<h2 style="text-align:center">Sign In</h2>
+			<div id ='login_page'>
+				<h2 style="text-align:center">Sign In</h2><br>
 				<form id= 'login_form' name = 'login_form' action = '/login' method = 'POST'>
 					{{error_msg}}
 					<input type = 'text' name = 'email' placeholder = 'Enter Email' value = 'joey@joey.com'>
 					<input type = 'password' name = 'password' placeholder = 'Enter Password' value = 'joey'>
+					<br><br>
 					<button class="btn waves-effect waves-light" type="submit" name="action">Login</button>
 				</form>
 				<br>
-				<div id = 'register_button_alignment'> <a href = '/register' class="waves-effect waves-light btn">Register</a></div>
+				<div id = 'LP_register_button'> <a href = '/register' class="waves-effect waves-light btn">Register</a></div>
 			</div>
 		</div>
 		<br><br>
