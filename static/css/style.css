@@ -98,7 +98,16 @@ footer.page-footer{
 }
 
 
-input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+input:not([type]), 
+input[type=text], 
+input[type=password], 
+input[type=email], 
+input[type=time], 
+input[type=date], 
+input[type=datetime],
+input[type=datetime-local], 
+input[type=number], 
+textarea.materialize-textarea {
 	width: 50%;
 	height: initial;
 }
@@ -113,5 +122,15 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 	left: 1752px;
 }
 
+#save_input {
+	margin: 10px 25px 20px 20px;	
+}
+
+#Purchase_Information td, 
+#Purchase_Information th, 
+#Purchase_Information input[type=text], 
+#Purchase_Information input[type=number] {
+	width: 50px;
+}
 
 /*#263238 blue-grey darken-4*/
