@@ -16,9 +16,8 @@ db = SQLAlchemy(app)
 class RealEstateModel(db.Model):
     __tablename__ = "realestatemodels"
     id = db.Column('model_id', db.Integer, primary_key=True)
-    created_on = db.Column('created_on', db.DateTime)
+    created_on = db.Column('created_on', db.String(64))
     model_name = db.Column('model_name', db.String(64))
-    last_modified = db.Column('last_modified', db.DateTime)
     analysis_start_date = db.Column('analysis_start_date', db.String(12))
     property_name = db.Column('property_name', db.String(32))
     property_location = db.Column('property_location', db.String(32))
@@ -47,15 +46,45 @@ class RealEstateModel(db.Model):
     turnover_total = db.Column('turnover_total', db.Integer)
     sales_and_marketing_total = db.Column('sales_and_marketing_total', db.Integer)
     administrative_total = db.Column('administrative_total', db.Integer)
-    management_percentage = db.Column('management_percentage', db.Integer)
-    replacement_reserves_percentage = db.Column('replacement_reserves_percentage', db.Integer)
+    management_percentage = db.Column('management_percentage', db.String)
+    replacement_reserves_percentage = db.Column('replacement_reserves_percentage', db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    rental_rate_assumption = db.relationship('RentalRateAssumption',backref='realestatemodels',lazy='dynamic')
-    market_rental_assumptions = db.relationship('MarketRentalAssumptions',backref='realestatemodels',lazy='dynamic')
-    def __init__(self, model_name, user_id):
+    rental_rate_assumptions = db.relationship('RentalRateAssumption',backref='realestatemodels',lazy='dynamic')
+    market_rental_assumptions = db.relationship('MarketRentalAssumption',backref='realestatemodels',lazy='dynamic')
+    def __init__(self, model_name, created_on, analysis_start_date, property_name, property_location, property_type, purchase_price, closing_cost_percentage, sale_year, terminal_cap_rate, sales_costs, leverage, interest_rate_on_mortgage, loan_term, loan_amortization, unlevered_discountRate, levered_discount_rate, other_income_total, less_vacancy, less_concessions, less_credit_loss, real_estate_taxes_total, insurance_total, utilities_total, payroll_total, repairs_and_maintenance_total, contract_services_total, turnover_total, sales_and_marketing_total, administrative_total, management_percentage, replacement_reserves_percentage, user_id):
         self.model_name = model_name
+        self.created_on = datetime.utcnow()
+        self.analysis_start_date = analysis_start_date
+        self.property_name = property_name
+        self.property_location = property_location
+        self.property_type = property_type
+        self.purchase_price = purchase_price
+        self.closing_cost_percentage = closing_cost_percentage
+        self.sale_year = sale_year
+        self.terminal_cap_rate = terminal_cap_rate
+        self.sales_costs = sales_costs
+        self.leverage = leverage
+        self.interest_rate_on_mortgage = interest_rate_on_mortgage
+        self.loan_term = loan_term
+        self.loan_amortization = loan_amortization
+        self.unlevered_discountRate = unlevered_discountRate
+        self.levered_discount_rate = levered_discount_rate
+        self.other_income_total = other_income_total
+        self.less_vacancy = less_vacancy
+        self.less_concessions = less_concessions
+        self.less_credit_loss = less_credit_loss
+        self.real_estate_taxes_total = real_estate_taxes_total
+        self.insurance_total = insurance_total
+        self.utilities_total = utilities_total
+        self.payroll_total = payroll_total
+        self.repairs_and_maintenance_total = repairs_and_maintenance_total
+        self.contract_services_total = contract_services_total
+        self.turnover_total = turnover_total
+        self.sales_and_marketing_total = sales_and_marketing_total
+        self.administrative_total = administrative_total
+        self.management_percentage = management_percentage
+        self.replacement_reserves_percentage = replacement_reserves_percentage
         self.user_id = user_id
-
 #FK extended Real Estate Model table. Extension on userinputs
 class RentalRateAssumption(db.Model):
     __tablename__ = "rentalrateassumptions"
@@ -66,8 +95,15 @@ class RentalRateAssumption(db.Model):
     rent_per_unit = db.Column('rent_per_unit', db.Integer)
     real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
 
+    def __init__(self, proj_rent, total_units, avg_sf_per_unit, rent_per_unit, real_estate_model_id):
+        self.proj_rent = proj_rent
+        self.total_units = total_units
+        self.avg_sf_per_unit = avg_sf_per_unit
+        self.rent_per_unit = rent_per_unit
+        self.real_estate_model_id = real_estate_model_id
+
 #FK extended Real Estate Model table. Extension on userinputs
-class MarketRentalAssumptions(db.Model):
+class MarketRentalAssumption(db.Model):
     __tablename__ = "marketrentalassumptions"
     id = db.Column('market_rental_assumptions_id', db.Integer, primary_key=True)
     revenue = db.Column('revenue', db.Integer)
@@ -77,6 +113,13 @@ class MarketRentalAssumptions(db.Model):
     credit_loss = db.Column('credit_loss', db.Integer)
     real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
 
+    def __init__(self, revenue, expenses, vacancy, concessions, credit_loss, real_estate_model_id):
+        self.revenue = revenue
+        self.expenses = expenses
+        self.vacancy = vacancy
+        self.concessions = concessions
+        self.credit_loss = credit_loss
+        self.real_estate_model_id = real_estate_model_id
 
 class User(db.Model):
     __tablename__ = "users"
@@ -107,24 +150,27 @@ class User(db.Model):
 
 
 if __name__== "__main__":
+    print('='*50, datetime.utcnow())
     db.drop_all()
     db.create_all()
     tak = User('tak@i.com','tak', 'Tak','I.')
     fred = User('fred@vs.com','fred', 'Fred','VS.')
-
     db.session.add(tak)
     db.session.add(fred)
     db.session.commit()
 
-    print("User.query.all():=============",User.query.all())
-    print("User.query.filter_by(email='tak@i.com)':=======",User.query.filter_by(email='tak@i.com').first())
+    # print("User.query.all():=============",User.query.all())
+    # print("User.query.filter_by(email='tak@i.com)':=======",User.query.filter_by(email='tak@i.com').first())
+    #
+    #  (self, model_name, created_on, analysis_start_date, property_name, property_location, property_type, purchase_price, closing_cost_percentage, sale_year, terminal_cap_rate, sales_costs, leverage, interest_rate_on_mortgage, loan_term, loan_amortization, unlevered_discountRate, levered_discount_rate, other_income_total, less_vacancy, less_concessions, less_credit_loss, real_estate_taxes_total, insurance_total, utilities_total, payroll_total, repairs_and_maintenance_total, contract_services_total, turnover_total, sales_and_marketing_total, administrative_total, management_percentage, replacement_reserves_percentage, user_id, rental_rate_assumptions, market_rental_assumptions):
 
-    save1 = RealEstateModel('TAKAMON Round1','1')
-    save2 = RealEstateModel('Fredsters first model','2')
-    save3 = RealEstateModel('Fredsters second model','2')
+    save1 = RealEstateModel("Model1", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 1)
+    # save2 = RealEstateModel("Model3", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 2, '[4000,300,2000]', '[1,2,3,4,5]')
+    # save3 = RealEstateModel("Modelwhat", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 3, '[4000,300,2000]', '[1,2,3,4,5]')
+
     db.session.add(save1)
-    db.session.add(save2)
-    db.session.add(save3)
+    # db.session.add(save2)
+    # db.session.add(save3)
     db.session.commit()
 
     print("Database has been created...")
