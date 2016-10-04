@@ -116,8 +116,18 @@ def inputForm():
 def save_data():
 	market_counter = 1
 	rental_rate_counter = 1
-	market_rental_assumption_list = []
-	rental_rate_assumption_list = []
+	# rental rate lists
+	proj_rents_list = []
+	total_units_list = []
+	avg_sf_per_unit_list = []
+	rent_per_unit_list = []
+	# market rental lists
+	revenue_list = []
+	expenses_list = []
+	vacancy_list = []
+	concession_list = []
+	credit_loss_list = []
+	# static inputs
 	analysis_start_date = request.form['Analysis_Start_Date']
 	property_name = request.form['Property_Name']
 	property_location = request.form['Property_Address']
@@ -152,14 +162,24 @@ def save_data():
 	while True:
 		if not request.form.get('total_units'+str(rental_rate_counter)):
 			break
-		rental_rate_assumption_list.append(request.form['total_units'+str(rental_rate_counter)])
+		proj_rents_list.append(request.form['proj_rents'+str(rental_rate_counter)])
+		total_units_list.append(request.form['total_units'+str(rental_rate_counter)])
+		avg_sf_per_unit_list.append(request.form['avg_sf_per_unit'+str(rental_rate_counter)])
+		rent_per_unit_list.append(request.form['rent_per_unit'+str(rental_rate_counter)])
+		rental_rate_counter += 1
 
-		rental_rate_counter +=1
+	while True:
+		if not request.form.get('mkt_rent_revenue'+str(rental_rate_counter)):
+			break
+		revenue_list.append('mkt_rent_revenue'+str(rental_rate_counter))
+		expenses_list.append('mkt_rent_expenses'+str(rental_rate_counter))
+		vacancy_list.append('mkt_rent_vacancy'+str(rental_rate_counter))
+		concession_list.append('mkt_rent_concessions'+str(rental_rate_counter))
+		credit_loss_list.append('mkt_rent_credit_loss'+str(rental_rate_counter))
+		market_counter += 1
 
 
-	return jsonify(market_rental_assumption_list = market_rental_assumption_list,
-	rental_rate_assumption_list = rental_rate_assumption_list,
-	analysis_start_date = analysis_start_date,
+	return jsonify(analysis_start_date = analysis_start_date,
     property_name = property_name,
     property_location = property_location,
     property_type = property_type,
