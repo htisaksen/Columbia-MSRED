@@ -11,11 +11,12 @@
 
 <body>
 
-<!-- ================ Top Header bar ================ -->
+<!-- ================ Top Header/nav bar ================ -->
 {% if session['logged_in'] == True %}
 	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="/dashboard">Dashboard</a></li><li class="divider"></li>
-		<li><a href="/dashboard">Edit Account</a></li><li class="divider"></li>
+		<li><a href="dashboard/#block_org_dashboard">Dashboard</a></li><li class="divider"></li>
+		<li><a href="dashboard/#block_proforma">Pro Forma</a></li><li class="divider"></li>
+		<li><a href="#">Edit Account</a></li><li class="divider"></li>
 		<li><a href="/home">Home</a></li><li class="divider"></li>
 		<li><a href="/logout">Logout</a></li>
 	</ul>
@@ -33,17 +34,22 @@
 	</nav>
 
 
-<!-- ================ Main body content ================ -->
 <header>{% block header %}{% endblock header %}</header>
+<!-- ================ Main body content ================ -->
 <main>
 	{% block content %}
 	<div id = 'combined_dashboard'>
-		<article>{% block dashboard %}{% endblock dashboard %}</article>
-		<article>{% block proforma %}{% endblock proforma %}</article>
-		<article>{% block returns_summary %}{% endblock returns_summary %}</article>
+		<article id = 'block_org_dashboard'>
+			{% block dashboard %}{% endblock dashboard %}
+		</article>
+		<article id = 'block_proforma'>
+			{% block proforma %}{% endblock proforma %}
+		</article>
+		<div id="save_model">
+			{% block save_model %}{% endblock save_model %}
+		</div>
 	</div>
 	{% endblock content %}
-<sidebar>{% block sidebar %}{% endblock sidebar %}</sidebar>
 </main>
 
 

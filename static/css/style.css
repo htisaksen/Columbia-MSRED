@@ -93,7 +93,7 @@ footer.page-footer{
 	box-shadow: 0 -2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-#combined_dashboard td, th {
+#combined_dashboard td, #combined_dashboard th {
 	padding: 5px 5px;
 }
 
@@ -103,6 +103,15 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 	height: initial;
 }
 
+.dropdown-content li>a, 
+.dropdown-content li>span {
+	text-align: center;
+}
+
+#dropdown1 .dropdown-content {
+	width: 160px;
+	left: 1752px;
+}
 
 
 /*#263238 blue-grey darken-4*/
