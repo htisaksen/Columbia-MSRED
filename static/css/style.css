@@ -71,12 +71,11 @@ main {
 	border-color: lightgrey;
 	background-color: white;
 	padding: 25px;
-	height: 380px;
 }
 
 #login_page input, #register_page input {
 	width: 75%;
-	margin: 0px 60px 30px 60px;
+	margin: 0 10% 3% 10%;
 }
 
 #register_page {
@@ -85,7 +84,6 @@ main {
 	border-color: lightgrey;
 	background-color: white;
 	padding: 25px;
-	height: 400px;
 }
 
 
