@@ -98,7 +98,7 @@ $(document).ready(function(){
 // ============================================================================================================
 //SAVE to DB
 // ============================================================================================================
-	$('#save_input').on('click',function(event) {
+	$('#modal_save').on('click',function(event) {
     event.preventDefault();
     var data = $('#dashboard').serialize();
 		services.saveDashboard(data);

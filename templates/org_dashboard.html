@@ -5,6 +5,20 @@
 <div class="collapsible-header active"><i class="material-icons">pageview</i>Dashboard</div>
   <div class="collapsible-body">
   <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
+    <div id="save_modal">
+        <!-- Modal Trigger -->
+        <button id = "save_input" class="btn modal-trigger" href="#modal1">Save Data</button>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <input type ="text" name="save_name" id = "save_name" placeholder = "Name of save">
+          </div>
+          <div class="modal-footer">
+            <button id= 'modal_save' href=/savedata class=" modal-action modal-close waves-effect waves-green btn-flat" type='submit'>Save</button>
+          </div>
+        </div>
+    </div>
     <h6>Analysis Start Date
       <span style="color:blue">
         <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = "Analysis Start Date">
@@ -262,7 +276,7 @@
       </div> <!-- End col s4 -->
 
       <hr>
-      
+
       <!--   <table id="Returns_Summary">
           <tr>
             <th>RETURNS SUMMARY</th>

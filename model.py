@@ -22,38 +22,38 @@ class RealEstateModel(db.Model):
     property_name = db.Column('property_name', db.String(32))
     property_location = db.Column('property_location', db.String(32))
     property_type = db.Column('property_type', db.String(32))
-    purchase_price = db.Column('purchase_price', db.Integer)
-    closing_cost_percentage = db.Column('closing_cost_percentage', db.Integer)
-    sale_year = db.Column('sale_year', db.Integer)
-    terminal_cap_rate = db.Column('terminal_cap_rate', db.Integer)
-    sales_costs = db.Column('sales_costs', db.Integer)
-    leverage = db.Column('leverage', db.Integer)
-    interest_rate_on_mortgage = db.Column('interest_rate_on_mortgage', db.Integer)
-    loan_term = db.Column('loan_term', db.Integer)
-    loan_amortization = db.Column('loan_amortization', db.Integer)
-    unlevered_discountRate = db.Column('unlevered_discountRate', db.Integer)
-    levered_discount_rate = db.Column('levered_discount_rate', db.Integer)
-    other_income_total = db.Column('other_income_total', db.Integer)
-    less_vacancy = db.Column('less_vacancy', db.Integer)
-    less_concessions = db.Column('less_concessions', db.Integer)
-    less_credit_loss = db.Column('less_credit_loss', db.Integer)
-    real_estate_taxes_total = db.Column('real_estate_taxes_total', db.Integer)
-    insurance_total = db.Column('insurance_total', db.Integer)
-    utilities_total = db.Column('utilities_total', db.Integer)
-    payroll_total = db.Column('payroll_total', db.Integer)
-    repairs_and_maintenance_total = db.Column('repairs_and_maintenance_total', db.Integer)
-    contract_services_total = db.Column('contract_services_total', db.Integer)
-    turnover_total = db.Column('turnover_total', db.Integer)
-    sales_and_marketing_total = db.Column('sales_and_marketing_total', db.Integer)
-    administrative_total = db.Column('administrative_total', db.Integer)
-    management_percentage = db.Column('management_percentage', db.String)
-    replacement_reserves_percentage = db.Column('replacement_reserves_percentage', db.String)
+    purchase_price = db.Column('purchase_price', db.String(32))
+    closing_cost_percentage = db.Column('closing_cost_percentage', db.String(32))
+    sale_year = db.Column('sale_year', db.String(32))
+    terminal_cap_rate = db.Column('terminal_cap_rate', db.String(32))
+    sales_costs = db.Column('sales_costs', db.String(32))
+    leverage = db.Column('leverage', db.String(32))
+    interest_rate_on_mortgage = db.Column('interest_rate_on_mortgage', db.String(32))
+    loan_term = db.Column('loan_term', db.String(32))
+    loan_amortization = db.Column('loan_amortization', db.String(32))
+    unlevered_discountRate = db.Column('unlevered_discountRate', db.String(32))
+    levered_discount_rate = db.Column('levered_discount_rate', db.String(32))
+    other_income_total = db.Column('other_income_total', db.String(32))
+    less_vacancy = db.Column('less_vacancy', db.String(32))
+    less_concessions = db.Column('less_concessions', db.String(32))
+    less_credit_loss = db.Column('less_credit_loss', db.String(32))
+    real_estate_taxes_total = db.Column('real_estate_taxes_total', db.String(32))
+    insurance_total = db.Column('insurance_total', db.String(32))
+    utilities_total = db.Column('utilities_total', db.String(32))
+    payroll_total = db.Column('payroll_total', db.String(32))
+    repairs_and_maintenance_total = db.Column('repairs_and_maintenance_total', db.String(32))
+    contract_services_total = db.Column('contract_services_total', db.String(32))
+    turnover_total = db.Column('turnover_total', db.String(32))
+    sales_and_marketing_total = db.Column('sales_and_marketing_total', db.String(32))
+    administrative_total = db.Column('administrative_total', db.String(32))
+    management_percentage = db.Column('management_percentage', db.String(32))
+    replacement_reserves_percentage = db.Column('replacement_reserves_percentage', db.String(32))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     rental_rate_assumptions = db.relationship('RentalRateAssumption',backref='realestatemodels',lazy='dynamic')
     market_rental_assumptions = db.relationship('MarketRentalAssumption',backref='realestatemodels',lazy='dynamic')
     def __init__(self, model_name, created_on, analysis_start_date, property_name, property_location, property_type, purchase_price, closing_cost_percentage, sale_year, terminal_cap_rate, sales_costs, leverage, interest_rate_on_mortgage, loan_term, loan_amortization, unlevered_discountRate, levered_discount_rate, other_income_total, less_vacancy, less_concessions, less_credit_loss, real_estate_taxes_total, insurance_total, utilities_total, payroll_total, repairs_and_maintenance_total, contract_services_total, turnover_total, sales_and_marketing_total, administrative_total, management_percentage, replacement_reserves_percentage, user_id):
         self.model_name = model_name
-        self.created_on = datetime.utcnow()
+        self.created_on = created_on
         self.analysis_start_date = analysis_start_date
         self.property_name = property_name
         self.property_location = property_location
@@ -90,9 +90,9 @@ class RentalRateAssumption(db.Model):
     __tablename__ = "rentalrateassumptions"
     id = db.Column('rental_rate_assumptions_id', db.Integer, primary_key=True)
     proj_rent = db.Column('proj_rent', db.String(32))
-    total_units = db.Column('total_units', db.Integer)
-    avg_sf_per_unit = db.Column('avg_sf_per_unit', db.Integer)
-    rent_per_unit = db.Column('rent_per_unit', db.Integer)
+    total_units = db.Column('total_units', db.String(32))
+    avg_sf_per_unit = db.Column('avg_sf_per_unit', db.String(32))
+    rent_per_unit = db.Column('rent_per_unit', db.String(32))
     real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
 
     def __init__(self, proj_rent, total_units, avg_sf_per_unit, rent_per_unit, real_estate_model_id):
@@ -106,11 +106,11 @@ class RentalRateAssumption(db.Model):
 class MarketRentalAssumption(db.Model):
     __tablename__ = "marketrentalassumptions"
     id = db.Column('market_rental_assumptions_id', db.Integer, primary_key=True)
-    revenue = db.Column('revenue', db.Integer)
-    expenses = db.Column('expenses', db.Integer)
-    vacancy = db.Column('vacancy', db.Integer)
-    concessions = db.Column('concessions', db.Integer)
-    credit_loss = db.Column('credit_loss', db.Integer)
+    revenue = db.Column('revenue', db.String(32))
+    expenses = db.Column('expenses', db.String(32))
+    vacancy = db.Column('vacancy', db.String(32))
+    concessions = db.Column('concessions', db.String(32))
+    credit_loss = db.Column('credit_loss', db.String(32))
     real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
 
     def __init__(self, revenue, expenses, vacancy, concessions, credit_loss, real_estate_model_id):
@@ -164,9 +164,12 @@ if __name__== "__main__":
     #
     #  (self, model_name, created_on, analysis_start_date, property_name, property_location, property_type, purchase_price, closing_cost_percentage, sale_year, terminal_cap_rate, sales_costs, leverage, interest_rate_on_mortgage, loan_term, loan_amortization, unlevered_discountRate, levered_discount_rate, other_income_total, less_vacancy, less_concessions, less_credit_loss, real_estate_taxes_total, insurance_total, utilities_total, payroll_total, repairs_and_maintenance_total, contract_services_total, turnover_total, sales_and_marketing_total, administrative_total, management_percentage, replacement_reserves_percentage, user_id, rental_rate_assumptions, market_rental_assumptions):
 
-    save1 = RealEstateModel("Model1", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 1)
+    # save1 = RealEstateModel("Model1", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 1)
     # save2 = RealEstateModel("Model3", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 2, '[4000,300,2000]', '[1,2,3,4,5]')
     # save3 = RealEstateModel("Modelwhat", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 3, '[4000,300,2000]', '[1,2,3,4,5]')
+    save1 = RealEstateModel("Model1",datetime.utcnow(),'11/04/2015','CommercialbldgA','NewYork','Commercial','400000','3','2','7','2','65','5.5','10','25','8','8','100000','10','3','2','500000','75000','125000','150000','75000','100000','75000','50000','50000','3','2',1)
+
+
 
     db.session.add(save1)
     # db.session.add(save2)
