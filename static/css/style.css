@@ -121,7 +121,7 @@ textarea.materialize-textarea {
 	color: blue;
 }
 
-ul#dropdown1 {
+ul #dropdown1 {
 	width: 160px;
 	left: 1752px;
 }
@@ -129,7 +129,8 @@ ul#dropdown1 {
 /*==================*/
 
 #save_input {
-	margin: 10px 25px 20px 20px;	
+	margin: 0 3%;
+	float:right;	
 }
 
 /*input box*/
@@ -142,10 +143,8 @@ ul#dropdown1 {
 
 /*h6 header text*/
 #Analysis_Start_Date_text {
-	position: relative;
 	left: 20px;
 }
-
 
 
 table {

@@ -7,7 +7,7 @@
   <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
     <div id="save_modal">
         <!-- Modal Trigger -->
-        <button id = "save_input" class="btn modal-trigger" href="#modal1">Save Data</button>
+        <button id = "save_input" class="btn modal-trigger" href="#modal1">Save Model</button>
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
@@ -18,11 +18,11 @@
             <button id= 'modal_save' href=/savedata class=" modal-action modal-close waves-effect waves-green btn-flat" type='submit'>Save</button>
           </div>
         </div>
+      <h6 id='Analysis_Start_Date_text'>Analysis Start Date
+        <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date">
+      </h6>
+      <hr>
     </div>
-    <h6 id='Analysis_Start_Date_text'>Analysis Start Date
-      <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date">
-    </h6>
-    <hr>
     <div class='row'>
       <div class="col s3">
       <table class ='striped' id="Property_Information" class="center">
