@@ -14,22 +14,23 @@
 <!-- ================ Top Header/nav bar ================ -->
 {% if session['logged_in'] == True %}
 	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="dashboard/#block_org_dashboard">Dashboard</a></li><li class="divider"></li>
-		<li><a href="dashboard/#block_proforma">Pro Forma</a></li><li class="divider"></li>
+<!-- 		<li><a href="dashboard/#block_org_dashboard">Dashboard</a></li><li class="divider"></li>
+		<li><a href="dashboard/#block_proforma">Pro Forma</a></li><li class="divider"></li> -->
 		<li><a href="/home">Home</a></li><li class="divider"></li>
 		<li><a href="/logout">Logout</a></li>
 	</ul>
 {% endif %}
-	<nav class = 'blue accent-3'>
-	<div class="nav-wrapper">
-		<a href="/" class="brand-logo">Logo</a>
+	<nav class = 'blue accent-3 nav-wrapper'>
+		<a href="/" class="brand-logo">
+			<img src="static/img/logo.svg" alt="Columbia Business School Logo" title="Columbia Business School Logo">
+		</a>
+
 		<ul class="right hide-on-med-and-down">
 {% if session['logged_in'] == True %}
 			<li>{{session.firstname}}</li>
 			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">view_headline</i></a></li>
 {% endif %}
 		</ul>
-	</div>
 	</nav>
 
 

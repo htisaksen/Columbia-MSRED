@@ -126,6 +126,12 @@ ul #dropdown1 {
 	left: 1752px;
 }
 
+a.brand-logo {
+	display: inline-flex;
+	padding: 7px;
+}
+
+
 /*==================*/
 
 #save_input {
@@ -199,3 +205,8 @@ thead th {
 	width: 30%;
 }
 /*==================*/
+
+
+footer.page-footer {
+	padding: 0;
+}
