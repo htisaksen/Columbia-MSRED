@@ -11,9 +11,9 @@
     <hr>
     <div class='row'>
       <div class="col s3">
-      <table id="Property_Information" class="center">
+      <table class ='striped' id="Property_Information" class="center">
         <thead>
-          <th colspan='2'>PROPERTY INFORMATION</th>
+          <th class="table_header" colspan='2'>PROPERTY INFORMATION</th>
         </thead>
         <tr>
           <td>Property Name</td>
@@ -38,18 +38,18 @@
       </table>
 
 
-      <table id = "Purchase_Information">
+      <table class ='striped' id = "Purchase_Information">
         <thead>
-          <th colspan='3'>PURCHASE INFORMATION</th>
+          <th class = 'table_header' colspan='3'>PURCHASE INFORMATION</th>
         </thead>
         <tr>
           <td>Purchase Price</td>
           <td>&nbsp;</td>
-          <td><input type="number" name="Purchase_Price" id="Purchase_Price" placeholder = "Purchase Price ($)"></td>
+          <td><input type="number" name="Purchase_Price" id="Purchase_Price" placeholder = "($)"></td>
         </tr>
         <tr>
           <td>Closing Costs</td>
-          <td><input type="number" name="Closing_Costs_Percentage" id="Closing_Costs_Percentage" placeholder = "Closing Costs (%)"></td>
+          <td><input type="number" name="Closing_Costs_Percentage" id="Closing_Costs_Percentage" placeholder = "(%)"></td>
           <td id ='PI_Closing_Costs'>$0.00</td>
         </tr>
         <tr>
@@ -89,9 +89,9 @@
         </tr>
       </table>
 
-      <table id="Sale_Assumptions">
+      <table class ='striped' id="Sale_Assumptions">
         <thead>
-          <th colspan='2'>SALE ASSUMPTION</th>
+          <th class="table_header" colspan='2'>SALE ASSUMPTION</th>
         </thead>
         <tr>
           <td>Sale Year</td>
@@ -107,9 +107,9 @@
         </tr>
       </table>
 
-      <table name="Sale_Summary">
+      <table class ='striped' id="Sale_Summary">
         <thead>
-          <th colspan='2'>SALE SUMMARY</th>
+          <th class="table_header" colspan='2'>SALE SUMMARY</th>
         </thead>
         <tr>
           <td>Sale Price</td>
@@ -125,34 +125,34 @@
         </tr>
       </table>
 
-      <table id="Financing_Assumptions">
+      <table class ='striped' id="Financing_Assumptions">
         <thead>
-          <th colspan='2'>FINANCING ASSUMPTIONS</th>
+          <th class="table_header" colspan='2'>FINANCING ASSUMPTIONS</th>
         </thead>
         <tr>
           <td>Leverage</td>
-          <td><input type="number" name="Leverage" id="Leverage" placeholder = "Leverage (%)"></td>
+          <td><input type="number" name="Leverage" id="Leverage" placeholder = "(%)"></td>
         </tr>
         <tr>
           <td>Interest Rate on Mortgage</td>
-          <td><input type="number" name="Interest_Rate_on_Mortgage" id="Interest_Rate_on_Mortgage" placeholder = "Interest Rate on Mortgage (%)"></td>
+          <td><input type="number" name="Interest_Rate_on_Mortgage" id="Interest_Rate_on_Mortgage" placeholder = "(%)"></td>
         </tr>
         <tr>
           <td>Loan Term</td>
-          <td><input type="number" name="Loan_Term" id="Loan_Term" placeholder = "Loan Term (#)"></td>
+          <td><input type="number" name="Loan_Term" id="Loan_Term" placeholder = "(#)"></td>
         </tr>
         <tr>
           <td>Loan Amortization</td>
-          <td><input type="number" name="Loan_Amortization" id="Loan_Amortization" placeholder = "Loan Amortization (#)"></td>
+          <td><input type="number" name="Loan_Amortization" id="Loan_Amortization" placeholder = "(#)"></td>
         </tr>
       </table>
       </div> <!-- End col s3 -->
 
 
       <div class="col s5">
-        <table id="Sources_and_Uses">
+        <table class ='striped' id="Sources_and_Uses">
           <thead>
-            <th colspan='5'>SOURCES AND USES</th>
+            <th class="table_header" colspan='5'>SOURCES AND USES</th>
             <tr>
               <th>&nbsp;</th>
               <th>Total</th>
@@ -219,10 +219,10 @@
           </tr>
         </table>
 
-        <table id="Rental_Rate_Assumptions">
+        <table class ='striped' id="Rental_Rate_Assumptions">
           <thead>
             <tr>
-              <th colspan='6'>RENTAL RATE ASSUMPTIONS</th>
+              <th class="table_header" colspan='6'>RENTAL RATE ASSUMPTIONS</th>
               <th><button name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating waves-effect waves-light blue"><i class="material-icons">add</i></button></th>
             </tr>
             <tr>
@@ -249,7 +249,7 @@
         </table>
 
       
-      <!--   <table id="Returns_Summary">
+      <!--   <table class ='striped' id="Returns_Summary">
           <tr>
             <th>RETURNS SUMMARY</th>
           </tr>
@@ -335,14 +335,13 @@
           </tr>
         </table>
    -->
-        <table id="Market_Rental_Assumptions">
+        <table class ='striped' id="Market_Rental_Assumptions">
         <thead>
           <tr>
-            <th colspan="7">MARKET RENTAL ASSUMPTIONS</th>
+            <th class="table_header" colspan="6">MARKET RENTAL ASSUMPTIONS</th>
           </tr>
           <tr>
             <th>Year</th>
-            <th>&nbsp;</th>
             <th>Revenue</th>
             <th>Expenses</th>
             <th>Vacancy</th>
@@ -355,9 +354,9 @@
       </div> <!-- End col s5 -->
 
       <div class="col s4">
-        <table id="Current_Financial_Performance">
+        <table class ='striped' id="Current_Financial_Performance">
           <thead>
-            <th colspan="6">CURRENT FINANCIAL PERFORMANCE</th>
+            <th class="table_header" colspan="6">CURRENT FINANCIAL PERFORMANCE</th>
             <tr>
               <th colspan ="2" id='CFP_date'>As of date: </th>
               <th>Total</th>
@@ -367,7 +366,7 @@
             </tr>
           </thead>
           <tr>
-            <th colspan="2">Revenue</th>
+            <th colspan="6">Revenue</th>
           </tr>
           <tr>
             <td>Rental Income</td>
@@ -380,7 +379,7 @@
           <tr>
             <td>Other Income</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Other_Income_Total" id="Other_Income_Total" placeholder = "Total Other Income ($)"></td>
+            <td><input type="number" name="Other_Income_Total" id="Other_Income_Total" placeholder = "($)"></td>
             <td id='Other_Income_DollarPerUnit'>$0.00</td>
             <td id='Other_Income_DollarPerSF'>$0.00</td>
             <td id='Other_Income_PercentofTotal'>0.0%</td>
@@ -394,7 +393,7 @@
           </tr>
           <tr>
             <td>Less: Vacancy</td>
-            <td><input type="number" name="Less_Vacancy" id="Less_Vacancy" placeholder = "Less Vacancy (%)"></td>
+            <td><input type="number" name="Less_Vacancy" id="Less_Vacancy" placeholder = "(%)"></td>
             <td id='Vacancy_Total'>$0.00</td>
             <td id='Vacancy_DollarPerUnit'>$0.00</td>
             <td id='Vacancy_DollarPerSF'>$0.00</td>
@@ -402,7 +401,7 @@
           </tr>
           <tr>
             <td>Less: Concessions</td>
-            <td><input type="number" name="Less_Concessions" id="Less_Concessions" placeholder = "Less Concessions (%)"></td>
+            <td><input type="number" name="Less_Concessions" id="Less_Concessions" placeholder = "(%)"></td>
             <td id='Concessions_Total'>$0.00</td>
             <td id='Concessions_DollarPerUnit'>$0.00</td>
             <td id='Concessions_DollarPerSF'>$0.00</td>
@@ -410,7 +409,7 @@
           </tr>
           <tr>
             <td>Less: Credit Loss</td>
-            <td><input type="number" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "Less Credit Loss (%)"></td>
+            <td><input type="number" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "(%)"></td>
             <td id='Credit_Loss_Total'>$0.00</td>
             <td id='Credit_Loss_DollarPerUnit'>$0.00</td>
             <td id='Credit_Loss_DollarPerSF'>$0.00</td>
@@ -425,12 +424,12 @@
             <th>&nbsp;</th>
           </tr>
           <tr>
-            <th colspan="2">Operating Expenses</th>
+            <th colspan="6">Operating Expenses</th>
           </tr>
           <tr>
             <td>Real Estate Taxes</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "Real Estate Taxes Total ($)"></td>
+            <td><input type="number" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "($)"></td>
             <td id='Real_Estate_Taxes_DollarPerUnit'>$0.00</td>
             <td id='Real_Estate_Taxes_DollarPerSF'>$0.00</td>
             <td id='Real_Estate_Taxes_PercentofTotal'>0.0%</td>
@@ -438,7 +437,7 @@
           <tr>
             <td>Insurance</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Insurance_Total" id="Insurance_Total" placeholder = "Insurance Total ($)"></td>
+            <td><input type="number" name="Insurance_Total" id="Insurance_Total" placeholder = "($)"></td>
             <td id='Insurance_DollarPerUnit'>$0.00</td>
             <td id='Insurance_DollarPerSF'>$0.00</td>
             <td id='Insurance_PercentofTotal'>0.0%</td>
@@ -446,7 +445,7 @@
           <tr>
             <td>Utilities</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Utilities_Total" id="Utilities_Total" placeholder = "Utilities Total ($)"></td>
+            <td><input type="number" name="Utilities_Total" id="Utilities_Total" placeholder = "($)"></td>
             <td id='Utilities_DollarPerUnit'>$0.00</td>
             <td id='Utilities_DollarPerSF'>$0.00</td>
             <td id='Utilities_PercentofTotal'>0.0%</td>
@@ -454,14 +453,14 @@
           <tr>
             <td>Payroll</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Payroll_Total" id="Payroll_Total" placeholder = "Payroll Total ($)"></td>
+            <td><input type="number" name="Payroll_Total" id="Payroll_Total" placeholder = "($)"></td>
             <td id='Payroll_DollarPerUnit'>$0.00</td>
             <td id='Payroll_DollarPerSF'>$0.00</td>
             <td id='Payroll_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan="2">Repairs & Maintenance</td>
-            <td><input type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "Repairs & Maintenance Total ($)"></td>
+            <td><input type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "($)"></td>
             <td id='Repairs_and_Maintenance_DollarPerUnit'>$0.00</td>
             <td id='Repairs_and_Maintenance_DollarPerSF'>$0.00</td>
             <td id='Repairs_and_Maintenance_PercentofTotal'>0.0%</td>
@@ -469,7 +468,7 @@
           <tr>
             <td>Contract Services</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "Contract Services Total ($)"></td>
+            <td><input type="number" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "($)"></td>
             <td id='Contract_Services_DollarPerUnit'>$0.00</td>
             <td id='Contract_Services_DollarPerSF'>$0.00</td>
             <td id='Contract_Services_PercentofTotal'>0.0%</td>
@@ -477,14 +476,14 @@
           <tr>
             <td>Turnover</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Turnover_Total" id="Turnover_Total" placeholder = "Turnover Total ($)"></td>
+            <td><input type="number" name="Turnover_Total" id="Turnover_Total" placeholder = "($)"></td>
             <td id='Turnover_DollarPerUnit'>$0.00</td>
             <td id='Turnover_DollarPerSF'>$0.00</td>
             <td id='Turnover_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan="2">Sales & Marketing</td>
-            <td><input type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "Sales & Marketing Total ($)"></td>
+            <td><input type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "($)"></td>
             <td id='Sales_and_Marketing_DollarPerUnit'>$0.00</td>
             <td id='Sales_and_Marketing_DollarPerSF'>$0.00</td>
             <td id='Sales_and_Marketing_PercentofTotal'>0.0%</td>
@@ -492,14 +491,14 @@
           <tr>
             <td>Administrative</td>
             <td>&nbsp;</td>
-            <td><input type="number" name="Administrative_Total" id="Administrative_Total" placeholder = "Administrative Total ($)"></td>
+            <td><input type="number" name="Administrative_Total" id="Administrative_Total" placeholder = "($)"></td>
             <td id='Administrative_DollarPerUnit'>$0.00</td>
             <td id='Administrative_DollarPerSF'>$0.00</td>
             <td id='Administrative_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td>Management</td>
-            <td><input type="number" name="Management_Percentage" id="Management_Percentage" placeholder = "Management Total (%)"></td>
+            <td><input type="number" name="Management_Percentage" id="Management_Percentage" placeholder = "(%)"></td>
             <td id='Management_Total'>$0.00</td>
             <td id='Management_DollarPerUnit'>$0.00</td>
             <td id='Management_DollarPerSF'>$0.00</td>
@@ -507,7 +506,7 @@
           </tr>
           <tr>
             <td>Replacement Reserves</td>
-            <td><input type="number" name="Replacement_Reserves_Percentage" id="Replacement_Reserves_Percentage" placeholder = "Replacement Reserves Total (%)"></td>
+            <td><input type="number" name="Replacement_Reserves_Percentage" id="Replacement_Reserves_Percentage" placeholder = "(%)"></td>
             <td id='Replacement_Reserves_Total'>$0.00</td>
             <td id='Replacement_Reserves_DollarPerUnit'>$0.00</td>
             <td id='Replacement_Reserves_DollarPerSF'>$0.00</td>
