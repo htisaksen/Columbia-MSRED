@@ -154,7 +154,7 @@ if __name__== "__main__":
     db.drop_all()
     db.create_all()
     tak = User('tak@i.com','tak', 'Tak','I.')
-    fred = User('fred@vs.com','fred', 'Fred','VS.')
+    fred = User('joey@joey.com','joey', 'Fred','VS.')
     db.session.add(tak)
     db.session.add(fred)
     db.session.commit()

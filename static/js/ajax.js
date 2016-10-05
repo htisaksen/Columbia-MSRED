@@ -7,7 +7,6 @@ services.saveDashboard = function(args){
     url: '/savedata',
     data: args,
     success: function(response) {
-      console.log(response)
     }
   })
 };
