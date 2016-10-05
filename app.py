@@ -176,6 +176,8 @@ def save_data():
 		rent_per_unit_list.append(request.form['rent_per_unit'+str(rental_rate_counter)])
 		rental_rate_counter += 1
 
+
+
 	while True:
 		if not request.form.get('mkt_rent_revenue'+str(rental_rate_counter)):
 			break
