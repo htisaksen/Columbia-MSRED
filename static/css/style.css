@@ -1,4 +1,5 @@
 body {
+  background:lightgrey;
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
@@ -93,7 +94,7 @@ footer.page-footer{
 	box-shadow: 0 -2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-#combined_dashboard td, #combined_dashboard th {
+#combined_dashboard td {
 	padding: 5px 5px;
 }
 
@@ -108,29 +109,96 @@ input[type=datetime],
 input[type=datetime-local], 
 input[type=number], 
 textarea.materialize-textarea {
-	width: 50%;
-	height: initial;
+	width: 90%;
+	margin: 0;
+	height: 2rem;
 }
 
+
+/*Dropdown menu*/
+/*==================*/
 .dropdown-content li>a, 
 .dropdown-content li>span {
 	text-align: center;
+	color: blue;
 }
 
-#dropdown1 .dropdown-content {
+ul#dropdown1 {
 	width: 160px;
 	left: 1752px;
 }
+
+/*==================*/
 
 #save_input {
 	margin: 10px 25px 20px 20px;	
 }
 
-#Purchase_Information td, 
-#Purchase_Information th, 
-#Purchase_Information input[type=text], 
-#Purchase_Information input[type=number] {
-	width: 50px;
+/*input box*/
+#Analysis_Start_Date {
+	width:10%;
+	position: relative;
+	left: 20px;
+	color: blue;
 }
 
-/*#263238 blue-grey darken-4*/
+/*h6 header text*/
+#Analysis_Start_Date_text {
+	position: relative;
+	left: 20px;
+}
+
+
+
+table {
+  /*border-collapse: separate;*/
+  /*border-collapse:collapse;*/
+  background:#fff;
+  margin:25px auto;
+  width:100%;
+  table-layout:fixed;
+}
+
+.collapsible-header {
+	font-size:18px;
+	font-weight:400;
+	color:#fff;
+	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
+	text-align:left;
+	background: linear-gradient(#646f7f, #4a5564);
+	border-top:1px solid #858d99;
+}
+
+thead th {
+	font-size:16px;
+	font-weight:400;
+	color:#fff;
+	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
+	text-align:left;
+	padding:8px;
+	background: linear-gradient(#646f7f, #4a5564);
+	border-top:1px solid #858d99;
+}
+
+.table_header {
+	@extend thead th;
+	background: linear-gradient(#646f7f, #4a5564);
+	font-size: 120%;
+	padding: 12px;
+}
+
+
+
+/*==================*/
+
+#Property_Information tbody td:nth-child(1) {
+	color:red;
+	font-size: 20px;
+	width: 70%;
+}
+#Property_Information tbody td:nth-child(2) {
+	color:blue;
+	font-size: 20px;
+	width: 30%;
+}
+/*==================*/

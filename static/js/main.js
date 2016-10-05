@@ -12,13 +12,13 @@ $(document).ready(function(){
 	};
 
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	myApp.htmlGen.test();
+	// myApp.htmlGen.test();
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 
 // //Javascript Rental Rate Assumptions first insert row -----------------------
-		// myApp.htmlGen.rentalRateAssumptions();
+		myApp.htmlGen.rentalRateAssumptions();
 
 //Javascript Market Rental Rate Assumptions first insert row -------------------
 		myApp.htmlGen.marketRentalAssumptions();
@@ -47,7 +47,7 @@ $(document).ready(function(){
 			.append($("<td>").html("<input type='text' name='proj_rents"+rrCounter+"' class='proj_rents' placeholder='Project Rents'></td>"))
 			.append($("<td>").html("<input type='number' name='total_units"+rrCounter+"' class='total_units' placeholder='Total Units'></td>"))
 			.append($("<td class = 'total_sf'></td>").text("0"))
-			.append($("<td>").html("<input type='number' name='avg_sf_per_unit"+rrCounter+"' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
+			.append($("<td>").html("<input type='number' name='avg_sf_per_unit"+rrCounter+"' class='avg_sf_per_unit' placeholder='Avg SF Per Unit'></td>"))
 			.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
 			.append($("<td>").html("<input type='number' name='rent_per_unit"+rrCounter+"' class='rent_per_unit' placeholder='Rent Per Unit'></td>"))
 			.append($('<td>').html("<a>[X]</a></td>"))
@@ -84,7 +84,6 @@ $(document).ready(function(){
 			$('#Market_Rental_Assumptions').find('tbody')
 				.append($("<tr class = 'year_row' id='year_row_"+mraCounter+"'>")
 				.append($("<td class='mkt_rent_year'>Year "+mraCounter+"</td>"))
-				.append($("<td></td>"))
 				.append($("<td>").html("<input type='number' name='mkt_rent_revenue"+mraCounter+"' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
 				.append($("<td>").html("<input type='number' name='mkt_rent_expenses"+mraCounter+"' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
 				.append($("<td>").html("<input type='number' name='mkt_rent_vacancy"+mraCounter+"' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
