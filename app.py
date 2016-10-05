@@ -210,5 +210,4 @@ def save_data():
 
 if __name__ == "__main__":
 	app.secret_key = os.urandom(12)
-	# app.run(port=3000,debug=True)			#Runs on local host :3000
-	app.run(host='0.0.0.0', debug=True)		#Runs using computer's IP address
+	app.run(port=3000,debug=True)
