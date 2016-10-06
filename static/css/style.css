@@ -2,7 +2,7 @@ html {
 	background: lightgrey;
 }
 body {
-	background: #fafafa;
+	background: linear-gradient(180deg,#fafafa,#cfd8dc);
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
@@ -135,8 +135,12 @@ textarea.materialize-textarea {
 /*Navigation Bar*/
 /*==================*/
 #nav_bar {
-	background: linear-gradient(180deg,rgba(0,105,255,.9),#287bb7);
+	background: linear-gradient(180deg,#287bb7,rgba(2,136,209,.95));
 	color: white;
+}
+
+#login_name {
+	padding: 0px 35px;
 }
 
 .dropdown-content li>a,
@@ -161,13 +165,15 @@ nav i.material-icons {
 }
 
 /*==================*/
+input#save_name{
+
+}
 
 #save_input {
 	margin: 0 3%;
 	float:right;
 }
 .modal{
-	width: 50%;
 }
 .modal .modal-content{
 	padding:3%;
@@ -198,6 +204,9 @@ table {
   width:100%;
   table-layout:fixed;
 }
+.collapsible{
+	margin:0;
+}
 
 .collapsible-header {
 	font-size:18px;
@@ -205,15 +214,15 @@ table {
 	color:#fff;
 	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
 	text-align:left;
-	background: linear-gradient(180deg,#212121,#424242);
+	background: linear-gradient(180deg,#263238,#455a64);
 	border-top:1px solid #858d99;
 }
+
 /*.t_head{
 	text-align: center;
 }*/
-td{
 
-}
+
 thead th {
 	font-size:16px;
 	font-weight:400;
@@ -221,7 +230,7 @@ thead th {
 	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
 	text-align:left;
 	padding:8px;
-	background: linear-gradient(180deg,#212121,#424242);
+	background: linear-gradient(180deg,#9e9e9e,#455a64);
 	border-top:1px solid #858d99;
 
 }
@@ -232,13 +241,13 @@ th.picker__weekday{
 	background-color: #287bb7;
 }
 .picker__date-display{
-	background-color: black;
+	background: linear-gradient(180deg,#287bb7,#287bb0);
 }
 
 
 .table_header {
 	@extend thead th;
-	background: linear-gradient(180deg,#212121,#424242);
+	background: linear-gradient(180deg,#9e9e9e,#455a64);
 	font-size: 120%;
 	padding: 12px;
 }
