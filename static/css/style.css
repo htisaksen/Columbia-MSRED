@@ -208,9 +208,9 @@ table {
 	background: linear-gradient(180deg,#212121,#424242);
 	border-top:1px solid #858d99;
 }
-.t_head{
+/*.t_head{
 	text-align: center;
-}
+}*/
 td{
 
 }
@@ -244,6 +244,18 @@ th.picker__weekday{
 }
 
 
+tr.PF_Net_Operating_Income,
+tr.PF_Net_Cash_Flow,
+tr.PF_Total_Operating_Expenses,
+tr.PF_Net_Rental_Income,
+tr.PF_Gross_Rental_Income {
+	background-color: lightgrey;
+}
+
+.PFHeader{
+	font-size: 22px;
+	text-decoration: underline;
+}
 
 /*==================*/
 

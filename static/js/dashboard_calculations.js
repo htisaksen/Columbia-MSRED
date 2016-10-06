@@ -156,9 +156,6 @@ myApp.dashboard.getInputs = function(){
   $('#Gross_Rental_Income_Total').text(FormatCurrency(nanCheck(g.otherIncomeTotal + pInt('#Rental_Income_Total'))));				//$
   $('#Rental_Income_Total').text(FormatCurrency(nanCheck(pInt('#Rental_Rate_Assumptions tfoot .rent_per_unit')*totalUnits*12)));		//$
 
-  console.log("g.analysisStartDate:",g.analysisStartDate);
-  $('th #CFP_date').text("As of date: ",g.analysisStartDate);
-
   $('#Rental_Income_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/totalUnits)));			//$
   $('#Rental_Income_DollarPerSF').text(FormatCurrency(nanCheck(pInt('#Rental_Income_Total')/totalSquareFoot)));			//$
   $('#Rental_Income_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Rental_Income_Total'))/(pFloat('#Gross_Rental_Income_Total'))*100));		//%

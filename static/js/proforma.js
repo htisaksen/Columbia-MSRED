@@ -13,18 +13,29 @@ myApp.proForma = function(){
 
 		var pfCounter = g.saleYear;
 
+		console.log("init: g.saleYear:",g.saleYear)
+		console.log("init: pfCounter:",pfCounter)
+
+		console.log("T/F:",g.saleYear < pfCounter+1)
 	//Deletes all columns
 		if (g.saleYear < pfCounter+1) {
-			$('#Proforma tr td:not(:first)').each(function(){
+			console.log("line one:",$('#Proforma thead tr th:not(:first)'))
+			$('#Proforma thead tr th:not(:first)').each(function(){
 				$(this).remove();
 			});
-			$('#Proforma tr td:first').each(function(){
+			console.log("line two:",$('#Proforma tbody tr td:first'))
+			$('#Proforma tbody tr td').each(function(){
 				$(this).remove();
 			})
 		};
 	//Inserts number of columns based on Sale Year in Dashboard
 		for(var i = 0; i < g.saleYear+1; ++i) {
-			pfCounter = $('#Proforma .PF_Year_End th').length+1;
+			
+			console.log("for: g.saleYear:",g.saleYear)
+			console.log("for: pfCounter:",pfCounter)
+			console.log("=====================")
+
+			pfCounter = $('#Proforma .PF_Year_End th').length;
 			var Rental_Rate_Income_Total = pFloat('#Rental_Income_Total');
 	
 			$('#Proforma tr:first').append("<th class= 'PF_" + "year_" + pfCounter + "'>"+'YEAR '+ pfCounter +"</th>");
@@ -49,7 +60,7 @@ myApp.proForma = function(){
 					"<td class= 'PF_Less_Concessions'>(" + FormatCurrency(g.lessConcessions * (1+($('#year_row_1 .mkt_rent_concessions').val())/100)) + ")</td>");
 				$('#Proforma tr:nth-child(7)').append(
 					"<td class= 'PF_Less_Credit_Loss'>(" + FormatCurrency(g.lessCreditLoss * (1+($('#year_row_1 .mkt_rent_credit_loss').val())/100)) + ")</td>");
-				$('#Proforma tr:nth-child(9)').append(
+				$('#Proforma tr:nth-child(8)').append(
 					"<td class= 'PF_Net_Rental_Income'>" +
 					FormatCurrency(
 					 pFloat('.PF_Gross_Rental_Income td:first') -
