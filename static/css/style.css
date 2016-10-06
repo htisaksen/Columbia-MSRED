@@ -1,5 +1,8 @@
-body html {
-	background: linear-gradient(lightgrey, grey);
+html {
+	background: lightgrey;
+}
+body {
+	background: #fafafa;
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
@@ -16,12 +19,10 @@ img{
 	width: 25%;
 }
 
-/*Blue color*/
 .btn {
 	background-color: #287bb7;
 }
 
-/*Lighter blue color*/
 .btn:hover {
 	background-color: #73b9ec;
 }
@@ -134,7 +135,7 @@ textarea.materialize-textarea {
 /*Navigation Bar*/
 /*==================*/
 #nav_bar {
-	background: linear-gradient(180deg,rgba(0,105,255,.6),#287bb7);
+	background: linear-gradient(180deg,rgba(0,105,255,.9),#287bb7);
 	color: white;
 }
 
@@ -164,6 +165,15 @@ nav i.material-icons {
 #save_input {
 	margin: 0 3%;
 	float:right;
+}
+.modal{
+	width: 50%;
+}
+.modal .modal-content{
+	padding:3%;
+}
+.modal .modal-footer{
+	width:55%;
 }
 
 /*input box*/
@@ -195,10 +205,15 @@ table {
 	color:#fff;
 	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
 	text-align:left;
-	background: #333;
+	background: linear-gradient(180deg,#212121,#424242);
 	border-top:1px solid #858d99;
 }
+.t_head{
+	text-align: center;
+}
+td{
 
+}
 thead th {
 	font-size:16px;
 	font-weight:400;
@@ -206,13 +221,24 @@ thead th {
 	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
 	text-align:left;
 	padding:8px;
-	background: #333;
+	background: linear-gradient(180deg,#212121,#424242);
 	border-top:1px solid #858d99;
+
 }
+th.picker__weekday{
+	background: white;
+}
+.picker__weekday-display{
+	background-color: #287bb7;
+}
+.picker__date-display{
+	background-color: black;
+}
+
 
 .table_header {
 	@extend thead th;
-	background: #333;
+	background: linear-gradient(180deg,#212121,#424242);
 	font-size: 120%;
 	padding: 12px;
 }
@@ -222,13 +248,9 @@ thead th {
 /*==================*/
 
 #Property_Information tbody td:nth-child(1) {
-	color:red;
-	font-size: 20px;
 	width: 70%;
 }
 #Property_Information tbody td:nth-child(2) {
-	color:blue;
-	font-size: 20px;
 	width: 30%;
 }
 /*==================*/
