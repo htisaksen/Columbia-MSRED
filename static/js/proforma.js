@@ -13,17 +13,11 @@ myApp.proForma = function(){
 
 		var pfCounter = g.saleYear;
 
-		console.log("init: g.saleYear:",g.saleYear)
-		console.log("init: pfCounter:",pfCounter)
-
-		console.log("T/F:",g.saleYear < pfCounter+1)
 	//Deletes all columns
 		if (g.saleYear < pfCounter+1) {
-			console.log("line one:",$('#Proforma thead tr th:not(:first)'))
 			$('#Proforma thead tr th:not(:first)').each(function(){
 				$(this).remove();
 			});
-			console.log("line two:",$('#Proforma tbody tr td:first'))
 			$('#Proforma tbody tr td').each(function(){
 				$(this).remove();
 			})
@@ -31,10 +25,6 @@ myApp.proForma = function(){
 	//Inserts number of columns based on Sale Year in Dashboard
 		for(var i = 0; i < g.saleYear+1; ++i) {
 			
-			console.log("for: g.saleYear:",g.saleYear)
-			console.log("for: pfCounter:",pfCounter)
-			console.log("=====================")
-
 			pfCounter = $('#Proforma .PF_Year_End th').length;
 			var Rental_Rate_Income_Total = pFloat('#Rental_Income_Total');
 	

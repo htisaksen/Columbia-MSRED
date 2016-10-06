@@ -16,22 +16,15 @@ $(document).ready(function(){
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
-
-// //Javascript Rental Rate Assumptions first insert row -----------------------
-		myApp.htmlGen.rentalRateAssumptions();
-
-//Javascript Market Rental Rate Assumptions first insert row -------------------
-		myApp.htmlGen.marketRentalAssumptions();
+	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
+	myApp.htmlGen.marketRentalAssumptions(); 	//Javascript Market Rental Rate Assumptions first insert row -------------------
+	myApp.htmlGen.proForma(); 					//Javascript Market Rental Rate Assumptions two columns -------------------
 
 // ============================================================================================================
 // Start of ALL calculations for dashboard
 // ============================================================================================================
-
-//RENTAL RATE ASSUMPTIONS Table calculations=====================
-	myApp.rra.RRAInput();
-
-//MARKET RENTAL ASSUMPTIONS Table calculations===================
-	myApp.mra.MRAInput();
+	myApp.rra.RRAInput(); //RENTAL RATE ASSUMPTIONS Table calculations
+	myApp.mra.MRAInput(); //MARKET RENTAL ASSUMPTIONS Table calculations
 
 
 

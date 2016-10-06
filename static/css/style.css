@@ -266,6 +266,12 @@ tr.PF_Gross_Rental_Income {
 	text-decoration: underline;
 }
 
+/*Dashboard > RRA add button */
+#rental_rate_form{
+	float: right;
+	margin-right: 20%;
+}
+
 /*==================*/
 
 #Property_Information tbody td:nth-child(1) {
