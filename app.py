@@ -198,7 +198,7 @@ def save_data():
 	print('avg_sf_per_unit_list: ',avg_sf_per_unit_list)
 	print('rent_per_unit_list: ',rent_per_unit_list)
 
-	while market_rental_input_counter <= len(revenue_list):
+	# while market_rental_input_counter <= len(revenue_list):
 
 
 	print('revenue_list: ',revenue_list)

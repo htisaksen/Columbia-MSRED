@@ -1,5 +1,5 @@
-body {
-	background:lightgrey;
+body html {
+	background: linear-gradient(lightgrey, grey);
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
@@ -10,7 +10,11 @@ main {
 	background-color:rgba(168, 206, 226, 0.2);
 }
 
-
+img{
+	border: 0;
+	height: 50%;
+	width: 25%;
+}
 
 /*Blue color*/
 .btn {
@@ -111,15 +115,15 @@ footer.page-footer{
 }
 
 
-input:not([type]), 
-input[type=text], 
-input[type=password], 
-input[type=email], 
-input[type=time], 
-input[type=date], 
+input:not([type]),
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=time],
+input[type=date],
 input[type=datetime],
-input[type=datetime-local], 
-input[type=number], 
+input[type=datetime-local],
+input[type=number],
 textarea.materialize-textarea {
 	width: 90%;
 	margin: 0;
@@ -130,14 +134,14 @@ textarea.materialize-textarea {
 /*Navigation Bar*/
 /*==================*/
 #nav_bar {
-	background: linear-gradient(180deg,rgba(0,105,255,.6),#2962ff);
+	background: linear-gradient(180deg,rgba(0,105,255,.6),#287bb7);
 	color: white;
 }
 
-.dropdown-content li>a, 
+.dropdown-content li>a,
 .dropdown-content li>span {
 	text-align: center;
-	color: blue;
+	color: #287bb7;
 }
 
 ul #dropdown1 {
@@ -159,7 +163,7 @@ nav i.material-icons {
 
 #save_input {
 	margin: 0 3%;
-	float:right;	
+	float:right;
 }
 
 /*input box*/
@@ -167,7 +171,7 @@ nav i.material-icons {
 	width:10%;
 	position: relative;
 	left: 20px;
-	color: blue;
+	color: ;
 }
 
 /*h6 header text*/
@@ -191,7 +195,7 @@ table {
 	color:#fff;
 	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
 	text-align:left;
-	background: linear-gradient(#646f7f, #4a5564);
+	background: #333;
 	border-top:1px solid #858d99;
 }
 
@@ -202,13 +206,13 @@ thead th {
 	@include text-shadow(1px 1px 0px rgba(0,0,0,0.5));
 	text-align:left;
 	padding:8px;
-	background: linear-gradient(#646f7f, #4a5564);
+	background: #333;
 	border-top:1px solid #858d99;
 }
 
 .table_header {
 	@extend thead th;
-	background: linear-gradient(#646f7f, #4a5564);
+	background: #333;
 	font-size: 120%;
 	padding: 12px;
 }
@@ -233,4 +237,3 @@ thead th {
 footer.page-footer {
 	padding: 0;
 }
-

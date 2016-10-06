@@ -7,7 +7,7 @@
   <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
     <div id="save_modal">
         <!-- Modal Trigger -->
-        <button id = "save_input" class="btn modal-trigger" href="#modal1">Save Model</button>
+        <submit id = "save_input" class="btn modal-trigger" href="#modal1">Save Model</submit>
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
@@ -15,7 +15,7 @@
             <input type ="text" name="save_name" id = "save_name" placeholder = "Name of save">
           </div>
           <div class="modal-footer">
-            <button id= 'modal_save' href='/savedata' class= "modal-action modal-close waves-effect waves-green btn-flat" type='submit'>Save</button>
+            <button id= 'modal_save' href='/savedata' class= "modal-action modal-close waves-effect btn-flat" type='submit'>Save</button>
           </div>
         </div>
       <h6 id='Analysis_Start_Date_text'>Analysis Start Date
@@ -237,7 +237,7 @@
           <thead>
             <tr>
               <th class="table_header" colspan='6'>RENTAL RATE ASSUMPTIONS</th>
-              <th><button name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating waves-effect waves-light blue"><i class="material-icons">add</i></button></th>
+              <th><submit name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating waves-effect waves-light btn"><i class="material-icons">add</i></submit></th>
             </tr>
             <tr>
               <th>Proj. Rents</th>
@@ -371,7 +371,7 @@
           <thead>
             <th class="table_header" colspan="6">CURRENT FINANCIAL PERFORMANCE</th>
             <tr>
-              <th colspan ="2" id='CFP_date'>As of date: </th>
+              <th colspan ="2" id='CFP_date'></th>
               <th>Total</th>
               <th>$/Unit</th>
               <th>$/SF</th>
