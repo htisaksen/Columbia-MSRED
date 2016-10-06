@@ -1,5 +1,5 @@
 body {
-  background:lightgrey;
+	background:lightgrey;
 	display: flex;
 	min-height: 100vh;
 	flex-direction: column;
@@ -9,6 +9,8 @@ main {
 	flex: 1 0 auto;
 	background-color:rgba(168, 206, 226, 0.2);
 }
+
+
 
 /*Blue color*/
 .btn {
@@ -29,7 +31,7 @@ main {
 }
 
 .container {
-	margin: 150px auto;
+	height: 100%;
 }
 
 
@@ -47,7 +49,8 @@ main {
 #home_buttons {
 	height: 44px;
 	width: 300px;
-	line-height: 44px;	
+	line-height: 44px;
+	margin:0 30px;
 }
 
 @media only screen and (min-width: 993px) {
@@ -71,12 +74,12 @@ main {
 	border-color: lightgrey;
 	background-color: white;
 	padding: 25px;
-	height: 380px;
+	margin-top: 30%;
 }
 
 #login_page input, #register_page input {
 	width: 75%;
-	margin: 0px 60px 30px 60px;
+	margin: 0 10% 3% 10%;
 }
 
 #register_page {
@@ -85,9 +88,18 @@ main {
 	border-color: lightgrey;
 	background-color: white;
 	padding: 25px;
-	height: 400px;
+	margin-top: 30%;
 }
 
+#home_page {
+	border-radius: 12px;
+	border: 1px solid;
+	border-color: lightgrey;
+	background-color: white;
+	padding: 25px;
+	width: 800px;
+	margin: 50px -100px;
+}
 
 footer.page-footer{
 	margin-top: 0;
@@ -115,23 +127,39 @@ textarea.materialize-textarea {
 }
 
 
-/*Dropdown menu*/
+/*Navigation Bar*/
 /*==================*/
+#nav_bar {
+	background: linear-gradient(180deg,rgba(0,105,255,.6),#2962ff);
+	color: white;
+}
+
 .dropdown-content li>a, 
 .dropdown-content li>span {
 	text-align: center;
 	color: blue;
 }
 
-ul#dropdown1 {
+ul #dropdown1 {
 	width: 160px;
 	left: 1752px;
+}
+
+a.brand-logo {
+	display: inline-flex;
+	padding: 7px;
+}
+
+nav i.material-icons {
+	line-height: inherit;
+	height: inherit;
 }
 
 /*==================*/
 
 #save_input {
-	margin: 10px 25px 20px 20px;	
+	margin: 0 3%;
+	float:right;	
 }
 
 /*input box*/
@@ -144,10 +172,8 @@ ul#dropdown1 {
 
 /*h6 header text*/
 #Analysis_Start_Date_text {
-	position: relative;
 	left: 20px;
 }
-
 
 
 table {
@@ -202,3 +228,9 @@ thead th {
 	width: 30%;
 }
 /*==================*/
+
+
+footer.page-footer {
+	padding: 0;
+}
+

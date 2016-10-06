@@ -14,25 +14,27 @@
 <!-- ================ Top Header/nav bar ================ -->
 {% if session['logged_in'] == True %}
 	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="dashboard/#block_org_dashboard">Dashboard</a></li><li class="divider"></li>
-		<li><a href="dashboard/#block_proforma">Pro Forma</a></li><li class="divider"></li>
-		<li><a href="#">Edit Account</a></li><li class="divider"></li>
+<!-- 		<li><a href="dashboard/#block_org_dashboard">Dashboard</a></li><li class="divider"></li>
+		<li><a href="dashboard/#block_proforma">Pro Forma</a></li><li class="divider"></li> -->
+		<li><a href="/dashboard">Dashboard</a></li><li class="divider"></li>
 		<li><a href="/home">Home</a></li><li class="divider"></li>
 		<li><a href="/logout">Logout</a></li>
 	</ul>
 {% endif %}
-	<nav class = 'blue accent-3'>
-	<div class="nav-wrapper">
-		<a href="/" class="brand-logo">Logo</a>
+<div class= 'navbar-fixed'>
+	<nav class = 'nav-wrapper ' id ='nav_bar'>
+		<a href="/" class="brand-logo">
+			<img src="static/img/whitelogo_blueback.jpg">
+		</a>
+
 		<ul class="right hide-on-med-and-down">
 {% if session['logged_in'] == True %}
 			<li>{{session.firstname}}</li>
 			<li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">view_headline</i></a></li>
 {% endif %}
 		</ul>
-	</div>
 	</nav>
-
+</div>
 
 <header>{% block header %}{% endblock header %}</header>
 <!-- ================ Main body content ================ -->
@@ -52,8 +54,8 @@
 
 
 <!-- ==================== Footer ==================== -->
-<footer class="page-footer blue accent-3">
-<!-- 	<div class="container">
+<!-- <footer class="page-footer" id = 'nav_bar'>
+	<div class="container">
 		<div class="row">
 			<div class="col l6 s12">
 				<h5 class="white-text">Footer Content</h5>
@@ -66,11 +68,11 @@
 				</ul>
 			</div>
 		</div>
-	</div> -->
+	</div>
 	<div class="footer-copyright">
 		© 2016 Columbia University
 	</div>
-</footer>
+</footer> -->
 
 
 <!-- ==================== Scripts ==================== -->
