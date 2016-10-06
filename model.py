@@ -176,4 +176,12 @@ if __name__== "__main__":
     # db.session.add(save3)
     db.session.commit()
 
+    rr1 = RentalRateAssumption('1bed/2bath','30','200','1200',1)
+    db.session.add(rr1)
+    db.session.commit()
+
+    ma1 = MarketRentalAssumption('3','3','3','3','3',1)
+    db.sessionadd(ma1)
+    db.session.commit()
+
     print("Database has been created...")

@@ -116,7 +116,9 @@ def inputForm():
 @login_required
 def save_data():
 	print('='*50+" start save")
+	object1 = 'object'
 	market_counter = 1
+	market_rental_input_counter = 1
 	rental_rate_counter = 1
 	# rental rate lists
 	proj_rents_list = []
@@ -191,10 +193,12 @@ def save_data():
 		print(market_counter)
 
 
-	# print('proj_rents_list: ',proj_rents_list)
-	# print('total_units_list: ',total_units_list)
-	# print('avg_sf_per_unit_list: ',avg_sf_per_unit_list)
-	# print('rent_per_unit_list: ',rent_per_unit_list)
+	print('proj_rents_list: ',proj_rents_list)
+	print('total_units_list: ',total_units_list)
+	print('avg_sf_per_unit_list: ',avg_sf_per_unit_list)
+	print('rent_per_unit_list: ',rent_per_unit_list)
+
+	while market_rental_input_counter <= len(revenue_list):
 
 
 	print('revenue_list: ',revenue_list)

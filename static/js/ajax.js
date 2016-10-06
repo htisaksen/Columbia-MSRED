@@ -1,5 +1,5 @@
 var services = {};
-
+var object1 = {key:value}
 services.saveDashboard = function(args){
   console.log(args)
   $.ajax({
@@ -7,6 +7,7 @@ services.saveDashboard = function(args){
     url: '/savedata',
     data: args,
     success: function(response) {
+      console.log(response)
     }
   })
 };
