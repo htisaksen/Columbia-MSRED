@@ -2,7 +2,7 @@ myApp.htmlGen = {};
 
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (function(){
-  myApp.htmlGen.test = function(){
+  myApp.htmlGen.RRAsample = function(){
   	$('#Rental_Rate_Assumptions').find('tbody')
   		.append($("<tr class = 'rent_row'>")
   		.append($("<td>").html("<input type='text' name='proj_rents1' class='proj_rents' placeholder='Project Rents' value='1 Bed/1 Bath'></td>"))
@@ -11,7 +11,8 @@ myApp.htmlGen = {};
   		.append($("<td>").html("<input type='number' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='662'></td>"))
   		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
   		.append($("<td>").html("<input type='number' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent Per Unit' value='1100'></td>"))
-  		)
+  		.append($("<td>"))
+      )
   	$('#Rental_Rate_Assumptions').find('tbody')
   		.append($("<tr class = 'rent_row'>")
   		.append($("<td>").html("<input type='text' name='proj_rents2' class='proj_rents' placeholder='Project Rents' value='2 Bed/1 Bath'></td>"))
@@ -20,7 +21,8 @@ myApp.htmlGen = {};
   		.append($("<td>").html("<input type='number' name='avg_sf_per_unit2' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='1041'></td>"))
   		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
   		.append($("<td>").html("<input type='number' name='rent_per_unit2' class='rent_per_unit' placeholder='Rent Per Unit' value='1400'></td>"))
-  		)
+  		.append($("<td>"))
+      )
   	$('#Rental_Rate_Assumptions').find('tbody')
   		.append($("<tr class = 'rent_row'>")
   		.append($("<td>").html("<input type='text' name='proj_rents3' class='proj_rents' placeholder='Project Rents' value='2 Bed/2 Bath'></td>"))
@@ -29,6 +31,7 @@ myApp.htmlGen = {};
   		.append($("<td>").html("<input type='number' name='avg_sf_per_unit3' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='1185'></td>"))
   		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
   		.append($("<td>").html("<input type='number' name='rent_per_unit3' class='rent_per_unit' placeholder='Rent Per Unit' value='1800'></td>"))
+      .append($("<td>"))
   		)
   };
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
