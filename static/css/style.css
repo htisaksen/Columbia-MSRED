@@ -15,10 +15,15 @@ main {
 
 img{
 	border: 0;
-	height: 50%;
-	width: 25%;
+	width: 50px;
+	height: 50px;
 }
+h1{
+	line-height: 160%;
+	margin:0;
+	font-size:inherit;
 
+}
 .btn {
 	background-color: #287bb7;
 }
@@ -141,6 +146,7 @@ textarea.materialize-textarea {
 
 #login_name {
 	padding: 0px 35px;
+	font-size: large;
 }
 
 .dropdown-content li>a,
@@ -185,7 +191,7 @@ nav i.material-icons {
 
 /*Div tag that encompasses Modal save button and Analysis Start Date input*/
 #save_modal{
-	margin: 1% 1.5% 0 1.5%;
+	margin: 1% 1.5% .5% 1.5%;
 }
 
 /*input box*/
