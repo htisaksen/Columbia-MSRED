@@ -164,25 +164,28 @@ nav i.material-icons {
 	height: inherit;
 }
 
-/*==================*/
-input#save_name{
-
-}
-
+/* Dashboard - top section ==================*/
 #save_input {
 	margin:;
 	float:right;
 }
+
 #Analysis_Start_Date_text{
 	margin:0;
 }
-.modal{
-}
+
 .modal .modal-content{
-	padding:3%;
+	padding: 4%;
 }
-.modal .modal-footer{
-	width:55%;
+
+#modal1 {
+	width: 400px;
+	height: 200px;
+}
+
+/*Div tag that encompasses Modal save button and Analysis Start Date input*/
+#save_modal{
+	margin: 1% 1.5% 0 1.5%;
 }
 
 /*input box*/
@@ -197,6 +200,7 @@ input#save_name{
 #Analysis_Start_Date_text {
 	left: 20px;
 }
+/* END ==== Dashboard - top section ==================*/
 
 
 table {
@@ -288,4 +292,8 @@ tr.PF_Gross_Rental_Income {
 
 footer.page-footer {
 	padding: 0;
+}
+
+.footer-copyright {
+	margin-left: 1%;
 }
