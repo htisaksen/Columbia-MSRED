@@ -181,7 +181,7 @@ if __name__== "__main__":
     db.session.commit()
 
     ma1 = MarketRentalAssumption('3','3','3','3','3',1)
-    db.sessionadd(ma1)
+    db.session.add(ma1)
     db.session.commit()
 
     print("Database has been created...")
