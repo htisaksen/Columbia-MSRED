@@ -1,0 +1,105 @@
+{% block proforma %}
+<ul class="collapsible" data-collapsible="expandable">
+  <li>
+  <div class="collapsible-header"><i class="material-icons">pageview</i>Pro Forma</div>
+  <div class="collapsible-body">
+    
+    <div class='row'>
+      <div class="col s12">
+        <form id = "proforma_form" action="/proforma" method="POST">
+
+        <table id="Proforma" class="center">
+          <thead>
+            <tr class ='PF_Year_End table_header'>
+              <th>YEAR END:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class ='PFHeader'>
+              <th>Revenue</th>
+            </tr>
+            <tr class ='PF_Rental_Income'>
+              <th>Rental Income</th>
+            </tr>
+            <tr class ='PF_Other_Income'>
+              <th>Other Income</th>
+            </tr>
+            <tr class ='PF_Gross_Rental_Income'>
+              <th>Gross Rental Income</th>
+            </tr>
+            <tr class ='PF_Less_Vacancy'>
+              <th>Less: Vacancy</th>
+            </tr>
+            <tr class ='PF_Less_Concessions'>
+              <th>Less: Concessions</th>
+            </tr>
+            <tr class ='PF_Less_Credit_Loss'>
+              <th>Less: Credit Loss</th>
+            </tr>
+            <tr class ='PF_Net_Rental_Income'>
+              <th>Net Rental Income</th>
+            </tr>
+
+
+            
+            <tr class ='PFHeader'>
+              <th>Operating Expenses</th>
+            </tr>
+            <tr class ='PF_Real_Estate_Taxes'>
+              <th>Real Estate Taxes</th>
+            </tr>
+            <tr class ='PF_Insurance'>
+              <th>Insurance</th>
+            </tr>
+            <tr class ='PF_Utilities'>
+              <th>Utilities</th>
+            </tr>
+            <tr class ='PF_Payroll'>
+              <th>Payroll</th>
+            </tr>
+            <tr class ='PF_Repairs_And_Maintenance'>
+              <th>Repairs & Maintenance</th>
+            </tr>
+            <tr class ='PF_Contract_Services'>
+              <th>Contract Services</th>
+            </tr>
+            <tr class ='PF_Turnover'>
+              <th>Turnover</th>
+            </tr>
+            <tr class ='PF_Sales_And_Marketing'>
+              <th>Sales & Marketing</th>
+            </tr>
+            <tr class ='PF_Administrative'>
+              <th>Administrative</th>
+            </tr>
+            <tr class ='PF_Management'>
+              <th>Management</th>
+            </tr>
+            <tr class ='PF_Replacement_Reserves'>
+              <th>Replacement Reserves</th>
+            </tr>
+            <tr class ='PF_Total_Operating_Expenses'>
+              <th>Total Operating Expenses</th>
+            </tr>
+            <tr class ='PF_Net_Operating_Income'>
+              <th>Net Operating Income</th>
+            </tr>
+            <tr class ='PFHeader'>
+              <th>Capital Expenditures</th>
+            </tr>
+            <tr class ='PF_Capital_Expenditures'> <!-- *WIP:HARD CODED VALUE* -->
+              <th>Capital Expenditures  </th>
+            </tr>
+            <tr class ='PF_Net_Cash_Flow'>
+              <th>Net Cash Flow </th>
+            </tr>
+          </tbody>
+        </table>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  </li>
+</ul>
+{% endblock proforma %}

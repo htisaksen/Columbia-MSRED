@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+    <body>
+      <div class="container">
+        <div id = "home_page">
+        <h2 style="text-align:center">Create Real Estate Model</h2><br>
+        <div class ="row">
+            <div class = 'col s6'>
+                <a href = '/dashboard' class="waves-light btn" id='home_buttons'>Apartment</a>
+            </div>
+            <div class = 'col s6'>
+                <a href = '' class="waves-light btn disabled" id='home_buttons'>Commercial</a>
+            </div>
+        </div>
+        <br><br>
+        <h3>Load Models</h3>
+        <table class = 'highlight' id = 'Load_History'>
+            <thead>
+              <tr>
+                  <th data-field="col_model_name">Model</th>
+                  <th data-field="col_date_modified">Date Last Modified</th>
+                  <th data-field="col_button"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class = 'model_name'>Model Number One</td>
+                <td class = 'date_modified'>9/27/2016 5:45PM</td>
+                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
+              </tr>
+              <tr>
+                <td>#2</td>
+                <td>10/1/2016 5:49PM</td>
+                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
+              </tr>    
+              <tr>
+                <td>295 Madison Ave</td>
+                <td>10/5/2016 2:14PM</td>
+                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
+              </tr>
+            </tbody>
+            <tfoot>
+                <tr></tr>
+            </tfoot>
+        </table>
+
+      </div>
+    </body>
+
+{% endblock content %}

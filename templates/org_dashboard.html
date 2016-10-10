@@ -1,0 +1,552 @@
+{% block dashboard %}
+
+<ul class="collapsible" data-collapsible="expandable">
+  <li>
+<div class="collapsible-header active"><i class="material-icons">pageview</i>Dashboard</div>
+  <div class="collapsible-body">
+  <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
+    <div id="save_modal">
+        <!-- Modal Trigger -->
+        <submit id = "save_input" class="btn modal-trigger" href="#modal1">Save Model</submit>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <h5>Model Name</h5><br>
+            <input type ="text" name="save_name" id = "save_name" placeholder = "Name of save">
+          </div>
+          <div class="modal-footer">
+            <button id= 'modal_save' href='/savedata' class= "modal-action modal-close waves-effect btn-flat" type='submit'>Save</button>
+          </div>
+        </div>
+      <h6 id='Analysis_Start_Date_text'>Analysis Start Date
+        <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = 'Click to set date' class='datepicker'>
+      </h6>
+    </div>
+    <div class='row'>
+      <div class="col s3">
+      <table class ='striped' id="Property_Information" class="center">
+        <thead>
+          <th class="table_header" colspan='2'>PROPERTY INFORMATION</th>
+        </thead>
+        <tr>
+          <td>Property Name</td>
+          <td><input type="text" name="Property_Name" id="Property_Name" placeholder = "Property Name"></td>
+        </tr>
+        <tr>
+          <td>Property Location</td>
+          <td><input type="text" name="Property_Address" id="Property_Address" placeholder = "Property Address"></td>
+        </tr>
+        <tr>
+          <td>Property Type</td>
+          <td><input type="text" name="Property_Type" id="Property_Type" placeholder = "Property Type"></td>
+        </tr>
+        <tr>
+          <td>Number of Units</td>
+          <td id = "prop_info_total_num_units">0</td>
+        </tr>
+        <tr>
+          <td>Total Square Feet</td>
+          <td id = "prop_info_total_sq_ft">0</td>
+        </tr>
+      </table>
+
+
+      <table class ='striped' id = "Purchase_Information">
+        <thead>
+          <th class = 'table_header' colspan='3'>PURCHASE INFORMATION</th>
+        </thead>
+        <tr>
+          <td>Purchase Price</td>
+          <td>&nbsp;</td>
+          <td><input type="number" name="Purchase_Price" id="Purchase_Price" placeholder = "($)"></td>
+        </tr>
+        <tr>
+          <td>Closing Costs</td>
+          <td><input type="number" name="Closing_Costs_Percentage" id="Closing_Costs_Percentage" placeholder = "(%)"></td>
+          <td id ='PI_Closing_Costs'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Total Costs</td>
+          <td>&nbsp;</td>
+          <td id ='PI_Total_Costs'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Purchase Cost Per Unit</td>
+          <td>&nbsp;</td>
+          <td id ='PI_Purchase_Cost_Per_Unit'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Total Cost Per Unit</td>
+          <td>&nbsp;</td>
+          <td id ='PI_Total_Cost_Per_Unit'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Purchase Cost Per SF</td>
+          <td>&nbsp;</td>
+          <td id ='PI_Purchase_Cost_Per_SF'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Total Cost Per SF</td>
+          <td>&nbsp;</td>
+          <td id ='PI_Total_Cost_Per_SF'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Cap Rate on Purchase Price</td>
+          <td>&nbsp;</td>
+          <td id ='PI_Cap_Rate_on_Purchase_Price'>0.00%</td>
+        </tr>
+        <tr>
+          <td>Cap Rate on Total Price</td>
+          <td>&nbsp;</td>
+          <td id ='PI_Cap_Rate_on_Total_Price'>0.00%</td>
+        </tr>
+      </table>
+
+      <table class ='striped' id="Sale_Assumptions">
+        <thead>
+          <th class="table_header" colspan='2'>SALE ASSUMPTION</th>
+        </thead>
+        <tr>
+          <td>Sale Year</td>
+          <td><input type="number" name="Sale_Year" id="Sale_Year" placeholder = "Sale Year (#)"></td>
+        </tr>
+        <tr>
+          <td>Terminal Cap Rate</td>
+          <td><input type="number" name="Terminal_Cap_Rate" id="Terminal_Cap_Rate" placeholder = "Terminal Cap Rate (%)"></td>
+        </tr>
+        <tr>
+          <td>Sales Costs</td>
+          <td><input type="number" name="Sales_Costs" id="Sales_Costs" placeholder = "Sale Costs (%)"></td>
+        </tr>
+      </table>
+
+      <table class ='striped' id="Sale_Summary">
+        <thead>
+          <th class="table_header" colspan='2'>SALE SUMMARY</th>
+        </thead>
+        <tr>
+          <td>Sale Price</td>
+          <td id ='Sale_Price'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Sale Price Per Unit</td>
+          <td id ='Sale_Price_Per_Unit'>$0.00</td>
+        </tr>
+        <tr>
+          <td>Sale Price Per SF</td>
+          <td id ='Sale_Price_Per_SF'>$0.00</td>
+        </tr>
+      </table>
+
+      <table class ='striped' id="Financing_Assumptions">
+        <thead>
+          <th class="table_header" colspan='2'>FINANCING ASSUMPTIONS</th>
+        </thead>
+        <tr>
+          <td>Leverage</td>
+          <td><input type="number" name="Leverage" id="Leverage" placeholder = "(%)"></td>
+        </tr>
+        <tr>
+          <td>Interest Rate on Mortgage</td>
+          <td><input type="number" name="Interest_Rate_on_Mortgage" id="Interest_Rate_on_Mortgage" placeholder = "(%)"></td>
+        </tr>
+        <tr>
+          <td>Loan Term</td>
+          <td><input type="number" name="Loan_Term" id="Loan_Term" placeholder = "(#)"></td>
+        </tr>
+        <tr>
+          <td>Loan Amortization</td>
+          <td><input type="number" name="Loan_Amortization" id="Loan_Amortization" placeholder = "(#)"></td>
+        </tr>
+      </table>
+      </div> <!-- End col s3 -->
+
+
+      <div class="col s5">
+        <table class ='striped' id="Sources_and_Uses">
+          <thead>
+            <th class="table_header" colspan='5'>SOURCES AND USES</th>
+            <tr>
+              <th class = 't_head'>&nbsp;</th>
+              <th class = 't_head'>Total</th>
+              <th class = 't_head'>$/Unit</th>
+              <th class = 't_head'>$/SF</th>
+              <th class = 't_head'>% of Total</th>
+            </tr>
+          </thead>
+          <tr>
+            <th>Sources</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <td>Equity</td>
+            <td id ='Equity_Total'>$0.00</td>
+            <td id ='Equity_DollarPerUnit'>$0.00</td>
+            <td id ='Equity_DollarPerSF'>$0.00</td>
+            <td id ='Equity_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Loan</td>
+            <td id ='Loan_Total'>$0.00</td>
+            <td id ='Loan_DollarPerUnit'>$0.00</td>
+            <td id ='Loan_DollarPerSF'>$0.00</td>
+            <td id ='Loan_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <th>Total Sources</th>
+            <th id ='Total_Sources_Total'>$0.00</th>
+            <th id ='Total_Sources_DollarPerUnit'>$0.00</th>
+            <th id ='Total_Sources_DollarPerSF'>$0.00</th>
+            <th id ='Total_Sources_PercentofTotal'>0.0%</th>
+          </tr>
+          <tr>
+            <th>Uses</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <td>Purchase Price</td>
+            <td id ='Purchasing_Price_Total'>$0.00</td>
+            <td id ='Purchasing_Price_DollarPerUnit'>$0.00</td>
+            <td id ='Purchasing_Price_DollarPerSF'>$0.00</td>
+            <td id ='Purchasing_Price_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Closing Costs</td>
+            <td id ='Closing_Costs_Total'>$0.00</td>
+            <td id ='Closing_Costs_DollarPerUnit'>$0.00</td>
+            <td id ='Closing_Costs_DollarPerSF'>$0.00</td>
+            <td id ='Closing_Costs_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <th>Total Uses</th>
+            <th id ='Total_Uses_Total'>$0.00</th>
+            <th id ='Total_Uses_DollarPerUnit'>$0.00</th>
+            <th id ='Total_Uses_DollarPerSF'>$0.00</th>
+            <th id ='Total_Uses_PercentofTotal'>0.0%</th>
+          </tr>
+        </table>
+
+        <table class ='striped' id="Rental_Rate_Assumptions">
+          <thead>
+            <tr>
+              <th class="table_header" colspan='6'>RENTAL RATE ASSUMPTIONS</th>
+              <th><submit name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating waves-effect waves-light btn"><i class="material-icons">add</i></submit></th>
+            </tr>
+            <tr>
+              <th class = 't_head'>Proj. Rents</th>
+              <th class = 't_head'>Total Units</th>
+              <th class = 't_head'>Total SF</th>
+              <th class = 't_head'>Avg. SF/Unit</th>
+              <th class = 't_head'>Rent/SF</th>
+              <th class = 't_head'>Rent/Unit</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tfoot>
+              <th>Totals</th>
+              <th class = "total_units">0</th>
+              <th class = "total_sf">0</th>
+              <th class = "avg_sf_per_unit">0</th>
+              <th class = "rent_per_sf">$0.00</th>
+              <th class = "rent_per_unit">$0.00</th>
+          </tfoot>
+
+
+        </table>
+
+      <!--   <table class ='striped' id="Returns_Summary">
+          <tr>
+            <th>RETURNS SUMMARY</th>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Unlevered</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>Levered</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <td>Net Profit</td>
+            <td>&nbsp;</td>
+            <td id='UL_Net_Profit'>$0.00</td>
+            <td>Net Profit</td>
+            <td>&nbsp;</td>
+            <td id='L_Net_Profit'>$0.00</td>
+          </tr>
+          <tr>
+            <td>Discount Rate</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="UL_Discount_Rate" id="UL_Discount_Rate" placeholder = "Unlevered Discount Rate (%)"></td>
+            <td>Discount Rate</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="L_Discount_Rate" id="L_Discount_Rate" placeholder = "Levered Discount Rate (%)"></td>
+          </tr>
+          <tr>
+            <td>Present Value</td>
+            <td>&nbsp;</td>
+            <td id='UL_Present_Value'>$0.00</td>
+            <td>Present Value</td>
+            <td>&nbsp;</td>
+            <td id='L_Present_Value'>$0.00</td>
+          </tr>
+          <tr>
+            <td>Net Present Value</td>
+            <td>&nbsp;</td>
+            <td id='UL_Net_Present_Value'>$0.00</td>
+            <td>Net Present Value</td>
+            <td>&nbsp;</td>
+            <td id='L_Net_Present_Value'>$0.00</td>
+          </tr>
+          <tr>
+            <td>Equity Multiple</td>
+            <td>&nbsp;</td>
+            <td id='UL_Equity_Multiple'>0</td>
+            <td>Equity Multiple</td>
+            <td>&nbsp;</td>
+            <td id='L_Equity_Multiple'>0</td>
+          </tr>
+          <tr>
+            <td>IRR</td>
+            <td>&nbsp;</td>
+            <td id='UL_IRR'>0.00%</td>
+            <td>IRR</td>
+            <td>&nbsp;</td>
+            <td id='L_IRR'>0.00%</td>
+          </tr>
+          <tr>
+            <td>IRR from CF (%)</td>
+            <td>&nbsp;</td>
+            <td id='UL_IRR_from_CF'>0.00%</td>
+            <td>IRR from CF (%)</td>
+            <td>&nbsp;</td>
+            <td id='L_IRR_from_CF'>0.00%</td>
+          </tr>
+          <tr>
+            <td>IRR from Sale (%)</td>
+            <td>&nbsp;</td>
+            <td id='UL_IRR_from_Sale'>0.00%</td>
+            <td>IRR from Sale (%)</td>
+            <td>&nbsp;</td>
+            <td id='L_IRR_from_Sale'>0.00%</td>
+          </tr>
+          <tr>
+            <td>Cash-On-Cash</td>
+            <td>&nbsp;</td>
+            <td id='UL_Cash_On_Cash'>0.00%</td>
+            <td>Cash-On-Cash</td>
+            <td>&nbsp;</td>
+            <td id='L_Cash_On_Cash'>0.00%</td>
+          </tr>
+        </table>
+   -->
+        <table class ='striped' id="Market_Rental_Assumptions">
+        <thead>
+          <tr>
+            <th class="table_header" colspan="6">MARKET RENTAL ASSUMPTIONS</th>
+          </tr>
+          <tr>
+            <th class = 't_head'>Year</th>
+            <th class = 't_head'>Revenue</th>
+            <th class = 't_head'>Expenses</th>
+            <th class = 't_head'>Vacancy</th>
+            <th class = 't_head'>Concessions</th>
+            <th class = 't_head'>Credit Loss</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        </table>
+      </div> <!-- End col s5 -->
+
+      <div class="col s4">
+        <table class ='striped' id="Current_Financial_Performance">
+          <thead>
+            <th class="table_header" colspan="6">CURRENT FINANCIAL PERFORMANCE</th>
+            <tr>
+              <th colspan ="2" id='CFP_date'></th>
+              <th class = 't_head'>Total</th>
+              <th class = 't_head'>$/Unit</th>
+              <th class = 't_head'>$/SF</th>
+              <th class = 't_head'>% of Total</th>
+            </tr>
+          </thead>
+          <tr>
+            <th colspan="6">Revenue</th>
+          </tr>
+          <tr>
+            <td colspan="2">Rental Income</td>
+            <td id='Rental_Income_Total'>$0.00</td>
+            <td id='Rental_Income_DollarPerUnit'>$0.00</td>
+            <td id='Rental_Income_DollarPerSF'>$0.00</td>
+            <td id='Rental_Income_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Other Income</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="Other_Income_Total" id="Other_Income_Total" placeholder = "($)"></td>
+            <td id='Other_Income_DollarPerUnit'>$0.00</td>
+            <td id='Other_Income_DollarPerSF'>$0.00</td>
+            <td id='Other_Income_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <th colspan ="2">Gross Rental Income</th>
+            <th id='Gross_Rental_Income_Total'>$0.00</th>
+            <th id='Gross_Rental_Income_DollarPerUnit'>$0.00</th>
+            <th id='Gross_Rental_Income_DollarPerSF'>$0.00</th>
+            <th id='Gross_Rental_Income_PercentofTotal'>0.0%</th>
+          </tr>
+          <tr>
+            <td>Less: Vacancy</td>
+            <td><input type="number" name="Less_Vacancy" id="Less_Vacancy" placeholder = "(%)"></td>
+            <td id='Vacancy_Total'>$0.00</td>
+            <td id='Vacancy_DollarPerUnit'>$0.00</td>
+            <td id='Vacancy_DollarPerSF'>$0.00</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Less: Concessions</td>
+            <td><input type="number" name="Less_Concessions" id="Less_Concessions" placeholder = "(%)"></td>
+            <td id='Concessions_Total'>$0.00</td>
+            <td id='Concessions_DollarPerUnit'>$0.00</td>
+            <td id='Concessions_DollarPerSF'>$0.00</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Less: Credit Loss</td>
+            <td><input type="number" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "(%)"></td>
+            <td id='Credit_Loss_Total'>$0.00</td>
+            <td id='Credit_Loss_DollarPerUnit'>$0.00</td>
+            <td id='Credit_Loss_DollarPerSF'>$0.00</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th colspan="2">Net Rental Income</th>
+            <th id='Net_Rental_Income_Total'>$0.00</th>
+            <th id='Net_Rental_Income_DollarPerUnit'>$0.00</th>
+            <th id='Net_Rental_Income_DollarPerSF'>$0.00</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th colspan="6">Operating Expenses</th>
+          </tr>
+          <tr>
+            <td colspan="2">Real Estate Taxes</td>
+            <td><input type="number" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "($)"></td>
+            <td id='Real_Estate_Taxes_DollarPerUnit'>$0.00</td>
+            <td id='Real_Estate_Taxes_DollarPerSF'>$0.00</td>
+            <td id='Real_Estate_Taxes_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Insurance</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="Insurance_Total" id="Insurance_Total" placeholder = "($)"></td>
+            <td id='Insurance_DollarPerUnit'>$0.00</td>
+            <td id='Insurance_DollarPerSF'>$0.00</td>
+            <td id='Insurance_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Utilities</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="Utilities_Total" id="Utilities_Total" placeholder = "($)"></td>
+            <td id='Utilities_DollarPerUnit'>$0.00</td>
+            <td id='Utilities_DollarPerSF'>$0.00</td>
+            <td id='Utilities_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Payroll</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="Payroll_Total" id="Payroll_Total" placeholder = "($)"></td>
+            <td id='Payroll_DollarPerUnit'>$0.00</td>
+            <td id='Payroll_DollarPerSF'>$0.00</td>
+            <td id='Payroll_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td colspan="2">Repairs & Maintenance</td>
+            <td><input type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "($)"></td>
+            <td id='Repairs_and_Maintenance_DollarPerUnit'>$0.00</td>
+            <td id='Repairs_and_Maintenance_DollarPerSF'>$0.00</td>
+            <td id='Repairs_and_Maintenance_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td colspan="2">Contract Services</td>
+            <td><input type="number" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "($)"></td>
+            <td id='Contract_Services_DollarPerUnit'>$0.00</td>
+            <td id='Contract_Services_DollarPerSF'>$0.00</td>
+            <td id='Contract_Services_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Turnover</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="Turnover_Total" id="Turnover_Total" placeholder = "($)"></td>
+            <td id='Turnover_DollarPerUnit'>$0.00</td>
+            <td id='Turnover_DollarPerSF'>$0.00</td>
+            <td id='Turnover_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td colspan="2">Sales & Marketing</td>
+            <td><input type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "($)"></td>
+            <td id='Sales_and_Marketing_DollarPerUnit'>$0.00</td>
+            <td id='Sales_and_Marketing_DollarPerSF'>$0.00</td>
+            <td id='Sales_and_Marketing_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Administrative</td>
+            <td>&nbsp;</td>
+            <td><input type="number" name="Administrative_Total" id="Administrative_Total" placeholder = "($)"></td>
+            <td id='Administrative_DollarPerUnit'>$0.00</td>
+            <td id='Administrative_DollarPerSF'>$0.00</td>
+            <td id='Administrative_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Management</td>
+            <td><input type="number" name="Management_Percentage" id="Management_Percentage" placeholder = "(%)"></td>
+            <td id='Management_Total'>$0.00</td>
+            <td id='Management_DollarPerUnit'>$0.00</td>
+            <td id='Management_DollarPerSF'>$0.00</td>
+            <td id='Management_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td>Replacement Reserves</td>
+            <td><input type="number" name="Replacement_Reserves_Percentage" id="Replacement_Reserves_Percentage" placeholder = "(%)"></td>
+            <td id='Replacement_Reserves_Total'>$0.00</td>
+            <td id='Replacement_Reserves_DollarPerUnit'>$0.00</td>
+            <td id='Replacement_Reserves_DollarPerSF'>$0.00</td>
+            <td id='Replacement_Reserves_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <td colspan="2">Total Operating Expenses</td>
+            <td id='Total_Operating_Expenses_Total'>$0.00</td>
+            <td id='Total_Operating_Expenses_DollarPerUnit'>$0.00</td>
+            <td id='Total_Operating_Expenses_DollarPerSF'>$0.00</td>
+            <td id='Total_Operating_Expenses_PercentofTotal'>0.0%</td>
+          </tr>
+          <tr>
+            <th colspan ="2">Net Operating Income</th>
+            <th id='Net_Operating_Income_Total'>$0.00</th>
+            <th id='Net_Operating_Income_DollarPerUnit'>$0.00</th>
+            <th id='Net_Operating_Income_DollarPerSF'>$0.00</th>
+
+            <th>&nbsp;</th>
+          </tr>
+        </table>
+
+
+      </div> <!-- End col s4 -->
+    </div> <!-- End row -->
+  </form> <!-- end dashboard form -->
+  </div>
+
+
+
+
+</li>
+</ul>
+{% endblock dashboard %}
