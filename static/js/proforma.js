@@ -8,8 +8,6 @@ myApp.proForma = function(){
 		var pInt = myApp.utils.pInt;
 		var pFloat = myApp.utils.pFloat;
 
-		// var saleYear = parseInt($('#Sale_Year').val())+1;
-
 		var pfCounter = g.saleYear;
 
 	//Deletes all columns
@@ -23,7 +21,7 @@ myApp.proForma = function(){
 		};
 	//Inserts number of columns based on Sale Year in Dashboard
 		for(var i = 0; i < g.saleYear+1; ++i) {
-			
+			console.log("Hello==================");
 			pfCounter = $('#Proforma .PF_Year_End th').length;
 			var Rental_Rate_Income_Total = pFloat('#Rental_Income_Total');
 	

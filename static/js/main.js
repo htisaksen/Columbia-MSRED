@@ -7,6 +7,7 @@ $(document).ready(function(){
 			myApp.dashboard.dashboardInput();
 			myApp.dashboard.dashboardInput();
 			myApp.proForma();
+			// myApp.returnsSummary(); ----HEAVILY WIP
 			myApp.utils.nanReplace();
 
 	};
