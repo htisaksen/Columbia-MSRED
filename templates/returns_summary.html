@@ -1,471 +1,522 @@
 {% block returns_summary %}
 <ul class="collapsible" data-collapsible="expandable">
   <li>
-  <div class="collapsible-header"><i class="material-icons">pageview</i>Returns Summary</div>
+  <div class="collapsible-header active"><i class="material-icons">pageview</i>Returns Summary</div>
   <div class="collapsible-body">
-    <form name = "returns_summary" id = "returns_summary" action="/returns_summary" method="POST">
+	<form name = "returns_summary" id = "returns_summary" action="/returns_summary" method="POST">
 
-    <table id="unlevered">
-      <tr>
-        <td>Unlevered IRR</td>
-        <td>9.00%</td>
-      </tr>
-      <tr>
-        <td>Unlevered Equity Multiple</td>
-        <td>2.01</td>
-      </tr>
-    </table>
-    <table id ="unlevered-irr-partition">
-      <tr>
-        <th>IRR Partition</th>
-        <th>%</th>
-        <th>$</th>
-      </tr>
-      <tr>
-        <td>IRR from Cash Flow</td>
-        <td>46.28%</td>
-        <td>$12,265,012 </td>
-      </tr>
-      <tr>
-        <td>IRR from Reversion/Sale</td>
-        <td>53.72%</td>
-        <td>$14,234,988 </td>
-      </tr>
-      <tr>
-        <td>Total</td>
-        <td>100.00%</td>
-        <td>$26,500,000 </td>
-      </tr>
-    <table id ="levered">
-      <tr>
-        <td>Levered IRR</td>
-        <td>14.15%</td>
-      </tr>
-      <tr>
-        <td>Levered Equity Multiple</td>
-        <td>2.86</td>
-      </tr>
-    </table>
-    <table id ="levered-irr-partition">
-      <tr>
-        <th>IRR Partition</th>
-        <th>%</th>
-        <th>$</th>
-      </tr>
-      <tr>
-        <td>IRR from Cash Flow</td>
-        <td>52.69%</td>
-        <td>$4,887,271 </td>
-      </tr>
-      <tr>
-        <td>IRR from Reversion/Sale</td>
-        <td>47.31%</td>
-        <td>$4,387,729 </td>
-      </tr>
-      <tr>
-        <td>Total</td>
-        <td>100.00%</td>
-        <td>$9,275,000 </td>
-      </tr>
-    </table>
-    <table id="unlevered-analysis">
-      <tr>
-          <th>UNLEVERED ANALYSIS</th>
-      </tr>
-      <tr>
-        <th>&nbsp;</th>
-        <td>&nbsp;</td>
-        <th>Year 1</th>
-        <th>Year 2</th>
-        <th>Year 3</th>
-        <th>Year 4</th>
-        <th>Year 5</th>
-        <th>Year 6</th>
-        <th>Year 7</th>
-        <th>Year 8</th>
-        <th>Year 9</th>
-        <th>Year 10</th>
-      </tr>
-      <tr>
-        <td>Net Operating Income</td>
-        <td>&nbsp;</td>
-        <td>$1,791,479 </td>
-        <td>$1,845,223</td>
-        <td>$1,900,580</td>
-        <td>$1,957,597</td>
-        <td>$2,016,325</td>
-        <td>$2,076,815</td>
-        <td>$2,139,120</td>
-        <td>$2,203,293</td>
-        <td>$2,269,392</td>
-        <td>$2,337,474</td>
-      </tr>
-      <tr>
-        <td>Less: Capital Expenditures</td>
-        <td>&nbsp;</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-      </tr>
-      <tr>
-        <td>Net Cash Flow from Operations</td>
-        <td>&nbsp;</td>
-        <td>$1,691,479 </td>
-        <td>$1,745,223 </td>
-        <td>$1,800,580 </td>
-        <td>$1,857,597 </td>
-        <td>$1,916,325 </td>
-        <td>$1,976,815 </td>
-        <td>$2,039,120 </td>
-        <td>$2,103,293 </td>
-        <td>$2,169,392 </td>
-        <td>$2,237,474 </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Gross Sale Proceeds</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$34,394,257 </td>
-      </tr>
-      <tr>
-        <td>Sales Costs</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>($687,885)</td>
-      </tr>
-      <tr>
-        <td>Net Sales Proceeds</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$33,706,372</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Net Cash Flow from Operations</td>
-        <td>&nbsp;</td>
-        <td>$1,691,479 </td>
-        <td>$1,745,223 </td>
-        <td>$1,800,580 </td>
-        <td>$1,857,597 </td>
-        <td>$1,916,325 </td>
-        <td>$1,976,815 </td>
-        <td>$2,039,120 </td>
-        <td>$2,103,293 </td>
-        <td>$2,169,392 </td>
-        <td>$2,237,474 </td>
-      </tr>
-      <tr>
-        <td>Net Sales Proceeds</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$33,706,372</td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Total Cash Flows</td>
-        <td>($26,500,000)</td>
-        <td>$1,691,479 </td>
-        <td>$1,745,223 </td>
-        <td>$1,800,580 </td>
-        <td>$1,857,597 </td>
-        <td>$1,916,325 </td>
-        <td>$1,976,815 </td>
-        <td>$2,039,120 </td>
-        <td>$2,103,293 </td>
-        <td>$2,169,392 </td>
-        <td>$35,943,845 </td>
-      </tr>
-    </table>
-    <table id="levered-analysis">
-      <tr>
-          <th>LEVERED ANALYSIS</th>
-      </tr>
-      <tr>
-        <th>&nbsp;</th>
-        <td>&nbsp;</td>
-        <th>Year 1</th>
-        <th>Year 2</th>
-        <th>Year 3</th>
-        <th>Year 4</th>
-        <th>Year 5</th>
-        <th>Year 6</th>
-        <th>Year 7</th>
-        <th>Year 8</th>
-        <th>Year 9</th>
-        <th>Year 10</th>
-      </tr>
-      <tr>
-        <td>Net Operating Income</td>
-        <td>&nbsp;</td>
-        <td>$1,791,479 </td>
-        <td>$1,845,223</td>
-        <td>$1,900,580</td>
-        <td>$1,957,597</td>
-        <td>$2,016,325</td>
-        <td>$2,076,815</td>
-        <td>$2,139,120</td>
-        <td>$2,203,293</td>
-        <td>$2,269,392</td>
-        <td>$2,337,474</td>
-      </tr>
-      <tr>
-        <td>Less: Capital Expenditures</td>
-        <td>&nbsp;</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-        <td>($100,000)</td>
-      </tr>
-      <tr>
-        <td>Less: Debt Service</td>
-        <td>&nbsp;</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-        <td>($947,375)</td>
-      </tr>
-      <tr>
-        <td>Net Cash Flow from Operations</td>
-        <td>&nbsp;</td>
-        <td>$744,104 </td>
-        <td>$797,848 </td>
-        <td>$853,205 </td>
-        <td>$910,222 </td>
-        <td>$968,950 </td>
-        <td>$1,029,440 </td>
-        <td>$1,091,745 </td>
-        <td>$1,155,918 </td>
-        <td>$1,222,017 </td>
-        <td>$1,290,099 </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Gross Sale Proceeds</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$34,394,257 </td>
-      </tr>
-      <tr>
-        <td>Sales Costs</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>($687,885)</td>
-      </tr>
-      <tr>
-        <td>Less: Outstanding Mortgage</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>($17,225,000)</td>
-      </tr>
-      <tr>
-        <td>Net Sales Proceeds</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$16,481,372 </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Net Cash Flow from Operations</td>
-        <td>&nbsp;</td>
-        <td>$744,104 </td>
-        <td>$797,848 </td>
-        <td>$853,205 </td>
-        <td>$910,222 </td>
-        <td>$968,950 </td>
-        <td>$1,029,440 </td>
-        <td>$1,091,745 </td>
-        <td>$1,155,918 </td>
-        <td>$1,222,017 </td>
-        <td>$1,290,099 </td>
-      </tr>
-      <tr>
-        <td>Net Sales Proceeds</td>
-        <td>&nbsp;</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$16,481,372 </td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td>Total Cash Flows</td>
-        <td>($9,275,000)</td>
-        <td>$744,104 </td>
-        <td>$797,848 </td>
-        <td>$853,205 </td>
-        <td>$910,222 </td>
-        <td>$968,950 </td>
-        <td>$1,029,440 </td>
-        <td>$1,091,745 </td>
-        <td>$1,155,918 </td>
-        <td>$1,222,017 </td>
-        <td>$17,771,470 </td>
-      </tr>
-    </table>
+	
+	<div class ='row'>
+		<div class = 'col s4'>
+			<table class = 'striped' id="unlevered">
+			  <thead>
+				<tr>
+					<th colspan="2">Unlevered Data</th>
+				</tr>
+			  </thead>
 
-    </form>
+			  <tr class ='RS_Unlevered_IRR'>
+				<td>Unlevered IRR</td>
+				<td>%</td>
+			  </tr>
+			  <tr class ='RS_Unlevered_Equity_Multiple'>
+				<td>Unlevered Equity Multiple</td>
+				<td>#</td>
+			  </tr>
+			</table>
+
+			<table class = 'striped' id ="unlevered-irr-partition">
+			  <thead>
+				<tr>
+					<th>IRR Partition</th>
+					<th>%</th>
+					<th>$</th>
+				</tr>
+			  </thead>
+			  <tr class = 'RS_IRR_from_Cash_Flow'>
+				<td>IRR from Cash Flow</td>
+				<td>%</td>
+				<td>$</td>
+			  </tr>
+			  <tr class = 'RS_IRR_from_ReversionSale'>
+				<td>IRR from Reversion/Sale</td>
+				<td>%</td>
+				<td>$</td>
+			  </tr>
+			  <tr class = 'RS_Total'>
+				<td>Total</td>
+				<td>%</td>
+				<td>$</td>
+			  </tr>
+			</table>
+		</div>
+
+		
+		<div class = 'col s4'>
+			<table  class = 'striped' id ="levered">
+              <thead>
+                <tr>
+                    <th colspan="2">Levered Data</th>
+                </tr>
+              </thead>
+			  <tr class ='RS_Levered_IRR'>
+				<td>Levered IRR</td>
+				<td>%</td>
+			  </tr>
+			  <tr class ='RS_Levered_Equity_Multiple'>
+				<td>Levered Equity Multiple</td>
+				<td>#</td>
+			  </tr>
+			</table>
+			
+			<table class = 'striped' id ="levered-irr-partition">
+				<thead>
+					<tr>
+						<th class = 't_head'>IRR Partition</th>
+						<th class = 't_head'>%</th>
+						<th class = 't_head'>$</th>
+					</tr>   
+				</thead>
+			  <tr class = 'RS_IRR_from_Cash_Flow'>
+				<td>IRR from Cash Flow</td>
+				<td>%</td>
+				<td>$</td>
+			  </tr>
+			  <tr class = 'RS_IRR_from_ReversionSale'>
+				<td>IRR from Reversion/Sale</td>
+				<td>%</td>
+				<td>$</td>
+			  </tr>
+			  <tr class = 'RS_Total'>
+				<td>Total</td>
+				<td>%</td>
+				<td>$</td>
+			  </tr>
+			</table>
+		</div>
+	</div> <!-- End Row -->
+
+
+	<div class ='row'>
+		<div class = 'col s12'>
+			<ul class="collapsible" data-collapsible="expandable">
+			<li>
+			<div class="collapsible-header sub-header">UNLEVERED ANALYSIS</div>
+		  	<div class="collapsible-body">
+
+				<table class = 'striped' id="unlevered-analysis">
+				<thead>
+				  <tr>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th>Year 1</th>
+					<th>Year 2</th>
+					<th>Year 3</th>
+					<th>Year 4</th>
+					<th>Year 5</th>
+					<th>Year 6</th>
+					<th>Year 7</th>
+					<th>Year 8</th>
+					<th>Year 9</th>
+					<th>Year 10</th>
+				  </tr>
+				</thead>
+				  <tr>
+					<td>Net Operating Income</td>
+					<td>&nbsp;</td>
+					<td>$1,791,479 </td>
+					<td>$1,845,223</td>
+					<td>$1,900,580</td>
+					<td>$1,957,597</td>
+					<td>$2,016,325</td>
+					<td>$2,076,815</td>
+					<td>$2,139,120</td>
+					<td>$2,203,293</td>
+					<td>$2,269,392</td>
+					<td>$2,337,474</td>
+				  </tr>
+				  <tr>
+					<td>Less: Capital Expenditures</td>
+					<td>&nbsp;</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+					<td>($100,000)</td>
+				  </tr>
+				  <tr>
+					<td>Net Cash Flow from Operations</td>
+					<td>&nbsp;</td>
+					<td>$1,691,479 </td>
+					<td>$1,745,223 </td>
+					<td>$1,800,580 </td>
+					<td>$1,857,597 </td>
+					<td>$1,916,325 </td>
+					<td>$1,976,815 </td>
+					<td>$2,039,120 </td>
+					<td>$2,103,293 </td>
+					<td>$2,169,392 </td>
+					<td>$2,237,474 </td>
+				  </tr>
+				  <tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				  </tr>
+				  <tr>
+					<td>Gross Sale Proceeds</td>
+					<td>&nbsp;</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$34,394,257 </td>
+				  </tr>
+				  <tr>
+					<td>Sales Costs</td>
+					<td>&nbsp;</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>($687,885)</td>
+				  </tr>
+				  <tr>
+					<td>Net Sales Proceeds</td>
+					<td>&nbsp;</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$33,706,372</td>
+				  </tr>
+				  <tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				  </tr>
+				  <tr>
+					<td>Net Cash Flow from Operations</td>
+					<td>&nbsp;</td>
+					<td>$1,691,479 </td>
+					<td>$1,745,223 </td>
+					<td>$1,800,580 </td>
+					<td>$1,857,597 </td>
+					<td>$1,916,325 </td>
+					<td>$1,976,815 </td>
+					<td>$2,039,120 </td>
+					<td>$2,103,293 </td>
+					<td>$2,169,392 </td>
+					<td>$2,237,474 </td>
+				  </tr>
+				  <tr>
+					<td>Net Sales Proceeds</td>
+					<td>&nbsp;</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$0</td>
+					<td>$33,706,372</td>
+				  </tr>
+				  <tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				  </tr>
+				  <tr>
+					<td>Total Cash Flows</td>
+					<td>($26,500,000)</td>
+					<td>$1,691,479 </td>
+					<td>$1,745,223 </td>
+					<td>$1,800,580 </td>
+					<td>$1,857,597 </td>
+					<td>$1,916,325 </td>
+					<td>$1,976,815 </td>
+					<td>$2,039,120 </td>
+					<td>$2,103,293 </td>
+					<td>$2,169,392 </td>
+					<td>$35,943,845 </td>
+				  </tr>
+				</table>
+		 	</div>
+			</li>
+			</ul>
+
+
+			<ul class="collapsible" data-collapsible="expandable">
+			<li>
+			<div class="collapsible-header sub-header">LEVERED ANALYSIS</div>
+		  	<div class="collapsible-body">
+
+			<table class = 'striped' id="levered-analysis">
+				<thead>
+					<tr>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th>Year 1</th>
+						<th>Year 2</th>
+						<th>Year 3</th>
+						<th>Year 4</th>
+						<th>Year 5</th>
+						<th>Year 6</th>
+						<th>Year 7</th>
+						<th>Year 8</th>
+						<th>Year 9</th>
+						<th>Year 10</th>
+					</tr>
+				</thead>
+			  <tr>
+				<td>Net Operating Income</td>
+				<td>&nbsp;</td>
+				<td>$1,791,479 </td>
+				<td>$1,845,223</td>
+				<td>$1,900,580</td>
+				<td>$1,957,597</td>
+				<td>$2,016,325</td>
+				<td>$2,076,815</td>
+				<td>$2,139,120</td>
+				<td>$2,203,293</td>
+				<td>$2,269,392</td>
+				<td>$2,337,474</td>
+			  </tr>
+			  <tr>
+				<td>Less: Capital Expenditures</td>
+				<td>&nbsp;</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+				<td>($100,000)</td>
+			  </tr>
+			  <tr>
+				<td>Less: Debt Service</td>
+				<td>&nbsp;</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+				<td>($947,375)</td>
+			  </tr>
+			  <tr>
+				<td>Net Cash Flow from Operations</td>
+				<td>&nbsp;</td>
+				<td>$744,104 </td>
+				<td>$797,848 </td>
+				<td>$853,205 </td>
+				<td>$910,222 </td>
+				<td>$968,950 </td>
+				<td>$1,029,440 </td>
+				<td>$1,091,745 </td>
+				<td>$1,155,918 </td>
+				<td>$1,222,017 </td>
+				<td>$1,290,099 </td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			  </tr>
+			  <tr>
+				<td>Gross Sale Proceeds</td>
+				<td>&nbsp;</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$34,394,257 </td>
+			  </tr>
+			  <tr>
+				<td>Sales Costs</td>
+				<td>&nbsp;</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>($687,885)</td>
+			  </tr>
+			  <tr>
+				<td>Less: Outstanding Mortgage</td>
+				<td>&nbsp;</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>($17,225,000)</td>
+			  </tr>
+			  <tr>
+				<td>Net Sales Proceeds</td>
+				<td>&nbsp;</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$16,481,372 </td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			  </tr>
+			  <tr>
+				<td>Net Cash Flow from Operations</td>
+				<td>&nbsp;</td>
+				<td>$744,104 </td>
+				<td>$797,848 </td>
+				<td>$853,205 </td>
+				<td>$910,222 </td>
+				<td>$968,950 </td>
+				<td>$1,029,440 </td>
+				<td>$1,091,745 </td>
+				<td>$1,155,918 </td>
+				<td>$1,222,017 </td>
+				<td>$1,290,099 </td>
+			  </tr>
+			  <tr>
+				<td>Net Sales Proceeds</td>
+				<td>&nbsp;</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$0</td>
+				<td>$16,481,372 </td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			  </tr>
+			  <tr>
+				<td>Total Cash Flows</td>
+				<td>($9,275,000)</td>
+				<td>$744,104 </td>
+				<td>$797,848 </td>
+				<td>$853,205 </td>
+				<td>$910,222 </td>
+				<td>$968,950 </td>
+				<td>$1,029,440 </td>
+				<td>$1,091,745 </td>
+				<td>$1,155,918 </td>
+				<td>$1,222,017 </td>
+				<td>$17,771,470 </td>
+			  </tr>
+			</table>
+		</div>
+	</div> <!-- End Row -->
+
+			</div>
+			</li>
+			</ul>
+
+
+	</form>
   </div>
   </li>
 </ul>
