@@ -137,8 +137,7 @@ textarea.materialize-textarea {
 }
 
 
-/*Navigation Bar*/
-/*==================*/
+/*Navigation Bar*==================*/
 #nav_bar {
 	background: linear-gradient(180deg,#287bb7,rgba(2,136,209,.95));
 	color: white;
@@ -169,6 +168,8 @@ nav i.material-icons {
 	line-height: inherit;
 	height: inherit;
 }
+/*END - Navigation Bar*==================*/
+
 
 /* Dashboard - top section ==================*/
 #save_input {
@@ -206,7 +207,7 @@ nav i.material-icons {
 #Analysis_Start_Date_text {
 	left: 20px;
 }
-/* END ==== Dashboard - top section ==================*/
+/* END - Dashboard - top section ==================*/
 
 
 table {
@@ -261,13 +262,15 @@ th.picker__weekday{
 	padding: 12px;
 }
 
-
+tr.RS_Net_Cash_Flow_from_Operations,
+tr.RS_Net_Sales_Proceeds,
+tr.RS_Total_Cash_Flows,
 tr.PF_Net_Operating_Income,
 tr.PF_Net_Cash_Flow,
 tr.PF_Total_Operating_Expenses,
 tr.PF_Net_Rental_Income,
 tr.PF_Gross_Rental_Income {
-	background-color: lightgrey;
+	background-color: #f2f2f2;
 }
 
 .PFHeader{
@@ -281,16 +284,12 @@ tr.PF_Gross_Rental_Income {
 	margin-right: 20%;
 }
 
-/*==================*/
-
 #Property_Information tbody td:nth-child(1) {
 	width: 70%;
 }
 #Property_Information tbody td:nth-child(2) {
 	width: 30%;
 }
-/*==================*/
-
 
 footer.page-footer {
 	padding: 0;
@@ -299,3 +298,28 @@ footer.page-footer {
 .footer-copyright {
 	padding-left: 1%;
 }
+
+/* Returns Summary ==================*/
+tr.RS_Net_Cash_Flow_from_Operations,
+tr.RS_Net_Sales_Proceeds,
+tr.RS_Total_Cash_Flows {
+	border-top: grey;
+	border-bottom: grey;
+	border-width: thin;
+	border-style: ridge;
+}
+
+tr.RS_Net_Cash_Flow_from_Operations2 {
+	border-top: grey;
+	border-bottom: white; /*this attribute hides the border between RS_Net_Cash_Flow_from_Operations2 and RS_Net_Sales_Proceeds2*/
+	border-width: thin;
+	border-style: ridge;
+}
+
+tr.RS_Net_Sales_Proceeds2 {
+	border-bottom: grey;
+	border-width: thin;
+	border-style: ridge;
+}
+
+/* END - Returns Summary ==================*/
