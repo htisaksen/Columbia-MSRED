@@ -170,43 +170,6 @@ def save_data():
 	# db.session.commit()
 
 
-
-	while True:
-		if not request.form.get('total_units'+str(rental_rate_counter)):
-			break
-		proj_rents_list.append(request.form['proj_rents'+str(rental_rate_counter)])
-		total_units_list.append(request.form['total_units'+str(rental_rate_counter)])
-		avg_sf_per_unit_list.append(request.form['avg_sf_per_unit'+str(rental_rate_counter)])
-		rent_per_unit_list.append(request.form['rent_per_unit'+str(rental_rate_counter)])
-		rental_rate_counter += 1
-
-	while True:
-		if not request.form.get('mkt_rent_revenue'+str(market_counter)):
-			print('break')
-			break
-		revenue_list.append(request.form['mkt_rent_revenue'+str(market_counter)])
-		expenses_list.append(request.form['mkt_rent_expenses'+str(market_counter)])
-		vacancy_list.append(request.form['mkt_rent_vacancy'+str(market_counter)])
-		concession_list.append(request.form['mkt_rent_concessions'+str(market_counter)])
-		credit_loss_list.append(request.form['mkt_rent_credit_loss'+str(market_counter)])
-		market_counter += 1
-		print(market_counter)
-
-
-	print('proj_rents_list: ',proj_rents_list)
-	print('total_units_list: ',total_units_list)
-	print('avg_sf_per_unit_list: ',avg_sf_per_unit_list)
-	print('rent_per_unit_list: ',rent_per_unit_list)
-
-	# while market_rental_input_counter <= len(revenue_list):
-
-
-	print('revenue_list: ',revenue_list)
-	print('expenses_list: ',expenses_list)
-	print('vacancy_list: ',vacancy_list)
-	print('concession_list: ',concession_list)
-	print('credit_loss_list: ',credit_loss_list)
-
 	return jsonify(success = 'success')
 
 
