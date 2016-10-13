@@ -39,23 +39,21 @@ myApp.returnsSummary = function(){
 				//RS_Net_Operating_Income
 				$('#unlevered-analysis tbody tr:nth-child(1)').append(
 					"<td class= 'RS_Net_Operating_Income'>" +
-					pFloat('#unlevered-analysis .RS_Net_Operating_Income td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100)) +
-					"</td>";
+					pFloat('#Proforma tbody td.PF_Net_Operating_Income:nth-child('+ (i+1) +')') +
+					"</td>");
 				//RS_Less_Capital_Expenditures
 				$('#unlevered-analysis tbody tr:nth-child(2)').append(
 					"<td class= 'RS_Less_Capital_Expenditures'>" +
-					pFloat('#unlevered-analysis .RS_Less_Capital_Expenditures td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_revenue').val())/100)) +
-					"</td>";
+					pFloat('#Proforma tbody td.PF_Capital_Expenditures:nth-child('+ (i+1) +')') +
+					"</td>");
 				//RS_Net_Cash_Flow_from_Operations
 				$('#unlevered-analysis tbody tr:nth-child(3)').append(
 					"<td class= 'RS_Net_Cash_Flow_from_Operations'>" +
-
-					 pFloat('.RS_Rental_Income td:nth-child('+ (i+1) +')') +
-					 pFloat('.RS_Other_Income td:nth-child('+ (i+1) +')')
-					) + "</td>";
-
+						(
+						 pFloat('.RS_Net_Operating_Income td:nth-child('+ (i+1) +')') -
+						 pFloat('.PF_Capital_Expenditures td:nth-child('+ (i+1) +')')
+						)
+					+ "</td>");				
 				$('#unlevered-analysis tbody tr:nth-child(4)').append("<td></td>");
 
 				//RS_Gross_Sale_Proceeds
