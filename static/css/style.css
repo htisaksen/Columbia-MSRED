@@ -137,87 +137,13 @@ textarea.materialize-textarea {
 }
 
 
-/*Navigation Bar*==================*/
-#nav_bar {
-	background: linear-gradient(180deg,#287bb7,rgba(2,136,209,.95));
-	color: white;
-}
-
-#login_name {
-	padding: 0px 35px;
-	font-size: large;
-}
-
-.dropdown-content li>a,
-.dropdown-content li>span {
-	text-align: center;
-	color: #287bb7;
-}
-
-ul #dropdown1 {
-	width: 160px;
-	left: 1752px;
-}
-
-a.brand-logo {
-	display: inline-flex;
-	padding: 7px;
-}
-
-nav i.material-icons {
-	line-height: inherit;
-	height: inherit;
-}
-/*END - Navigation Bar*==================*/
-
-
-/* Dashboard - top section ==================*/
-#save_input {
-	margin:;
-	float:right;
-}
-
-#Analysis_Start_Date_text{
-	margin:0;
-}
-
-.modal .modal-content{
-	padding: 4%;
-}
-
-#modal1 {
-	width: 400px;
-	height: 200px;
-}
-
-/*Div tag that encompasses Modal save button and Analysis Start Date input*/
-#save_modal{
-	margin: 1% 1.5% .5% 1.5%;
-}
-
-/*input box*/
-#Analysis_Start_Date {
-	width:10%;
-	position: relative;
-	left: 20px;
-	color: ;
-}
-
-/*h6 header text*/
-#Analysis_Start_Date_text {
-	left: 20px;
-}
-/* END - Dashboard - top section ==================*/
-
-
 table {
-  /*border-collapse: separate;*/
-  /*border-collapse:collapse;*/
   background:#fff;
   margin:25px auto;
   width:100%;
   table-layout:fixed;
 }
+
 .collapsible{
 	margin:0;
 }
@@ -262,22 +188,6 @@ th.picker__weekday{
 	padding: 12px;
 }
 
-tr.RS_Net_Cash_Flow_from_Operations,
-tr.RS_Net_Sales_Proceeds,
-tr.RS_Total_Cash_Flows,
-tr.PF_Net_Operating_Income,
-tr.PF_Net_Cash_Flow,
-tr.PF_Total_Operating_Expenses,
-tr.PF_Net_Rental_Income,
-tr.PF_Gross_Rental_Income {
-	background-color: #f2f2f2;
-}
-
-.PFHeader{
-	font-size: 22px;
-	text-decoration: underline;
-}
-
 /*Dashboard > RRA add button */
 #rental_rate_form{
 	float: right;
@@ -299,7 +209,120 @@ footer.page-footer {
 	padding-left: 1%;
 }
 
-/* Returns Summary ==================*/
+/*Navigation Bar*======================================================*/
+#nav_bar {
+	background: linear-gradient(180deg,#287bb7,rgba(2,136,209,.95));
+	color: white;
+}
+
+#login_name {
+	padding: 0px 35px;
+	font-size: large;
+}
+
+.dropdown-content li>a,
+.dropdown-content li>span {
+	text-align: center;
+	color: #287bb7;
+}
+
+ul #dropdown1 {
+	width: 160px;
+	left: 1752px;
+}
+
+a.brand-logo {
+	display: inline-flex;
+	padding: 7px;
+}
+
+nav i.material-icons {
+	line-height: inherit;
+	height: inherit;
+}
+/*END - Navigation Bar*======================================================*/
+
+
+/* Dashboard - top section ======================================================*/
+#save_input {
+	margin:;
+	float:right;
+}
+
+#Analysis_Start_Date_text{
+	margin:0;
+}
+
+.modal .modal-content{
+	padding: 4%;
+}
+
+#modal1 {
+	width: 400px;
+	height: 200px;
+}
+
+/*Div tag that encompasses Modal save button and Analysis Start Date input*/
+#save_modal{
+	margin: 1% 1.5% .5% 1.5%;
+}
+
+/*input box*/
+#Analysis_Start_Date {
+	width:10%;
+	position: relative;
+	left: 20px;
+	color: ;
+}
+
+/*h6 header text*/
+#Analysis_Start_Date_text {
+	left: 20px;
+}
+/* END - Dashboard - top section ======================================================*/
+
+
+
+
+/* Pro Forma ======================================================*/
+tr.PF_Net_Operating_Income,
+tr.PF_Net_Cash_Flow,
+tr.PF_Total_Operating_Expenses,
+tr.PF_Net_Rental_Income,
+tr.PF_Gross_Rental_Income {
+	background-color: #f2f2f2;
+}
+
+
+.PFHeader {
+	font-size: 22px;
+	text-decoration: underline;
+}
+
+
+tr.PF_Gross_Rental_Income,
+tr.PF_Net_Rental_Income,
+tr.PF_Total_Operating_Expenses,
+tr.PF_Net_Operating_Income,
+tr.PF_Net_Cash_Flow {
+	border-top: grey;
+	border-bottom: grey;
+	border-width: thin;
+	border-style: ridge;
+}
+
+
+/* END - Pro Forma ======================================================*/
+
+
+
+/* Returns Summary ======================================================*/
+tr.RS_Net_Cash_Flow_from_Operations,
+tr.RS_Net_Sales_Proceeds,
+tr.RS_Total_Cash_Flows {
+	background-color: #f2f2f2;
+}
+
 tr.RS_Net_Cash_Flow_from_Operations,
 tr.RS_Net_Sales_Proceeds,
 tr.RS_Total_Cash_Flows {
@@ -322,4 +345,4 @@ tr.RS_Net_Sales_Proceeds2 {
 	border-style: ridge;
 }
 
-/* END - Returns Summary ==================*/
+/* END - Returns Summary ======================================================*/
