@@ -5,12 +5,12 @@ myApp.htmlGen = {};
   myApp.htmlGen.RRAsample = function(){
   	$('#Rental_Rate_Assumptions').find('tbody')
   		.append($("<tr class = 'rent_row'>")
-  		.append($("<td>").html("<input type='text' name='proj_rents1' class='proj_rents' placeholder='Project Rents' value='1 Bed/1 Bath'></td>"))
-  		.append($("<td>").html("<input type='number' name='total_units1' class='total_units' placeholder='Total Units' value='50'></td>"))
+  		.append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Project Rents' value='1 Bed/1 Bath'></td>"))
+  		.append($("<td>").html("<input type='number' id='total_units1' name='total_units1' class='total_units' placeholder='Total Units' value='50'></td>"))
   		.append($("<td class = 'total_sf'></td>").text("0"))
-  		.append($("<td>").html("<input type='number' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='662'></td>"))
+  		.append($("<td>").html("<input type='number' id='avg_sf_per_unit1' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='662'></td>"))
   		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-  		.append($("<td>").html("<input type='number' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent Per Unit' value='1100'></td>"))
+  		.append($("<td>").html("<input type='number' id='rent_per_unit1' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent Per Unit' value='1100'></td>"))
   		.append($("<td>"))
       )
   	// $('#Rental_Rate_Assumptions').find('tbody')
@@ -43,12 +43,12 @@ myApp.htmlGen = {};
   myApp.htmlGen.rentalRateAssumptions = function(){
 	$('#Rental_Rate_Assumptions').find('tbody')
 		.append($("<tr class = 'rent_row'>")
-		.append($("<td>").html("<input type='text' name='proj_rents1' class='proj_rents' placeholder='Proj. Rents'></td>"))
-		.append($("<td>").html("<input type='number' name='total_units1' class='total_units' placeholder='Total Units'></td>"))
+		.append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Proj. Rents'></td>"))
+		.append($("<td>").html("<input type='number' id='total_units1' name='total_units1' class='total_units' placeholder='Total Units'></td>"))
 		.append($("<td class = 'total_sf'></td>").text("0"))
-		.append($("<td>").html("<input type='number' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
+		.append($("<td>").html("<input type='number' id='avg_sf_per_unit1' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
 		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-		.append($("<td>").html("<input type='number' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
+		.append($("<td>").html("<input type='number' id='rent_per_unit1' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
     .append($("<td>"))
 		)
   };
@@ -57,11 +57,11 @@ myApp.htmlGen = {};
     $('#Market_Rental_Assumptions').find('tbody')
       .append($("<tr class = 'year_row' id='year_row_1'>")
       .append($("<td>Year 1</td>"))
-      .append($("<td>").html("<input type='number' name='mkt_rent_revenue1' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
-      .append($("<td>").html("<input type='number' name='mkt_rent_expenses1' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
-      .append($("<td>").html("<input type='number' name='mkt_rent_vacancy1' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
-      .append($("<td>").html("<input type='number' name='mkt_rent_concessions1' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
-      .append($("<td>").html("<input type='number' name='mkt_rent_credit_loss1' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
+      .append($("<td>").html("<input type='number' id='mkt_rent_revenue1' name='mkt_rent_revenue1' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
+      .append($("<td>").html("<input type='number' id='mkt_rent_expenses1' name='mkt_rent_expenses1' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
+      .append($("<td>").html("<input type='number' id='mkt_rent_vacancy1' name='mkt_rent_vacancy1' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
+      .append($("<td>").html("<input type='number' id='mkt_rent_concessions1' name='mkt_rent_concessions1' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
+      .append($("<td>").html("<input type='number' id='mkt_rent_credit_loss1' name='mkt_rent_credit_loss1' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
       )
   };
 
@@ -72,7 +72,7 @@ myApp.htmlGen = {};
       $('#Proforma').find('thead tr')
         .append($("<th>YEAR "+ i +"</th>")
         );
-  	 
+
       $('#Proforma tr:nth-child(2)').append(
         "<td class= 'PF_Rental_Income'>$0.00</td>");
       $('#Proforma tr:nth-child(3)').append(
@@ -126,6 +126,6 @@ myApp.htmlGen = {};
         "<td class= 'PF_Net_Cash_Flow'>$0.00</td>");
 
     }; //end for loop
-  		
+
   };
 })()

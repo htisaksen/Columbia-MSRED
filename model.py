@@ -48,10 +48,10 @@ class RealEstateModel(db.Model):
     administrative_total = db.Column('administrative_total', db.String(32))
     management_percentage = db.Column('management_percentage', db.String(32))
     replacement_reserves_percentage = db.Column('replacement_reserves_percentage', db.String(32))
+    rental_rate_assumptions = db.Column('rental_rate_assumptions', db.String(256))
+    market_rental_assumptions = db.Column('market_rental_assumptions', db.String(256))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    rental_rate_assumptions = db.relationship('RentalRateAssumption',backref='realestatemodels',lazy='dynamic')
-    market_rental_assumptions = db.relationship('MarketRentalAssumption',backref='realestatemodels',lazy='dynamic')
-    def __init__(self, model_name, created_on, analysis_start_date, property_name, property_location, property_type, purchase_price, closing_cost_percentage, sale_year, terminal_cap_rate, sales_costs, leverage, interest_rate_on_mortgage, loan_term, loan_amortization, unlevered_discountRate, levered_discount_rate, other_income_total, less_vacancy, less_concessions, less_credit_loss, real_estate_taxes_total, insurance_total, utilities_total, payroll_total, repairs_and_maintenance_total, contract_services_total, turnover_total, sales_and_marketing_total, administrative_total, management_percentage, replacement_reserves_percentage, user_id):
+    def __init__(self, model_name, created_on, analysis_start_date, property_name, property_location, property_type, purchase_price, closing_cost_percentage, sale_year, terminal_cap_rate, sales_costs, leverage, interest_rate_on_mortgage, loan_term, loan_amortization, unlevered_discountRate, levered_discount_rate, other_income_total, less_vacancy, less_concessions, less_credit_loss, real_estate_taxes_total, insurance_total, utilities_total, payroll_total, repairs_and_maintenance_total, contract_services_total, turnover_total, sales_and_marketing_total, administrative_total, management_percentage, replacement_reserves_percentage, rental_rate_assumptions, market_rental_assumptions, user_id):
         self.model_name = model_name
         self.created_on = created_on
         self.analysis_start_date = analysis_start_date
@@ -84,42 +84,9 @@ class RealEstateModel(db.Model):
         self.administrative_total = administrative_total
         self.management_percentage = management_percentage
         self.replacement_reserves_percentage = replacement_reserves_percentage
+        self.rental_rate_assumptions = rental_rate_assumptions
+        self.market_rental_assumptions = market_rental_assumptions
         self.user_id = user_id
-#FK extended Real Estate Model table. Extension on userinputs
-class RentalRateAssumption(db.Model):
-    __tablename__ = "rentalrateassumptions"
-    id = db.Column('rental_rate_assumptions_id', db.Integer, primary_key=True)
-    proj_rent = db.Column('proj_rent', db.String(32))
-    total_units = db.Column('total_units', db.String(32))
-    avg_sf_per_unit = db.Column('avg_sf_per_unit', db.String(32))
-    rent_per_unit = db.Column('rent_per_unit', db.String(32))
-    real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
-
-    def __init__(self, proj_rent, total_units, avg_sf_per_unit, rent_per_unit, real_estate_model_id):
-        self.proj_rent = proj_rent
-        self.total_units = total_units
-        self.avg_sf_per_unit = avg_sf_per_unit
-        self.rent_per_unit = rent_per_unit
-        self.real_estate_model_id = real_estate_model_id
-
-#FK extended Real Estate Model table. Extension on userinputs
-class MarketRentalAssumption(db.Model):
-    __tablename__ = "marketrentalassumptions"
-    id = db.Column('market_rental_assumptions_id', db.Integer, primary_key=True)
-    revenue = db.Column('revenue', db.String(32))
-    expenses = db.Column('expenses', db.String(32))
-    vacancy = db.Column('vacancy', db.String(32))
-    concessions = db.Column('concessions', db.String(32))
-    credit_loss = db.Column('credit_loss', db.String(32))
-    real_estate_model_id = db.Column(db.Integer, db.ForeignKey('realestatemodels.model_id'))
-
-    def __init__(self, revenue, expenses, vacancy, concessions, credit_loss, real_estate_model_id):
-        self.revenue = revenue
-        self.expenses = expenses
-        self.vacancy = vacancy
-        self.concessions = concessions
-        self.credit_loss = credit_loss
-        self.real_estate_model_id = real_estate_model_id
 
 class User(db.Model):
     __tablename__ = "users"

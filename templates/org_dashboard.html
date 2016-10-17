@@ -13,8 +13,8 @@
         <div id="modal1" class="modal">
           <div class="modal-content">
             <h5>Model Name</h5><br>
-            <input type="hidden" name="country" value="">
-            <input type="hidden" name="country" value="">
+            <input type="hidden" name="rental_rate_assumptions" id='rental_rate_assumptions' value="">
+            <input type="hidden" name="market_rental_assumptions" id='market_rental_assumptions' value="">
             <input type ="text" name="save_name" id = "save_name" placeholder = "Name of save">
           </div>
           <div class="modal-footer">
@@ -235,7 +235,7 @@
           </tr>
         </table>
 
-        <table class ='striped' id="Rental_Rate_Assumptions">
+        <table class ='striped dynamic_table' id="Rental_Rate_Assumptions">
           <thead>
             <tr>
               <th class="table_header" colspan='6'>RENTAL RATE ASSUMPTIONS</th>
@@ -260,11 +260,9 @@
               <th class = "rent_per_sf">$0.00</th>
               <th class = "rent_per_unit">$0.00</th>
           </tfoot>
-
-
         </table>
 
-      <!--   <table class ='striped' id="Returns_Summary">
+        <table class ='striped' id="Returns_Summary">
           <tr>
             <th>RETURNS SUMMARY</th>
           </tr>
@@ -349,11 +347,11 @@
             <td id='L_Cash_On_Cash'>0.00%</td>
           </tr>
         </table>
-   -->
+
         <table class ='striped' id="Market_Rental_Assumptions">
         <thead>
           <tr>
-            <th class="table_header" colspan="6">MARKET RENTAL ASSUMPTIONS</th>
+            <th class="table_header dynamic_table" colspan="6">MARKET RENTAL ASSUMPTIONS</th>
           </tr>
           <tr>
             <th class = 't_head'>Year</th>

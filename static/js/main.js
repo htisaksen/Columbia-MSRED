@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 
 	myApp.htmlGen.RRAsample();		//TESTING PURPOSES
-	
+
 	// myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
 	myApp.htmlGen.marketRentalAssumptions(); 	//Javascript Market Rental Rate Assumptions first insert row -------------------
 	myApp.htmlGen.proForma(); 					//Javascript Market Rental Rate Assumptions two columns -------------------
@@ -36,19 +36,19 @@ $(document).ready(function(){
 		var rrCounter = $('#Rental_Rate_Assumptions tbody tr').length+1;
 		$('#Rental_Rate_Assumptions').find('tbody')
 			.append($("<tr class = 'rent_row'>")
-			.append($("<td>").html("<input type='text' name='proj_rents"+rrCounter+"' class='proj_rents' placeholder='Proj. Rents'></td>"))
-			.append($("<td>").html("<input type='number' name='total_units"+rrCounter+"' class='total_units' placeholder='Total Units'></td>"))
+			.append($("<td>").html("<input type='text' id='proj_rents"+rrCounter+"' name='proj_rents"+rrCounter+"' class='proj_rents' placeholder='Proj. Rents'></td>"))
+			.append($("<td>").html("<input type='number' id='total_units"+rrCounter+"' name='total_units"+rrCounter+"' class='total_units' placeholder='Total Units'></td>"))
 			.append($("<td class = 'total_sf'></td>").text("0"))
-			.append($("<td>").html("<input type='number' name='avg_sf_per_unit"+rrCounter+"' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
+			.append($("<td>").html("<input type='number' id='avg_sf_per_unit"+rrCounter+"' name='avg_sf_per_unit"+rrCounter+"' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
 			.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-			.append($("<td>").html("<input type='number' name='rent_per_unit"+rrCounter+"' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
+			.append($("<td>").html("<input type='number' id='rent_per_unit"+rrCounter+"' name='rent_per_unit"+rrCounter+"' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
 			.append($('<td>').html("<a>[X]</a></td>"))
 			)
 
 	// function to delete all additionally added rows from the Rental Rate Assumptions table
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
-			RRAInput();
+			myApp.rra.RRAInput();
 			myApp.dashboard.dashboardInput();
 		});
 	//Runs input function inside
@@ -76,11 +76,11 @@ $(document).ready(function(){
 			$('#Market_Rental_Assumptions').find('tbody')
 				.append($("<tr class = 'year_row' id='year_row_"+mraCounter+"'>")
 				.append($("<td class='mkt_rent_year'>Year "+mraCounter+"</td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_revenue"+mraCounter+"' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_expenses"+mraCounter+"' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_vacancy"+mraCounter+"' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_concessions"+mraCounter+"' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
-				.append($("<td>").html("<input type='number' name='mkt_rent_credit_loss"+mraCounter+"' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
+				.append($("<td>").html("<input type='number'id='mkt_rent_revenue"+mraCounter+"' name='mkt_rent_revenue"+mraCounter+"' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
+				.append($("<td>").html("<input type='number'id='mkt_rent_expenses"+mraCounter+"' name='mkt_rent_expenses"+mraCounter+"' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
+				.append($("<td>").html("<input type='number'id='mkt_rent_vacancy"+mraCounter+"' name='mkt_rent_vacancy"+mraCounter+"' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
+				.append($("<td>").html("<input type='number'id='mkt_rent_concessions"+mraCounter+"' name='mkt_rent_concessions"+mraCounter+"' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
+				.append($("<td>").html("<input type='number'id='mkt_rent_credit_loss"+mraCounter+"' name='mkt_rent_credit_loss"+mraCounter+"' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
 				)
 		};
 	}); //end addrow function
@@ -89,6 +89,39 @@ $(document).ready(function(){
 // ============================================================================================================
 //SAVE to DB
 // ============================================================================================================
+
+	$('#save_input').on('click',function(event){
+		var rentalRateLength = $('#Rental_Rate_Assumptions tbody tr').length; //Repeated - Need to create seperate function
+		var marketRentalLength = $('#Market_Rental_Assumptions tbody tr').length; // Repeated - Need to create seperate function
+		var rentalRateList = [];
+		var marketRentalList = [];
+		for(var i=1;i<=rentalRateLength;++i){
+			var rentalRateObj = {
+				row:i,
+				projRents: $('#proj_rents'+i).val(),
+				totalUnits: $('#total_units'+i).val(),
+				avgSfPerUnit: $('#avg_sf_per_unit'+i).val(),
+				rentPerUnit: $('#rent_per_unit'+i).val(),
+			};
+			rentalRateList.push(rentalRateObj)
+		};
+		for(var i=1;i<=marketRentalLength;++i){
+			var marketRentalObj = {
+				row:i,
+				revenue: $('#mkt_rent_revenue'+i).val(),
+				expenses: $('#mkt_rent_expenses'+i).val(),
+				vacancy: $('#mkt_rent_vacancy'+i).val(),
+				concessions: $('#mkt_rent_concessions'+i).val(),
+				creditLoss: $('mkt_rent_credit_loss'+i).val(),
+			};
+			marketRentalList.push(marketRentalObj)
+		};
+		$('#rental_rate_assumptions').val(rentalRateList);
+		$('#market_rental_assumptions').val(marketRentalList);
+		console.log($('#rental_rate_assumptions').val())
+		console.log($('#market_rental_assumptions').val())
+	});
+
 	$('#modal_save').on('click',function(event) {
     event.preventDefault();
     var data = $('#dashboard').serialize();

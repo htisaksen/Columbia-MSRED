@@ -147,8 +147,8 @@ def save_data():
 				request.form['Interest_Rate_on_Mortgage'],
 				request.form['Loan_Term'],
 				request.form['Loan_Amortization'],
-				'5',# request.form['UL_Discount_Rate'],
-				'8',# request.form['L_Discount_Rate'],
+				request.form['UL_Discount_Rate'],
+				request.form['L_Discount_Rate'],
 				request.form['Other_Income_Total'],
 				request.form['Less_Vacancy'],
 				request.form['Less_Concessions'],
@@ -164,6 +164,8 @@ def save_data():
 				request.form['Administrative_Total'],
 				request.form['Management_Percentage'],
 				request.form['Replacement_Reserves_Percentage'],
+				request.form['rental_rate_assumptions'],
+				request.form['market_rental_assumptions'],
 				session['id'])
 
 	db.session.add(save)
