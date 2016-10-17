@@ -30,7 +30,9 @@ myApp.returnsSummary = function(){
 				$('#unlevered-analysis tbody tr:not(:last)').each(function(){
 					$(this).append("<td></td>");
 				})
-				$('#unlevered-analysis tbody tr:last').append("<td>Value</td>");
+				$('#unlevered-analysis tbody tr:last').append("<td>" +
+					FormatCurrency(pFloat('#dashboard #Purchase_Information td#PI_Total_Costs')*-1) +
+					"</td>");
 
 			} else {
 			//All additional year data calculated based on Pro Forma table calculations ===================
@@ -39,63 +41,85 @@ myApp.returnsSummary = function(){
 				//RS_Net_Operating_Income
 				$('#unlevered-analysis tbody tr:nth-child(1)').append(
 					"<td class= 'RS_Net_Operating_Income'>" +
-					pFloat('#Proforma tbody td.PF_Net_Operating_Income:nth-child('+ (i+1) +')') +
+					FormatCurrency(
+					 pFloat('#Proforma tbody td.PF_Net_Operating_Income:nth-child('+ i +')')) +
 					"</td>");
 				//RS_Less_Capital_Expenditures
 				$('#unlevered-analysis tbody tr:nth-child(2)').append(
 					"<td class= 'RS_Less_Capital_Expenditures'>" +
-					pFloat('#Proforma tbody td.PF_Capital_Expenditures:nth-child('+ (i+1) +')') +
+					FormatCurrency(
+					 pFloat('#Proforma tbody td.PF_Capital_Expenditures:nth-child('+ i +')')*-1) +
 					"</td>");
 				//RS_Net_Cash_Flow_from_Operations
 				$('#unlevered-analysis tbody tr:nth-child(3)').append(
 					"<td class= 'RS_Net_Cash_Flow_from_Operations'>" +
-						(
-						 pFloat('.RS_Net_Operating_Income td:nth-child('+ (i+1) +')') -
-						 pFloat('.PF_Capital_Expenditures td:nth-child('+ (i+1) +')')
-						)
-					+ "</td>");				
+					FormatCurrency(
+					 pFloat('#unlevered-analysis td.RS_Net_Operating_Income:last') +
+					 pFloat('#unlevered-analysis td.RS_Less_Capital_Expenditures:last')
+					) + "</td>");				
+				
+				//Filler line
 				$('#unlevered-analysis tbody tr:nth-child(4)').append("<td></td>");
 
 				//RS_Gross_Sale_Proceeds
-				$('#unlevered-analysis tbody tr:nth-child(5)').append(
-					"<td class= 'RS_Gross_Sale_Proceeds'>(" +
-					pFloat('#unlevered-analysis .RS_Less_Vacancy td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_vacancy').val())/100)) +
-					")</td>";
+				if (i == g.saleYear+1) {
+					$('#unlevered-analysis tbody tr:nth-child(5)').append(
+					"<td class= 'RS_Gross_Sale_Proceeds'>" +
+					FormatCurrency(
+					 pFloat('#Proforma tbody td.PF_Net_Operating_Income:last') / (g.terminalCapRate/100)
+					) + "</td>");
+				} else {
+					$('#unlevered-analysis tbody tr:nth-child(5)').append(
+					"<td class= 'RS_Gross_Sale_Proceeds'>$0.00</td>");
+				}
 				//RS_Sales_Costs
-				$('#unlevered-analysis tbody tr:nth-child(6)').append(
-					"<td class= 'RS_Sales_Costs'>(" +
-					pFloat('#unlevered-analysis .RS_Less_Concessions td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_concessions').val())/100)) +
-					")</td>";
+				if (pFloat('#unlevered-analysis tbody td.RS_Gross_Sale_Proceeds:last') > 0) {
+					$('#unlevered-analysis tbody tr:nth-child(6)').append(
+					"<td class= 'RS_Sales_Costs'>" +
+					FormatCurrency(
+					 pFloat('#unlevered-analysis tbody td.RS_Gross_Sale_Proceeds:last') * (g.salesCosts/100) * -1
+					) + "</td>");
+				} else {
+					$('#unlevered-analysis tbody tr:nth-child(6)').append(
+					"<td class= 'RS_Sales_Costs'>$0.00</td>");
+				}
 				//RS_Net_Sales_Proceeds
 				$('#unlevered-analysis tbody tr:nth-child(7)').append(
-					"<td class= 'RS_Net_Sales_Proceeds'>(" +
-					pFloat('#unlevered-analysis .RS_Less_Credit_Loss td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_credit_loss').val())/100)) +
-					")</td>";
+					"<td class= 'RS_Net_Sales_Proceeds'>" +
+					FormatCurrency(
+					 pFloat('#unlevered-analysis td.RS_Gross_Sale_Proceeds:last')  +
+					 pFloat('#unlevered-analysis td.RS_Sales_Costs:last')
+					) + "</td>");
 
+				//filler line
 				$('#unlevered-analysis tbody tr:nth-child(8)').append("<td></td>");
+				
 				//RS_Net_Cash_Flow_from_Operations2
 				$('#unlevered-analysis tbody tr:nth-child(9)').append(
 					"<td class= 'RS_Net_Cash_Flow_from_Operations2'>" +
-					pFloat('#unlevered-analysis .RS_Real_Estate_Taxes td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
-					"</td>";
+					FormatCurrency(
+					 pFloat('#unlevered-analysis td.RS_Net_Operating_Income:last') +
+					 pFloat('#unlevered-analysis td.RS_Less_Capital_Expenditures:last')
+					) + "</td>");	
 				//RS_Net_Sales_Proceeds2
 				$('#unlevered-analysis tbody tr:nth-child(10)').append(
 					"<td class= 'RS_Net_Sales_Proceeds2'>" +
-					pFloat('#unlevered-analysis .RS_Real_Estate_Taxes td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
-					"</td>";
+					FormatCurrency(
+					 pFloat('#unlevered-analysis td.RS_Gross_Sale_Proceeds:last')  +
+					 pFloat('#unlevered-analysis td.RS_Sales_Costs:last')
+					) + "</td>");
 
+				//filler line
 				$('#unlevered-analysis tbody tr:nth-child(11)').append("<td></td>");
+				
 				//RS_Total_Cash_Flows
 				$('#unlevered-analysis tbody tr:nth-child(12)').append(
 					"<td class= 'RS_Total_Cash_Flows'>" +
-					pFloat('#unlevered-analysis .RS_Insurance td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_expenses').val())/100)) +
-					"</td>";
+					FormatCurrency(
+					 pFloat('#unlevered-analysis .RS_Net_Sales_Proceeds2 td:nth-child('+ (i+1) +')')  +
+					 pFloat('#unlevered-analysis .RS_Net_Cash_Flow_from_Operations2 td:nth-child('+ (i+1) +')')
+					) + "</td>");
+
 
 			} //end else
 		}; //end for loop

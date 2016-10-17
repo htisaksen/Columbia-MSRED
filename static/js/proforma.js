@@ -104,7 +104,7 @@ myApp.proForma = function(){
 
 				//PF_Capital_Expenditures ------------------------WIP
 				$('#Proforma tr:nth-child(24)').append(
-					"<td class= 'PF_Capital_Expenditures'>" + FormatCurrency(100000) + "</td>");
+					"<td class= 'PF_Capital_Expenditures'>(" + FormatCurrency(100000) + ")</td>");
 
 				$('#Proforma tr:nth-child(25)').append(
 					"<td class= 'PF_Net_Cash_Flow'>" +
@@ -261,9 +261,9 @@ myApp.proForma = function(){
 
 				//PF_Capital_Expenditures ------------------------WIP
 				$('#Proforma tr:nth-child(24)').append(
-					"<td class= 'PF_Capital_Expenditures'>" +
+					"<td class= 'PF_Capital_Expenditures'>(" +
 					FormatCurrency(100000) +
-					"</td>");
+					")</td>");
 
 				//PF_Net_Cash_Flow
 				$('#Proforma tr:nth-child(25)').append(
