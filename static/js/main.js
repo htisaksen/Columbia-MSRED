@@ -52,8 +52,8 @@ $(document).ready(function(){
 			myApp.dashboard.dashboardInput();
 		});
 	//Runs input function inside
-		$('.rent_row').on('input', myApp.rra.RRAInput);
-		$('#dashboard').on('input', calculations);
+		$('.rent_row').on('focusout', myApp.rra.RRAInput);
+		$('#dashboard').on('focusout', calculations);
 
 	}); //end addrow function
 
@@ -129,8 +129,8 @@ $(document).ready(function(){
  	});
 
 // ============================================================================================================
-	$('.rent_row').on('input', myApp.rra.RRAInput);
-	$('#dashboard').on('input', calculations);
+	$('.rent_row').on('focusout', myApp.rra.RRAInput);
+	$('#dashboard').on('focusout', calculations);
 
 
 
