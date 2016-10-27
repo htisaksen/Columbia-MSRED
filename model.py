@@ -121,9 +121,9 @@ if __name__== "__main__":
     db.drop_all()
     db.create_all()
     tak = User('tak@i.com','tak', 'Tak','I.')
-    fred = User('joey@joey.com','joey', 'Fred','VS.')
+    joey = User('joey@joey.com','joey', 'Joey','Jones')
     db.session.add(tak)
-    db.session.add(fred)
+    db.session.add(joey)
     db.session.commit()
 
     # print("User.query.all():=============",User.query.all())
@@ -134,7 +134,7 @@ if __name__== "__main__":
     # save1 = RealEstateModel("Model1", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 1)
     # save2 = RealEstateModel("Model3", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 2, '[4000,300,2000]', '[1,2,3,4,5]')
     # save3 = RealEstateModel("Modelwhat", datetime.utcnow(), '11/04/2015', 'Commercial bldg A', 'New York', 'Commercial', 400000, 3, 2, 7, 2, 65, 5.5, 10, 25, 8, 8, 100000, 10, 3, 2, 500000, 75000, 125000, 150000, 75000, 100000, 75000, 50000, 50000, 3, 2, 3, '[4000,300,2000]', '[1,2,3,4,5]')
-    save1 = RealEstateModel("Model1",datetime.utcnow(),'11/04/2015','CommercialbldgA','NewYork','Commercial','400000','3','2','7','2','65','5.5','10','25','8','8','100000','10','3','2','500000','75000','125000','150000','75000','100000','75000','50000','50000','3','2',1)
+    save1 = RealEstateModel("Model1",datetime.utcnow(),'11/04/2015','CommercialbldgA','NewYork','Commercial','400000','3','2','7','2','65','5.5','10','25','8','8','100000','10','3','2','500000','75000','125000','150000','75000','100000','75000','50000','50000','3','2','','',1)
 
 
 
@@ -143,12 +143,12 @@ if __name__== "__main__":
     # db.session.add(save3)
     db.session.commit()
 
-    rr1 = RentalRateAssumption('1bed/2bath','30','200','1200',1)
-    db.session.add(rr1)
-    db.session.commit()
+    # rr1 = RentalRateAssumption('1bed/2bath','30','200','1200',1)
+    # db.session.add(rr1)
+    # db.session.commit()
 
-    ma1 = MarketRentalAssumption('3','3','3','3','3',1)
-    db.session.add(ma1)
-    db.session.commit()
+    # ma1 = MarketRentalAssumption('3','3','3','3','3',1)
+    # db.session.add(ma1)
+    # db.session.commit()
 
     print("Database has been created...")

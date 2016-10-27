@@ -132,8 +132,9 @@ def save_data():
 	concession_list = []
 	credit_loss_list = []
 	# static inputs
-	save = RealEstateModel(datetime.utcnow(),
+	save = RealEstateModel(
 				request.form['save_name'],
+				datetime.utcnow(),
 				request.form['Analysis_Start_Date'],
 				request.form['Property_Name'],
 				request.form['Property_Address'],
@@ -169,8 +170,8 @@ def save_data():
 				session['id'])
 
 	db.session.add(save)
-	# db.session.commit()
-
+	db.session.commit()
+	print('='*50+" save successful")
 
 	return jsonify(success = 'success')
 

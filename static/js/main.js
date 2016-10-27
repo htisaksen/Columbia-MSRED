@@ -96,36 +96,41 @@ $(document).ready(function(){
 		var rentalRateList = [];
 		var marketRentalList = [];
 		for(var i=1;i<=rentalRateLength;++i){
-			var rentalRateObj = {
-				row:i,
-				projRents: $('#proj_rents'+i).val(),
-				totalUnits: $('#total_units'+i).val(),
-				avgSfPerUnit: $('#avg_sf_per_unit'+i).val(),
-				rentPerUnit: $('#rent_per_unit'+i).val(),
-			};
+			var rentalRateObj = [] 
+			rentalRateObj = [
+				i,
+				$('#proj_rents'+i).val(),
+				$('#total_units'+i).val(),
+				$('#avg_sf_per_unit'+i).val(),
+				$('#rent_per_unit'+i).val(),
+			];
+			console.log("rentalRateObj:",rentalRateObj)
 			rentalRateList.push(rentalRateObj)
 		};
 		for(var i=1;i<=marketRentalLength;++i){
-			var marketRentalObj = {
-				row:i,
-				revenue: $('#mkt_rent_revenue'+i).val(),
-				expenses: $('#mkt_rent_expenses'+i).val(),
-				vacancy: $('#mkt_rent_vacancy'+i).val(),
-				concessions: $('#mkt_rent_concessions'+i).val(),
-				creditLoss: $('mkt_rent_credit_loss'+i).val(),
-			};
+			var marketRentalObj = []
+			marketRentalObj = [
+				i,
+				$('#mkt_rent_revenue'+i).val(),
+				$('#mkt_rent_expenses'+i).val(),
+				$('#mkt_rent_vacancy'+i).val(),
+				$('#mkt_rent_concessions'+i).val(),
+				$('#mkt_rent_credit_loss'+i).val(),
+			];
+			console.log("marketRentalObj:",marketRentalObj)
 			marketRentalList.push(marketRentalObj)
 		};
+
 		$('#rental_rate_assumptions').val(rentalRateList);
 		$('#market_rental_assumptions').val(marketRentalList);
-		console.log($('#rental_rate_assumptions').val())
-		console.log($('#market_rental_assumptions').val())
+		console.log("#rental_rate_assumptions'.val:",$('#rental_rate_assumptions').val())
+		console.log("#market_rental_assumptions'.val:",$('#market_rental_assumptions').val())
 	});
 
 	$('#modal_save').on('click',function(event) {
     event.preventDefault();
     var data = $('#dashboard').serialize();
-		services.saveDashboard(data);
+	services.saveDashboard(data);
  	});
 
 // ============================================================================================================
