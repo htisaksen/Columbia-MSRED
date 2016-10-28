@@ -51,6 +51,7 @@ class RealEstateModel(db.Model):
     rental_rate_assumptions = db.Column('rental_rate_assumptions', db.String(256))
     market_rental_assumptions = db.Column('market_rental_assumptions', db.String(256))
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    
     def __init__(self, model_name, created_on, analysis_start_date, property_name, property_location, property_type, purchase_price, closing_cost_percentage, sale_year, terminal_cap_rate, sales_costs, leverage, interest_rate_on_mortgage, loan_term, loan_amortization, unlevered_discountRate, levered_discount_rate, other_income_total, less_vacancy, less_concessions, less_credit_loss, real_estate_taxes_total, insurance_total, utilities_total, payroll_total, repairs_and_maintenance_total, contract_services_total, turnover_total, sales_and_marketing_total, administrative_total, management_percentage, replacement_reserves_percentage, rental_rate_assumptions, market_rental_assumptions, user_id):
         self.model_name = model_name
         self.created_on = created_on
@@ -137,18 +138,7 @@ if __name__== "__main__":
     save1 = RealEstateModel("Model1",datetime.utcnow(),'11/04/2015','CommercialbldgA','NewYork','Commercial','400000','3','2','7','2','65','5.5','10','25','8','8','100000','10','3','2','500000','75000','125000','150000','75000','100000','75000','50000','50000','3','2','','',1)
 
 
-
     db.session.add(save1)
-    # db.session.add(save2)
-    # db.session.add(save3)
     db.session.commit()
-
-    # rr1 = RentalRateAssumption('1bed/2bath','30','200','1200',1)
-    # db.session.add(rr1)
-    # db.session.commit()
-
-    # ma1 = MarketRentalAssumption('3','3','3','3','3',1)
-    # db.session.add(ma1)
-    # db.session.commit()
 
     print("Database has been created...")

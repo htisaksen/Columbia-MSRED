@@ -21,27 +21,26 @@
             <thead>
               <tr>
                   <th data-field="col_model_name">Model</th>
-                  <th data-field="col_date_modified">Date Last Modified</th>
+                  <th data-field="col_date_created">Date Created</th>
                   <th data-field="col_button"></th>
               </tr>
             </thead>
 
             <tbody>
+{% if modelslist == [] %}
               <tr>
-                <td class = 'model_name'>Model Number One</td>
-                <td class = 'date_modified'>9/27/2016 5:45PM</td>
+                <td colspan="2" text-align="center">Looks like you don't have any models created yet!</td>
+                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content disabled">Load</a></td>
+              </tr>
+{% else %}
+  {% for model in modelslist %}
+              <tr>
+                <td>{{model.model_name}}</td>
+                <td>{{model.created_on}}</td>
                 <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
               </tr>
-              <tr>
-                <td>#2</td>
-                <td>10/1/2016 5:49PM</td>
-                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
-              </tr>    
-              <tr>
-                <td>295 Madison Ave</td>
-                <td>10/5/2016 2:14PM</td>
-                <td class = 'load_button'><a href="#!" class="waves-effect waves-light btn secondary-content">Load</a></td>
-              </tr>
+  {% endfor %}
+{% endif %}
             </tbody>
             <tfoot>
                 <tr></tr>
