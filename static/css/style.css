@@ -262,6 +262,10 @@ nav i.material-icons {
 	height: 200px;
 }
 
+#modal_save {
+	margin-right: 5%
+}
+
 /*Div tag that encompasses Modal save button and Analysis Start Date input*/
 #save_modal{
 	margin: 1% 1.5% .5% 1.5%;

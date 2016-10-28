@@ -97,7 +97,6 @@ def home():
 
 def grab_all_models(user):
 	print("Entered grab all models func========================")
-	# user = User.query.filter_by(id = user).first()
 	modelslist = RealEstateModel.query.filter_by(user_id = user).all()
 	print("models list:",modelslist)
 	return modelslist
