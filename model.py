@@ -17,7 +17,7 @@ class RealEstateModel(db.Model):
     __tablename__ = "realestatemodels"
     id = db.Column('model_id', db.Integer, primary_key=True)
     created_on = db.Column('created_on', db.String(64))
-    model_name = db.Column('model_name', db.String(64))
+    model_name = db.Column('model_name', db.String(64), unique = True)
     analysis_start_date = db.Column('analysis_start_date', db.String(12))
     property_name = db.Column('property_name', db.String(32))
     property_location = db.Column('property_location', db.String(32))

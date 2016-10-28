@@ -28,7 +28,7 @@ $(document).ready(function(){
 
 
 // ============================================================================================================
-//Rental Rate Form Dynamic Table
+//RENTAL RATE ASSUMPTIONS Dynamic Table
 // ============================================================================================================
 	// adds one row to table when the 'add' button is clicked
 	$("#rental_rate_form").on('click', function(event) {
@@ -89,7 +89,7 @@ $(document).ready(function(){
 // ============================================================================================================
 //SAVE to DB
 // ============================================================================================================
-
+	//click on "Save Model" button
 	$('#save_input').on('click',function(event){
 		var rentalRateLength = $('#Rental_Rate_Assumptions tbody tr').length; //Repeated - Need to create seperate function
 		var marketRentalLength = $('#Market_Rental_Assumptions tbody tr').length; // Repeated - Need to create seperate function
@@ -127,11 +127,17 @@ $(document).ready(function(){
 		console.log("#market_rental_assumptions'.val:",$('#market_rental_assumptions').val())
 	});
 
+	//click on "Save" button after entering Model/Save Name in modal text box
 	$('#modal_save').on('click',function(event) {
     event.preventDefault();
     var data = $('#dashboard').serialize();
-	services.saveDashboard(data);
+	services.saveDashboard(data);	//AJAX call - ajax.js
  	});
+
+	$('.load_button').on('click', function(){
+		var testt = $('tbody tr td .model_name').val()
+		console.log("Testt:",testt);
+	});
 
 // ============================================================================================================
 	$('.rent_row').on('focusout', myApp.rra.RRAInput);

@@ -78,34 +78,14 @@ def logout():
 	print("User logged out.")
 	return redirect('/login')
 
-
-
-
-
-
 @app.route("/home", methods=['GET','POST'])
 @login_required
 def home():
 	if request.method == 'GET':
 		user = session.get('id')
-		print("home GET userid:",user)
-		modelslist = grab_all_models(user)
-		
-
-
+		print("/Home GET userid:",user)
+		modelslist = RealEstateModel.query.filter_by(user_id = user).all()
 	return render_template('home.html', modelslist = modelslist)
-
-def grab_all_models(user):
-	print("Entered grab all models func========================")
-	modelslist = RealEstateModel.query.filter_by(user_id = user).all()
-	print("models list:",modelslist)
-	return modelslist
-
-
-
-
-
-
 
 @app.route("/org_dashboard", methods=['GET','POST'])
 @login_required
@@ -191,14 +171,17 @@ def save_data():
 				request.form['rental_rate_assumptions'],
 				request.form['market_rental_assumptions'],
 				session['id'])
-
 	db.session.add(save)
 	db.session.commit()
 	print('='*50+" save successful")
-
 	return jsonify(success = 'success')
 
-
+@app.route('/edit/<modelid>',methods = ["POST"])
+@login_required
+def load_data():
+	print("We are on the /loaddata page")
+	return render_template("main.html",
+		modeldata = modeldata)
 
 
 if __name__ == "__main__":

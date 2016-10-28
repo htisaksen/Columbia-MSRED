@@ -2,7 +2,7 @@
 
 <ul class="collapsible" data-collapsible="expandable">
   <li>
-<div class="collapsible-header"><i class="material-icons">pageview</i>Dashboard</div>
+<div class="collapsible-header active"><i class="material-icons">pageview</i>Dashboard</div>
   <div class="collapsible-body">
   <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
     <div id="save_modal">
@@ -15,15 +15,15 @@
             <h5>Model Name</h5><br>
             <input type="hidden" name="rental_rate_assumptions" id='rental_rate_assumptions' value="">
             <input type="hidden" name="market_rental_assumptions" id='market_rental_assumptions' value="">
-            <input type ="text" name="save_name" id = "save_name" placeholder = "Name of Save">
+            <input type ="text" name="save_name" id = "save_name" placeholder = "Enter name">
           </div>
           <div class="modal-footer">
             <button id= 'modal_save' href='/savedata' class= "modal-action modal-close btn modal-trigger" type='submit'>Save</button>
           </div>
         </div>
-      <h6 id='Analysis_Start_Date_text'>Analysis Start Date
-        <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = 'Click to Set Date' class='datepicker'>
-      </h6>
+        <h6 id='Analysis_Start_Date_text'>Analysis Start Date
+          <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = 'Click to Set Date' class='datepicker'>
+        </h6>
     </div>
     <div class='row'>
       <div class="col s3">
