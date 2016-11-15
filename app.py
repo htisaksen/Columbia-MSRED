@@ -40,6 +40,16 @@ def dashboard():
 	return render_template("main.html",
 		title = title)
 
+@app.route('/edit/<modelid>',methods = ["GET","POST"])
+@login_required
+def load_data(modelid):
+	print("We are on the /loaddata page. Model id:",modelid)
+	modeldata = RealEstateModel.query.filter_by(id = modelid).first()
+	print(modeldata)
+	return render_template("main_load.html",
+		modeldata = modeldata)
+
+
 @app.route("/login", methods=['POST','GET'])
 def login():
 	error_msg = ""
@@ -176,12 +186,6 @@ def save_data():
 	print('='*50+" save successful")
 	return jsonify(success = 'success')
 
-@app.route('/edit/<modelid>',methods = ["POST"])
-@login_required
-def load_data():
-	print("We are on the /loaddata page")
-	return render_template("main.html",
-		modeldata = modeldata)
 
 
 if __name__ == "__main__":

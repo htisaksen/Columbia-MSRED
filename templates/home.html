@@ -37,7 +37,9 @@
               <tr>
                 <td class ='model_name'>{{model.model_name}}</td>
                 <td class ='model_created_on'>{{model.created_on}}</td>
-                <td><button class = 'load_button waves-effect waves-light btn secondary-content' href = '/edit/{{model.id}}' type='submit'>Load</button></td>
+                <td>
+                  <a href = '/edit/{{model.id}}' class = 'load_button waves-effect waves-light btn secondary-content'>Load</a>
+                </td>
               </tr>
   {% endfor %}
 {% endif %}
