@@ -125,7 +125,7 @@ def inputForm():
 	return render_template('input_form.html',
 		title = title)
 
-@app.route('/savedata',methods = ["POST"])
+@app.route('/savedata', methods = ["POST"])
 @login_required
 def save_data():
 	print('='*50+" start save")
