@@ -2,27 +2,16 @@
 
 <ul class="collapsible" data-collapsible="expandable">
   <li>
-<div class="collapsible-header active"><i class="material-icons">pageview</i>Dashboard</div>
+<div class="collapsible-header active"><i class="material-icons">pageview</i>Dashboard - {{modeldata.model_name}}</div>
   <div class="collapsible-body">
   <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
     <div id="save_modal">
-        <!-- Modal Trigger -->
-        <submit id = "save_input" class="btn modal-trigger" href="#modal1">Save Model</submit>
-
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-          <div class="modal-content">
-            <h5>Model Name</h5><br>
-            <input type="hidden" name="rental_rate_assumptions" id='rental_rate_assumptions' value="">
-            <input type="hidden" name="market_rental_assumptions" id='market_rental_assumptions' value="">
-            <input type ="text" name="save_name" id = "save_name" placeholder = "Enter name">
-          </div>
-          <div class="modal-footer">
-            <button id= 'modal_save' href='/savedata' class= "modal-action modal-close btn modal-trigger" type='submit'>Save</button>
-          </div>
-        </div>
+        <submit id = "update_save" class="btn">Update Model</submit>
+        <input type="hidden" name="rental_rate_assumptions" id='rental_rate_assumptions' value="">
+        <input type="hidden" name="market_rental_assumptions" id='market_rental_assumptions' value="">
+        <input type="hidden" name="model_id" id="model_id" value={{modeldata.id}}>
         <h6 id='Analysis_Start_Date_text'>Analysis Start Date
-          <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = 'Click to Set Date' class='datepicker'>
+          <input type="date" name="Analysis_Start_Date" id="Analysis_Start_Date" placeholder = 'Click to Set Date' class='datepicker' value ='{{modeldata.analysis_start_date}}'>
         </h6>
     </div>
     <div class='row'>
@@ -111,15 +100,15 @@
         </thead>
         <tr>
           <td>Sale Year</td>
-          <td><input type="number" name="Sale_Year" id="Sale_Year" placeholder = "Sale Year (#)"></td>
+          <td><input value ='{{modeldata.sale_year}}' type="number" name="Sale_Year" id="Sale_Year" placeholder = "Sale Year (#)"></td>
         </tr>
         <tr>
           <td>Terminal Cap Rate</td>
-          <td><input value ='{{modeldata.XXX}}' type="number" name="Terminal_Cap_Rate" id="Terminal_Cap_Rate" placeholder = "Terminal Cap Rate (%)"></td>
+          <td><input value ='{{modeldata.terminal_cap_rate}}' type="number" name="Terminal_Cap_Rate" id="Terminal_Cap_Rate" placeholder = "Terminal Cap Rate (%)"></td>
         </tr>
         <tr>
           <td>Sales Costs</td>
-          <td><input value ='{{modeldata.XXX}}' type="number" name="Sales_Costs" id="Sales_Costs" placeholder = "Sale Costs (%)"></td>
+          <td><input value ='{{modeldata.sales_costs}}' type="number" name="Sales_Costs" id="Sales_Costs" placeholder = "Sale Costs (%)"></td>
         </tr>
       </table>
 
@@ -147,19 +136,19 @@
         </thead>
         <tr>
           <td>Leverage</td>
-          <td><input value ='{{modeldata.XXX}}' type="number" name="Leverage" id="Leverage" placeholder = "(%)"></td>
+          <td><input value ='{{modeldata.leverage}}' type="number" name="Leverage" id="Leverage" placeholder = "(%)"></td>
         </tr>
         <tr>
           <td>Interest Rate on Mortgage</td>
-          <td><input value ='{{modeldata.XXX}}' type="number" name="Interest_Rate_on_Mortgage" id="Interest_Rate_on_Mortgage" placeholder = "(%)"></td>
+          <td><input value ='{{modeldata.interest_rate_on_mortgage}}' type="number" name="Interest_Rate_on_Mortgage" id="Interest_Rate_on_Mortgage" placeholder = "(%)"></td>
         </tr>
         <tr>
           <td>Loan Term</td>
-          <td><input value ='{{modeldata.XXX}}' type="number" name="Loan_Term" id="Loan_Term" placeholder = "(#)"></td>
+          <td><input value ='{{modeldata.loan_term}}' type="number" name="Loan_Term" id="Loan_Term" placeholder = "(#)"></td>
         </tr>
         <tr>
           <td>Loan Amortization</td>
-          <td><input value ='{{modeldata.XXX}}' type="number" name="Loan_Amortization" id="Loan_Amortization" placeholder = "(#)"></td>
+          <td><input value ='{{modeldata.loan_amortization}}' type="number" name="Loan_Amortization" id="Loan_Amortization" placeholder = "(#)"></td>
         </tr>
       </table>
       </div> <!-- End col s3 -->
@@ -281,9 +270,9 @@
             </tr>
             <tr>
               <td>Discount Rate</td>
-              <td><input value ='{{modeldata.XXX}}' type="number" name="UL_Discount_Rate" id="UL_Discount_Rate" placeholder = "(%)"></td>
+              <td><input value ='{{modeldata.unlevered_discountRate}}' type="number" name="UL_Discount_Rate" id="UL_Discount_Rate" placeholder = "(%)"></td>
               <td>Discount Rate</td>
-              <td><input value ='{{modeldata.XXX}}' type="number" name="L_Discount_Rate" id="L_Discount_Rate" placeholder = "(%)"></td>
+              <td><input value ='{{modeldata.levered_discount_rate}}' type="number" name="L_Discount_Rate" id="L_Discount_Rate" placeholder = "(%)"></td>
             </tr>
             <tr>
               <td>Present Value</td>
@@ -372,7 +361,7 @@
           </tr>
           <tr>
             <td colspan ="2">Other Income</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Other_Income_Total" id="Other_Income_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.other_income_total}}' type="number" name="Other_Income_Total" id="Other_Income_Total" placeholder = "($)"></td>
             <td id='Other_Income_DollarPerUnit'>$0.00</td>
             <td id='Other_Income_DollarPerSF'>$0.00</td>
             <td id='Other_Income_PercentofTotal'>0.0%</td>
@@ -386,7 +375,7 @@
           </tr>
           <tr>
             <td>Less: Vacancy</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Less_Vacancy" id="Less_Vacancy" placeholder = "(%)"></td>
+            <td><input value ='{{modeldata.less_vacancy}}' type="number" name="Less_Vacancy" id="Less_Vacancy" placeholder = "(%)"></td>
             <td id='Vacancy_Total'>$0.00</td>
             <td id='Vacancy_DollarPerUnit'>$0.00</td>
             <td id='Vacancy_DollarPerSF'>$0.00</td>
@@ -394,7 +383,7 @@
           </tr>
           <tr>
             <td>Less: Concessions</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Less_Concessions" id="Less_Concessions" placeholder = "(%)"></td>
+            <td><input value ='{{modeldata.less_concessions}}' type="number" name="Less_Concessions" id="Less_Concessions" placeholder = "(%)"></td>
             <td id='Concessions_Total'>$0.00</td>
             <td id='Concessions_DollarPerUnit'>$0.00</td>
             <td id='Concessions_DollarPerSF'>$0.00</td>
@@ -402,7 +391,7 @@
           </tr>
           <tr>
             <td>Less: Credit Loss</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "(%)"></td>
+            <td><input value ='{{modeldata.less_credit_loss}}' type="number" name="Less_Credit_Loss" id="Less_Credit_Loss" placeholder = "(%)"></td>
             <td id='Credit_Loss_Total'>$0.00</td>
             <td id='Credit_Loss_DollarPerUnit'>$0.00</td>
             <td id='Credit_Loss_DollarPerSF'>$0.00</td>
@@ -420,63 +409,63 @@
           </tr>
           <tr>
             <td colspan="2">Real Estate Taxes</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.real_estate_taxes_total}}' type="number" name="Real_Estate_Taxes_Total" id="Real_Estate_Taxes_Total" placeholder = "($)"></td>
             <td id='Real_Estate_Taxes_DollarPerUnit'>$0.00</td>
             <td id='Real_Estate_Taxes_DollarPerSF'>$0.00</td>
             <td id='Real_Estate_Taxes_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan ="2">Insurance</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Insurance_Total" id="Insurance_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.insurance_total}}' type="number" name="Insurance_Total" id="Insurance_Total" placeholder = "($)"></td>
             <td id='Insurance_DollarPerUnit'>$0.00</td>
             <td id='Insurance_DollarPerSF'>$0.00</td>
             <td id='Insurance_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan ="2">Utilities</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Utilities_Total" id="Utilities_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.utilities_total}}' type="number" name="Utilities_Total" id="Utilities_Total" placeholder = "($)"></td>
             <td id='Utilities_DollarPerUnit'>$0.00</td>
             <td id='Utilities_DollarPerSF'>$0.00</td>
             <td id='Utilities_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan ="2">Payroll</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Payroll_Total" id="Payroll_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.payroll_total}}' type="number" name="Payroll_Total" id="Payroll_Total" placeholder = "($)"></td>
             <td id='Payroll_DollarPerUnit'>$0.00</td>
             <td id='Payroll_DollarPerSF'>$0.00</td>
             <td id='Payroll_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan="2">Repairs & Maintenance</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.repairs_and_maintenance_total}}' type="number" name="Repairs_and_Maintenance_Total" id="Repairs_and_Maintenance_Total" placeholder = "($)"></td>
             <td id='Repairs_and_Maintenance_DollarPerUnit'>$0.00</td>
             <td id='Repairs_and_Maintenance_DollarPerSF'>$0.00</td>
             <td id='Repairs_and_Maintenance_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan="2">Contract Services</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.contract_services_total}}' type="number" name="Contract_Services_Total" id="Contract_Services_Total" placeholder = "($)"></td>
             <td id='Contract_Services_DollarPerUnit'>$0.00</td>
             <td id='Contract_Services_DollarPerSF'>$0.00</td>
             <td id='Contract_Services_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan ="2">Turnover</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Turnover_Total" id="Turnover_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.turnover_total}}' type="number" name="Turnover_Total" id="Turnover_Total" placeholder = "($)"></td>
             <td id='Turnover_DollarPerUnit'>$0.00</td>
             <td id='Turnover_DollarPerSF'>$0.00</td>
             <td id='Turnover_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan="2">Sales & Marketing</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.sales_and_marketing_total}}' type="number" name="Sales_and_Marketing_Total" id="Sales_and_Marketing_Total" placeholder = "($)"></td>
             <td id='Sales_and_Marketing_DollarPerUnit'>$0.00</td>
             <td id='Sales_and_Marketing_DollarPerSF'>$0.00</td>
             <td id='Sales_and_Marketing_PercentofTotal'>0.0%</td>
           </tr>
           <tr>
             <td colspan ="2">Administrative</td>
-            <td><input value ='{{modeldata.XXX}}' type="number" name="Administrative_Total" id="Administrative_Total" placeholder = "($)"></td>
+            <td><input value ='{{modeldata.administrative_total}}' type="number" name="Administrative_Total" id="Administrative_Total" placeholder = "($)"></td>
             <td id='Administrative_DollarPerUnit'>$0.00</td>
             <td id='Administrative_DollarPerSF'>$0.00</td>
             <td id='Administrative_PercentofTotal'>0.0%</td>

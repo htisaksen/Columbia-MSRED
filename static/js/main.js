@@ -90,7 +90,8 @@ $(document).ready(function(){
 //SAVE to DB
 // ============================================================================================================
 	//click on "Save Model" button
-	$('#save_input').on('click',function(event){
+	$('#update_save #save_input').on('click',function(event){
+		console.log("Clicked on 'Save Model' or 'Update Model' button...")
 		var rentalRateLength = $('#Rental_Rate_Assumptions tbody tr').length; //Repeated - Need to create seperate function
 		var marketRentalLength = $('#Market_Rental_Assumptions tbody tr').length; // Repeated - Need to create seperate function
 		var rentalRateList = [];
@@ -123,9 +124,10 @@ $(document).ready(function(){
 
 		$('#rental_rate_assumptions').val(rentalRateList);
 		$('#market_rental_assumptions').val(marketRentalList);
-		console.log("#rental_rate_assumptions'.val:",$('#rental_rate_assumptions').val())
-		console.log("#market_rental_assumptions'.val:",$('#market_rental_assumptions').val())
+		console.log("rental_rate_assumptions:",$('#rental_rate_assumptions').val())
+		console.log("market_rental_assumptions:",$('#market_rental_assumptions').val())
 	});
+
 
 	//click on "Save" button after entering Model/Save Name in modal text box
 	$('#modal_save').on('click',function(event) {
@@ -134,10 +136,12 @@ $(document).ready(function(){
 	services.saveDashboard(data);	//AJAX call - ajax.js
  	});
 
-	$('.load_button').on('click', function(){
-		var testt = $('tbody tr td .model_name').val()
-		console.log("Testt:",testt);
-	});
+	//click on "Update" button
+	$('#update_save').on('click',function(event) {
+    event.preventDefault();
+    var data = $('#dashboard').serialize();
+	services.updateDashboard(data);	//AJAX call - ajax.js
+ 	});
 
 // ============================================================================================================
 	$('.rent_row').on('focusout', myApp.rra.RRAInput);

@@ -43,7 +43,7 @@ def dashboard():
 @app.route('/edit/<modelid>',methods = ["GET","POST"])
 @login_required
 def load_data(modelid):
-	print("We are on the /loaddata page. Model id:",modelid)
+	print("We are on the edit page of Model id:",modelid)
 	modeldata = RealEstateModel.query.filter_by(id = modelid).first()
 	print(modeldata)
 	return render_template("main_load.html",
@@ -186,7 +186,67 @@ def save_data():
 	print('='*50+" save successful")
 	return jsonify(success = 'success')
 
+@app.route('/updatedata', methods = ["POST"])
+@login_required
+def update_data():
+	print('='*50+" start update save")
+	object1 = 'object'
+	market_counter = 1
+	market_rental_input_counter = 1
+	rental_rate_counter = 1
+	# rental rate lists
+	proj_rents_list = []
+	total_units_list = []
+	avg_sf_per_unit_list = []
+	rent_per_unit_list = []
+	# market rental lists
+	revenue_list = []
+	expenses_list = []
+	vacancy_list = []
+	concession_list = []
+	credit_loss_list = []
+	
+	print("model_id:", request.form['model_id'])
+	updatemodel = RealEstateModel.query.filter_by(id = request.form['model_id']).first()
+	
+	updatemodel.analysis_start_date = request.form['Analysis_Start_Date']
+	updatemodel.property_name = request.form['Property_Name']
+	updatemodel.property_location = request.form['Property_Address']
+	updatemodel.property_type = request.form['Property_Type']
+	updatemodel.purchase_price = request.form['Purchase_Price']		
+	updatemodel.closing_cost_percentage = request.form['Closing_Costs_Percentage']
+	updatemodel.sale_year = request.form['Sale_Year']
+	updatemodel.terminal_cap_rate = request.form['Terminal_Cap_Rate']
+	updatemodel.sales_costs = request.form['Sales_Costs']
+	updatemodel.leverage = request.form['Leverage']
+	updatemodel.interest_rate_on_mortgage = request.form['Interest_Rate_on_Mortgage']
+	updatemodel.loan_term = request.form['Loan_Term']
+	updatemodel.loan_amortization = request.form['Loan_Amortization']
+	updatemodel.unlevered_discountRate = request.form['UL_Discount_Rate']
+	updatemodel.levered_discount_rate = request.form['L_Discount_Rate']
+	updatemodel.other_income_total = request.form['Other_Income_Total']
+	updatemodel.less_vacancy = request.form['Less_Vacancy']
+	updatemodel.less_concessions = request.form['Less_Concessions']
+	updatemodel.less_credit_loss = request.form['Less_Credit_Loss']
+	updatemodel.real_estate_taxes_total = request.form['Real_Estate_Taxes_Total']
+	updatemodel.insurance_total = request.form['Insurance_Total']
+	updatemodel.utilities_total = request.form['Utilities_Total']
+	updatemodel.payroll_total = request.form['Payroll_Total']
+	updatemodel.repairs_and_maintenance_total = request.form['Repairs_and_Maintenance_Total']
+	updatemodel.contract_services_total = request.form['Contract_Services_Total']
+	updatemodel.turnover_total = request.form['Turnover_Total']
+	updatemodel.sales_and_marketing_total = request.form['Sales_and_Marketing_Total']
+	updatemodel.administrative_total = request.form['Administrative_Total']
+	updatemodel.management_percentage = request.form['Management_Percentage']
+	updatemodel.replacement_reserves_percentage = request.form['Replacement_Reserves_Percentage']
+	updatemodel.rental_rate_assumptions = request.form['rental_rate_assumptions']
+	updatemodel.market_rental_assumptions =request.form['market_rental_assumptions']
 
+	print("DB columns updated")
+	db.session.commit()
+
+	print('='*50+" update successful")
+	return jsonify(success = 'success')
 
 if __name__ == "__main__":
 	app.secret_key = os.urandom(12)
