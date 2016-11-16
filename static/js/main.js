@@ -126,6 +126,9 @@ $(document).ready(function(){
 		$('#market_rental_assumptions').val(marketRentalList);
 		console.log("rental_rate_assumptions:",$('#rental_rate_assumptions').val())
 		console.log("market_rental_assumptions:",$('#market_rental_assumptions').val())
+
+		$('#save_name').val('Test Text');
+
 	});
 
 
