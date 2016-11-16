@@ -49,6 +49,16 @@ def load_data(modelid):
 	return render_template("main_load.html",
 		modeldata = modeldata)
 
+@app.route('/del/<modelid>',methods = ["GET","POST"])
+@login_required
+def del_data(modelid):
+	print("We are on the del page of Model id:",modelid)
+	modeldata = RealEstateModel.query.filter_by(id = modelid).first()
+	if modeldata is not None:
+		db.session.delete(modeldata)
+		db.session.commit()
+	return redirect("/home")
+
 
 @app.route("/login", methods=['POST','GET'])
 def login():
