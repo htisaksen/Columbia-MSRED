@@ -13,9 +13,9 @@ $(document).ready(function(){
 	};
 
 
-	myApp.htmlGen.RRAsample();		//TESTING PURPOSES
+	// myApp.htmlGen.RRAsample();		//TESTING PURPOSES
 
-	// myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
+	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
 	myApp.htmlGen.marketRentalAssumptions(); 	//Javascript Market Rental Rate Assumptions first insert row -------------------
 	myApp.htmlGen.proForma(); 					//Javascript Market Rental Rate Assumptions two columns -------------------
 
@@ -97,7 +97,7 @@ $(document).ready(function(){
 		var rentalRateList = [];
 		var marketRentalList = [];
 		for(var i=1;i<=rentalRateLength;++i){
-			var rentalRateObj = [] 
+			var rentalRateObj = []
 			rentalRateObj = [
 				i,
 				$('#proj_rents'+i).val(),
