@@ -32,6 +32,12 @@ h1{
 	background-color: #73b9ec;
 }
 
+.del_button {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
 .waves-effect waves-light btn-large {
 	background-color: #287bb7;
 }

@@ -23,8 +23,12 @@
                   <th data-field="col_model_name">Model</th>
                   <th data-field="col_date_created">Date Created</th>
                   <th data-field="col_button"></th>
+                  <th data-field="col_del"></th>
               </tr>
             </thead>
+
+      
+
 
             <tbody>
 {% if modelslist == [] %}
@@ -39,6 +43,25 @@
                 <td class ='model_created_on'>{{model.created_on}}</td>
                 <td>
                   <a href = '/edit/{{model.id}}' class = 'load_button waves-effect waves-light btn secondary-content'>Load</a>
+                </td>
+                <td>
+                  <div id="delete_modal">
+                    <!-- Modal Trigger -->
+                    <submit id = "save_input" class="btn modal-trigger" href="#modal_del_{{model.id}}">Delete</submit>
+
+                    <!-- Modal Structure -->
+                    <div id="modal_del_{{model.id}}" class="modal">
+                    
+                      <div class="modal-content">
+                        <h5>Are you sure you want to delete model "{{model.model_name}}"?</h5><br>
+                      </div>
+                      <div class="modal-footer">
+                        <a href = '/del/{{model.id}}' id= 'modal_del' class= "modal-action modal-close btn" type='submit'>Confirm</a>
+                      </div>
+
+                    </div>
+                  </div>
+
                 </td>
               </tr>
   {% endfor %}
