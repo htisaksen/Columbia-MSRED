@@ -24,6 +24,9 @@ h1{
 	font-size:inherit;
 
 }
+.row {
+	margin-bottom:0px;
+}
 .btn {
 	background-color: #287bb7;
 }
@@ -123,7 +126,7 @@ footer.page-footer{
 }
 
 #combined_dashboard td {
-	padding: 5px 5px;
+	padding: 2px 5px;
 }
 
 
@@ -164,6 +167,9 @@ table {
 	border-top:1px solid #858d99;
 }
 
+td, th{
+	padding: 7px 5px;
+}
 
 thead th {
 	font-size:16px;
