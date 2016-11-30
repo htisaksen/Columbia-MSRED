@@ -46,8 +46,23 @@ def load_data(modelid):
 	print("We are on the edit page of Model id:",modelid)
 	modeldata = RealEstateModel.query.filter_by(id = modelid).first()
 	print(modeldata)
+	print(modeldata.rental_rate_assumptions)
+	print(modeldata.market_rental_assumptions)
+	rental_rate_query = modeldata.rental_rate_assumptions.split(',')
+	market_rental_query = modeldata.market_rental_assumptions.split(',')
+
+	rental_rate_object = {}
+	market_rental_object = {}
+
+	while rental_rate_query:
+		curr_list = []
+		for i in range(5):
+			curr_list.append(rental_rate_query.pop(0))
+		rental_rate_object[curr_list[0]] = curr_list[1:5]
+
 	return render_template("main_load.html",
-		modeldata = modeldata)
+		modeldata = modeldata,
+		rental_rate_object= rental_rate_object)
 
 @app.route('/del/<modelid>',methods = ["GET","POST"])
 @login_required
@@ -215,15 +230,15 @@ def update_data():
 	vacancy_list = []
 	concession_list = []
 	credit_loss_list = []
-	
+
 	print("model_id:", request.form['model_id'])
 	updatemodel = RealEstateModel.query.filter_by(id = request.form['model_id']).first()
-	
+
 	updatemodel.analysis_start_date = request.form['Analysis_Start_Date']
 	updatemodel.property_name = request.form['Property_Name']
 	updatemodel.property_location = request.form['Property_Address']
 	updatemodel.property_type = request.form['Property_Type']
-	updatemodel.purchase_price = request.form['Purchase_Price']		
+	updatemodel.purchase_price = request.form['Purchase_Price']
 	updatemodel.closing_cost_percentage = request.form['Closing_Costs_Percentage']
 	updatemodel.sale_year = request.form['Sale_Year']
 	updatemodel.terminal_cap_rate = request.form['Terminal_Cap_Rate']

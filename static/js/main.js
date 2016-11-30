@@ -90,15 +90,14 @@ $(document).ready(function(){
 //SAVE to DB
 // ============================================================================================================
 	//click on "Save Model" button
-	$('#update_save #save_input').on('click',function(event){
+	$('#save_input').on('click',function(event){
 		console.log("Clicked on 'Save Model' or 'Update Model' button...")
 		var rentalRateLength = $('#Rental_Rate_Assumptions tbody tr').length; //Repeated - Need to create seperate function
 		var marketRentalLength = $('#Market_Rental_Assumptions tbody tr').length; // Repeated - Need to create seperate function
 		var rentalRateList = [];
 		var marketRentalList = [];
 		for(var i=1;i<=rentalRateLength;++i){
-			var rentalRateObj = []
-			rentalRateObj = [
+			var rentalRateObj = [
 				i,
 				$('#proj_rents'+i).val(),
 				$('#total_units'+i).val(),
@@ -109,8 +108,7 @@ $(document).ready(function(){
 			rentalRateList.push(rentalRateObj)
 		};
 		for(var i=1;i<=marketRentalLength;++i){
-			var marketRentalObj = []
-			marketRentalObj = [
+			var marketRentalObj = [
 				i,
 				$('#mkt_rent_revenue'+i).val(),
 				$('#mkt_rent_expenses'+i).val(),
@@ -127,7 +125,7 @@ $(document).ready(function(){
 		console.log("rental_rate_assumptions:",$('#rental_rate_assumptions').val())
 		console.log("market_rental_assumptions:",$('#market_rental_assumptions').val())
 
-		$('#save_name').val('Test Text');
+		// $('#save_name').val('Test Text');
 
 	});
 
