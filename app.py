@@ -48,18 +48,29 @@ def load_data(modelid):
 	print("modeldata:",modeldata)
 	print("rental_rate_assumptions:",modeldata.rental_rate_assumptions)
 	print("market_rental_assumptions:",modeldata.market_rental_assumptions)
-	rental_rate_query = modeldata.rental_rate_assumptions.split(',')
-	market_rental_query = modeldata.market_rental_assumptions.split(',')
 
-	print("rental_rate_query:",rental_rate_query)
+
 	rental_rate_object = {}
-	market_rental_object = {}
+	rental_rate_query = modeldata.rental_rate_assumptions.split(',')
+	print("rental_rate_query:",rental_rate_query)
+	while rental_rate_query:
+		RRA_curr_list = []
+		for i in range(5):
+			RRA_curr_list.append(rental_rate_query.pop(0))
+		rental_rate_object[RRA_curr_list[0]] = RRA_curr_list[1:5]
+	print("rental_rate_object:",rental_rate_object)
 
-	# while rental_rate_query:
-	# 	curr_list = []
-	# 	for i in range(5):
-	# 		curr_list.append(rental_rate_query.pop(0))
-	# 	rental_rate_object[curr_list[0]] = curr_list[1:5]
+	
+	market_rental_object = {}
+	market_rental_query = modeldata.market_rental_assumptions.split(',')
+	print("market_rental_query:",market_rental_query)
+	while market_rental_query:
+		MRA_curr_list = []
+		for i in range(6):
+			MRA_curr_list.append(market_rental_query.pop(0))
+		market_rental_object[MRA_curr_list[0]] = MRA_curr_list[1:6]
+	print("market_rental_object:",market_rental_object)
+
 
 	return render_template("main_load.html",
 		modeldata = modeldata,
