@@ -90,7 +90,7 @@ $(document).ready(function(){
 //SAVE to DB
 // ============================================================================================================
 	//click on "Save Model" button
-	$('#save_input').on('click',function(event){
+	$('#save_input, #update_save').on('click',function(event){
 		console.log("Clicked on 'Save Model' or 'Update Model' button...")
 		var rentalRateLength = $('#Rental_Rate_Assumptions tbody tr').length; //Repeated - Need to create seperate function
 		var marketRentalLength = $('#Market_Rental_Assumptions tbody tr').length; // Repeated - Need to create seperate function

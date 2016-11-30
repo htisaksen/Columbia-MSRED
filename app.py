@@ -45,20 +45,21 @@ def dashboard():
 def load_data(modelid):
 	print("We are on the edit page of Model id:",modelid)
 	modeldata = RealEstateModel.query.filter_by(id = modelid).first()
-	print(modeldata)
-	print(modeldata.rental_rate_assumptions)
-	print(modeldata.market_rental_assumptions)
+	print("modeldata:",modeldata)
+	print("rental_rate_assumptions:",modeldata.rental_rate_assumptions)
+	print("market_rental_assumptions:",modeldata.market_rental_assumptions)
 	rental_rate_query = modeldata.rental_rate_assumptions.split(',')
 	market_rental_query = modeldata.market_rental_assumptions.split(',')
 
+	print("rental_rate_query:",rental_rate_query)
 	rental_rate_object = {}
 	market_rental_object = {}
 
-	while rental_rate_query:
-		curr_list = []
-		for i in range(5):
-			curr_list.append(rental_rate_query.pop(0))
-		rental_rate_object[curr_list[0]] = curr_list[1:5]
+	# while rental_rate_query:
+	# 	curr_list = []
+	# 	for i in range(5):
+	# 		curr_list.append(rental_rate_query.pop(0))
+	# 	rental_rate_object[curr_list[0]] = curr_list[1:5]
 
 	return render_template("main_load.html",
 		modeldata = modeldata,
