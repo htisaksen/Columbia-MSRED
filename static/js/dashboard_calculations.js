@@ -10,7 +10,7 @@ myApp.dashboard.getInputs = function(){
     purchasePrice: parseInt($('#Purchase_Price').val()) || 0,
     closingCostPercentage: parseInt($('#Closing_Costs_Percentage').val())/100 || 0,
     saleYear: parseInt($('#Sale_Year').val()) || 0,
-    terminalCapRate: parseInt($('#Terminal_Cap_Rate').val()) || 0,
+    terminalCapRate: parseInt($('#Terminal_Cap_Rate').val())/100 || 0,
     salesCosts: parseInt($('#Sales_Costs').val()) || 0,
     leverage: parseInt($('#Leverage').val())/100 || 0,
     interestRateOnMortgage: parseInt($('#Interest_Rate_on_Mortgage').val()) || 0,

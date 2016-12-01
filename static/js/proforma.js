@@ -104,7 +104,7 @@ myApp.proForma = function(){
 
 				//PF_Capital_Expenditures
 				$('#Proforma tr:nth-child(24)').append(
-					"<td class= 'PF_Capital_Expenditures'>(" + 
+					"<td class= 'PF_Capital_Expenditures'>(" +
 					FormatCurrency(
 						g.capitalExpenditures
 					) + ")</td>");
@@ -142,20 +142,20 @@ myApp.proForma = function(){
 				//Less Vacancy
 				$('#Proforma tr:nth-child(5)').append(
 					"<td class= 'PF_Less_Vacancy'>(" +
-					FormatCurrency(pFloat('#Proforma .PF_Less_Vacancy td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_vacancy').val())/100)) +
+					FormatCurrency(pFloat('#Proforma .PF_Gross_Rental_Income td:nth-child('+ (i+2) +')')  *
+					(($('#year_row_' + i + ' .mkt_rent_vacancy').val())/100)) +
 					")</td>");
 				//Less Concessions
 				$('#Proforma tr:nth-child(6)').append(
 					"<td class= 'PF_Less_Concessions'>(" +
-					FormatCurrency(pFloat('#Proforma .PF_Less_Concessions td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_concessions').val())/100)) +
+					FormatCurrency(pFloat('#Proforma .PF_Gross_Rental_Income td:nth-child('+ (i+2) +')')  *
+					(($('#year_row_' + i + ' .mkt_rent_concessions').val())/100)) +
 					")</td>");
 				//Less Credit Loss
 				$('#Proforma tr:nth-child(7)').append(
 					"<td class= 'PF_Less_Credit_Loss'>(" +
-					FormatCurrency(pFloat('#Proforma .PF_Less_Credit_Loss td:nth-child('+ (i+1) +')')  *
-					(1+($('#year_row_' + i + ' .mkt_rent_credit_loss').val())/100)) +
+					FormatCurrency(pFloat('#Proforma .PF_Gross_Rental_Income td:nth-child('+ (i+2) +')')  *
+					(($('#year_row_' + i + ' .mkt_rent_credit_loss').val())/100)) +
 					")</td>");
 				//Net Rental Income
 				$('#Proforma tr:nth-child(8)').append(
@@ -264,7 +264,7 @@ myApp.proForma = function(){
 
 				//PF_Capital_Expenditures
 				$('#Proforma tr:nth-child(24)').append(
-					"<td class= 'PF_Capital_Expenditures'>(" + 
+					"<td class= 'PF_Capital_Expenditures'>(" +
 					FormatCurrency(
 						g.capitalExpenditures
 					) + ")</td>");
