@@ -50,7 +50,7 @@ def load_data(modelid):
 	print("market_rental_assumptions:",modeldata.market_rental_assumptions)
 
 	#object to be returned to the template
-	rental_rate_object = {}
+	rental_rate_list = []
 	if modeldata.rental_rate_assumptions:
 		rental_rate_query = modeldata.rental_rate_assumptions.split(',')
 		print("rental_rate_query:",rental_rate_query)
@@ -60,14 +60,15 @@ def load_data(modelid):
 			RRA_curr_list = []
 			for i in range(5):
 				RRA_curr_list.append(rental_rate_query.pop(0))
-			rental_rate_object[RRA_curr_list[0]] = RRA_curr_list[1:5]
-		print("rental_rate_object:",rental_rate_object)
+			print("RRA_curr_list:",RRA_curr_list)
+			rental_rate_list.append(RRA_curr_list)
+		print("rental_rate_list:",rental_rate_list)
 		
-		RRA_row_count = len(rental_rate_object)
+		RRA_row_count = len(rental_rate_list)
 		print("RRA_row_count:",RRA_row_count)
 
 	#object to be returned to the template
-	market_rental_object = {}
+	market_rental_list = []
 	if modeldata.market_rental_assumptions:
 		market_rental_query = modeldata.market_rental_assumptions.split(',')
 		print("market_rental_query:",market_rental_query)
@@ -76,16 +77,18 @@ def load_data(modelid):
 			MRA_curr_list = []
 			for i in range(6):
 				MRA_curr_list.append(market_rental_query.pop(0))
-			market_rental_object[MRA_curr_list[0]] = MRA_curr_list[1:6]
-		print("market_rental_object:",market_rental_object)
+			print("MRA_curr_list:",MRA_curr_list)
+			market_rental_list.append(MRA_curr_list)
+		print("market_rental_list:",market_rental_list)
 		
-		MRA_row_count = len(market_rental_object)
+
+		MRA_row_count = len(market_rental_list)
 		print("MRA_row_count:",MRA_row_count)
 
 	return render_template("main_load.html",
 		modeldata = modeldata,
-		rental_rate_object = rental_rate_object,
-		market_rental_object = market_rental_object)
+		rental_rate_list = rental_rate_list,
+		market_rental_list = market_rental_list)
 
 @app.route('/del/<modelid>',methods = ["GET","POST"])
 @login_required

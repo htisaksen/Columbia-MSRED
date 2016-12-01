@@ -14,6 +14,7 @@ myApp.mra.MRAlist = [];
   
   		//creates an array of arrays for all the Market Rent Assumption rows and stores the array in the global "g" object
   		var $mraRow = $('#Market_Rental_Assumptions tbody .year_row');
+      console.log("mraRow:",$mraRow)
   		$rrow.each(function(){
   			tempMktRentRevenue = $(this).find('.mkt_rent_revenue').val();
   			tempMktRentExpenses = $(this).find('.mkt_rent_expenses').val();

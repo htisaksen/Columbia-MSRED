@@ -41,28 +41,33 @@ myApp.htmlGen = {};
 
 //Javascript Rental Rate Assumptions first insert row -------------------------------------------
   myApp.htmlGen.rentalRateAssumptions = function(){
-	$('#Rental_Rate_Assumptions').find('tbody')
-		.append($("<tr class = 'rent_row'>")
-		.append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Proj. Rents'></td>"))
-		.append($("<td>").html("<input type='number' id='total_units1' name='total_units1' class='total_units' placeholder='Total Units'></td>"))
-		.append($("<td class = 'total_sf'></td>").text("0"))
-		.append($("<td>").html("<input type='number' id='avg_sf_per_unit1' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
-		.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-		.append($("<td>").html("<input type='number' id='rent_per_unit1' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
-    .append($("<td>"))
-		)
+    if ($('#Rental_Rate_Assumptions tbody tr').length === 0){
+      $('#Rental_Rate_Assumptions').find('tbody')
+        .append($("<tr class = 'rent_row'>")
+        .append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Proj. Rents'></td>"))
+        .append($("<td>").html("<input type='number' id='total_units1' name='total_units1' class='total_units' placeholder='Total Units'></td>"))
+        .append($("<td class = 'total_sf'></td>").text("0"))
+        .append($("<td>").html("<input type='number' id='avg_sf_per_unit1' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
+        .append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
+        .append($("<td>").html("<input type='number' id='rent_per_unit1' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
+        .append($("<td>"))
+        )
+    }
+
   };
 //Javascript Market Rental Rate Assumptions first insert row -------------------------------------------
   myApp.htmlGen.marketRentalAssumptions = function(){
-    $('#Market_Rental_Assumptions').find('tbody')
-      .append($("<tr class = 'year_row' id='year_row_1'>")
-      .append($("<td>Year 1</td>"))
-      .append($("<td>").html("<input type='number' id='mkt_rent_revenue1' name='mkt_rent_revenue1' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
-      .append($("<td>").html("<input type='number' id='mkt_rent_expenses1' name='mkt_rent_expenses1' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
-      .append($("<td>").html("<input type='number' id='mkt_rent_vacancy1' name='mkt_rent_vacancy1' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
-      .append($("<td>").html("<input type='number' id='mkt_rent_concessions1' name='mkt_rent_concessions1' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
-      .append($("<td>").html("<input type='number' id='mkt_rent_credit_loss1' name='mkt_rent_credit_loss1' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
-      )
+    if ($('#Market_Rental_Assumptions tbody tr').length === 0){
+      $('#Market_Rental_Assumptions').find('tbody')
+        .append($("<tr class = 'year_row' id='year_row_1'>")
+        .append($("<td>Year 1</td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_revenue1' name='mkt_rent_revenue1' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_expenses1' name='mkt_rent_expenses1' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_vacancy1' name='mkt_rent_vacancy1' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_concessions1' name='mkt_rent_concessions1' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_credit_loss1' name='mkt_rent_credit_loss1' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
+        )
+    }
   };
 
   // //Javascript Pro Forma first insert column -------------------------------------------

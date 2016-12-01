@@ -43,21 +43,27 @@ $(document).ready(function(){
 			.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
 			.append($("<td>").html("<input type='number' id='rent_per_unit"+rrCounter+"' name='rent_per_unit"+rrCounter+"' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
 			.append($('<td>').html("<a>[X]</a></td>"))
-			)
+			);
 
-	// function to delete all additionally added rows from the Rental Rate Assumptions table
+		// function to delete all additionally added rows from the Rental Rate Assumptions table
 		$('tr[class^="rent_row"] a').on('click', function(event) {
 			$(this).parent().parent().remove();
 			myApp.rra.RRAInput();
 			myApp.dashboard.dashboardInput();
 		});
-	//Runs input function inside
+
+		//Runs input function inside
 		$('.rent_row').on('focusout', myApp.rra.RRAInput);
 		$('#dashboard').on('focusout', calculations);
 
 	}); //end addrow function
 
-
+	// function to delete all additionally added rows from the Rental Rate Assumptions table
+	$('tr[class^="rent_row"] a').on('click', function(event) {
+		$(this).parent().parent().remove();
+		myApp.rra.RRAInput();
+		myApp.dashboard.dashboardInput();
+	});
 
 
 // ============================================================================================================
@@ -67,8 +73,10 @@ $(document).ready(function(){
 	$('#Sale_Year').on('input', function(event){
 		var saleYear = parseInt($('#Sale_Year').val());
 		for(var i=0;i<saleYear;++i){
-		//Inserts number of rows based on Sale Year in Dashboard
+		//Inserts number of rows based on Sale Year in Dashboard - if Sale Year # is updated, the row count is also updated
 			var mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
+			console.log("saleYear:",saleYear)
+			console.log("mraCounter:",mraCounter)
 			while(saleYear < mraCounter){
 				$('#Market_Rental_Assumptions tbody tr').last().remove();
 				mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
@@ -150,6 +158,7 @@ $(document).ready(function(){
 
 
 
-
-
 }); //end of doc
+
+window.onload = myApp.rra.RRAInput();
+// , myApp.mra.MRAInput
