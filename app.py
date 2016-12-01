@@ -229,6 +229,7 @@ def save_data():
 				request.form['Administrative_Total'],
 				request.form['Management_Percentage'],
 				request.form['Replacement_Reserves_Percentage'],
+				request.form['Capital_Expenditures'],
 				request.form['rental_rate_assumptions'],
 				request.form['market_rental_assumptions'],
 				session['id'])
@@ -290,6 +291,7 @@ def update_data():
 	updatemodel.administrative_total = request.form['Administrative_Total']
 	updatemodel.management_percentage = request.form['Management_Percentage']
 	updatemodel.replacement_reserves_percentage = request.form['Replacement_Reserves_Percentage']
+	updatemodel.capital_expenditures = request.form['Capital_Expenditures']
 	updatemodel.rental_rate_assumptions = request.form['rental_rate_assumptions']
 	updatemodel.market_rental_assumptions =request.form['market_rental_assumptions']
 

@@ -33,6 +33,7 @@ myApp.dashboard.getInputs = function(){
     administrativeTotal: parseInt($('#Administrative_Total').val()) || 0,
     managementPercentage: parseInt($('#Management_Percentage').val())/100 || 0,
     replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val())/100 || 0,
+    capitalExpenditures: parseInt($('#Capital_Expenditures').val()) || 0,
   };
 }
 

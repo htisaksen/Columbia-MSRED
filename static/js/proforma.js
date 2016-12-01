@@ -102,9 +102,12 @@ myApp.proForma = function(){
 					 pFloat('.PF_Total_Operating_Expenses td:first')
 					) + "</td>");
 
-				//PF_Capital_Expenditures ------------------------WIP
+				//PF_Capital_Expenditures
 				$('#Proforma tr:nth-child(24)').append(
-					"<td class= 'PF_Capital_Expenditures'>(" + FormatCurrency(100000) + ")</td>");
+					"<td class= 'PF_Capital_Expenditures'>(" + 
+					FormatCurrency(
+						g.capitalExpenditures
+					) + ")</td>");
 
 				$('#Proforma tr:nth-child(25)').append(
 					"<td class= 'PF_Net_Cash_Flow'>" +
@@ -259,11 +262,12 @@ myApp.proForma = function(){
 					) + "</td>");
 
 
-				//PF_Capital_Expenditures ------------------------WIP
+				//PF_Capital_Expenditures
 				$('#Proforma tr:nth-child(24)').append(
-					"<td class= 'PF_Capital_Expenditures'>(" +
-					FormatCurrency(100000) +
-					")</td>");
+					"<td class= 'PF_Capital_Expenditures'>(" + 
+					FormatCurrency(
+						g.capitalExpenditures
+					) + ")</td>");
 
 				//PF_Net_Cash_Flow
 				$('#Proforma tr:nth-child(25)').append(
