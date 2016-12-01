@@ -2,6 +2,12 @@
 // Math.round(num * 100) / 100
 $(document).ready(function(){
 
+	$(window).keydown(function(event){
+	 if(event.keyCode == 13) {
+		 event.preventDefault();
+		 return false;
+	 }
+ });
 //created function to run dashboard input twice
 	var calculations = function(){
 			myApp.dashboard.dashboardInput();
