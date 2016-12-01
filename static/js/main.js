@@ -156,9 +156,9 @@ $(document).ready(function(){
 	$('.rent_row').on('focusout', myApp.rra.RRAInput);
 	$('#dashboard').on('focusout', calculations);
 
-
+// Runs calcs on page load ============================================================================================================
+	myApp.rra.RRAInput()
+	myApp.mra.MRAInput()
+	calculations()
 
 }); //end of doc
-
-window.onload = myApp.rra.RRAInput();
-// , myApp.mra.MRAInput
