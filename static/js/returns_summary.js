@@ -90,7 +90,7 @@ myApp.returnsSummary = function(){
 					$(tbl_name +'tbody tr:nth-child(5)').append(
 					"<td class= 'RS_Gross_Sale_Proceeds'>" +
 					FormatCurrency(
-					 pFloat('#Proforma tbody td.PF_Net_Operating_Income:last') / (g.terminalCapRate/100)
+					 pFloat('#Proforma tbody td.PF_Net_Operating_Income:last') / (g.terminalCapRate)
 					) + "</td>");
 				} else {
 					$(tbl_name +'tbody tr:nth-child(5)').append(

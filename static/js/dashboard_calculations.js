@@ -54,6 +54,7 @@ myApp.dashboard.getInputs = function(){
   var FormatCurrency = myApp.utils.FormatCurrency
   var FormatPercent1 = myApp.utils.FormatPercent1
   var FormatPercent2 = myApp.utils.FormatPercent2
+  var IRRCalc = myApp.utils.IRRCalc
   //VARIABLES FOR CALCULATIONS-------------------------------------------------------
   var totalUnits = pInt('#Rental_Rate_Assumptions tfoot .total_units');
   var totalSquareFoot = pInt('#Rental_Rate_Assumptions tfoot .total_sf');
