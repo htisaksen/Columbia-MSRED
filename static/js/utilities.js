@@ -52,6 +52,32 @@ myApp.utils = {};
       myApp.utils.FormatPercent1 = function(number) {
         return (number.toFixed(1) + " %")
       }
+
+      //IRRCALC funtion that handles irr going to infinity ---- credit to: http://stackoverflow.com/questions/15089151/javascript-irr-internal-rate-of-return-formula-accuracy
+      myApp.utils.IRRCalc = function(CArray) {
+        min = 0.0;
+        max = 1.0;
+        c = 0;
+        do {
+          guest = (min + max) / 2;
+          NPV = 0;
+          for (var j = 0; j < CArray.length; j++) {
+                NPV += CArray[j] / Math.pow((1 + guest), j);
+          }
+          if (NPV > 0) {
+            min = guest;
+            c++; 
+          } else {
+            max = guest;
+            c++;
+          }
+          if(c >= 15){ 
+            return guest * 100; 
+          }
+        } while(Math.abs(NPV) > 0.000001);
+         return guest * 100;
+      }
+
 })();
 
 
