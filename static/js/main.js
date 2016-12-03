@@ -8,6 +8,8 @@ $(document).ready(function(){
 		 return false;
 	 }
  });
+
+
 //created function to run dashboard input twice
 	var calculations = function(){
 			myApp.dashboard.dashboardInput();
@@ -163,8 +165,13 @@ $(document).ready(function(){
 	$('#dashboard').on('focusout', calculations);
 
 // Runs calcs on page load ============================================================================================================
-	myApp.rra.RRAInput()
-	myApp.mra.MRAInput()
-	calculations()
+	setTimeout(function(){
+		myApp.rra.OnLoad()
+		myApp.mra.MRAInput()
+		calculations()
+	}, 0);
+
+
+
 
 }); //end of doc

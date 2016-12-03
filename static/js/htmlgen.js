@@ -2,7 +2,7 @@ myApp.htmlGen = {};
 
 //TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (function(){
-  myApp.htmlGen.RRAsample = function(){
+//   myApp.htmlGen.RRAsample = function(){
   	// $('#Rental_Rate_Assumptions').find('tbody')
   	// 	.append($("<tr class = 'rent_row'>")
   	// 	.append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Project Rents' value='1 Bed/1 Bath'></td>"))
@@ -33,7 +33,7 @@ myApp.htmlGen = {};
   	// 	.append($("<td>").html("<input type='number' name='rent_per_unit3' class='rent_per_unit' placeholder='Rent Per Unit' value='1800'></td>"))
    //    .append($("<td>"))
   	// 	)
-  };
+  // };
 //END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 

@@ -5,15 +5,26 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 (function(){
   RRAlist = myApp.rra.rraList;
 
+
+  // utilities for calculations
+  var remSpcChr = myApp.utils.remSpcChr;
+  var pInt = myApp.utils.pInt;
+  var pFloat = myApp.utils.pFloat;
+  var nanCheck = myApp.utils.nanCheck;
+  var roundOneDec = myApp.utils.roundOneDec;
+  var roundTwoDec = myApp.utils.roundTwoDec;
+  var FormatCurrency = myApp.utils.FormatCurrency;
+  var FormatPercent = myApp.utils.FormatPercent;
+
+  // Sets variables for column sum data for Rental Rate Assumptions -------------------------------------------
+  var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
+  var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
+  var $rsf = $('#Rental_Rate_Assumptions tbody .rent_per_sf')
+  var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
+
+
   myApp.rra.RRAInput = function(){
-		var remSpcChr = myApp.utils.remSpcChr;
-		var pInt = myApp.utils.pInt;
-		var pFloat = myApp.utils.pFloat;
-		var nanCheck = myApp.utils.nanCheck;
-		var roundOneDec = myApp.utils.roundOneDec;
-		var roundTwoDec = myApp.utils.roundTwoDec;
-		var FormatCurrency = myApp.utils.FormatCurrency;
-		var FormatPercent = myApp.utils.FormatPercent;
+
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		var totalUnits = parseInt($('.total_units', this).val());
 		var avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
@@ -23,16 +34,10 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 		$('.total_sf', this).text(nanCheck(totalSF).toLocaleString());
 		$('.rent_per_sf', this).text(FormatCurrency(nanCheck(rentPerSF)));
 
-
-
-		// Calculates column sum data for Rental Rate Assumptions -------------------------------------------
-		var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
-		var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
-		var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
-
-		var sumTotalUnits = 0;
-		var sumTotalSF = 0;
-		var spListRPU = 0;
+    //initialize sums
+    var sumTotalUnits = 0;
+    var sumTotalSF = 0;
+    var spListRPU = 0;
 
 		//calculates total value: Total Units
 		$tu.each(function(){
@@ -51,7 +56,7 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 			spListRPU = spListRPU + (numUnits * rentUnits);
 		});
 
-		//creates an array of arrays for all the Projected Rent rows and stores the array in the global "g" object
+		//creates an object for all the Projected Rent rows and stores the array in the global "g" object
 		$rrow.each(function(){
 			var tempProjectRents = $(this).find('.proj_rents').val();
 			var tempNumUnits = $(this).find('.total_units').val();
@@ -82,6 +87,47 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 		});
 
 	};
+
+  myApp.rra.OnLoad = function(){
+
+    var sumTotalUnits = 0;
+    var sumTotalSF = 0;
+    var spListRPU = 0;
+    var tsfCounter = 1;
+    var rsfCounter = 1;
+    var total_square_foot = 0;
+
+    //calculates tsf on load
+    $tsf.each(function(){
+      parseInt($(this).text(nanCheck($('#total_units'+tsfCounter).val()*$('#avg_sf_per_unit'+tsfCounter).val()).toLocaleString()));
+      total_square_foot += parseInt(remSpcChr($(this).text()))
+      tsfCounter +=1;
+    });
+    tsfCounter = 0;
+
+    //calculate rsf on load
+    $rsf.each(function(){
+      console.log('rsf')
+      parseInt($(this).text(FormatCurrency($('#rent_per_unit'+rsfCounter).val()/$('#avg_sf_per_unit'+rsfCounter).val())));
+      rsfCounter +=1;
+    });
+    rsfCounter = 0;
+
+    //calculate totals
+    $('th.total_sf').text(total_square_foot.toLocaleString());
+    $('th.avg_sf_per_unit').text(parseInt(remSpcChr($('th.total_sf').text())/$('th.total_units').text()).toLocaleString())
+    $('th.rent_per_sf').text(FormatCurrency(nanCheck(remSpcChr($('th.rent_per_unit').text())/remSpcChr($('th.avg_sf_per_unit').text()))))
+
+    // var sumAvgSFPerUnit = sumTotalSF/sumTotalUnits; 	//calculates total value: Avg SF Per Unit
+    // spListRPU = spListRPU/sumTotalUnits; 				//calculates total value: Rent Per Unit
+    // var sumRentPerSF = spListRPU/sumAvgSFPerUnit;		//calculates total value: Rent Per SF
+    //
+    // $('#Rental_Rate_Assumptions tfoot .total_units').text(nanCheck(sumTotalUnits).toLocaleString());
+    // $('#Rental_Rate_Assumptions tfoot .total_sf').text(nanCheck(sumTotalSF).toLocaleString());
+    // $('#Rental_Rate_Assumptions tfoot .avg_sf_per_unit').text(Math.round(nanCheck(sumAvgSFPerUnit)).toLocaleString());
+    // $('#Rental_Rate_Assumptions tfoot .rent_per_sf').text(FormatCurrency(nanCheck(sumRentPerSF)));
+    // $('#Rental_Rate_Assumptions tfoot .rent_per_unit').text(FormatCurrency(nanCheck(spListRPU)));
+  };
 //END RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 
 
