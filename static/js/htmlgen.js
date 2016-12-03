@@ -1,43 +1,6 @@
 myApp.htmlGen = {};
 
-//TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 (function(){
-//   myApp.htmlGen.RRAsample = function(){
-  	// $('#Rental_Rate_Assumptions').find('tbody')
-  	// 	.append($("<tr class = 'rent_row'>")
-  	// 	.append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Project Rents' value='1 Bed/1 Bath'></td>"))
-  	// 	.append($("<td>").html("<input type='number' id='total_units1' name='total_units1' class='total_units' placeholder='Total Units' value='50'></td>"))
-  	// 	.append($("<td class = 'total_sf'></td>").text("0"))
-  	// 	.append($("<td>").html("<input type='number' id='avg_sf_per_unit1' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='662'></td>"))
-  	// 	.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-  	// 	.append($("<td>").html("<input type='number' id='rent_per_unit1' name='rent_per_unit1' class='rent_per_unit' placeholder='Rent Per Unit' value='1100'></td>"))
-  	// 	.append($("<td>"))
-    //   )
-  	// $('#Rental_Rate_Assumptions').find('tbody')
-  	// 	.append($("<tr class = 'rent_row'>")
-  	// 	.append($("<td>").html("<input type='text' name='proj_rents2' class='proj_rents' placeholder='Project Rents' value='2 Bed/1 Bath'></td>"))
-  	// 	.append($("<td>").html("<input type='number' name='total_units2' class='total_units' placeholder='Total Units' value='75'></td>"))
-  	// 	.append($("<td class = 'total_sf'></td>").text("0"))
-  	// 	.append($("<td>").html("<input type='number' name='avg_sf_per_unit2' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='1041'></td>"))
-  	// 	.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-  	// 	.append($("<td>").html("<input type='number' name='rent_per_unit2' class='rent_per_unit' placeholder='Rent Per Unit' value='1400'></td>"))
-  	// 	.append($("<td>"))
-   //    )
-  	// $('#Rental_Rate_Assumptions').find('tbody')
-  	// 	.append($("<tr class = 'rent_row'>")
-  	// 	.append($("<td>").html("<input type='text' name='proj_rents3' class='proj_rents' placeholder='Project Rents' value='2 Bed/2 Bath'></td>"))
-  	// 	.append($("<td>").html("<input type='number' name='total_units3' class='total_units' placeholder='Total Units' value='75'></td>"))
-  	// 	.append($("<td class = 'total_sf'></td>").text("0"))
-  	// 	.append($("<td>").html("<input type='number' name='avg_sf_per_unit3' class='avg_sf_per_unit' placeholder='Avg SF Per Unit' value='1185'></td>"))
-  	// 	.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-  	// 	.append($("<td>").html("<input type='number' name='rent_per_unit3' class='rent_per_unit' placeholder='Rent Per Unit' value='1800'></td>"))
-   //    .append($("<td>"))
-  	// 	)
-  // };
-//END TESTING PURPOSES @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-
 
 //Javascript Rental Rate Assumptions first insert row -------------------------------------------
   myApp.htmlGen.rentalRateAssumptions = function(){
@@ -53,8 +16,8 @@ myApp.htmlGen = {};
         .append($("<td>"))
         )
     }
-
   };
+  
 //Javascript Market Rental Rate Assumptions first insert row -------------------------------------------
   myApp.htmlGen.marketRentalAssumptions = function(){
     if ($('#Market_Rental_Assumptions tbody tr').length === 0){

@@ -20,7 +20,6 @@ $(document).ready(function(){
 
 	};
 
-
 	// myApp.htmlGen.RRAsample();		//TESTING PURPOSES
 
 	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
@@ -83,8 +82,6 @@ $(document).ready(function(){
 		for(var i=0;i<saleYear;++i){
 		//Inserts number of rows based on Sale Year in Dashboard - if Sale Year # is updated, the row count is also updated
 			var mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
-			console.log("saleYear:",saleYear)
-			console.log("mraCounter:",mraCounter)
 			while(saleYear < mraCounter){
 				$('#Market_Rental_Assumptions tbody tr').last().remove();
 				mraCounter = $('#Market_Rental_Assumptions tbody tr').length+1;
@@ -107,7 +104,6 @@ $(document).ready(function(){
 // ============================================================================================================
 	//click on "Save Model" button
 	$('#save_input, #update_save').on('click',function(event){
-		console.log("Clicked on 'Save Model' or 'Update Model' button...")
 		var rentalRateLength = $('#Rental_Rate_Assumptions tbody tr').length; //Repeated - Need to create seperate function
 		var marketRentalLength = $('#Market_Rental_Assumptions tbody tr').length; // Repeated - Need to create seperate function
 		var rentalRateList = [];
@@ -120,7 +116,6 @@ $(document).ready(function(){
 				$('#avg_sf_per_unit'+i).val(),
 				$('#rent_per_unit'+i).val(),
 			];
-			console.log("rentalRateObj:",rentalRateObj)
 			rentalRateList.push(rentalRateObj)
 		};
 		for(var i=1;i<=marketRentalLength;++i){
@@ -132,16 +127,11 @@ $(document).ready(function(){
 				$('#mkt_rent_concessions'+i).val(),
 				$('#mkt_rent_credit_loss'+i).val(),
 			];
-			console.log("marketRentalObj:",marketRentalObj)
 			marketRentalList.push(marketRentalObj)
 		};
 
 		$('#rental_rate_assumptions').val(rentalRateList);
 		$('#market_rental_assumptions').val(marketRentalList);
-		console.log("rental_rate_assumptions:",$('#rental_rate_assumptions').val())
-		console.log("market_rental_assumptions:",$('#market_rental_assumptions').val())
-
-		// $('#save_name').val('Test Text');
 
 	});
 
@@ -166,12 +156,10 @@ $(document).ready(function(){
 
 // Runs calcs on page load ============================================================================================================
 	setTimeout(function(){
-		myApp.rra.OnLoad()
-		myApp.mra.MRAInput()
 		calculations()
 	}, 0);
-
-
+	myApp.rra.OnLoad()
+	calculations()
 
 
 }); //end of doc
