@@ -335,34 +335,6 @@
             </tr>
           </tbody>
         </table>
-
-        <table class ='z-depth-1 striped' id="Market_Rental_Assumptions">
-        <thead>
-          <tr>
-            <th class="table_header dynamic_table" colspan="6">MARKET RENTAL ASSUMPTIONS</th>
-          </tr>
-          <tr>
-            <th class = 't_head'>Year</th>
-            <th class = 't_head'>Revenue</th>
-            <th class = 't_head'>Expenses</th>
-            <th class = 't_head'>Vacancy</th>
-            <th class = 't_head'>Concessions</th>
-            <th class = 't_head'>Credit Loss</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in market_rental_list %}
-          <tr class = 'year_row' id='year_row_{{row[0]}}'>
-            <td class='mkt_rent_year'>Year {{row[0]}}</td>
-            <td><input type='number' id='mkt_rent_revenue{{row[0]}}' value = '{{row[1]}}' name='mkt_rent_revenue{{row[0]}}' value = '{{row[1]}}' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>
-            <td><input type='number' id='mkt_rent_expenses{{row[0]}}' value = '{{row[2]}}' name='mkt_rent_expenses{{row[0]}}' value = '{{row[2]}}' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>
-            <td><input type='number' id='mkt_rent_vacancy{{row[0]}}' value = '{{row[3]}}' name='mkt_rent_vacancy{{row[0]}}' value = '{{row[3]}}' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>
-            <td><input type='number' id='mkt_rent_concessions{{row[0]}}' value = '{{row[4]}}' name='mkt_rent_concessions{{row[0]}}' value = '{{row[4]}}' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>
-            <td><input type='number' id='mkt_rent_credit_loss{{row[0]}}' value = '{{row[5]}}' name='mkt_rent_credit_loss{{row[0]}}' value = '{{row[5]}}' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>
-          </tr>
-          {% endfor %}
-          </tbody>
-        </table>
       </div> <!-- End col s5 -->
 
       <div class="col s4">
@@ -540,6 +512,33 @@
           </tr>
         </table>
 
+        <table class ='z-depth-1 striped' id="Market_Rental_Assumptions">
+        <thead>
+          <tr>
+            <th class="table_header dynamic_table" colspan="6">MARKET RENTAL ASSUMPTIONS</th>
+          </tr>
+          <tr>
+            <th class = 't_head'>Year</th>
+            <th class = 't_head'>Revenue</th>
+            <th class = 't_head'>Expenses</th>
+            <th class = 't_head'>Vacancy</th>
+            <th class = 't_head'>Concessions</th>
+            <th class = 't_head'>Credit Loss</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in market_rental_list %}
+          <tr class = 'year_row' id='year_row_{{row[0]}}'>
+            <td class='mkt_rent_year'>Year {{row[0]}}</td>
+            <td><input type='number' id='mkt_rent_revenue{{row[0]}}' value = '{{row[1]}}' name='mkt_rent_revenue{{row[0]}}' value = '{{row[1]}}' class='mkt_rent_revenue' placeholder='(%)'></td>
+            <td><input type='number' id='mkt_rent_expenses{{row[0]}}' value = '{{row[2]}}' name='mkt_rent_expenses{{row[0]}}' value = '{{row[2]}}' class='mkt_rent_expenses' placeholder='(%)'></td>
+            <td><input type='number' id='mkt_rent_vacancy{{row[0]}}' value = '{{row[3]}}' name='mkt_rent_vacancy{{row[0]}}' value = '{{row[3]}}' class='mkt_rent_vacancy' placeholder='(%)'></td>
+            <td><input type='number' id='mkt_rent_concessions{{row[0]}}' value = '{{row[4]}}' name='mkt_rent_concessions{{row[0]}}' value = '{{row[4]}}' class='mkt_rent_concessions' placeholder='(%)'></td>
+            <td><input type='number' id='mkt_rent_credit_loss{{row[0]}}' value = '{{row[5]}}' name='mkt_rent_credit_loss{{row[0]}}' value = '{{row[5]}}' class='mkt_rent_credit_loss' placeholder='(%)'></td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
       </div> <!-- End col s4 -->
     </div> <!-- End row -->
   </form> <!-- end dashboard form -->

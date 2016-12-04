@@ -17,18 +17,18 @@ myApp.htmlGen = {};
         )
     }
   };
-  
+
 //Javascript Market Rental Rate Assumptions first insert row -------------------------------------------
   myApp.htmlGen.marketRentalAssumptions = function(){
     if ($('#Market_Rental_Assumptions tbody tr').length === 0){
       $('#Market_Rental_Assumptions').find('tbody')
         .append($("<tr class = 'year_row' id='year_row_1'>")
         .append($("<td>Year 1</td>"))
-        .append($("<td>").html("<input type='number' id='mkt_rent_revenue1' name='mkt_rent_revenue1' class='mkt_rent_revenue' placeholder='Revenue (%)'></td>"))
-        .append($("<td>").html("<input type='number' id='mkt_rent_expenses1' name='mkt_rent_expenses1' class='mkt_rent_expenses' placeholder='Expenses (%)'></td>"))
-        .append($("<td>").html("<input type='number' id='mkt_rent_vacancy1' name='mkt_rent_vacancy1' class='mkt_rent_vacancy' placeholder='Vacancy (%)'></td>"))
-        .append($("<td>").html("<input type='number' id='mkt_rent_concessions1' name='mkt_rent_concessions1' class='mkt_rent_concessions' placeholder='Concessions (%)'></td>"))
-        .append($("<td>").html("<input type='number' id='mkt_rent_credit_loss1' name='mkt_rent_credit_loss1' class='mkt_rent_credit_loss' placeholder='Credit Loss (%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_revenue1' name='mkt_rent_revenue1' class='mkt_rent_revenue' placeholder='(%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_expenses1' name='mkt_rent_expenses1' class='mkt_rent_expenses' placeholder='(%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_vacancy1' name='mkt_rent_vacancy1' class='mkt_rent_vacancy' placeholder='(%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_concessions1' name='mkt_rent_concessions1' class='mkt_rent_concessions' placeholder='(%)'></td>"))
+        .append($("<td>").html("<input type='number' id='mkt_rent_credit_loss1' name='mkt_rent_credit_loss1' class='mkt_rent_credit_loss' placeholder='(%)'></td>"))
         )
     }
   };
