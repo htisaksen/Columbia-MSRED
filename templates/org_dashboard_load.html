@@ -6,7 +6,7 @@
   <div class="collapsible-body">
   <form name = 'dashboard' id = "dashboard" action="/dashboard" method="POST">
     <div id="save_modal">
-        <submit id = "update_save" class="btn">Update Model</submit>
+        <submit id = "update_save" class="btn" onclick="Materialize.toast('Your model has been updated!', 2000, '<classname to change styles>')">Update Model</submit>
         <input type="hidden" name="rental_rate_assumptions" id='rental_rate_assumptions' value="">
         <input type="hidden" name="market_rental_assumptions" id='market_rental_assumptions' value="">
         <input type="hidden" name="model_id" id="model_id" value={{modeldata.id}}>

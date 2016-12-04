@@ -15,6 +15,7 @@ services.updateDashboard = function(args){
     url: '/updatedata',
     data: args,
     success: function(response) {
+      console.log("Successfully updated data in this response: ",response)
     }
   })
 };
