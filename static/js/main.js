@@ -155,10 +155,11 @@ $(document).ready(function(){
 // Runs calcs on page load ====================================================================================
 	setTimeout(function(){
 		calculations()
+		myApp.utils.nanReplace();
 	}, 0);
 	myApp.rra.OnLoad()
 	calculations()
-
+	
 	//=======================================
 	//=======================================
 	//WIP  ==================================
