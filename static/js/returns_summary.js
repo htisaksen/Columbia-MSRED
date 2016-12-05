@@ -152,7 +152,7 @@ myApp.returnsSummary = function(){
 
 			if (i == 1){
 				//Cost value grabbed
-				$(tbl_name +'thead tr:first').append("<th>COSTS</th>");
+				$(tbl_name +'thead tr:first').append("<th>EQUITY</th>");
 				$(tbl_name +'tbody tr:not(:last)').each(function(){
 					$(this).append("<td></td>")
 				});
@@ -177,13 +177,11 @@ myApp.returnsSummary = function(){
 					 pFloat('#Proforma tbody td.PF_Capital_Expenditures:nth-child('+ i +')')*-1) +
 					"</td>");
 				// RS_Less_Debt_Service - LEVERED ONLY
-				console.log("rm char loan total:",remSpcChr($('#Loan_Total').text()));
 				$(tbl_name +'tbody tr:nth-child(3)').append(
 					"<td class= 'RS_Less_Debt_Service'>" +
 					FormatCurrency(
-					 pFloat(remSpcChr($('#Loan_Total').text())) *
-					 pFloat(intRate * -1)
-					) + "</td>");
+					 remSpcChr($('#Loan_Total').text()) * intRate * -1)
+					 + "</td>");
 
 				//RS_Net_Cash_Flow_from_Operations
 				$(tbl_name +'tbody tr:nth-child(4)').append(
@@ -236,32 +234,34 @@ myApp.returnsSummary = function(){
 					"<td class= 'RS_Net_Sales_Proceeds'>" +
 					FormatCurrency(
 					 pFloat(tbl_name +'td.RS_Gross_Sale_Proceeds:last')  +
-					 pFloat(tbl_name +'td.RS_Sales_Costs:last')
+					 pFloat(tbl_name +'td.RS_Sales_Costs:last') +
+					 pFloat(tbl_name +'td.RS_Less_Oustanding_Mortgage:last')
 					) + "</td>");
 
 				//filler line
-				$(tbl_name +'tbody tr:nth-child(9)').append("<td></td>");
+				$(tbl_name +'tbody tr:nth-child(10)').append("<td></td>");
 				
 				//RS_Net_Cash_Flow_from_Operations2
-				$(tbl_name +'tbody tr:nth-child(10)').append(
+				$(tbl_name +'tbody tr:nth-child(11)').append(
 					"<td class= 'RS_Net_Cash_Flow_from_Operations2'>" +
 					FormatCurrency(
 					 pFloat(tbl_name +'td.RS_Net_Operating_Income:last') +
 					 pFloat(tbl_name +'td.RS_Less_Capital_Expenditures:last')
 					) + "</td>");	
 				//RS_Net_Sales_Proceeds2
-				$(tbl_name +'tbody tr:nth-child(11)').append(
+				$(tbl_name +'tbody tr:nth-child(12)').append(
 					"<td class= 'RS_Net_Sales_Proceeds2'>" +
 					FormatCurrency(
 					 pFloat(tbl_name +'td.RS_Gross_Sale_Proceeds:last')  +
-					 pFloat(tbl_name +'td.RS_Sales_Costs:last')
+					 pFloat(tbl_name +'td.RS_Sales_Costs:last') +
+					 pFloat(tbl_name +'td.RS_Less_Oustanding_Mortgage:last')
 					) + "</td>");
 
 				//filler line
-				$(tbl_name +'tbody tr:nth-child(12)').append("<td></td>");
+				$(tbl_name +'tbody tr:nth-child(13)').append("<td></td>");
 				
 				//RS_Total_Cash_Flows
-				$(tbl_name +'tbody tr:nth-child(13)').append(
+				$(tbl_name +'tbody tr:nth-child(14)').append(
 					"<td class= 'RS_Total_Cash_Flows'>" +
 					FormatCurrency(
 					 pFloat(tbl_name +'.RS_Net_Sales_Proceeds2 td:nth-child('+ (i+1) +')')  +

@@ -175,6 +175,13 @@ td, th{
 	padding: 7px 5px;
 }
 
+/* Changes padding of Return Summary tables==========
+#unlevered-analysis tbody tr td, th,
+#levered-analysis tbody tr td, th {
+	padding: 2px 5px;
+}
+*/
+
 thead th {
 	font-size:16px;
 	font-weight:400;
