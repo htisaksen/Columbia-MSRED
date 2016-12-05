@@ -1,18 +1,15 @@
 var services = {};
 services.saveDashboard = function(args){
-  console.log("saveDashboard:",args)
   $.ajax({
     method: 'POST',
     url: '/savedata',
     data: args,
     success: function(response) {
-      console.log("Successfully saved data in this response: ",response)
     }
   })
 };
 
 services.updateDashboard = function(args){
-  console.log("updateDashboard:",args)
   $.ajax({
     method: 'POST',
     url: '/updatedata',

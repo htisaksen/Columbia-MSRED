@@ -132,25 +132,6 @@ myApp.dashboard.getInputs = function(){
   $('#Total_Uses_DollarPerUnit').text(FormatCurrency(nanCheck(pInt('#Purchasing_Price_DollarPerUnit') + pInt('#Closing_Costs_DollarPerUnit'))));
   $('#Total_Uses_DollarPerSF').text(FormatCurrency(nanCheck(pFloat('#Purchasing_Price_DollarPerSF') + pFloat('#Closing_Costs_DollarPerSF'))));
   $('#Total_Uses_PercentofTotal').text(FormatPercent1(nanCheck(pFloat('#Purchasing_Price_PercentofTotal') + pFloat('#Closing_Costs_PercentofTotal'))));
-  //
-  // #Returns Summary Table
-  // UL_Net_Profit = 0
-  // UL_Present_Value = 0
-  // UL_Net_Present_Value = 0
-  // UL_Equity_Multiple = 0
-  // UL_IRR = 0
-  // UL_IRR_from_CF = 0
-  // UL_IRR_from_Sale = 0
-  // UL_Cash_On_Cash = 0
-  //
-  // L_Net_Profit = 0
-  // L_Present_Value = 0
-  // L_Net_Present_Value = 0
-  // L_Equity_Multiple = 0
-  // L_IRR = 0
-  // L_IRR_from_CF = 0
-  // L_IRR_from_Sale = 0
-  // L_Cash_On_Cash = 0
 
 
 // Current Financial Performance Table
@@ -261,9 +242,5 @@ myApp.dashboard.getInputs = function(){
     FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/totalUnits)));											//$
   $('#Net_Operating_Income_DollarPerSF').text(
     FormatCurrency(nanCheck(pInt('#Net_Operating_Income_Total')/totalSquareFoot)));									//$
-
-
-
-
 
 }; //end dashboardInput
