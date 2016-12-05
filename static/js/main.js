@@ -2,13 +2,13 @@
 
 $(document).ready(function(){
 
-	//Stops submission when hitting enter key
+//prevents user from saving model by pushing the Enter key on keyboard
 	$(window).keydown(function(event){
-	 if(event.keyCode == 13) {
-		 event.preventDefault();
-		 return false;
-	 }
- });
+		if(event.keyCode == 13) {
+			event.preventDefault();
+			return false;
+		}
+ 	});
 
 
 //created function to run dashboard input twice
@@ -18,7 +18,6 @@ $(document).ready(function(){
 			myApp.proForma();
 			myApp.returnsSummary(); //----HEAVILY WIP
 			myApp.utils.nanReplace();
-
 	};
 
 	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
@@ -153,12 +152,26 @@ $(document).ready(function(){
 	$('.rent_row').on('focusout', myApp.rra.RRAInput);
 	$('#dashboard').on('focusout', calculations);
 
-// Runs calcs on page load ============================================================================================================
+// Runs calcs on page load ====================================================================================
 	setTimeout(function(){
 		calculations()
 	}, 0);
 	myApp.rra.OnLoad()
 	calculations()
+
+	//=======================================
+	//=======================================
+	//WIP  ==================================
+	//=======================================
+	//=======================================
+	var IRR_list = myApp.utils.IRRCalc([-100, 100, 100, 100, 100, 100])
+	console.log("IRR_list:",IRR_list)
+
+
+
+
+
+
 
 
 }); //end of doc
