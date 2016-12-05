@@ -155,10 +155,11 @@ $(document).ready(function(){
 	setTimeout(function(){
 		calculations()
 		myApp.returnsSummary(); //----HEAVILY WIP	
+		myApp.utils.nanReplace();
 	}, 0);
 	myApp.rra.OnLoad()
 	calculations()
-
+	
 	//=======================================
 	//=======================================
 	//WIP  ==================================
