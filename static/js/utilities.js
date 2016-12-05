@@ -55,6 +55,7 @@ myApp.utils = {};
 
       //IRRCALC funtion that handles irr going to infinity ---- credit to: http://stackoverflow.com/questions/15089151/javascript-irr-internal-rate-of-return-formula-accuracy
       myApp.utils.IRRCalc = function(CArray) {
+        console.log("IRRCalc has begun to run!");
         min = 0.0;
         max = 1.0;
         c = 0;
