@@ -1,7 +1,8 @@
 'use strict';
-// Math.round(num * 100) / 100
+
 $(document).ready(function(){
 
+	//Stops submission when hitting enter key
 	$(window).keydown(function(event){
 	 if(event.keyCode == 13) {
 		 event.preventDefault();
@@ -19,8 +20,6 @@ $(document).ready(function(){
 			myApp.utils.nanReplace();
 
 	};
-
-	// myApp.htmlGen.RRAsample();		//TESTING PURPOSES
 
 	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
 	myApp.htmlGen.marketRentalAssumptions(); 	//Javascript Market Rental Rate Assumptions first insert row -------------------
@@ -150,7 +149,7 @@ $(document).ready(function(){
 	services.updateDashboard(data);	//AJAX call - ajax.js
  	});
 
-// ============================================================================================================
+// Runs calcs on focusout============================================================================================================
 	$('.rent_row').on('focusout', myApp.rra.RRAInput);
 	$('#dashboard').on('focusout', calculations);
 

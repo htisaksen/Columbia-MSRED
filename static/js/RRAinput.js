@@ -87,7 +87,7 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 		});
 
 	};
-
+  //Function to calculate values on load
   myApp.rra.OnLoad = function(){
 
     var sumTotalUnits = 0;
@@ -103,14 +103,12 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
       total_square_foot += parseInt(remSpcChr($(this).text()))
       tsfCounter +=1;
     });
-    tsfCounter = 0;
 
     //calculate rsf on load
     $rsf.each(function(){
       parseInt($(this).text(FormatCurrency($('#rent_per_unit'+rsfCounter).val()/$('#avg_sf_per_unit'+rsfCounter).val())));
       rsfCounter +=1;
     });
-    rsfCounter = 0;
 
     //calculate totals
     $('th.total_sf').text(total_square_foot.toLocaleString());
