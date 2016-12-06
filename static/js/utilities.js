@@ -30,6 +30,7 @@ myApp.utils = {};
       myApp.utils.nanReplace = function(event){
       $("td:contains('NaN')").each(function() {
         $(this).text('0');
+      })
       $("th:contains('NaN')").each(function() {
         $(this).text('0');
       })
