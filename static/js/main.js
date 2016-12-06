@@ -16,7 +16,6 @@ $(document).ready(function(){
 			myApp.dashboard.dashboardInput();
 			myApp.dashboard.dashboardInput();
 			myApp.proForma();
-			myApp.returnsSummary(); //----HEAVILY WIP
 			myApp.utils.nanReplace();
 	};
 
@@ -155,6 +154,7 @@ $(document).ready(function(){
 // Runs calcs on page load ====================================================================================
 	setTimeout(function(){
 		calculations()
+		myApp.returnsSummary(); //----HEAVILY WIP	
 		myApp.utils.nanReplace();
 	}, 0);
 	myApp.rra.OnLoad()
@@ -167,6 +167,7 @@ $(document).ready(function(){
 	//=======================================
 	var IRR_list = myApp.utils.IRRCalc([-100, 100, 100, 100, 100, 100])
 	console.log("IRR_list:",IRR_list)
+
 
 
 
