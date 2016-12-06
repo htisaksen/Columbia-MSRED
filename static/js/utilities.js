@@ -30,12 +30,9 @@ myApp.utils = {};
       myApp.utils.nanReplace = function(event){
       $("td:contains('NaN')").each(function() {
         $(this).text('0');
-<<<<<<< HEAD
       })
       $("th:contains('NaN')").each(function() {
         $(this).text('0');
-=======
->>>>>>> e588ae7c6321ff3cc78f8052f9e59cb03d31267a
       })
     };
 
@@ -73,13 +70,13 @@ myApp.utils = {};
           }
           if (NPV > 0) {
             min = guest;
-            c++; 
+            c++;
           } else {
             max = guest;
             c++;
           }
-          if(c >= 15){ 
-            return guest * 100; 
+          if(c >= 15){
+            return guest * 100;
           }
         } while(Math.abs(NPV) > 0.000001);
          return guest * 100;
