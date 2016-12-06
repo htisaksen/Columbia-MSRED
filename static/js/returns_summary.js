@@ -273,10 +273,28 @@ myApp.returnsSummary = function(){
 		}; //end for loop
 	}; //end RSgeneratorUL
 
+	
+var NL_Net_Cash_Flow_from_Operations = function(){
+	var templist = []
+	$('#unlevered-analysis tbody tr.RS_Net_Cash_Flow_from_Operations2').each(function(){
+		console.log("UL IRR test nums:",$(this).text());
+		templist.push(remSpcChr($(this).text()))
+	})
+	console.log("templist:",templist)
+	return templist
+}
+
+//grabs the lists as an object
+returns_summary.getNumLists = function(){
+  return {
+    IRR_numlists: IRR_numlists,
+  };
+}
 
 
-
+// ------------------------------------------------
 	RSgeneratorUL("#unlevered-analysis ");
 	RSgeneratorL("#levered-analysis ");
+	NL_Net_Cash_Flow_from_Operations();
 
 } //end myApp.returnsSummary function
