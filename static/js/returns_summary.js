@@ -1,9 +1,11 @@
+
 // ============================================================================================================
 //RETURNS SUMMARY Dynamic Table
 // ============================================================================================================
 
 myApp.returnsSummary = function(){
 		var g = myApp.dashboard.getInputs();
+		var finance = new Finance();
 		var FormatCurrency = myApp.utils.FormatCurrency;
 		var pInt = myApp.utils.pInt;
 		var pFloat = myApp.utils.pFloat;
@@ -14,7 +16,7 @@ myApp.returnsSummary = function(){
 
 		var rsCounter = g.saleYear;
 		var intRate = g.interestRateOnMortgage/100;
-		
+
 
 
 // ===========================================================================================================
@@ -104,14 +106,14 @@ myApp.returnsSummary = function(){
 
 				//filler line
 				$(tbl_name + ' tbody tr:nth-child(8)').append("<td></td>");
-				
+
 				//RS_Net_Cash_Flow_from_Operations2
 				$(tbl_name + ' tbody tr:nth-child(9)').append(
 					"<td class= 'RS_Net_Cash_Flow_from_Operations2'>" +
 					FormatCurrency(
 					 pFloat(tbl_name + ' td.RS_Net_Operating_Income:last') +
 					 pFloat(tbl_name + ' td.RS_Less_Capital_Expenditures:last')
-					) + "</td>");	
+					) + "</td>");
 				//RS_Net_Sales_Proceeds2
 				$(tbl_name + ' tbody tr:nth-child(10)').append(
 					"<td class= 'RS_Net_Sales_Proceeds2'>" +
@@ -122,7 +124,7 @@ myApp.returnsSummary = function(){
 
 				//filler line
 				$(tbl_name + ' tbody tr:nth-child(11)').append("<td></td>");
-				
+
 				//RS_Total_Cash_Flows
 				$(tbl_name + ' tbody tr:nth-child(12)').append(
 					"<td class= 'RS_Total_Cash_Flows'>" +
@@ -137,7 +139,7 @@ myApp.returnsSummary = function(){
 	}; //end RSgeneratorUL
 
 // ===========================================================================================================
-//Generates Levered table with additional rows 
+//Generates Levered table with additional rows
 // ===========================================================================================================
 	var RSgeneratorL = function(tbl_name){
 	//Deletes all columns
@@ -181,8 +183,8 @@ myApp.returnsSummary = function(){
 					 pFloat('#Proforma tbody td.PF_Capital_Expenditures:nth-child('+ i +')')*-1) +
 					"</td>");
 				// RS_Less_Debt_Service - LEVERED ONLY
-				console.log("Loan total:", $('#Loan_Total').text());
-				console.log("intrate:", intRate);
+
+
 				$(tbl_name + ' tbody tr:nth-child(3)').append(
 					"<td class= 'RS_Less_Debt_Service'>" +
 					FormatCurrency(
@@ -246,7 +248,7 @@ myApp.returnsSummary = function(){
 
 				//filler line
 				$(tbl_name + ' tbody tr:nth-child(10)').append("<td></td>");
-				
+
 				//RS_Net_Cash_Flow_from_Operations2
 				$(tbl_name + ' tbody tr:nth-child(11)').append(
 					"<td class= 'RS_Net_Cash_Flow_from_Operations2'>" +
@@ -266,7 +268,7 @@ myApp.returnsSummary = function(){
 
 				//filler line
 				$(tbl_name + ' tbody tr:nth-child(13)').append("<td></td>");
-				
+
 				//RS_Total_Cash_Flows
 				$(tbl_name + ' tbody tr:nth-child(14)').append(
 					"<td class= 'RS_Total_Cash_Flows'>" +
@@ -290,7 +292,7 @@ myApp.returnsSummary = function(){
 // ===========================================================================================================
 // IRR calculations
 // ===========================================================================================================
-	//returns an array of a specific row from a specific table (table and row name are used as parameters) 
+	//returns an array of a specific row from a specific table (table and row name are used as parameters)
 	var rsRowData = function(tbl, row){
 		var templist = [];
 		var temptotal = 0;
@@ -302,30 +304,30 @@ myApp.returnsSummary = function(){
 			temptotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
 			templist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
 		}
-		console.log("temptotal:",temptotal);
-		console.log("templist:",templist);
+
+
 		return templist
 	} //end rsRowData
 
 	// Equity Multiple formula
 	var EquityMult = function(EArray){
-		console.log("EArray:",EArray);
-		console.log("EArray.length:",EArray.length);
+
+
 		var posTotal = 0, negTotal = 0;
 		for (i = 0; i < EArray.length; i++){
-			console.log(EArray[i]);
+
 			if (EArray[i] > 0) {
 				posTotal += EArray[i];
 			} else {
 				negTotal += EArray[i];
 			};
 		}
-		console.log("posTotal:",posTotal);
-		console.log("negTotal:",negTotal);
-		console.log("return:", roundTwoDec(posTotal/(negTotal * -1)))
+
+
+
 		return (roundTwoDec(posTotal/(negTotal * -1)))
 	}; //end EquityMult
-	
+
 
 // ------------------------------------------------------------------------
 
@@ -336,11 +338,17 @@ myApp.returnsSummary = function(){
 	var L_IRR = FormatPercent2(IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows')));
 	$('#RSL_IRR').text(L_IRR);
 
-	console.log("Equity Mult below====================");
+	// Equity Multiple Calculations
 	var UL_EM = EquityMult(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows'));
 	$('#RSUL_Equity_Multiple').text(UL_EM);
 	var U_EM = EquityMult(rsRowData('#levered-analysis','RS_Total_Cash_Flows'));
 	$('#RSL_Equity_Multiple').text(U_EM);
+
+	//NPV Calculations
+	console.log(rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
+	console.log(parseFloat(remSpcChr(UL_IRR)))
+	var UL_NPV = finance.NPV(parseFloat(remSpcChr(UL_IRR)),0,rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
+	console.log(finance.NPV(9,-0,1691479	,1745223 	,1800580 	,1857597 	,1916325 	,1976815 	,2039120 	,2103293 	,2169392 	,2237474 ))
 
 
 } //end myApp.returnsSummary function
