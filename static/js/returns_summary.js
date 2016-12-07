@@ -10,6 +10,7 @@ myApp.returnsSummary = function(){
 		var remSpcChr = myApp.utils.remSpcChr;
 		var IRRCalc = myApp.utils.IRRCalc;
 		var FormatPercent2 = myApp.utils.FormatPercent2;
+		var roundTwoDec = myApp.utils.roundTwoDec;
 
 		var rsCounter = g.saleYear;
 		var intRate = g.interestRateOnMortgage/100;
@@ -279,20 +280,25 @@ myApp.returnsSummary = function(){
 		}; //end for loop
 	}; //end RSgeneratorL
 
+
+// Builds Levered and Unlevered tables ------------------------------------------------
+	RSgeneratorUL("#unlevered-analysis");
+	RSgeneratorL("#levered-analysis");
+
+
+
+// ===========================================================================================================
+// IRR calculations
+// ===========================================================================================================
+	//returns an array of a specific row from a specific table (table and row name are used as parameters) 
 	var rsRowData = function(tbl, row){
 		var templist = [];
 		var temptotal = 0;
 		var colLen = $(tbl + ' tbody td.' + row + '').length;
-		console.log("colLen:",colLen);
 		for (i = 0; i <= colLen+2; ++i) {
 			if (remSpcChr($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text()) === "") {
 				continue;
 			};
-			console.log("For loop start:::");
-			console.log($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text());
-			console.log("remSpcchr:",remSpcChr($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text()));
-			console.log("pFloat:",pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
-			
 			temptotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
 			templist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
 		}
@@ -301,23 +307,40 @@ myApp.returnsSummary = function(){
 		return templist
 	} //end rsRowData
 
-// ------------------------------------------------
-	RSgeneratorUL("#unlevered-analysis");
-	RSgeneratorL("#levered-analysis");
-	// rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2');
-	// rsRowData('#unlevered-analysis','RS_Net_Sales_Proceeds2')
-	// rsRowData('#levered-analysis','RS_Net_Cash_Flow_from_Operations2');
-	// rsRowData('#levered-analysis','RS_Net_Sales_Proceeds2')
+	// Equity Multiple formula
+	var EquityMult = function(EArray){
+		console.log("EArray:",EArray);
+		console.log("EArray.length:",EArray.length);
+		var posTotal = 0, negTotal = 0;
+		for (i = 0; i < EArray.length; i++){
+			console.log(EArray[i]);
+			if (EArray[i] > 0) {
+				posTotal += EArray[i];
+			} else {
+				negTotal += EArray[i];
+			};
+		}
+		console.log("posTotal:",posTotal);
+		console.log("negTotal:",negTotal);
+		console.log("return:", roundTwoDec(posTotal/(negTotal * -1)))
+		return (roundTwoDec(posTotal/(negTotal * -1)))
+	}; //end EquityMult
 	
 
-	// IRR values = variables grab Return Summary row data for parameters, calculates the IRR, and then rounds the # to 2 decimal points
+// ------------------------------------------------------------------------
+
+	// IRR values calculations
+	// Description: variables grab Return Summary row data for parameters, calculates the IRR, and then rounds the # to 2 decimal points
 	var UL_IRR = FormatPercent2(IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows')));
 	$('#RSUL_IRR').text(UL_IRR);
 	var L_IRR = FormatPercent2(IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows')));
 	$('#RSL_IRR').text(L_IRR);
 
-	// =SUMIF(C24:M24,">0")/-SUMIF(C24:M24,"<0")
-
+	console.log("Equity Mult below====================");
+	var UL_EM = EquityMult(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows'));
+	$('#RSUL_Equity_Multiple').text(UL_EM);
+	var U_EM = EquityMult(rsRowData('#levered-analysis','RS_Total_Cash_Flows'));
+	$('#RSL_Equity_Multiple').text(U_EM);
 
 
 } //end myApp.returnsSummary function
