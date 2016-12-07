@@ -304,8 +304,8 @@ myApp.returnsSummary = function(){
 			datatotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
 			datalist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
 		}
-		console.log("datatotal:",datatotal);
-		console.log("datalist:",datalist);
+		// console.log("datatotal:",datatotal);
+		// console.log("datalist:",datalist);
 		return {
 			"datalist": datalist,
 			"datatotal": datatotal
@@ -330,25 +330,23 @@ myApp.returnsSummary = function(){
 
 	// IRR values calculations
 	// Description: variables grab Return Summary row data for parameters, calculates the IRR, and then rounds the # to 2 decimal points
-	var UL_IRR = FormatPercent2(IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist));
-	$('#RSUL_IRR').text(UL_IRR);
-	var L_IRR = FormatPercent2(IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist));
-	$('#RSL_IRR').text(L_IRR);
+	var UL_IRR = IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
+	$('#RSUL_IRR').text(FormatCurrency(UL_IRR));
+	var L_IRR = IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
+	$('#RSL_IRR').text(FormatCurrency(L_IRR));
 
 
-	console.log("Equity Mult below====================");
+	// console.log("Equity Mult below====================");
 	var UL_EM = EquityMult(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
-	console.log("UL_EM:",rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
-
 	$('#RSUL_Equity_Multiple').text(UL_EM);
 	var U_EM = EquityMult(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
 	$('#RSL_Equity_Multiple').text(U_EM);
 
 	//NPV Calculations
 	console.log(rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
-	console.log(parseFloat(remSpcChr(UL_IRR)))
-	var UL_NPV = finance.NPV(parseFloat(remSpcChr(UL_IRR)),0,rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
-	console.log(finance.NPV(9,-0,1691479	,1745223 	,1800580 	,1857597 	,1916325 	,1976815 	,2039120 	,2103293 	,2169392 	,2237474 ))
+	var UL_NPV = finance.NPV(UL_IRR,0,rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
+	console.log(IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist))
+	console.log(finance.NPV(9.002256995413610,0,1691479	,1745223 	,1800580 	,1857597 	,1916325 	,1976815 	,2039120 	,2103293 	,2169392 	,2237474 ))
 
 
 
