@@ -294,37 +294,34 @@ myApp.returnsSummary = function(){
 // ===========================================================================================================
 	//returns an array of a specific row from a specific table (table and row name are used as parameters)
 	var rsRowData = function(tbl, row){
-		var templist = [];
-		var temptotal = 0;
+		var datalist = [];
+		var datatotal = 0;
 		var colLen = $(tbl + ' tbody td.' + row + '').length;
 		for (i = 0; i <= colLen+2; ++i) {
 			if (remSpcChr($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text()) === "") {
 				continue;
 			};
-			temptotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
-			templist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
+			datatotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
+			datalist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
 		}
-
-
-		return templist
-	} //end rsRowData
+		console.log("datatotal:",datatotal);
+		console.log("datalist:",datalist);
+		return {
+			"datalist": datalist,
+			"datatotal": datatotal
+		}
+	}; //end rsRowData
 
 	// Equity Multiple formula
 	var EquityMult = function(EArray){
-
-
 		var posTotal = 0, negTotal = 0;
 		for (i = 0; i < EArray.length; i++){
-
 			if (EArray[i] > 0) {
 				posTotal += EArray[i];
 			} else {
 				negTotal += EArray[i];
 			};
 		}
-
-
-
 		return (roundTwoDec(posTotal/(negTotal * -1)))
 	}; //end EquityMult
 
@@ -333,15 +330,18 @@ myApp.returnsSummary = function(){
 
 	// IRR values calculations
 	// Description: variables grab Return Summary row data for parameters, calculates the IRR, and then rounds the # to 2 decimal points
-	var UL_IRR = FormatPercent2(IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows')));
+	var UL_IRR = FormatPercent2(IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist));
 	$('#RSUL_IRR').text(UL_IRR);
-	var L_IRR = FormatPercent2(IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows')));
+	var L_IRR = FormatPercent2(IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist));
 	$('#RSL_IRR').text(L_IRR);
 
-	// Equity Multiple Calculations
-	var UL_EM = EquityMult(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows'));
+
+	console.log("Equity Mult below====================");
+	var UL_EM = EquityMult(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
+	console.log("UL_EM:",rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
+
 	$('#RSUL_Equity_Multiple').text(UL_EM);
-	var U_EM = EquityMult(rsRowData('#levered-analysis','RS_Total_Cash_Flows'));
+	var U_EM = EquityMult(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
 	$('#RSL_Equity_Multiple').text(U_EM);
 
 	//NPV Calculations
@@ -349,6 +349,27 @@ myApp.returnsSummary = function(){
 	console.log(parseFloat(remSpcChr(UL_IRR)))
 	var UL_NPV = finance.NPV(parseFloat(remSpcChr(UL_IRR)),0,rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
 	console.log(finance.NPV(9,-0,1691479	,1745223 	,1800580 	,1857597 	,1916325 	,1976815 	,2039120 	,2103293 	,2169392 	,2237474 ))
+
+
+
+// Dashboard - Returns Summary Table
+  $('#UL_Net_Profit').text(FormatCurrency(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datatotal))
+  $('#UL_Present_Value').text()
+  $('#UL_Net_Present_Value').text()
+  $('#UL_Equity_Multiple').text($('#RSUL_Equity_Multiple').text())
+  $('#UL_IRR').text($('#RSUL_IRR').text())
+  $('#UL_IRR_from_CF').text()
+  $('#UL_IRR_from_Sale').text()
+  $('#UL_Cash_On_Cash').text()
+
+  $('#L_Net_Profit').text(FormatCurrency(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datatotal))
+  $('#L_Present_Value').text()
+  $('#L_Net_Present_Value').text()
+  $('#L_Equity_Multiple').text($('#RSL_Equity_Multiple').text())
+  $('#L_IRR').text($('#RSL_IRR').text())
+  $('#L_IRR_from_CF').text()
+  $('#L_IRR_from_Sale').text()
+  $('#L_Cash_On_Cash').text()
 
 
 } //end myApp.returnsSummary function
