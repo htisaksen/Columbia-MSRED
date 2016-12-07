@@ -19,6 +19,7 @@ $(document).ready(function(){
 			myApp.utils.nanReplace();
 	};
 
+//functions that insert initial rows/columns of data 
 	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
 	myApp.htmlGen.marketRentalAssumptions(); 	//Javascript Market Rental Rate Assumptions first insert row -------------------
 	myApp.htmlGen.proForma(); 					//Javascript Market Rental Rate Assumptions two columns -------------------
@@ -61,6 +62,7 @@ $(document).ready(function(){
 		$('#dashboard').on('focusout', calculations);
 
 	}); //end addrow function
+
 
 	// function to delete all additionally added rows from the Rental Rate Assumptions table
 	$('tr[class^="rent_row"] a').on('click', function(event) {
@@ -153,27 +155,12 @@ $(document).ready(function(){
 
 // Runs calcs on page load ====================================================================================
 	setTimeout(function(){
-		calculations()
-		myApp.returnsSummary(); //----HEAVILY WIP	
+		calculations();
+		myApp.returnsSummary(); 	
 		myApp.utils.nanReplace();
 	}, 0);
-	myApp.rra.OnLoad()
-	calculations()
+	myApp.rra.OnLoad();
+	calculations();
 	
-	//=======================================
-	//=======================================
-	//WIP  ==================================
-	//=======================================
-	//=======================================
-	var IRR_list = myApp.utils.IRRCalc([-100, 100, 100, 100, 100, 100])
-	console.log("IRR_list:",IRR_list)
-
-
-
-
-
-
-
-
 
 }); //end of doc

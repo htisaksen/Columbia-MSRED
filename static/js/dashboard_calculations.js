@@ -8,20 +8,20 @@ myApp.dashboard.getInputs = function(){
     propertyLocation: $('#Property_Address').val(),
     propertyType: $('#Property_Type').val(),
     purchasePrice: parseInt($('#Purchase_Price').val()) || 0,
-    closingCostPercentage: parseInt($('#Closing_Costs_Percentage').val())/100 || 0,
+    closingCostPercentage: parseFloat($('#Closing_Costs_Percentage').val())/100 || 0,
     saleYear: parseInt($('#Sale_Year').val()) || 0,
-    terminalCapRate: parseInt($('#Terminal_Cap_Rate').val())/100 || 0,
-    salesCosts: parseInt($('#Sales_Costs').val()) || 0,
-    leverage: parseInt($('#Leverage').val())/100 || 0,
-    interestRateOnMortgage: parseInt($('#Interest_Rate_on_Mortgage').val()) || 0,
+    terminalCapRate: parseFloat($('#Terminal_Cap_Rate').val())/100 || 0,
+    salesCosts: parseFloat($('#Sales_Costs').val()) || 0,
+    leverage: parseFloat($('#Leverage').val())/100 || 0,
+    interestRateOnMortgage: parseFloat($('#Interest_Rate_on_Mortgage').val()) || 0,
     loanTerm: parseInt($('#Loan_Term').val()) || 0,
     loanAmortization: parseInt($('#Loan_Amortization').val()) || 0,
-    unleveredDiscountRate: parseInt($('#UL_Discount_Rate').val()) || 0,
-    leveredDiscountRate: parseInt($('#L_Discount_Rate').val()) || 0,
+    unleveredDiscountRate: parseFloat($('#UL_Discount_Rate').val()) || 0,
+    leveredDiscountRate: parseFloat($('#L_Discount_Rate').val()) || 0,
     otherIncomeTotal: parseInt($('#Other_Income_Total').val()) || 0,
-    lessVacancy: parseInt($('#Less_Vacancy').val())/100 || 0,
-    lessConcessions: parseInt($('#Less_Concessions').val())/100 || 0,
-    lessCreditLoss: parseInt($('#Less_Credit_Loss').val())/100 || 0,
+    lessVacancy: parseFloat($('#Less_Vacancy').val())/100 || 0,
+    lessConcessions: parseFloat($('#Less_Concessions').val())/100 || 0,
+    lessCreditLoss: parseFloat($('#Less_Credit_Loss').val())/100 || 0,
     realEstateTaxesTotal: parseInt($('#Real_Estate_Taxes_Total').val()) || 0,
     insuranceTotal: parseInt($('#Insurance_Total').val()) || 0,
     utilitiesTotal: parseInt($('#Utilities_Total').val()) || 0,
@@ -31,8 +31,8 @@ myApp.dashboard.getInputs = function(){
     turnoverTotal: parseInt($('#Turnover_Total').val()) || 0,
     salesAndMarketingTotal: parseInt($('#Sales_and_Marketing_Total').val()) || 0,
     administrativeTotal: parseInt($('#Administrative_Total').val()) || 0,
-    managementPercentage: parseInt($('#Management_Percentage').val())/100 || 0,
-    replacementReservesPercentage: parseInt($('#Replacement_Reserves_Percentage').val())/100 || 0,
+    managementPercentage: parseFloat($('#Management_Percentage').val())/100 || 0,
+    replacementReservesPercentage: parseFloat($('#Replacement_Reserves_Percentage').val())/100 || 0,
     capitalExpenditures: parseInt($('#Capital_Expenditures').val()) || 0,
   };
 }
@@ -48,13 +48,13 @@ myApp.dashboard.getInputs = function(){
   var remSpcChr = myApp.utils.remSpcChr;
   var pInt = myApp.utils.pInt;
   var pFloat = myApp.utils.pFloat;
-  var nanCheck = myApp.utils.nanCheck
-  var roundOneDec = myApp.utils.roundOneDec
-  var roundTwoDec = myApp.utils.roundTwoDec
-  var FormatCurrency = myApp.utils.FormatCurrency
-  var FormatPercent1 = myApp.utils.FormatPercent1
-  var FormatPercent2 = myApp.utils.FormatPercent2
-  var IRRCalc = myApp.utils.IRRCalc
+  var nanCheck = myApp.utils.nanCheck;
+  var roundOneDec = myApp.utils.roundOneDec;
+  var roundTwoDec = myApp.utils.roundTwoDec;
+  var FormatCurrency = myApp.utils.FormatCurrency;
+  var FormatPercent1 = myApp.utils.FormatPercent1;
+  var FormatPercent2 = myApp.utils.FormatPercent2;
+  var IRRCalc = myApp.utils.IRRCalc;
   //VARIABLES FOR CALCULATIONS-------------------------------------------------------
   var totalUnits = pInt('#Rental_Rate_Assumptions tfoot .total_units');
   var totalSquareFoot = pInt('#Rental_Rate_Assumptions tfoot .total_sf');

@@ -1,6 +1,6 @@
 
 // ============================================================================================================
-// Functions created for dashboard
+// Utility Functions
 // ============================================================================================================
 myApp.utils = {};
 
@@ -28,13 +28,13 @@ myApp.utils = {};
     	};
 
       myApp.utils.nanReplace = function(event){
-      $("td:contains('NaN')").each(function() {
-        $(this).text('0');
-      })
-      $("th:contains('NaN')").each(function() {
-        $(this).text('0');
-      })
-    };
+        $("td:contains('NaN')").each(function() {
+          $(this).text('0');
+        })
+        $("th:contains('NaN')").each(function() {
+          $(this).text('0');
+        })
+      };
 
       myApp.utils.roundOneDec = function(value){
         return Math.round(value * 10) / 10;
@@ -56,9 +56,8 @@ myApp.utils = {};
         return (number.toFixed(1) + " %")
       }
 
-      //IRRCALC funtion that handles irr going to infinity ---- credit to: http://stackoverflow.com/questions/15089151/javascript-irr-internal-rate-of-return-formula-accuracy
+      //credit to: http://stackoverflow.com/questions/15089151/javascript-irr-internal-rate-of-return-formula-accuracy
       myApp.utils.IRRCalc = function(CArray) {
-        console.log("IRRCalc has begun to run!");
         min = 0.0;
         max = 1.0;
         c = 0;
@@ -82,21 +81,11 @@ myApp.utils = {};
          return guest * 100;
       }
 
+      //Equity Multiple
+      myApp.utils.EquityMult = function(CArray) {
+
+      }
+
 })();
-
-
-// //runs function on a set time delay
-// 	var debouncer = function(func, time) {
-// 		var timeWindow = 500; //time in ms. waits this amount of time after the final click before running function
-// 		var timeout;
-// 		return function() {
-// 			// var context = this;
-// 			clearTimeout(timeout);
-// 			timeout = setTimeout(function() {
-// 				func();
-// 			}, timeWindow)
-// 		} //end function
-// 	}; //end debouncer
-
 
 // ============================================================================================================

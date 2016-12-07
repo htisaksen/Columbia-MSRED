@@ -8,9 +8,12 @@ myApp.returnsSummary = function(){
 		var pInt = myApp.utils.pInt;
 		var pFloat = myApp.utils.pFloat;
 		var remSpcChr = myApp.utils.remSpcChr;
+		var IRRCalc = myApp.utils.IRRCalc;
+		var FormatPercent2 = myApp.utils.FormatPercent2;
 
 		var rsCounter = g.saleYear;
 		var intRate = g.interestRateOnMortgage/100;
+		
 
 
 // ===========================================================================================================
@@ -37,7 +40,7 @@ myApp.returnsSummary = function(){
 				$(tbl_name + ' tbody tr:not(:last)').each(function(){
 					$(this).append("<td></td>");
 				})
-				$(tbl_name + ' tbody tr:last').append("<td>" +
+				$(tbl_name + ' tbody tr:last').append("<td class = 'RS_Total_Cash_Flows'>" +
 					FormatCurrency(pFloat('#dashboard #Purchase_Information td#PI_Total_Costs')*-1) +
 					"</td>");
 
@@ -156,8 +159,8 @@ myApp.returnsSummary = function(){
 				$(tbl_name + ' tbody tr:not(:last)').each(function(){
 					$(this).append("<td></td>")
 				});
-				$(tbl_name + ' tbody tr:last').append("<td>" +
-					FormatCurrency(pFloat('#dashboard #Purchase_Information td#PI_Total_Costs')*-1) +
+				$(tbl_name + ' tbody tr:last').append("<td class = 'RS_Total_Cash_Flows'>" +
+					FormatCurrency(pFloat('#dashboard #Sources_and_Uses td#Equity_Total')*-1) +
 					"</td>");
 
 			} else {
@@ -177,6 +180,8 @@ myApp.returnsSummary = function(){
 					 pFloat('#Proforma tbody td.PF_Capital_Expenditures:nth-child('+ i +')')*-1) +
 					"</td>");
 				// RS_Less_Debt_Service - LEVERED ONLY
+				console.log("Loan total:", $('#Loan_Total').text());
+				console.log("intrate:", intRate);
 				$(tbl_name + ' tbody tr:nth-child(3)').append(
 					"<td class= 'RS_Less_Debt_Service'>" +
 					FormatCurrency(
@@ -246,8 +251,9 @@ myApp.returnsSummary = function(){
 					"<td class= 'RS_Net_Cash_Flow_from_Operations2'>" +
 					FormatCurrency(
 					 pFloat(tbl_name + ' td.RS_Net_Operating_Income:last') +
-					 pFloat(tbl_name + ' td.RS_Less_Capital_Expenditures:last')
-					) + "</td>");	
+					 pFloat(tbl_name + ' td.RS_Less_Capital_Expenditures:last') +
+					 pFloat(tbl_name + ' td.RS_Less_Debt_Service:last')
+					) + "</td>");
 				//RS_Net_Sales_Proceeds2
 				$(tbl_name + ' tbody tr:nth-child(12)').append(
 					"<td class= 'RS_Net_Sales_Proceeds2'>" +
@@ -271,71 +277,47 @@ myApp.returnsSummary = function(){
 
 			} //end else
 		}; //end for loop
-	}; //end RSgeneratorUL
+	}; //end RSgeneratorL
 
-	
-var rsRowData = function(tbl, row){
-	var templist = [];
-	var temptotal = 0;
-	var colLen = $(tbl + ' tbody td.' + row + '').length;
-	console.log("colLen:",colLen);
-	for (i = 0; i <= colLen+2; ++i) {
-		if (remSpcChr($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text()) === "") {
-			continue;
-		};
-		console.log("For loop start:::");
-		console.log($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text());
-		console.log("remSpcchr:",remSpcChr($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text()));
-		console.log("pFloat:",pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
-		
-		temptotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
-		templist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
-	}
-	console.log("temptotal:",temptotal);
-	console.log("templist:",templist);
-	return templist, temptotal
-}
-
-// var numList_NetSalesProceeds = function(){
-// 	var templist = [];
-// 	var temptotal = 0;
-// 	var colLen = $('#unlevered-analysis tbody td.RS_Net_Sales_Proceeds2').length;
-// 	console.log("colLen:",colLen);
-// 	for (i = 0; i <= colLen+2; ++i) {
-// 		if (remSpcChr($('#unlevered-analysis tbody td.RS_Net_Sales_Proceeds2:nth-child(' + i + ')').text()) === "") {
-// 			continue;
-// 		};
-// 		console.log("For loop start:::");
-// 		console.log($('#unlevered-analysis tbody td.RS_Net_Sales_Proceeds2:nth-child(' + i + ')').text());
-// 		console.log("remSpcchr:",remSpcChr($('#unlevered-analysis tbody td.RS_Net_Sales_Proceeds2:nth-child(' + i + ')').text()));
-// 		console.log("pFloat:",pFloat('#unlevered-analysis tbody td.RS_Net_Sales_Proceeds2:nth-child(' + i + ')'));
-		
-// 		temptotal += pFloat('#unlevered-analysis tbody td.RS_Net_Sales_Proceeds2:nth-child(' + i + ')');
-// 		templist.push(pFloat('#unlevered-analysis tbody td.RS_Net_Sales_Proceeds2:nth-child(' + i + ')'));
-// 	}
-// 	console.log("temptotal:",temptotal);
-// 	console.log("templist:",templist);
-// 	return templist, temptotal
-// }	
-
-
-
-
-//grabs the lists as an object
-returns_summary.getNumLists = function(){
-  return {
-    IRR_numlists: IRR_numlists,
-  };
-}
-
+	var rsRowData = function(tbl, row){
+		var templist = [];
+		var temptotal = 0;
+		var colLen = $(tbl + ' tbody td.' + row + '').length;
+		console.log("colLen:",colLen);
+		for (i = 0; i <= colLen+2; ++i) {
+			if (remSpcChr($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text()) === "") {
+				continue;
+			};
+			console.log("For loop start:::");
+			console.log($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text());
+			console.log("remSpcchr:",remSpcChr($(tbl + ' tbody td.' + row + ':nth-child(' + i + ')').text()));
+			console.log("pFloat:",pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
+			
+			temptotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
+			templist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
+		}
+		console.log("temptotal:",temptotal);
+		console.log("templist:",templist);
+		return templist
+	} //end rsRowData
 
 // ------------------------------------------------
 	RSgeneratorUL("#unlevered-analysis");
 	RSgeneratorL("#levered-analysis");
+	// rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2');
+	// rsRowData('#unlevered-analysis','RS_Net_Sales_Proceeds2')
+	// rsRowData('#levered-analysis','RS_Net_Cash_Flow_from_Operations2');
+	// rsRowData('#levered-analysis','RS_Net_Sales_Proceeds2')
 	
-	rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2');
-	rsRowData('#unlevered-analysis','RS_Net_Sales_Proceeds2')
-	rsRowData('#levered-analysis','RS_Net_Cash_Flow_from_Operations2');
-	rsRowData('#levered-analysis','RS_Net_Sales_Proceeds2')
+
+	// IRR values = variables grab Return Summary row data for parameters, calculates the IRR, and then rounds the # to 2 decimal points
+	var UL_IRR = FormatPercent2(IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows')));
+	$('#RSUL_IRR').text(UL_IRR);
+	var L_IRR = FormatPercent2(IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows')));
+	$('#RSL_IRR').text(L_IRR);
+
+	// =SUMIF(C24:M24,">0")/-SUMIF(C24:M24,"<0")
+
+
 
 } //end myApp.returnsSummary function

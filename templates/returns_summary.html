@@ -8,45 +8,44 @@
 
 	<div class ='row'>
 		<div class = 'col s4'>
-			<table class = 'z-depth-1 striped' id="unlevered">
+			<table  class = 'z-depth-1 striped' id ="unlevered">
 			  <thead>
 				<tr>
 					<th colspan="2">Unlevered Data</th>
 				</tr>
 			  </thead>
-
-			  <tr class ='RS_Unlevered_IRR'>
+			  <tr>
 				<th>Unlevered IRR</th>
-				<th>%</th>
+				<th id ='RSUL_IRR'>%</th>
 			  </tr>
-			  <tr class ='RS_Unlevered_Equity_Multiple'>
+			  <tr>
 				<th>Unlevered Equity Multiple</th>
-				<th>#</th>
+				<th id ='RSUL_Equity_Multiple'>#</th>
 			  </tr>
 			</table>
 
 			<table class = 'z-depth-1 striped' id ="unlevered-irr-partition">
-			  <thead>
-				<tr>
-					<th>IRR Partition</th>
-					<th>%</th>
-					<th>$</th>
-				</tr>
-			  </thead>
-			  <tr class = 'RS_IRR_from_Cash_Flow'>
+				<thead>
+					<tr>
+						<th class = 't_head'>IRR Partition</th>
+						<th class = 't_head'>%</th>
+						<th class = 't_head'>$</th>
+					</tr>
+				</thead>
+			  <tr>
 				<th>IRR from Cash Flow</th>
-				<th>%</th>
-				<th>$</th>
+				<th id = 'RSUL_IRR_from_Cash_Flow_P'>%</th>
+				<th id = 'RSUL_IRR_from_Cash_Flow_D'>$</th>
 			  </tr>
-			  <tr class = 'RS_IRR_from_ReversionSale'>
+			  <tr>
 				<th>IRR from Reversion/Sale</th>
-				<th>%</th>
-				<th>$</th>
+				<th id = 'RSUL_IRR_from_ReversionSale_P'>%</th>
+				<th id = 'RSUL_IRR_from_ReversionSale_D'>$</th>
 			  </tr>
-			  <tr class = 'RS_Total'>
+			  <tr>
 				<th>Total</th>
-				<th>%</th>
-				<th>$</th>
+				<th id = 'RSUL_Total_P'>%</th>
+				<th id = 'RSUL_Total_D'>$</th>
 			  </tr>
 			</table>
 		</div>
@@ -59,13 +58,13 @@
 					<th colspan="2">Levered Data</th>
 				</tr>
 			  </thead>
-			  <tr class ='RS_Levered_IRR'>
+			  <tr>
 				<th>Levered IRR</th>
-				<th>%</th>
+				<th id ='RSL_IRR'>%</th>
 			  </tr>
-			  <tr class ='RS_Levered_Equity_Multiple'>
+			  <tr>
 				<th>Levered Equity Multiple</th>
-				<th>#</th>
+				<th id ='RSL_Equity_Multiple'>#</th>
 			  </tr>
 			</table>
 
@@ -77,20 +76,20 @@
 						<th class = 't_head'>$</th>
 					</tr>
 				</thead>
-			  <tr class = 'RS_IRR_from_Cash_Flow'>
+			  <tr>
 				<th>IRR from Cash Flow</th>
-				<th>%</th>
-				<th>$</th>
+				<th id = 'RSL_IRR_from_Cash_Flow_P'>%</th>
+				<th id = 'RSL_IRR_from_Cash_Flow_D'>$</th>
 			  </tr>
-			  <tr class = 'RS_IRR_from_ReversionSale'>
+			  <tr>
 				<th>IRR from Reversion/Sale</th>
-				<th>%</th>
-				<th>$</th>
+				<th id = 'RSL_IRR_from_ReversionSale_P'>%</th>
+				<th id = 'RSL_IRR_from_ReversionSale_D'>$</th>
 			  </tr>
-			  <tr class = 'RS_Total'>
+			  <tr>
 				<th>Total</th>
-				<th>%</th>
-				<th>$</th>
+				<th id = 'RSL_Total_P'>%</th>
+				<th id = 'RSL_Total_D'>$</th>
 			  </tr>
 			</table>
 		</div>
