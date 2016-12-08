@@ -294,6 +294,7 @@ myApp.returnsSummary = function(){
 // ===========================================================================================================
 	//returns an array of a specific row from a specific table (table and row name are used as parameters)
 	var rsRowData = function(tbl, row){
+		var strlist = "";
 		var datalist = [];
 		var datatotal = 0;
 		var colLen = $(tbl + ' tbody td.' + row + '').length;
@@ -303,12 +304,15 @@ myApp.returnsSummary = function(){
 			};
 			datatotal += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')');
 			datalist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
+			strlist += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')') + ",";
 		}
 		// console.log("datatotal:",datatotal);
 		// console.log("datalist:",datalist);
+		// console.log("strlist:",strlist);
 		return {
 			"datalist": datalist,
-			"datatotal": datatotal
+			"datatotal": datatotal,
+			"strlist": strlist
 		}
 	}; //end rsRowData
 
@@ -330,44 +334,95 @@ myApp.returnsSummary = function(){
 
 	// IRR values calculations
 	// Description: variables grab Return Summary row data for parameters, calculates the IRR, and then rounds the # to 2 decimal points
-	var UL_IRR = IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
-	$('#RSUL_IRR').text(FormatCurrency(UL_IRR));
-	var L_IRR = IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
-	$('#RSL_IRR').text(FormatCurrency(L_IRR));
+	
+	//CORRECT VARIABLE: 
+	// var UL_IRR = IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
+	// var L_IRR = IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
+	
+	//TESTING PURPOSES--------------------
+	var UL_IRR = 9.00225699541361;
+	var L_IRR = 14.149852233922;
+	//-------------------------------------
+	$('#RSUL_IRR').text(FormatPercent2(UL_IRR));
+	$('#RSL_IRR').text(FormatPercent2(L_IRR));
 
-
-	// console.log("Equity Mult below====================");
+	//Equity Multiple
 	var UL_EM = EquityMult(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
 	$('#RSUL_Equity_Multiple').text(UL_EM);
 	var U_EM = EquityMult(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
 	$('#RSL_Equity_Multiple').text(U_EM);
 
 	//NPV Calculations
-	console.log(rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
-	var UL_NPV = finance.NPV(UL_IRR,0,rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2'))
-	console.log(IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist))
-	console.log(finance.NPV(9.002256995413610,0,1691479	,1745223 	,1800580 	,1857597 	,1916325 	,1976815 	,2039120 	,2103293 	,2169392 	,2237474 ))
+	var UL_NPV_IRR_CF = finance.NPV(UL_IRR,rsRowData('#unlevered-analysis','RS_Net_Cash_Flow_from_Operations2').datalist);
+	var L_NPV_IRR_CF = finance.NPV(L_IRR,rsRowData('#levered-analysis','RS_Net_Cash_Flow_from_Operations2').datalist);
+	$('#RSUL_IRR_from_Cash_Flow_D').text(FormatCurrency(UL_NPV_IRR_CF));
+	$('#RSL_IRR_from_Cash_Flow_D').text(FormatCurrency(L_NPV_IRR_CF));
+
+	// IRR from Cash Flow, IRR from Reversion/Sale, Total - $
+	var UL_NPV_IRR_RS = finance.NPV(UL_IRR,rsRowData('#unlevered-analysis','RS_Net_Sales_Proceeds2').datalist);
+	var L_NPV_IRR_RS = finance.NPV(L_IRR,rsRowData('#levered-analysis','RS_Net_Sales_Proceeds2').datalist);
+	$('#RSUL_IRR_from_ReversionSale_D').text(FormatCurrency(UL_NPV_IRR_RS));
+	$('#RSL_IRR_from_ReversionSale_D').text(FormatCurrency(L_NPV_IRR_RS));
+	$('#RSUL_Total_D').text(FormatCurrency(UL_NPV_IRR_RS+UL_NPV_IRR_CF));
+	$('#RSL_Total_D').text(FormatCurrency(L_NPV_IRR_RS+L_NPV_IRR_CF));
+
+	// IRR from Cash Flow, IRR from Reversion/Sale, Total - %
+	$('#RSUL_IRR_from_Cash_Flow_P').text(FormatPercent2(UL_NPV_IRR_CF/(UL_NPV_IRR_RS+UL_NPV_IRR_CF)*100));
+	$('#RSL_IRR_from_Cash_Flow_P').text(FormatPercent2(L_NPV_IRR_CF/(L_NPV_IRR_RS+L_NPV_IRR_CF)*100));
+	$('#RSUL_IRR_from_ReversionSale_P').text(FormatPercent2(UL_NPV_IRR_RS/(UL_NPV_IRR_RS+UL_NPV_IRR_CF)*100));
+	$('#RSL_IRR_from_ReversionSale_P').text(FormatPercent2(L_NPV_IRR_RS/(L_NPV_IRR_RS+L_NPV_IRR_CF)*100));
+	$('#RSUL_Total_P').text(FormatPercent2(
+		parseFloat(remSpcChr($('#RSUL_IRR_from_Cash_Flow_P').text()))
+		+
+		parseFloat(remSpcChr($('#RSUL_IRR_from_ReversionSale_P').text()))
+		));
+	$('#RSL_Total_P').text(FormatPercent2(
+		parseFloat(remSpcChr($('#RSL_IRR_from_Cash_Flow_P').text()))
+		+
+		parseFloat(remSpcChr($('#RSL_IRR_from_ReversionSale_P').text()))
+		));
+
+	// //IRR taken from Google Sheet
+	// console.log("====================================================")
+	// console.log("IRR G Sheet:", 9.002256995413610)
+	// console.log("NPV G Sheet:",FormatCurrency(finance.NPV(9.002256995413610, [1691479, 1745223, 1800580, 1857597, 1916325, 1976815, 2039120, 2103293, 2169392, 2237474])))
+	// console.log("====================================================")
+
+	// #UL_Present_Value
+	var UL_RowDataTCF = rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist;
+	UL_RowDataTCF.shift(); //removes first index (this first index is a negative num)
+	var UL_Present_Value = finance.NPV(g.unleveredDiscountRate, UL_RowDataTCF);
+	// #L_Present_Value
+	var L_RowDataTCF = rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist;
+	L_RowDataTCF.shift(); //removes first index (this first index is a negative num)
+	var L_Present_Value = finance.NPV(g.leveredDiscountRate, L_RowDataTCF);
+	
+	//UL_IRR_from_Sale
+	var UL_RowDataTCFsum = rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datatotal - rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist[0];
+	console.log("UL_RowDataTCF2:",UL_RowDataTCFsum);
+	//L_IRR_from_Sale
+	var L_RowDataTCFsum = rsRowData('#levered-analysis','RS_Total_Cash_Flows').datatotal - rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist[0];
+	console.log("L_RowDataTCF2:",L_RowDataTCFsum);
 
 
+	// Dashboard - Returns Summary Table
+	$('#UL_Net_Profit').text(FormatCurrency(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datatotal));
+	$('#UL_Present_Value').text(FormatCurrency(UL_Present_Value));
+	$('#UL_Net_Present_Value').text(FormatCurrency(remSpcChr($('#UL_Present_Value').text()) - remSpcChr($('#PI_Total_Costs').text())));
+	$('#UL_Equity_Multiple').text($('#RSUL_Equity_Multiple').text());
+	$('#UL_IRR').text($('#RSUL_IRR').text());
+	$('#UL_IRR_from_CF').text($('#RSUL_IRR_from_Cash_Flow_P').text());
+	$('#UL_IRR_from_Sale').text($('#RSUL_IRR_from_ReversionSale_P').text());	
+	$('#UL_Cash_On_Cash').text(FormatPercent2(pFloat('#dashboard #Purchase_Information td#PI_Total_Costs')/UL_RowDataTCFsum*100));
 
-// Dashboard - Returns Summary Table
-  $('#UL_Net_Profit').text(FormatCurrency(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datatotal))
-  $('#UL_Present_Value').text()
-  $('#UL_Net_Present_Value').text()
-  $('#UL_Equity_Multiple').text($('#RSUL_Equity_Multiple').text())
-  $('#UL_IRR').text($('#RSUL_IRR').text())
-  $('#UL_IRR_from_CF').text()
-  $('#UL_IRR_from_Sale').text()
-  $('#UL_Cash_On_Cash').text()
-
-  $('#L_Net_Profit').text(FormatCurrency(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datatotal))
-  $('#L_Present_Value').text()
-  $('#L_Net_Present_Value').text()
-  $('#L_Equity_Multiple').text($('#RSL_Equity_Multiple').text())
-  $('#L_IRR').text($('#RSL_IRR').text())
-  $('#L_IRR_from_CF').text()
-  $('#L_IRR_from_Sale').text()
-  $('#L_Cash_On_Cash').text()
+	$('#L_Net_Profit').text(FormatCurrency(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datatotal))
+	$('#L_Present_Value').text(FormatCurrency(L_Present_Value))
+	$('#L_Net_Present_Value').text(FormatCurrency(remSpcChr($('#L_Present_Value').text()) - remSpcChr($('#Equity_Total').text())));
+	$('#L_Equity_Multiple').text($('#RSL_Equity_Multiple').text())
+	$('#L_IRR').text($('#RSL_IRR').text())
+	$('#L_IRR_from_CF').text($('#RSL_IRR_from_Cash_Flow_P').text());
+	$('#L_IRR_from_Sale').text($('#RSL_IRR_from_ReversionSale_P').text());
+	$('#L_Cash_On_Cash').text(FormatPercent2(pFloat('#dashboard #Sources_and_Uses td#Equity_Total')/L_RowDataTCFsum*100));
 
 
 } //end myApp.returnsSummary function

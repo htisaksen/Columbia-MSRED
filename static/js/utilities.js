@@ -58,7 +58,7 @@ myApp.utils = {};
 
       //credit to: http://stackoverflow.com/questions/15089151/javascript-irr-internal-rate-of-return-formula-accuracy
       myApp.utils.IRRCalc = function(CArray) {
-        min = 0.0;
+        min = -1.0;
         max = 1.0;
         c = 0;
         do {
@@ -81,11 +81,16 @@ myApp.utils = {};
          return guest * 100;
       }
 
-      //Equity Multiple
-      myApp.utils.EquityMult = function(CArray) {
-
-      }
 
 })();
 
 // ============================================================================================================
+// NPV with G Sheet:       12,265,011.36
+
+// -1.01 NPV with UL_IRR:  12,265,374.62
+// min 0 NPV with UL_IRR:  12,266,501.39
+// -0.8 NPV with UL_IRR:   12,263,034.9
+// -0.9 NPV with UL_IRR:   12,262,515.06
+// min -1 NPV with UL_IRR: 12,264,767.96 *** closest to G Sheet NPV
+// -1.1 NPV with UL_IRR:   12,264,594.64
+
