@@ -113,8 +113,9 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
     //calculate totals
     $('th.total_sf').text(total_square_foot.toLocaleString());
     $('th.avg_sf_per_unit').text(parseInt(remSpcChr($('th.total_sf').text())/$('th.total_units').text()).toLocaleString())
-    $('th.rent_per_sf').text(FormatCurrency(remSpcChr($('th.rent_per_unit').text())/remSpcChr($('th.avg_sf_per_unit').text())))
+    $('th.rent_per_sf').text(FormatCurrency(nanCheck(remSpcChr($('th.rent_per_unit').text())/remSpcChr($('th.avg_sf_per_unit').text()))))
     $('#prop_info_total_sq_ft').text($('th.total_sf').text())
+
   };
 //END RENTAL RATE ASSUMPTIONS Table calculations=======================================================================
 

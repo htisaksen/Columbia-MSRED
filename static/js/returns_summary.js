@@ -1,4 +1,5 @@
 
+
 // ============================================================================================================
 //RETURNS SUMMARY Dynamic Table
 // ============================================================================================================
@@ -306,9 +307,7 @@ myApp.returnsSummary = function(){
 			datalist.push(pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')'));
 			strlist += pFloat(tbl + ' tbody td.' + row + ':nth-child(' + i + ')') + ",";
 		}
-		// console.log("datatotal:",datatotal);
-		// console.log("datalist:",datalist);
-		// console.log("strlist:",strlist);
+
 		return {
 			"datalist": datalist,
 			"datatotal": datatotal,
@@ -334,14 +333,14 @@ myApp.returnsSummary = function(){
 
 	// IRR values calculations
 	// Description: variables grab Return Summary row data for parameters, calculates the IRR, and then rounds the # to 2 decimal points
-	
-	//CORRECT VARIABLE: 
-	// var UL_IRR = IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
-	// var L_IRR = IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
-	
+
+	//CORRECT VARIABLE:
+	var UL_IRR = IRRCalc(rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist);
+	var L_IRR = IRRCalc(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist);
+
 	//TESTING PURPOSES--------------------
-	var UL_IRR = 9.00225699541361;
-	var L_IRR = 14.149852233922;
+	// var UL_IRR = 9.00225699541361;
+	// var L_IRR = 14.149852233922;
 	//-------------------------------------
 	$('#RSUL_IRR').text(FormatPercent2(UL_IRR));
 	$('#RSL_IRR').text(FormatPercent2(L_IRR));
@@ -382,11 +381,8 @@ myApp.returnsSummary = function(){
 		parseFloat(remSpcChr($('#RSL_IRR_from_ReversionSale_P').text()))
 		));
 
-	// //IRR taken from Google Sheet
-	// console.log("====================================================")
-	// console.log("IRR G Sheet:", 9.002256995413610)
-	// console.log("NPV G Sheet:",FormatCurrency(finance.NPV(9.002256995413610, [1691479, 1745223, 1800580, 1857597, 1916325, 1976815, 2039120, 2103293, 2169392, 2237474])))
-	// console.log("====================================================")
+	//IRR taken from Google Sheet
+
 
 	// #UL_Present_Value
 	var UL_RowDataTCF = rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist;
@@ -396,13 +392,13 @@ myApp.returnsSummary = function(){
 	var L_RowDataTCF = rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist;
 	L_RowDataTCF.shift(); //removes first index (this first index is a negative num)
 	var L_Present_Value = finance.NPV(g.leveredDiscountRate, L_RowDataTCF);
-	
+
 	//UL_IRR_from_Sale
 	var UL_RowDataTCFsum = rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datatotal - rsRowData('#unlevered-analysis','RS_Total_Cash_Flows').datalist[0];
-	console.log("UL_RowDataTCF2:",UL_RowDataTCFsum);
+
 	//L_IRR_from_Sale
 	var L_RowDataTCFsum = rsRowData('#levered-analysis','RS_Total_Cash_Flows').datatotal - rsRowData('#levered-analysis','RS_Total_Cash_Flows').datalist[0];
-	console.log("L_RowDataTCF2:",L_RowDataTCFsum);
+
 
 
 	// Dashboard - Returns Summary Table
@@ -412,7 +408,7 @@ myApp.returnsSummary = function(){
 	$('#UL_Equity_Multiple').text($('#RSUL_Equity_Multiple').text());
 	$('#UL_IRR').text($('#RSUL_IRR').text());
 	$('#UL_IRR_from_CF').text($('#RSUL_IRR_from_Cash_Flow_P').text());
-	$('#UL_IRR_from_Sale').text($('#RSUL_IRR_from_ReversionSale_P').text());	
+	$('#UL_IRR_from_Sale').text($('#RSUL_IRR_from_ReversionSale_P').text());
 	$('#UL_Cash_On_Cash').text(FormatPercent2(pFloat('#dashboard #Purchase_Information td#PI_Total_Costs')/UL_RowDataTCFsum*100));
 
 	$('#L_Net_Profit').text(FormatCurrency(rsRowData('#levered-analysis','RS_Total_Cash_Flows').datatotal))

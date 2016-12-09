@@ -21,7 +21,6 @@ Finance.prototype.FV = function (rate, cf0, numOfPeriod) {
 
 // Net Present Value (NPV)
 Finance.prototype.NPV = function (rate, CArray) {
-  console.log("CArray:",CArray);
   var rate = rate/100, npv = 0;
   for (var i = 0; i < CArray.length; i++) {
     npv +=(CArray[i] / Math.pow((1 + rate), i + 1));

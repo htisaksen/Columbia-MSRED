@@ -19,7 +19,7 @@ $(document).ready(function(){
 			myApp.utils.nanReplace();
 	};
 
-//functions that insert initial rows/columns of data 
+//functions that insert initial rows/columns of data
 	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
 	myApp.htmlGen.marketRentalAssumptions(); 	//Javascript Market Rental Rate Assumptions first insert row -------------------
 	myApp.htmlGen.proForma(); 					//Javascript Market Rental Rate Assumptions two columns -------------------
@@ -149,18 +149,18 @@ $(document).ready(function(){
 	services.updateDashboard(data);	//AJAX call - ajax.js
  	});
 
-// Runs calcs on focusout============================================================================================================
-	$('.rent_row').on('focusout', myApp.rra.RRAInput);
-	$('#dashboard').on('focusout', calculations);
 
 // Runs calcs on page load ====================================================================================
 	setTimeout(function(){
 		calculations();
-		myApp.returnsSummary(); 	
+		myApp.returnsSummary();
 		myApp.utils.nanReplace();
 	}, 0);
 	myApp.rra.OnLoad();
 	calculations();
-	
+
+	// Runs calcs on focusout============================================================================================================
+	$('.rent_row').on('focusout', myApp.rra.RRAInput);
+	$('#dashboard').on('focusout', calculations);
 
 }); //end of doc
