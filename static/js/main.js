@@ -16,6 +16,7 @@ $(document).ready(function(){
 			myApp.dashboard.dashboardInput();
 			myApp.dashboard.dashboardInput();
 			myApp.proForma();
+			myApp.returnsSummary();
 			myApp.utils.nanReplace();
 	};
 
