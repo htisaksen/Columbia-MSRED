@@ -16,14 +16,15 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
   var FormatCurrency = myApp.utils.FormatCurrency;
   var FormatPercent = myApp.utils.FormatPercent;
 
-  // Sets variables for column sum data for Rental Rate Assumptions -------------------------------------------
-  var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
-  var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
-  var $rsf = $('#Rental_Rate_Assumptions tbody .rent_per_sf')
-  var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
+
 
 
   myApp.rra.RRAInput = function(){
+    // Sets variables for column sum data for Rental Rate Assumptions -------------------------------------------
+    var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
+    var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
+    var $rsf = $('#Rental_Rate_Assumptions tbody .rent_per_sf')
+    var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
 
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		var totalUnits = parseInt($('.total_units', this).val());
@@ -89,6 +90,11 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 	};
   //Function to calculate values on load
   myApp.rra.OnLoad = function(){
+    // Sets variables for column sum data for Rental Rate Assumptions -------------------------------------------
+    var $tu = $('#Rental_Rate_Assumptions tbody .total_units');
+    var $tsf = $('#Rental_Rate_Assumptions tbody .total_sf');
+    var $rsf = $('#Rental_Rate_Assumptions tbody .rent_per_sf')
+    var $rrow = $('#Rental_Rate_Assumptions tbody .rent_row');
 
     var sumTotalUnits = 0;
     var sumTotalSF = 0;

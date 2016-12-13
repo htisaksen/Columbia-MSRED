@@ -12,12 +12,25 @@ $(document).ready(function(){
 
 
 //created function to run dashboard input twice
+
 	var calculations = function(){
 			myApp.dashboard.dashboardInput();
-			myApp.dashboard.dashboardInput();
+			// myApp.dashboard.dashboardInput();
 			myApp.proForma();
+			myApp.returnsSummary();
 			myApp.utils.nanReplace();
 	};
+	var proformaReturnSummaryCalc = function(){
+		myApp.proForma();
+		myApp.returnsSummary();
+	};
+	var debounceCalculations = myApp.utils.debounce(function(){
+		calculations()
+	}, 2000);
+
+	var debounceRRACalculations = myApp.utils.debounce(function(){
+		myApp.rra.RRAInput();
+	},2000)
 
 //functions that insert initial rows/columns of data
 	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
@@ -162,5 +175,10 @@ $(document).ready(function(){
 	// Runs calcs on focusout============================================================================================================
 	$('.rent_row').on('focusout', myApp.rra.RRAInput);
 	$('#dashboard').on('focusout', calculations);
+
+	//Runs calc on input
+
+	// $('.rent_row').on('input',debounceRRACalculations);
+	// $('#dashboard').on('input', debounceCalculations);
 
 }); //end of doc
