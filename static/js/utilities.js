@@ -81,6 +81,20 @@ myApp.utils = {};
          return guest * 100;
       }
 
+      myApp.utils.debounce = function(func, wait, immediate) {
+      	var timeout;
+      	return function() {
+      		var context = this, args = arguments;
+      		var later = function() {
+      			timeout = null;
+      			if (!immediate) func.apply(context, args);
+      		};
+      		var callNow = immediate && !timeout;
+      		clearTimeout(timeout);
+      		timeout = setTimeout(later, wait);
+      		if (callNow) func.apply(context, args);
+      	};
+      };
 
 })();
 
@@ -93,4 +107,3 @@ myApp.utils = {};
 // -0.9 NPV with UL_IRR:   12,262,515.06
 // min -1 NPV with UL_IRR: 12,264,767.96 *** closest to G Sheet NPV
 // -1.1 NPV with UL_IRR:   12,264,594.64
-
