@@ -63,7 +63,7 @@ def load_data(modelid):
 			print("RRA_curr_list:",RRA_curr_list)
 			rental_rate_list.append(RRA_curr_list)
 		print("rental_rate_list:",rental_rate_list)
-		
+
 		RRA_row_count = len(rental_rate_list)
 		print("RRA_row_count:",RRA_row_count)
 
@@ -80,7 +80,7 @@ def load_data(modelid):
 			print("MRA_curr_list:",MRA_curr_list)
 			market_rental_list.append(MRA_curr_list)
 		print("market_rental_list:",market_rental_list)
-		
+
 
 		MRA_row_count = len(market_rental_list)
 		print("MRA_row_count:",MRA_row_count)

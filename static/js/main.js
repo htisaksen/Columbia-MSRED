@@ -177,7 +177,7 @@ $(document).ready(function(){
 	$('#dashboard').on('focusout', calculations);
 
 	//Runs calc on input
-
+	//
 	// $('.rent_row').on('input',debounceRRACalculations);
 	// $('#dashboard').on('input', debounceCalculations);
 
