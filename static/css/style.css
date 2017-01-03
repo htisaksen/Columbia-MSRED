@@ -173,7 +173,14 @@ table {
 
 td, th{
 	padding: 7px 5px;
+	overflow:scroll;
 }
+
+/*Percent td th*/
+
+/*td.percent{
+
+}*/
 
 /* Changes padding of Return Summary tables==========
 #unlevered-analysis tbody tr td, th,
