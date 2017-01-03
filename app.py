@@ -146,10 +146,6 @@ def home():
 		user = session.get('id')
 		print("/Home GET userid:",user)
 		modelslist = RealEstateModel.query.filter_by(user_id = user).all()
-		for model in modelslist:
-			date = "Save Date: " + model.created_on[0:10]
-			time = "\nTime: " + model.created_on[11:19]
-			model.created_on = date + time
 	return render_template('home.html', modelslist = modelslist)
 
 @app.route("/org_dashboard", methods=['GET','POST'])
@@ -200,9 +196,13 @@ def save_data():
 	concession_list = []
 	credit_loss_list = []
 	# static inputs
+	date_formatted = datetime.utcnow().strftime('%B %d %Y - %H:%M:%S')
+	date = date_formatted[0:15]
+	time = date_formatted[18:26]
+	date_formatted = date + "-" + time
 	save = RealEstateModel(
 				request.form['save_name'],
-				datetime.utcnow(),
+				date_formatted,
 				request.form['Analysis_Start_Date'],
 				request.form['Property_Name'],
 				request.form['Property_Address'],
