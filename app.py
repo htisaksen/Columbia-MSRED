@@ -146,6 +146,10 @@ def home():
 		user = session.get('id')
 		print("/Home GET userid:",user)
 		modelslist = RealEstateModel.query.filter_by(user_id = user).all()
+		for model in modelslist:
+			date = "Save Date: " + model.created_on[0:10]
+			time = "\nTime: " + model.created_on[11:19]
+			model.created_on = date + time
 	return render_template('home.html', modelslist = modelslist)
 
 @app.route("/org_dashboard", methods=['GET','POST'])
