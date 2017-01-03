@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 	var calculations = function(){
 			myApp.dashboard.dashboardInput();
-			// myApp.dashboard.dashboardInput();
+			myApp.dashboard.dashboardInput();
 			myApp.proForma();
 			myApp.returnsSummary();
 			myApp.utils.nanReplace();
@@ -70,9 +70,13 @@ $(document).ready(function(){
 			myApp.dashboard.dashboardInput();
 		});
 
-		//Runs input function inside
+		//Runs input function inside on focusout
 		$('.rent_row').on('focusout', myApp.rra.RRAInput);
 		$('#dashboard').on('focusout', calculations);
+
+		//Runs input function inside on input
+		// $('.rent_row').on('input',debounceRRACalculations);
+		// $('#dashboard').on('input', debounceCalculations);
 
 	}); //end addrow function
 
