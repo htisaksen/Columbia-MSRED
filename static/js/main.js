@@ -72,11 +72,9 @@ $(document).ready(function(){
 
 		//Runs input function inside on focusout
 		$('.rent_row').on('focusout', myApp.rra.RRAInput);
-		$('#dashboard').on('focusout', calculations);
 
 		//Runs input function inside on input
-		// $('.rent_row').on('input',debounceRRACalculations);
-		// $('#dashboard').on('input', debounceCalculations);
+		$('#dashboard').on('input', debounceCalculations);
 
 	}); //end addrow function
 
@@ -178,11 +176,8 @@ $(document).ready(function(){
 
 	// Runs calcs on focusout============================================================================================================
 	$('.rent_row').on('focusout', myApp.rra.RRAInput);
-	$('#dashboard').on('focusout', calculations);
 
 	//Runs calc on input
-	//
-	// $('.rent_row').on('input',debounceRRACalculations);
-	// $('#dashboard').on('input', debounceCalculations);
+	$('#dashboard').on('input', debounceCalculations);
 
 }); //end of doc
