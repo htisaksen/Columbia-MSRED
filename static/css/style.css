@@ -130,7 +130,11 @@ footer.page-footer{
 }
 
 #combined_dashboard td {
-	padding: 2px 5px;
+	padding: .2vw .5vw;
+	font-size:.85vw
+}
+#combined_dashboard th{
+	font-size:.85vw
 }
 
 
@@ -144,11 +148,17 @@ input[type=datetime],
 input[type=datetime-local],
 input[type=number],
 textarea.materialize-textarea {
-	width: 90%;
+	width: 100%;
 	margin: 0;
 	height: 2rem;
+	font-size: .85vw
 }
 
+ /*.percent_input{
+	float:right;
+	width:27% !important;
+	text-align:left;
+}*/
 
 table {
   background:#fff;
@@ -172,7 +182,8 @@ table {
 }
 
 td, th{
-	padding: 7px 5px;
+	/*padding: 7px 5px;*/
+	padding: .2vh .5vw;
 	overflow:scroll;
 	white-space:nowrap;
 }
@@ -211,6 +222,12 @@ th.picker__weekday{
 	background: linear-gradient(180deg,#287bb7,#287bb0);
 }
 
+th.return_summary_header{
+	width:15%;
+}
+th.proforma_header{
+	width:12%;
+}
 
 .table_header {
 	@extend thead th;
