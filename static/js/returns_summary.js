@@ -50,7 +50,7 @@ myApp.returnsSummary = function(){
 
 			} else {
 			//All additional year data calculated based on Pro Forma table calculations ===================
-				$(tbl_name + ' thead tr:first').append("<th class= 'RS_" + "year_" + (rsCounter-1) + "'>"+'YEAR '+ (rsCounter-1) +"</th>");
+				$(tbl_name + ' thead tr:first').append("<th class= 'inputcenter' 'RS_" + "year_" + (rsCounter-1) + "'>"+'YEAR '+ (rsCounter-1) +"</th>");
 
 				//RS_Net_Operating_Income
 				$(tbl_name + ' tbody tr:nth-child(1)').append(
@@ -169,7 +169,7 @@ myApp.returnsSummary = function(){
 
 			} else {
 			//All additional year data calculated based on Pro Forma table calculations ===================
-				$(tbl_name + ' thead tr:first').append("<th class= 'RS_" + "year_" + (rsCounter-1) + "'>"+'YEAR '+ (rsCounter-1) +"</th>");
+				$(tbl_name + ' thead tr:first').append("<th class= 'inputcenter' 'RS_" + "year_" + (rsCounter-1) + "'>"+'YEAR '+ (rsCounter-1) +"</th>");
 
 				//RS_Net_Operating_Income
 				$(tbl_name + ' tbody tr:nth-child(1)').append(

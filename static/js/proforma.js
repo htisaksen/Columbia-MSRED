@@ -22,7 +22,7 @@ myApp.proForma = function(){
 	//Inserts number of columns based on Sale Year in Dashboard
 		for(var i = 0; i < g.saleYear+1; ++i) {
 			pfCounter = $('#Proforma .PF_Year_End th').length;
-			$('#Proforma tr:first').append("<th class= 'PF_" + "year_" + pfCounter + "'>"+'YEAR '+ pfCounter +"</th>");
+			$('#Proforma tr:first').append("<th class= 'inputcenter' 'PF_" + "year_" + pfCounter + "'>"+'YEAR '+ pfCounter +"</th>");
 
 			if (i == 0){
 			//Year 1 data grabbed/calculated based on org_dashboard values

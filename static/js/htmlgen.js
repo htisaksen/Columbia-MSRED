@@ -23,7 +23,7 @@ myApp.htmlGen = {};
     if ($('#Market_Rental_Assumptions tbody tr').length === 0){
       $('#Market_Rental_Assumptions').find('tbody')
         .append($("<tr class = 'year_row' id='year_row_1'>")
-        .append($("<td>Year 1</td>"))
+        .append($("<td class = 'inputleft'>Year 1</td>"))
         .append($("<td>").html("<input type='number' id='mkt_rent_revenue1' name='mkt_rent_revenue1' class='mkt_rent_revenue' placeholder='(%)'></td>"))
         .append($("<td>").html("<input type='number' id='mkt_rent_expenses1' name='mkt_rent_expenses1' class='mkt_rent_expenses' placeholder='(%)'></td>"))
         .append($("<td>").html("<input type='number' id='mkt_rent_vacancy1' name='mkt_rent_vacancy1' class='mkt_rent_vacancy' placeholder='(%)'></td>"))

@@ -160,7 +160,9 @@ textarea.materialize-textarea {
  .inputright {
  	text-align: right;
  }
-
+ .inputleft {
+ 	text-align: left;
+ }
 
 table {
   background:#fff;
@@ -194,11 +196,33 @@ td.model_name {
 	padding: 7px 5px;
 	overflow: inherit;
 	white-space: inherit;
+	text-align: left;
 }
 
-th.table_description ,td.table_description {
-	text-align:left;
+
+#Purchase_Information tbody td:nth-child(1),
+#Property_Information tbody td:nth-child(1),
+#Sale_Assumptions tbody td:nth-child(1),
+#Sale_Summary tbody td:nth-child(1),
+#Financing_Assumptions tbody td:nth-child(1),
+#Sources_and_Uses tbody td:nth-child(1),
+#Sources_and_Uses tbody th:nth-child(1),
+#Returns_Summary tbody td:nth-child(1),
+#Returns_Summary tbody td:nth-child(3),
+#Capital_Expenditures_Tbl tbody td:nth-child(1),
+#Current_Financial_Performance tbody td:nth-child(1),
+#Current_Financial_Performance tbody th:nth-child(1),
+#Proforma tbody th:nth-child(1),
+#unlevered tbody th:nth-child(1), 
+#levered tbody th:nth-child(1), 
+#unlevered-irr-partition tbody th:nth-child(1), 
+#levered-irr-partition tbody th:nth-child(1), 
+#unlevered-analysis tbody th:nth-child(1), 
+#levered-analysis tbody th:nth-child(1) 
+{
+	text-align: left;
 }
+
 
 
 /*Column width specifications to ensure all data is visible*/
