@@ -45,11 +45,13 @@
 
       <table class ='z-depth-1 striped' id = "Purchase_Information">
         <thead>
-          <th class = 'table_header' colspan='4'>PURCHASE INFORMATION</th>
+          <th id = 'Purchase_Information_col1' class = 'table_header' colspan='2'>PURCHASE INFORMATION</th>
+          <th id = 'Purchase_Information_col2'></th>
+          <th id = 'Purchase_Information_col3'></th>
         </thead>
         <tr>
           <td colspan="2">Purchase Price</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td><input value ='{{modeldata.purchase_price}}' type="number" name="Purchase_Price" id="Purchase_Price" placeholder = "($)"></td>
         </tr>
         <tr>
@@ -59,37 +61,37 @@
         </tr>
         <tr>
           <td colspan="2">Total Costs</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td id ='PI_Total_Costs'>$0.00</td>
         </tr>
         <tr>
           <td colspan="2">Purchase Cost Per Unit</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td id ='PI_Purchase_Cost_Per_Unit'>$0.00</td>
         </tr>
         <tr>
           <td colspan="2">Total Cost Per Unit</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td id ='PI_Total_Cost_Per_Unit'>$0.00</td>
         </tr>
         <tr>
           <td colspan="2">Purchase Cost Per SF</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td id ='PI_Purchase_Cost_Per_SF'>$0.00</td>
         </tr>
         <tr>
           <td colspan="2">Total Cost Per SF</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td id ='PI_Total_Cost_Per_SF'>$0.00</td>
         </tr>
         <tr>
           <td colspan="2">Cap Rate on Purchase Price</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td id ='PI_Cap_Rate_on_Purchase_Price'>0.00%</td>
         </tr>
         <tr>
           <td colspan="2">Cap Rate on Total Price</td>
-          <td class='percent'>&nbsp;</td>
+          <td>&nbsp;</td>
           <td id ='PI_Cap_Rate_on_Total_Price'>0.00%</td>
         </tr>
       </table>

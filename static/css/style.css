@@ -154,12 +154,6 @@ textarea.materialize-textarea {
 	font-size: .85vw
 }
 
- /*.percent_input{
-	float:right;
-	width:27% !important;
-	text-align:left;
-}*/
-
 table {
   background:#fff;
   margin:25px auto;
@@ -184,15 +178,22 @@ table {
 td, th{
 	/*padding: 7px 5px;*/
 	padding: .2vh .5vw;
-	overflow:scroll;
+	overflow:hidden;
 	white-space:nowrap;
 }
 
-/*Percent td th*/
 
-/*td.percent{
+#Purchase_Information_col1 {
+	width: 50%;
+}
 
-}*/
+#Purchase_Information_col2 {
+	width: 15%;
+}
+
+#Purchase_Information_col3 {
+	width: 35%;
+}
 
 /* Changes padding of Return Summary tables==========
 #unlevered-analysis tbody tr td, th,
