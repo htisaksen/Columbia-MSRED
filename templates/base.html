@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	<title>{{title}}</title>
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="/static/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,8 +13,6 @@
 <!-- ================ Top Header/nav bar ================ -->
 {% if session['logged_in'] == True %}
 	<ul id="dropdown1" class="dropdown-content">
-<!-- 		<li><a href="dashboard/#block_org_dashboard">Dashboard</a></li><li class="divider"></li>
-		<li><a href="dashboard/#block_proforma">Pro Forma</a></li><li class="divider"></li> -->
 		<li><a href="/home">Home</a></li><li class="divider"></li>
 		<li><a href="/logout">Logout</a></li>
 	</ul>
@@ -23,7 +20,6 @@
 <div class= 'navbar-fixed'>
 	<nav class = 'nav-wrapper' id ='nav_bar'>
 			<a href="/" class="brand-logo">
-				<!-- <img src="/static/img/whitelogo_blueback-png1.png"> NEEDS THE NEW LOGO-->
 				<h1>Columbia MSRED</h1>
 			</a>
 		<ul class="right hide-on-med-and-down">
@@ -57,30 +53,11 @@
 
 <!-- ==================== Footer ==================== -->
 <footer class="page-footer" id = 'nav_bar'>
-	<!-- <div class="container">
-		<div class="row">
-			<div class="col l6 s12">
-				<h5 class="white-text">Footer Content</h5>
-				<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-			</div>
-			<div class="col l4 offset-l2 s12">
-				<h5 class="white-text">Links</h5>
-				<ul>
-					<li><a class="grey-text text-lighten-3" href="#!">href</a></li>
-				</ul>
-			</div>
-		</div>
-	</div> -->
-	<div class="footer-copyright">
-		© 2016 Columbia University
-	</div>
+	<div class="footer-copyright">© 2016 Columbia University</div>
 </footer>
 
 
 <!-- ==================== Scripts ==================== -->
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> -->
 <script src="{{ url_for('static', filename='js/libraries/jquery-3.1.0.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/libraries/materialize.min.js') }}"></script>
 <script type="text/javascript" src='/static/js/libraries/finance.js'></script>
