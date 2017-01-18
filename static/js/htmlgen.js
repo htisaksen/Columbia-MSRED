@@ -7,7 +7,7 @@ myApp.htmlGen = {};
     if ($('#Rental_Rate_Assumptions tbody tr').length === 0){
       $('#Rental_Rate_Assumptions').find('tbody')
         .append($("<tr class = 'rent_row'>")
-        .append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Proj. Rents'></td>"))
+        .append($("<td>").html("<input type='text' id='proj_rents1' name='proj_rents1' class='proj_rents' placeholder='Unit Type'></td>"))
         .append($("<td>").html("<input type='number' id='total_units1' name='total_units1' class='total_units' placeholder='Total Units'></td>"))
         .append($("<td class = 'total_sf'></td>").text("0"))
         .append($("<td>").html("<input type='number' id='avg_sf_per_unit1' name='avg_sf_per_unit1' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))

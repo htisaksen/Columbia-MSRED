@@ -238,7 +238,7 @@
               <th><submit name = 'rental_rate_form' id = 'rental_rate_form' class="btn-floating waves-effect waves-light btn"><i class="material-icons">add</i></submit></th>
             </tr>
             <tr>
-              <th class = 't_head'>Proj. Rents</th>
+              <th class = 't_head'>Unit Type</th>
               <th class = 't_head'>Total Units</th>
               <th class = 't_head'>Total SF</th>
               <th class = 't_head'>Avg. SF/Unit</th>
@@ -250,7 +250,7 @@
           <tbody>
             {% for row in rental_rate_list %}
             <tr class = 'rent_row'>
-              <td><input type='text' id='proj_rents{{row[0]}}' value ='{{row[1]}}' name='proj_rents{{row[0]}}' class='proj_rents' placeholder='Proj. Rents'></td>
+              <td><input type='text' id='proj_rents{{row[0]}}' value ='{{row[1]}}' name='proj_rents{{row[0]}}' class='proj_rents' placeholder='Unit Type'></td>
               <td><input type='number' id='total_units{{row[0]}}' value ='{{row[2]}}' name='total_units{{row[0]}}' class='total_units inputright' placeholder='Total Units'></td>
               <td class ='total_sf inputright'>0</td>
               <td><input type='number' id='avg_sf_per_unit{{row[0]}}' value ='{{row[3]}}' name='avg_sf_per_unit{{row[0]}}' class='avg_sf_per_unit inputright' placeholder='Avg SF/Unit'></td>
