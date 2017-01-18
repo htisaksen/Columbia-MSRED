@@ -176,13 +176,19 @@ table {
 }
 
 td, th{
-	/*padding: 7px 5px;*/
 	padding: .2vh .5vw;
-	overflow:hidden;
-	white-space:nowrap;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+td.model_name {
+	padding: 7px 5px;
+	overflow: inherit;
+	white-space: inherit;
 }
 
 
+/*Column width specifications to ensure all data is visible*/
 #Purchase_Information_col1 {
 	width: 50%;
 }
