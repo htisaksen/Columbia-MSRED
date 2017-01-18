@@ -26,11 +26,11 @@ $(document).ready(function(){
 	};
 	var debounceCalculations = myApp.utils.debounce(function(){
 		calculations()
-	}, 2000);
+	}, 1000);
 
 	var debounceRRACalculations = myApp.utils.debounce(function(){
 		myApp.rra.RRAInput();
-	},2000)
+	},1000)
 
 //functions that insert initial rows/columns of data
 	myApp.htmlGen.rentalRateAssumptions(); 		//Javascript Rental Rate Assumptions first insert row -----------------------
