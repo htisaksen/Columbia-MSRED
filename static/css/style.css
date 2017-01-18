@@ -198,9 +198,16 @@ td, th{
 #Sources_and_Uses_col3 {
 	width: 15%;
 }
+
 #Sources_and_Uses_col4 {
 	width: 15%;
 }
+
+#Current_Financial_Performance_col2 {
+	width: 20%;
+}
+
+
 
 /* Changes padding of Return Summary tables==========
 #unlevered-analysis tbody tr td, th,
