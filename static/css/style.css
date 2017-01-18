@@ -187,12 +187,17 @@ td, th{
 	padding: .2vh .5vw;
 	overflow: hidden;
 	white-space: nowrap;
+	text-align: right;
 }
 
 td.model_name {
 	padding: 7px 5px;
 	overflow: inherit;
 	white-space: inherit;
+}
+
+th.table_description ,td.table_description {
+	text-align:left;
 }
 
 
