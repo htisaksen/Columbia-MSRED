@@ -151,8 +151,16 @@ textarea.materialize-textarea {
 	width: 100%;
 	margin: 0;
 	height: 2rem;
-	font-size: .85vw
+	font-size: .85vw	
 }
+
+ .inputcenter {
+ 	text-align: center;
+ }
+ .inputright {
+ 	text-align: right;
+ }
+
 
 table {
   background:#fff;
