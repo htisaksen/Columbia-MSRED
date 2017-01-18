@@ -195,6 +195,13 @@ td, th{
 	width: 35%;
 }
 
+#Sources_and_Uses_col3 {
+	width: 15%;
+}
+#Sources_and_Uses_col4 {
+	width: 15%;
+}
+
 /* Changes padding of Return Summary tables==========
 #unlevered-analysis tbody tr td, th,
 #levered-analysis tbody tr td, th {
