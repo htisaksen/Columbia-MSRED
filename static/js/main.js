@@ -102,7 +102,7 @@ $(document).ready(function(){
 			};
 			$('#Market_Rental_Assumptions').find('tbody')
 				.append($("<tr class = 'year_row' id='year_row_"+mraCounter+"'>")
-				.append($("<td class='mkt_rent_year'>Year "+mraCounter+"</td>"))
+				.append($("<td class= 'inputleft mkt_rent_year'>Year "+mraCounter+"</td>"))
 				.append($("<td>").html("<input type='number'id='mkt_rent_revenue"+mraCounter+"' name='mkt_rent_revenue"+mraCounter+"' class='mkt_rent_revenue' placeholder='(%)'></td>"))
 				.append($("<td>").html("<input type='number'id='mkt_rent_expenses"+mraCounter+"' name='mkt_rent_expenses"+mraCounter+"' class='mkt_rent_expenses' placeholder='(%)'></td>"))
 				.append($("<td>").html("<input type='number'id='mkt_rent_vacancy"+mraCounter+"' name='mkt_rent_vacancy"+mraCounter+"' class='mkt_rent_vacancy' placeholder='(%)'></td>"))
