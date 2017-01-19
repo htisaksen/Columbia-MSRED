@@ -55,11 +55,11 @@ $(document).ready(function(){
 		$('#Rental_Rate_Assumptions').find('tbody')
 			.append($("<tr class = 'rent_row'>")
 			.append($("<td>").html("<input type='text' id='proj_rents"+rrCounter+"' name='proj_rents"+rrCounter+"' class='proj_rents' placeholder='Unit Type'></td>"))
-			.append($("<td>").html("<input type='number' id='total_units"+rrCounter+"' name='total_units"+rrCounter+"' class='total_units' placeholder='Total Units'></td>"))
+			.append($("<td>").html("<input class = 'inputright' type='number' id='total_units"+rrCounter+"' name='total_units"+rrCounter+"' class='total_units' placeholder='Total Units'></td>"))
 			.append($("<td class = 'total_sf'></td>").text("0"))
-			.append($("<td>").html("<input type='number' id='avg_sf_per_unit"+rrCounter+"' name='avg_sf_per_unit"+rrCounter+"' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
+			.append($("<td>").html("<input class = 'inputright' type='number' id='avg_sf_per_unit"+rrCounter+"' name='avg_sf_per_unit"+rrCounter+"' class='avg_sf_per_unit' placeholder='Avg SF/Unit'></td>"))
 			.append($("<td class = 'rent_per_sf'></td>").text("$0.00"))
-			.append($("<td>").html("<input type='number' id='rent_per_unit"+rrCounter+"' name='rent_per_unit"+rrCounter+"' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
+			.append($("<td>").html("<input class = 'inputright' type='number' id='rent_per_unit"+rrCounter+"' name='rent_per_unit"+rrCounter+"' class='rent_per_unit' placeholder='Rent/Unit'></td>"))
 			.append($('<td>').html("<a>[X]</a></td>"))
 			);
 
@@ -103,11 +103,11 @@ $(document).ready(function(){
 			$('#Market_Rental_Assumptions').find('tbody')
 				.append($("<tr class = 'year_row' id='year_row_"+mraCounter+"'>")
 				.append($("<td class= 'inputleft mkt_rent_year'>Year "+mraCounter+"</td>"))
-				.append($("<td>").html("<input type='number'id='mkt_rent_revenue"+mraCounter+"' name='mkt_rent_revenue"+mraCounter+"' class='mkt_rent_revenue' placeholder='(%)'></td>"))
-				.append($("<td>").html("<input type='number'id='mkt_rent_expenses"+mraCounter+"' name='mkt_rent_expenses"+mraCounter+"' class='mkt_rent_expenses' placeholder='(%)'></td>"))
-				.append($("<td>").html("<input type='number'id='mkt_rent_vacancy"+mraCounter+"' name='mkt_rent_vacancy"+mraCounter+"' class='mkt_rent_vacancy' placeholder='(%)'></td>"))
-				.append($("<td>").html("<input type='number'id='mkt_rent_concessions"+mraCounter+"' name='mkt_rent_concessions"+mraCounter+"' class='mkt_rent_concessions' placeholder='(%)'></td>"))
-				.append($("<td>").html("<input type='number'id='mkt_rent_credit_loss"+mraCounter+"' name='mkt_rent_credit_loss"+mraCounter+"' class='mkt_rent_credit_loss' placeholder='(%)'></td>"))
+				.append($("<td>").html("<input class = 'inputcenter' type='number'id='mkt_rent_revenue"+mraCounter+"' name='mkt_rent_revenue"+mraCounter+"' class='mkt_rent_revenue' placeholder='(%)'></td>"))
+				.append($("<td>").html("<input class = 'inputcenter' type='number'id='mkt_rent_expenses"+mraCounter+"' name='mkt_rent_expenses"+mraCounter+"' class='mkt_rent_expenses' placeholder='(%)'></td>"))
+				.append($("<td>").html("<input class = 'inputcenter' type='number'id='mkt_rent_vacancy"+mraCounter+"' name='mkt_rent_vacancy"+mraCounter+"' class='mkt_rent_vacancy' placeholder='(%)'></td>"))
+				.append($("<td>").html("<input class = 'inputcenter' type='number'id='mkt_rent_concessions"+mraCounter+"' name='mkt_rent_concessions"+mraCounter+"' class='mkt_rent_concessions' placeholder='(%)'></td>"))
+				.append($("<td>").html("<input class = 'inputcenter' type='number'id='mkt_rent_credit_loss"+mraCounter+"' name='mkt_rent_credit_loss"+mraCounter+"' class='mkt_rent_credit_loss' placeholder='(%)'></td>"))
 				)
 		};
 	}); //end addrow function
