@@ -28,12 +28,12 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 
 		// Calculates row data for Rental Rate Assumptions -------------------------------------------
 		var totalUnits = parseInt($('.total_units', this).val());
-		var avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
+    var avgSFPerUnit = parseInt($(".avg_sf_per_unit", this).val());
 		var rentPerUnit = parseInt($(".rent_per_unit", this).val());
 		var totalSF = totalUnits*avgSFPerUnit;
 		var rentPerSF = rentPerUnit.toFixed(2)/avgSFPerUnit.toFixed(2);
-
-		$('.total_sf', this).text(nanCheck(totalSF).toLocaleString());
+    
+    $('.total_sf', this).text(nanCheck(totalSF).toLocaleString());
 		$('.rent_per_sf', this).text(FormatCurrency(nanCheck(rentPerSF.toFixed(2))));
 
     //initialize sums
@@ -44,13 +44,13 @@ myApp.rra.rraList = []; //Rental Rate Assumptions list
 		//calculates total value: Total Units
 		$tu.each(function(){
 			sumTotalUnits = sumTotalUnits + parseInt(remSpcChr($(this).val()));
-		});
-
-		//calculates total value: Total SF
-		$tsf.each(function(){
-			sumTotalSF = sumTotalSF + parseInt(remSpcChr($(this).text()));
-		});
-
+    });
+    
+    //calculates total value: Total SF
+    $tsf.each(function(){
+      sumTotalSF = sumTotalSF + parseInt(remSpcChr($(this).text()));
+    });
+    
 		//calculates total value: Rent Per Unit
 		$rrow.each(function(){
 			var numUnits = $(this).find('.total_units').val();
