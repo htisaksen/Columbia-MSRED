@@ -10,7 +10,7 @@ Prototype application.
 ## Technologies
 * Python - Flask framework
 * Javascript/jQuery
-* HTML/CSS
+* HTML5/CSS3 - Materialize CSS
 * SQLite
 
 
