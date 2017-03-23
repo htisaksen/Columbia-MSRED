@@ -7,7 +7,7 @@ Students can create user accounts and save specific financial models (a model be
 
 Prototype application.
 
-#Technologies
+## Technologies
 * Python - Flask framework
 * Javascript/jQuery
 * HTML/CSS
